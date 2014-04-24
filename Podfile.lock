@@ -1,4 +1,7 @@
 PODS:
+  - ACKategories (2.0)
+  - AFNetworkActivityLogger (2.0.2):
+    - AFNetworking/NSURLSession (~> 2.0)
   - AFNetworking (2.2.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
@@ -18,11 +21,25 @@ PODS:
   - AFNetworking/UIKit (2.2.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ObjectiveGumbo (0.1)
+  - SVProgressHUD (HEAD based on 1.0)
 
 DEPENDENCIES:
+  - ACKategories (from `https://github.com/AckeeCZ/ACKategories.git`)
+  - AFNetworkActivityLogger (~> 2.0)
   - AFNetworking (~> 2.0)
+  - ObjectiveGumbo (~> 0.1)
+  - SVProgressHUD (HEAD)
+
+EXTERNAL SOURCES:
+  ACKategories:
+    :git: https://github.com/AckeeCZ/ACKategories.git
 
 SPEC CHECKSUMS:
+  ACKategories: cc9a2d14c805d3fc1d7f904d09d9fb6303e52b00
+  AFNetworkActivityLogger: 3d12891eb7cb77b4ad0f0b50fe5d877385bd135d
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
+  ObjectiveGumbo: 76576087e8b3d6e00f4fd4dee7b13e11b1da68e9
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1

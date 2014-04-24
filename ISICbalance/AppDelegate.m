@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BalanceViewController.h"
 
 @implementation AppDelegate
 
@@ -14,50 +15,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    BalanceViewController *controller = [BalanceViewController new];
+    [self.window setRootViewController:controller];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:@"https://agata.suz.cvut.cz/secure/index.php" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"response: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"\nfailing URL: %@", operation.response.URL);
-        
-        NSMutableDictionary *queryParams = [NSMutableDictionary dictionaryWithDictionary:[self parseQueryString:operation.response.URL.query]];
-        NSString *returnQuery = ((NSURL *)[NSURL URLWithString:[[queryParams objectForKey:@"return"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]).query;
-        [queryParams setObject:[self parseQueryString:returnQuery] forKey:@"return"];
-        
-        NSLog(@"params: %@",queryParams);
-        
-        NSString *samlds = [[queryParams objectForKey:@"return"] objectForKey:@"SAMLDS"];
-        NSString *target = [[queryParams objectForKey:@"return"] objectForKey:@"target"];
-        NSString *entityID = [queryParams objectForKey:@"entityID"];
-        entityID = @"https://idp2.civ.cvut.cz/idp/shibboleth";
-        NSString *filter = [[queryParams objectForKey:@"filter"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-        filter = @"eyJhbGxvd0ZlZWRzIjogWyJlZHVJRC5jeiJdLCAiYWxsb3dJZFBzIjogWyJodHRwczovL3dzc28udnNjaHQuY3ovaWRwL3NoaWJib2xldGgiLCJodHRwczovL2lkcDIuY2l2LmN2dXQuY3ovaWRwL3NoaWJib2xldGgiXSwgImFsbG93SG9zdGVsIjogZmFsc2UsICJhbGxvd0hvc3RlbFJlZyI6IGZhbHNlfQ%3D%3D";
-        NSString *lang = [queryParams objectForKey:@"lang"];
-        
-        NSString *urlString = [NSString stringWithFormat:@"https://agata.suz.cvut.cz/Shibboleth.sso/Login?SAMLDS=%@&target=%@&entityID=%@&filter=%@&lang=%@",samlds,target,entityID,filter,lang];
-        
-        NSLog(@"\nnew URL: %@",urlString);
-        
-        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"response: %@", responseObject);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"\nfail: %@", operation.response.URL);
-            
-            NSDictionary *parameters = @{@"j_username": @"misarja1", @"j_password":@"15AD1dd294"};
-            [manager POST:operation.response.URL.absoluteString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"JSON: %@", responseObject);
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"\nError: %@", error);
-            }];
-            
-        }];
-        
-        
-    }];
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     
     return YES;
 }

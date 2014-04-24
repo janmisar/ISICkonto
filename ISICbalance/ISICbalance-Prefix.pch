@@ -16,3 +16,10 @@
 #endif
 
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworkActivityLogger/AFNetworkActivityLogger.h>
+#import <ObjectiveGumbo/ObjectiveGumbo.h>
+#import "HTMLResponseSerializer.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <ACKategories/ACKategories.h>
+
+#define FontAwesome(__size) [UIFont fontWithName:@"FontAwesome" size:__size]
