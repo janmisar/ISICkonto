@@ -23,3 +23,5 @@
 #import <ACKategories/ACKategories.h>
 
 #define FontAwesome(__size) [UIFont fontWithName:@"FontAwesome" size:__size]
+#define PTSansRegular(__size) [UIFont fontWithName:@"PTSans-Regular" size:__size]
+#define PTSansBold(__size) [UIFont fontWithName:@"PTSans-Bold" size:__size]

@@ -15,8 +15,27 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHex:0x4b96b3]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+
+    NSDictionary *textAttributes = @{NSFontAttributeName: PTSansBold(18),
+                                     NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+    
+    textAttributes = @{NSFontAttributeName: PTSansRegular(18),
+                       NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [[UIBarButtonItem appearance] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
+    
+    [SVProgressHUD setFont:PTSansRegular(15)];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithHex:0xffffff]];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithHex:0x3783a0]];
+    
+    
     BalanceViewController *controller = [BalanceViewController new];
-    [self.window setRootViewController:controller];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    [self.window setRootViewController:navController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

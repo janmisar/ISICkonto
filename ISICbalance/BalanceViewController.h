@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *reloadButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @property (nonatomic,assign) BOOL shouldReloadOnAppear;
 

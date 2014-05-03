@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <UITextFieldDelegate>
 
-- (IBAction)doneButtonTapped:(UIButton *)sender;
 - (IBAction)saveButtonTapped:(UIButton *)sender;
+- (IBAction)mightyTapped:(UIButton *)sender;
+- (IBAction)janmisarTapped:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @end

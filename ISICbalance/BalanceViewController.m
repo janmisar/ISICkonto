@@ -15,31 +15,21 @@
 
 @implementation BalanceViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [_reloadButton setTitle:@"" forState:UIControlStateNormal];
-    _reloadButton.titleLabel.font = FontAwesome(40);
-    _reloadButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [_reloadButton sizeToFit];
-    
-    [_settingsButton setTitle:@"" forState:UIControlStateNormal];
-    _settingsButton.titleLabel.font = FontAwesome(40);
-    _settingsButton.titleLabel.textAlignment = NSTextAlignmentRight;
-    [_settingsButton sizeToFit];
+    self.navigationController.navigationBarHidden = YES;
     
     _balanceLabel.adjustsFontSizeToFitWidth = YES;
+    _balanceLabel.font = PTSansBold(80);
+    
+    _infoLabel.font = PTSansRegular(18);
     
     _shouldReloadOnAppear = YES;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -60,9 +50,13 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
 -(void)reloadData {
     
-    [SVProgressHUD showWithStatus:@"Loading data..." maskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD showWithStatus:@"Načítání stavu..." maskType:SVProgressHUDMaskTypeGradient];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [HTMLResponseSerializer serializer];
@@ -105,7 +99,8 @@
                     if(eduidLogin.count) {
                         OGText *credentials = (OGText *)[(OGElement *)eduidLogin[0] first:@"font"];
                         if ([credentials.text rangeOfString:@"credentials" options:NSCaseInsensitiveSearch].location != NSNotFound) {
-                            [SVProgressHUD showErrorWithStatus:@"Wrong credentials"];
+                            [self reloadViewWithBalance:0];
+                            [SVProgressHUD showErrorWithStatus:@"Nesprávné přihlašovací údaje"];
                             return;
                         }
                     }
@@ -126,22 +121,21 @@
                         [SVProgressHUD dismiss];
                         
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        
+                        [SVProgressHUD showErrorWithStatus:@"Došlo k chybě, zkuste to prosím znovu."];
                     }];
                     
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"\nError: %@", error);
+                    [SVProgressHUD showErrorWithStatus:@"Došlo k chybě, zkuste to prosím znovu."];
                 }];
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                
+                [SVProgressHUD showErrorWithStatus:@"Došlo k chybě, zkuste to prosím znovu."];
             }];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // failnul request na agata.suz.cvut.cz/secure/index.php
-        [SVProgressHUD showErrorWithStatus:@"Something wrong. Try again please."];
+        [SVProgressHUD showErrorWithStatus:@"Došlo k chybě, zkuste to prosím znovu."];
     }];
     
 }
@@ -149,7 +143,7 @@
 -(float)readBalanceFromDocument:(OGDocument *)document {
     OGText *balance = (OGText *)[[[document first:@"table"] last:@"tr"] last:@"td"];
     NSString *balanceString = [balance.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
-    return [balanceString floatValue];
+    return [balanceString integerValue];
 }
 
 -(void)reloadViewWithBalance:(float)balance {
@@ -166,7 +160,7 @@
 
 - (IBAction)settingsButtonTapped:(UIButton *)sender {
     
-    [self presentViewController:[SettingsViewController new] animated:YES completion:nil];
+    [self.navigationController pushViewController:[SettingsViewController new] animated:YES];
     
 }
 
@@ -202,6 +196,5 @@
     
     return queryStringDictionary;
 }
-
 
 @end
