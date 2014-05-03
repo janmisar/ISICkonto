@@ -36,7 +36,7 @@
     
     if(![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
         
-        [self presentViewController:[SettingsViewController new] animated:YES completion:nil];
+        [self.navigationController pushViewController:[SettingsViewController new] animated:YES];
         
     } else {
         
@@ -51,7 +51,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = NO;
+    //self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)reloadData {

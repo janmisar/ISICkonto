@@ -136,7 +136,7 @@
 }
 
 - (IBAction)mightyTapped:(UIButton *)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mightycreation.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.creations.cz"]];
 }
 
 - (IBAction)janmisarTapped:(UIButton *)sender {

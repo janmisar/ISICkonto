@@ -36,7 +36,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     [self.window setRootViewController:navController];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor colorWithHex:0x4b96b3];
     [self.window makeKeyAndVisible];
     
     [[AFNetworkActivityLogger sharedLogger] startLogging];

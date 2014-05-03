@@ -68,7 +68,6 @@
 		1767697118BB3C930028C562 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1767697318BB3C930028C562 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1767697718BB3C930028C562 /* ISICbalance-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISICbalance-Info.plist"; sourceTree = "<group>"; };
-		1767697918BB3C930028C562 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1767697B18BB3C930028C562 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1767697D18BB3C930028C562 /* ISICbalance-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISICbalance-Prefix.pch"; sourceTree = "<group>"; };
 		1767697E18BB3C930028C562 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,10 +76,11 @@
 		1767698718BB3C940028C562 /* ISICbalanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISICbalanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1767698818BB3C940028C562 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		1767699018BB3C940028C562 /* ISICbalanceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISICbalanceTests-Info.plist"; sourceTree = "<group>"; };
-		1767699218BB3C940028C562 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1767699418BB3C940028C562 /* ISICbalanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISICbalanceTests.m; sourceTree = "<group>"; };
 		177F7B061914F7F600B37FFC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		177F7B071914F7F600B37FFC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		177F7B0A1915041700B37FFC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		177F7B0B1915041800B37FFC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1793561A1909584700DF14F9 /* HTMLResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLResponseSerializer.h; sourceTree = "<group>"; };
 		1793561B1909584700DF14F9 /* HTMLResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLResponseSerializer.m; sourceTree = "<group>"; };
 		1793561D19095C1500DF14F9 /* BalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
@@ -341,6 +341,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				cs,
 			);
 			mainGroup = 1767696318BB3C930028C562;
 			productRefGroup = 1767696D18BB3C930028C562 /* Products */;
@@ -468,7 +469,7 @@
 		1767697818BB3C930028C562 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1767697918BB3C930028C562 /* en */,
+				177F7B0A1915041700B37FFC /* cs */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -476,7 +477,7 @@
 		1767699118BB3C940028C562 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1767699218BB3C940028C562 /* en */,
+				177F7B0B1915041800B37FFC /* cs */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -568,7 +569,7 @@
 				INFOPLIST_FILE = "ISICbalance/ISICbalance-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -585,7 +586,7 @@
 				INFOPLIST_FILE = "ISICbalance/ISICbalance-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
