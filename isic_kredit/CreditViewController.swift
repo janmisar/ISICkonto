@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class CreditViewController: UIViewController {
     
@@ -17,13 +18,14 @@ class CreditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let UDVC = SettingsViewController()
+        present(UDVC, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
         
     }
     
     override func loadView() {
         super.loadView()
-
         view.backgroundColor = UIColor(red:0.27, green:0.60, blue:0.72, alpha:1.0)
         
         let reloadButton = UIButton()
@@ -61,8 +63,8 @@ class CreditViewController: UIViewController {
         mainStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+        
     }
-    
-    
+        
 
 }
