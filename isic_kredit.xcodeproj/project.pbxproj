@@ -12,6 +12,7 @@
 		4B2B786E21934A7500382DA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B786C21934A7500382DA8 /* Main.storyboard */; };
 		4B2B787021934A7600382DA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B786F21934A7600382DA8 /* Assets.xcassets */; };
 		4B2B787321934A7600382DA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B787121934A7600382DA8 /* LaunchScreen.storyboard */; };
+		4BD5246D220B5AEF00738E7F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */; };
 		D58F97EC3C3CCB706A16161F /* Pods_isic_kredit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F06832D3263ADF97E9770 /* Pods_isic_kredit.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		4B2B786F21934A7600382DA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2B787221934A7600382DA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B2B787421934A7600382DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A206A335EB5E3DAD226803BF /* Pods-isic_kredit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-isic_kredit.release.xcconfig"; path = "Pods/Target Support Files/Pods-isic_kredit/Pods-isic_kredit.release.xcconfig"; sourceTree = "<group>"; };
 		EE0F06832D3263ADF97E9770 /* Pods_isic_kredit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_isic_kredit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D8D572AEB11338564363BC /* Pods-isic_kredit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-isic_kredit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-isic_kredit/Pods-isic_kredit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				4B2B786821934A7400382DA8 /* AppDelegate.swift */,
 				4B2B786A21934A7400382DA8 /* CreditViewController.swift */,
+				4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */,
 				4B2B786C21934A7500382DA8 /* Main.storyboard */,
 				4B2B786F21934A7600382DA8 /* Assets.xcassets */,
 				4B2B787121934A7600382DA8 /* LaunchScreen.storyboard */,
@@ -212,6 +215,7 @@
 			files = (
 				4B2B786B21934A7400382DA8 /* CreditViewController.swift in Sources */,
 				4B2B786921934A7400382DA8 /* AppDelegate.swift in Sources */,
+				4BD5246D220B5AEF00738E7F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
