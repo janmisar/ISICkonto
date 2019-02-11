@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  isic_kredit
+
+  Created by Petr Dusek on 9/02/2019.
+  Copyright © 2019 Petr Dusek. All rights reserved.
+*/
+
+"Username"  = "Username";
+"Password" = "Password";
+"Login" = "Login";
+"User" = "User";
+"Account balance" = "Account balance";
+"CZK" = "CZK";
+"Loaded" = "Loaded";
+"Login failed" = "Login failed";
+"Fail" = "Fail";
+"Loading" = "Loading";

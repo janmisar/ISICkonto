@@ -13,10 +13,27 @@
 		4B2B787021934A7600382DA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B786F21934A7600382DA8 /* Assets.xcassets */; };
 		4B2B787321934A7600382DA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B787121934A7600382DA8 /* LaunchScreen.storyboard */; };
 		4BD5246D220B5AEF00738E7F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */; };
+		4BD67D3D2211D03400A6A310 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD67D3C2211D03400A6A310 /* ColorConstants.swift */; };
+		4BD67D3F2211D10600A6A310 /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD67D3E2211D10600A6A310 /* FontConstants.swift */; };
+		4BD67D482211D3A800A6A310 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BD67D4A2211D3A800A6A310 /* Localizable.strings */; };
 		D58F97EC3C3CCB706A16161F /* Pods_isic_kredit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0F06832D3263ADF97E9770 /* Pods_isic_kredit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4BD67D622211E84A00A6A310 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2B2A94B307C7E5851AE513A5 /* Pods-widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-widget/Pods-widget.debug.xcconfig"; sourceTree = "<group>"; };
 		4B2B786521934A7400382DA8 /* isic_kredit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isic_kredit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B786821934A7400382DA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B786A21934A7400382DA8 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +42,17 @@
 		4B2B787221934A7600382DA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B2B787421934A7600382DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4BD67D3C2211D03400A6A310 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorConstants.swift; path = /Users/petr/Developer/ISICkonto/isic_kredit/ColorConstants.swift; sourceTree = "<absolute>"; };
+		4BD67D3E2211D10600A6A310 /* FontConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConstants.swift; sourceTree = "<group>"; };
+		4BD67D492211D3A800A6A310 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4BD67D4B2211D54900A6A310 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Main.strings; sourceTree = "<group>"; };
+		4BD67D4C2211D54900A6A310 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		4BD67D4D2211D54A00A6A310 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4BD67D532211E84900A6A310 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		4BD67D662212287100A6A310 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A206A335EB5E3DAD226803BF /* Pods-isic_kredit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-isic_kredit.release.xcconfig"; path = "Pods/Target Support Files/Pods-isic_kredit/Pods-isic_kredit.release.xcconfig"; sourceTree = "<group>"; };
+		C6122D5EA4C06FA56E125C73 /* Pods_widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C89149A25EADEC8BD65321ED /* Pods-widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-widget/Pods-widget.release.xcconfig"; sourceTree = "<group>"; };
 		EE0F06832D3263ADF97E9770 /* Pods_isic_kredit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_isic_kredit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D8D572AEB11338564363BC /* Pods-isic_kredit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-isic_kredit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-isic_kredit/Pods-isic_kredit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,15 +90,34 @@
 		4B2B786721934A7400382DA8 /* isic_kredit */ = {
 			isa = PBXGroup;
 			children = (
+				4BD67D632212136700A6A310 /* Constants */,
 				4B2B786821934A7400382DA8 /* AppDelegate.swift */,
-				4B2B786A21934A7400382DA8 /* CreditViewController.swift */,
-				4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */,
+				4BD67D3B2211CE3200A6A310 /* ViewControllers */,
 				4B2B786C21934A7500382DA8 /* Main.storyboard */,
 				4B2B786F21934A7600382DA8 /* Assets.xcassets */,
 				4B2B787121934A7600382DA8 /* LaunchScreen.storyboard */,
 				4B2B787421934A7600382DA8 /* Info.plist */,
+				4BD67D4A2211D3A800A6A310 /* Localizable.strings */,
 			);
 			path = isic_kredit;
+			sourceTree = "<group>";
+		};
+		4BD67D3B2211CE3200A6A310 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4BD5246C220B5AEF00738E7F /* SettingsViewController.swift */,
+				4B2B786A21934A7400382DA8 /* CreditViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4BD67D632212136700A6A310 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4BD67D3C2211D03400A6A310 /* ColorConstants.swift */,
+				4BD67D3E2211D10600A6A310 /* FontConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		8FBD9D6C59725E12E14DEC50 /* Pods */ = {
@@ -79,6 +125,8 @@
 			children = (
 				F7D8D572AEB11338564363BC /* Pods-isic_kredit.debug.xcconfig */,
 				A206A335EB5E3DAD226803BF /* Pods-isic_kredit.release.xcconfig */,
+				2B2A94B307C7E5851AE513A5 /* Pods-widget.debug.xcconfig */,
+				C89149A25EADEC8BD65321ED /* Pods-widget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -86,7 +134,10 @@
 		C45C0D365933EB77294F7B95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BD67D662212287100A6A310 /* SnapKit.framework */,
 				EE0F06832D3263ADF97E9770 /* Pods_isic_kredit.framework */,
+				4BD67D532211E84900A6A310 /* NotificationCenter.framework */,
+				C6122D5EA4C06FA56E125C73 /* Pods_widget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,6 +154,7 @@
 				4B2B786221934A7400382DA8 /* Frameworks */,
 				4B2B786321934A7400382DA8 /* Resources */,
 				DAE684141D6290BF3B266BE3 /* [CP] Embed Pods Frameworks */,
+				4BD67D622211E84A00A6A310 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -125,6 +177,11 @@
 				TargetAttributes = {
 					4B2B786421934A7400382DA8 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -135,6 +192,7 @@
 			knownRegions = (
 				en,
 				Base,
+				cs,
 			);
 			mainGroup = 4B2B785C21934A7400382DA8;
 			productRefGroup = 4B2B786621934A7400382DA8 /* Products */;
@@ -152,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2B787321934A7600382DA8 /* LaunchScreen.storyboard in Resources */,
+				4BD67D482211D3A800A6A310 /* Localizable.strings in Resources */,
 				4B2B787021934A7600382DA8 /* Assets.xcassets in Resources */,
 				4B2B786E21934A7500382DA8 /* Main.storyboard in Resources */,
 			);
@@ -192,14 +251,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-isic_kredit/Pods-isic_kredit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -214,8 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2B786B21934A7400382DA8 /* CreditViewController.swift in Sources */,
+				4BD67D3F2211D10600A6A310 /* FontConstants.swift in Sources */,
 				4B2B786921934A7400382DA8 /* AppDelegate.swift in Sources */,
 				4BD5246D220B5AEF00738E7F /* SettingsViewController.swift in Sources */,
+				4BD67D3D2211D03400A6A310 /* ColorConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +293,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4B2B786D21934A7500382DA8 /* Base */,
+				4BD67D4B2211D54900A6A310 /* cs */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -234,8 +302,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				4B2B787221934A7600382DA8 /* Base */,
+				4BD67D4C2211D54900A6A310 /* cs */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4BD67D4A2211D3A800A6A310 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BD67D492211D3A800A6A310 /* en */,
+				4BD67D4D2211D54A00A6A310 /* cs */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -245,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -306,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -361,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7D8D572AEB11338564363BC /* Pods-isic_kredit.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65K4B5JNWH;
@@ -380,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A206A335EB5E3DAD226803BF /* Pods-isic_kredit.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 65K4B5JNWH;
