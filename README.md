@@ -31,5 +31,15 @@ will update all pods to the newest versions permitted by the Podfile.
 
 ### Used principles:
 
-Application needs to log in to website https://agata.suz.cvut.cz/secure/index.php. The procedure is following. If you are not logged in the website respond url that contains https://ds.eduid.cz... This website <a href="https://ds.eduid.cz/wayf-static.php?filter=eyJhbGxvd0ZlZWRzIjogWyJlZHVJRC5jeiJdLCAiYWxsb3dJZFBzIjogWyJodHRwczovL3dzc28udnNjaHQuY3ovaWRwL3NoaWJib2xldGgiLCJodHRwczovL2lkcDIuY2l2LmN2dXQuY3ovaWRwL3NoaWJib2xldGgiXSwgImFsbG93SG9zdGVsIjogZmFsc2UsICJhbGxvd0hvc3RlbFJlZyI6IGZhbHNlfQ==&lang=cz&entityID=https%3A%2F%2Fagata.suz.cvut.cz%2Fshibboleth&return=https%3A%2F%2Fagata.suz.cvut.cz%2FShibboleth.sso%2FLogin%3FSAMLDS%3D1%26target%3Dss%253Amem%253Acfe566ffecd9ffd36b69d62c9556a9c073239f011994c5c2b2e207b56998b55d"></a>
+Application needs to log in to website https://agata.suz.cvut.cz/secure/index.php. The procedure is following. If you are not logged in the website respond url that contains https://ds.eduid.cz... This website has two buttons, one for CVUT sso login and second for VSCHT sso login. Application works just for CVUT sso login for now, so it sends response for site linked by CVUT login button. 
+
+It redirects you to the CVUT SSO login page. 
+For login it sends post request with parameters: j_username, j_password, _eventId_proceed
+j_username - for username
+j_password - for password
+_eventId_proceed - will be empty string
+
+If login was successful application gets response to the site where is button continue because it doesn't support javascript. Then it gets components from this site and sends post request which leads to the final site. 
+
+
 
