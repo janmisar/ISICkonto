@@ -17,7 +17,7 @@ class DataManager {
      Tries to get response from site agata.suz.cvut.cz notLogged when you are not logged in, logged when response site is agata.suz.. and fail if there is some error
      */
     private func getAgataResponse(notLogged: @escaping (URL) -> Void , logged: @escaping (String) -> Void, failure: @escaping (Error) -> Void){
-        
+
         Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
 
             //if there is some error return in failure

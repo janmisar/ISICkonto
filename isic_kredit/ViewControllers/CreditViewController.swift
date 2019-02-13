@@ -34,7 +34,7 @@ class CreditViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if KeyChain().getUsername() == "" && KeyChain().getPassword() == ""{
+        if KeyChain.standard.getUsername() == "" && KeyChain.standard.getPassword() == ""{
             let settingsController = SettingsViewController()
             navigationController?.pushViewController(settingsController, animated: true)
         } else {
@@ -112,7 +112,7 @@ class CreditViewController: UIViewController {
         
         dataManager.finalData(success: { response in
                                 self.setMoneyValue(value: response)
-                                 self.hudSuccess(text: NSLocalizedString("Loaded", comment: ""))
+                                self.hud.dismiss()
         },
                               failure: { fail in
                                 self.hudError(text: fail.localizedDescription)
@@ -135,15 +135,5 @@ class CreditViewController: UIViewController {
         self.hud.textLabel.text = text
         self.hud.dismiss(afterDelay: 1.0)
     }
-    
-    /*
-     Shows hud success with text given in parameter
-     */
-    func hudSuccess(text: String){
-        self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-        self.hud.textLabel.text = text
-        self.hud.dismiss(afterDelay: 1.0)
-    }
-    
     
 }

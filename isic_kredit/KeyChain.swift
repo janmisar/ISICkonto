@@ -11,6 +11,8 @@ import SwiftKeychainWrapper
 
 class KeyChain {
     
+    static let standard = KeyChain()
+    
     func getUsername() -> String{
         if let username = KeychainWrapper.standard.string(forKey: "username") {
             return username

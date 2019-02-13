@@ -2,15 +2,15 @@ PODS:
   - Alamofire (4.7.3)
   - JGProgressHUD (2.0.3)
   - SnapKit (4.2.0)
-  - SwiftKeychainWrapper (3.0.1)
+  - SwiftKeychainWrapper (3.2.0)
   - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
-  - Alamofire
-  - JGProgressHUD
+  - Alamofire (~> 4.7.3)
+  - JGProgressHUD (~> 2.0.3)
   - SnapKit (~> 4.2)
-  - SwiftKeychainWrapper
-  - SwiftSoup
+  - SwiftKeychainWrapper (~> 3.2.0)
+  - SwiftSoup (~> 1.7.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -24,9 +24,9 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 74598daf8b4e7ed15abd7ec26a4377c08e3fcb5c
+PODFILE CHECKSUM: 74182ecbeda65b83d0171a5f659793a5b616cf8f
 
 COCOAPODS: 1.5.3

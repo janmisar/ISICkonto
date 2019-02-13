@@ -6,9 +6,9 @@ target 'isic_kredit' do
 
   # Pods for isic_kredit
   pod 'SnapKit', '~> 4.2'
-  pod 'Alamofire'
-  pod 'SwiftKeychainWrapper'
-  pod 'SwiftSoup'
-  pod 'JGProgressHUD' 
+  pod 'Alamofire', '~> 4.7.3'
+  pod 'SwiftKeychainWrapper', '~> 3.2.0'
+  pod 'SwiftSoup', '~> 1.7.4'
+  pod 'JGProgressHUD', '~> 2.0.3' 
 
 end

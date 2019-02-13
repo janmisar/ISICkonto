@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController {
             
             if let psswd = password.text{
                 
-                if KeyChain().setUserPassword(user: user, password: psswd){
+                if KeyChain.standard.setUserPassword(user: user, password: psswd){
                     navigationController?.popViewController(animated: true)
                 }
                 
