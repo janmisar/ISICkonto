@@ -9,6 +9,6 @@ target 'isic_kredit' do
   pod 'Alamofire'
   pod 'SwiftKeychainWrapper'
   pod 'SwiftSoup'
-  pod 'JGProgressHUD'
+  pod 'JGProgressHUD' 
 
 end

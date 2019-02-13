@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B150C582212F52E00B816E9 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B150C572212F52E00B816E9 /* KeyChain.swift */; };
+		4B150C5A2212F84E00B816E9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B150C592212F84E00B816E9 /* DataManager.swift */; };
+		4B150C5C221391FC00B816E9 /* FailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B150C5B221391FC00B816E9 /* FailError.swift */; };
+		4B150C5E2213921600B816E9 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B150C5D2213921600B816E9 /* LoginError.swift */; };
 		4B2B786921934A7400382DA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B786821934A7400382DA8 /* AppDelegate.swift */; };
 		4B2B786B21934A7400382DA8 /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B786A21934A7400382DA8 /* CreditViewController.swift */; };
 		4B2B786E21934A7500382DA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B786C21934A7500382DA8 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		2B2A94B307C7E5851AE513A5 /* Pods-widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-widget/Pods-widget.debug.xcconfig"; sourceTree = "<group>"; };
+		4B150C572212F52E00B816E9 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		4B150C592212F84E00B816E9 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4B150C5B221391FC00B816E9 /* FailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailError.swift; sourceTree = "<group>"; };
+		4B150C5D2213921600B816E9 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		4B2B786521934A7400382DA8 /* isic_kredit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isic_kredit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B786821934A7400382DA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B786A21934A7400382DA8 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B150C5F221397B900B816E9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4B150C592212F84E00B816E9 /* DataManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4B150C60221397C300B816E9 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				4B150C5B221391FC00B816E9 /* FailError.swift */,
+				4B150C5D2213921600B816E9 /* LoginError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		4B2B785C21934A7400382DA8 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +119,13 @@
 				4B2B786821934A7400382DA8 /* AppDelegate.swift */,
 				4BD67D3B2211CE3200A6A310 /* ViewControllers */,
 				4B2B786C21934A7500382DA8 /* Main.storyboard */,
+				4B150C5F221397B900B816E9 /* Service */,
+				4B150C60221397C300B816E9 /* Errors */,
 				4B2B786F21934A7600382DA8 /* Assets.xcassets */,
 				4B2B787121934A7600382DA8 /* LaunchScreen.storyboard */,
 				4B2B787421934A7600382DA8 /* Info.plist */,
 				4BD67D4A2211D3A800A6A310 /* Localizable.strings */,
+				4B150C572212F52E00B816E9 /* KeyChain.swift */,
 			);
 			path = isic_kredit;
 			sourceTree = "<group>";
@@ -278,11 +306,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B150C5C221391FC00B816E9 /* FailError.swift in Sources */,
 				4B2B786B21934A7400382DA8 /* CreditViewController.swift in Sources */,
+				4B150C582212F52E00B816E9 /* KeyChain.swift in Sources */,
 				4BD67D3F2211D10600A6A310 /* FontConstants.swift in Sources */,
+				4B150C5A2212F84E00B816E9 /* DataManager.swift in Sources */,
 				4B2B786921934A7400382DA8 /* AppDelegate.swift in Sources */,
 				4BD5246D220B5AEF00738E7F /* SettingsViewController.swift in Sources */,
 				4BD67D3D2211D03400A6A310 /* ColorConstants.swift in Sources */,
+				4B150C5E2213921600B816E9 /* LoginError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

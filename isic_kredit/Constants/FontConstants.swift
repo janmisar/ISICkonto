@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 
 struct FontConstants {
-    static let LabelsFont = UIFont(name: "Helvetica Neue", size: 17)
-    static let MoneyFont = UIFont(name: "Helvetica Neue", size: 60)
+    static let labelsFont = UIFont(name: "Helvetica Neue", size: 17)
+    static let moneyFont = UIFont(name: "Helvetica Neue", size: 60)
 }
