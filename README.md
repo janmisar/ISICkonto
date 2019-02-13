@@ -35,9 +35,11 @@ Application needs to log in to website https://agata.suz.cvut.cz/secure/index.ph
 
 It redirects you to the CVUT SSO login page. 
 For login it sends post request with parameters: j_username, j_password, _eventId_proceed
+```
 j_username - for username
 j_password - for password
 _eventId_proceed - will be empty string
+```
 
 If login was successful application gets response to the site where is button continue because it doesn't support javascript. Then it gets components from this site and sends post request which leads to the final site. 
 
