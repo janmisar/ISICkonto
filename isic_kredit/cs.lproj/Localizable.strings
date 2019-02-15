@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  isic_kredit
+
+  Created by Petr Dusek on 9/02/2019.
+  Copyright © 2019 Petr Dusek. All rights reserved.
+*/
+
+"Username"  = "Uživatelské jméno";
+"Password" = "Heslo";
+"Login" = "Přihlásit se";
+"User" = "Uživatel";
+"Account balance" = "Na účtu máte";
+"CZK" = "Kč";
+"Login failed" = "Špatné přihlašovací údaje";
+"Fail" = "Chyba";
+"Loading" = "Načítání";
