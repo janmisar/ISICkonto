@@ -36,6 +36,7 @@
     
     _usernameField.text = [UserDefaults objectForKey:@"username"];
     _usernameField.font = PTSansRegular(16);
+    _usernameField.tintColor = [UIColor whiteColor];
     UIView *usernamePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
     _usernameField.leftView = usernamePaddingView;
     _usernameField.leftViewMode = UITextFieldViewModeAlways;
@@ -44,6 +45,7 @@
     
     _passwordField.text = [UserDefaults objectForKey:@"password"];
     _passwordField.font = PTSansRegular(16);
+    _passwordField.tintColor = [UIColor whiteColor];
     UIView *passwordPaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
     _passwordField.leftView = passwordPaddingView;
     _passwordField.leftViewMode = UITextFieldViewModeAlways;
