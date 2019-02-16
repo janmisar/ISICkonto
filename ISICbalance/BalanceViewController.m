@@ -29,10 +29,13 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = YES;
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     if (![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
         
@@ -47,6 +50,12 @@
         
     }
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 -(void)reloadData {

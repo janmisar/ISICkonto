@@ -62,8 +62,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = NO;
-
     CGSize aSize = _mainScrollView.frame.size;
     aSize.height -= self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     _mainScrollView.contentSize = aSize;
