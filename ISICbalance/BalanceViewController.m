@@ -34,24 +34,19 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    if(![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
+    if (![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
         
         [self.navigationController pushViewController:[SettingsViewController new] animated:YES];
         
     } else {
         
-        if(_shouldReloadOnAppear) {
+        if (_shouldReloadOnAppear) {
             [self reloadData];
             _shouldReloadOnAppear = NO;
         }
         
     }
-    
-    
-}
 
--(void)viewWillDisappear:(BOOL)animated {
-    //self.navigationController.navigationBarHidden = NO;
 }
 
 -(void)reloadData {
@@ -89,7 +84,11 @@
             
             [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
-                NSDictionary *parameters = @{@"j_username": [UserDefaults objectForKey:@"username"], @"j_password":[UserDefaults objectForKey:@"password"]};
+                NSDictionary *parameters = @{
+                                             @"j_username": [UserDefaults objectForKey:@"username"],
+                                             @"j_password": [UserDefaults objectForKey:@"password"],
+                                             @"_eventId_proceed": @"1"
+                                             };
                 [manager POST:operation.response.URL.absoluteString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
                     OGDocument *document = responseObject;

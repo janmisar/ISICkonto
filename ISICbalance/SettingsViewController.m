@@ -15,15 +15,6 @@
 
 @implementation SettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Uživatel";
@@ -93,7 +84,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
     if(textField==_usernameField) {
         [_passwordField becomeFirstResponder];
     } else {
@@ -121,7 +111,6 @@
         
         BalanceViewController *parent = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
         parent.shouldReloadOnAppear = YES;
-        
     }
     
     [self.navigationController popViewControllerAnimated:YES];
