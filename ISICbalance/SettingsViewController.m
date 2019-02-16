@@ -72,20 +72,10 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
-    
-    NSLog(@"%@",NSStringFromCGRect(_mainScrollView.frame));
-    NSLog(@"%@",NSStringFromCGSize(_mainScrollView.contentSize));
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-    NSLog(@"%@",NSStringFromCGRect(self.navigationController.navigationBar.frame));
-    
+
     CGSize aSize = _mainScrollView.frame.size;
     aSize.height -= self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     _mainScrollView.contentSize = aSize;
-    
-    NSLog(@"%@",NSStringFromCGRect(_mainScrollView.frame));
-    NSLog(@"%@",NSStringFromCGSize(_mainScrollView.contentSize));
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-    NSLog(@"%@",NSStringFromCGRect(self.navigationController.navigationBar.frame));
 }
 
 -(void)keyboardDidShow {
