@@ -142,6 +142,7 @@
 -(float)readBalanceFromDocument:(OGDocument *)document {
     OGText *balance = (OGText *)[[[document first:@"table"] last:@"tr"] last:@"td"];
     NSString *balanceString = [balance.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    balanceString = [balanceString stringByReplacingOccurrencesOfString:@" " withString:@""];
     return [balanceString integerValue];
 }
 
