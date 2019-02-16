@@ -1,24 +1,27 @@
 PODS:
   - ACKategories (2.2)
-  - AFNetworkActivityLogger (2.0.2):
+  - AFNetworkActivityLogger (2.0.4):
+    - AFNetworking/NSURLConnection (~> 2.0)
     - AFNetworking/NSURLSession (~> 2.0)
-  - AFNetworking (2.2.1):
-    - AFNetworking/NSURLConnection (= 2.2.1)
-    - AFNetworking/NSURLSession (= 2.2.1)
-    - AFNetworking/Reachability (= 2.2.1)
-    - AFNetworking/Security (= 2.2.1)
-    - AFNetworking/Serialization (= 2.2.1)
-    - AFNetworking/UIKit (= 2.2.1)
-  - AFNetworking/NSURLConnection (2.2.1):
+  - AFNetworking (2.7.0):
+    - AFNetworking/NSURLConnection (= 2.7.0)
+    - AFNetworking/NSURLSession (= 2.7.0)
+    - AFNetworking/Reachability (= 2.7.0)
+    - AFNetworking/Security (= 2.7.0)
+    - AFNetworking/Serialization (= 2.7.0)
+    - AFNetworking/UIKit (= 2.7.0)
+  - AFNetworking/NSURLConnection (2.7.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.1):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.1)
-  - AFNetworking/Security (2.2.1)
-  - AFNetworking/Serialization (2.2.1)
-  - AFNetworking/UIKit (2.2.1):
+  - AFNetworking/NSURLSession (2.7.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.7.0)
+  - AFNetworking/Security (2.7.0)
+  - AFNetworking/Serialization (2.7.0)
+  - AFNetworking/UIKit (2.7.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ObjectiveGumbo (0.1)
@@ -30,6 +33,13 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - ObjectiveGumbo (~> 0.1)
   - SVProgressHUD (~> 1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworkActivityLogger
+    - AFNetworking
+    - ObjectiveGumbo
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   ACKategories:
@@ -43,11 +53,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ACKategories: 3481350b121537a6cbcccccc521ec7b388be23b0
-  AFNetworkActivityLogger: 26a5f90d3f89d6a8b44f4eb535e8759b8e2b2c30
-  AFNetworking: 59a0b8e9ecd4e194d64b4967232cd2cc83490113
+  AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
+  AFNetworking: 8dd5f9b9691e09186393069a12cc3b5ed7c8b511
   ObjectiveGumbo: 0704c4930688132abb3d5df2000334f30504856f
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
 PODFILE CHECKSUM: 22bdcce3afc00bbd752c2cd0a7407f4eccb38173
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.6.0
