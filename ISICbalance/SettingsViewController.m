@@ -15,15 +15,6 @@
 
 @implementation SettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Uživatel";
@@ -36,6 +27,7 @@
     
     _usernameField.text = [UserDefaults objectForKey:@"username"];
     _usernameField.font = PTSansRegular(16);
+    _usernameField.tintColor = [UIColor whiteColor];
     UIView *usernamePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
     _usernameField.leftView = usernamePaddingView;
     _usernameField.leftViewMode = UITextFieldViewModeAlways;
@@ -44,6 +36,7 @@
     
     _passwordField.text = [UserDefaults objectForKey:@"password"];
     _passwordField.font = PTSansRegular(16);
+    _passwordField.tintColor = [UIColor whiteColor];
     UIView *passwordPaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
     _passwordField.leftView = passwordPaddingView;
     _passwordField.leftViewMode = UITextFieldViewModeAlways;
@@ -69,21 +62,9 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = NO;
-    
-    NSLog(@"%@",NSStringFromCGRect(_mainScrollView.frame));
-    NSLog(@"%@",NSStringFromCGSize(_mainScrollView.contentSize));
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-    NSLog(@"%@",NSStringFromCGRect(self.navigationController.navigationBar.frame));
-    
     CGSize aSize = _mainScrollView.frame.size;
     aSize.height -= self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     _mainScrollView.contentSize = aSize;
-    
-    NSLog(@"%@",NSStringFromCGRect(_mainScrollView.frame));
-    NSLog(@"%@",NSStringFromCGSize(_mainScrollView.contentSize));
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
-    NSLog(@"%@",NSStringFromCGRect(self.navigationController.navigationBar.frame));
 }
 
 -(void)keyboardDidShow {
@@ -101,7 +82,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
     if(textField==_usernameField) {
         [_passwordField becomeFirstResponder];
     } else {
@@ -129,7 +109,6 @@
         
         BalanceViewController *parent = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
         parent.shouldReloadOnAppear = YES;
-        
     }
     
     [self.navigationController popViewControllerAnimated:YES];

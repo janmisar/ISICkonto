@@ -29,29 +29,33 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = YES;
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    if(![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
+    if (![UserDefaults objectForKey:@"username"] || ![UserDefaults objectForKey:@"password"]) {
         
         [self.navigationController pushViewController:[SettingsViewController new] animated:YES];
         
     } else {
         
-        if(_shouldReloadOnAppear) {
+        if (_shouldReloadOnAppear) {
             [self reloadData];
             _shouldReloadOnAppear = NO;
         }
         
     }
-    
-    
+
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    //self.navigationController.navigationBarHidden = NO;
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 -(void)reloadData {
@@ -89,7 +93,11 @@
             
             [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
-                NSDictionary *parameters = @{@"j_username": [UserDefaults objectForKey:@"username"], @"j_password":[UserDefaults objectForKey:@"password"]};
+                NSDictionary *parameters = @{
+                                             @"j_username": [UserDefaults objectForKey:@"username"],
+                                             @"j_password": [UserDefaults objectForKey:@"password"],
+                                             @"_eventId_proceed": @"1"
+                                             };
                 [manager POST:operation.response.URL.absoluteString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     
                     OGDocument *document = responseObject;
@@ -143,6 +151,7 @@
 -(float)readBalanceFromDocument:(OGDocument *)document {
     OGText *balance = (OGText *)[[[document first:@"table"] last:@"tr"] last:@"td"];
     NSString *balanceString = [balance.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    balanceString = [balanceString stringByReplacingOccurrencesOfString:@" " withString:@""];
     return [balanceString integerValue];
 }
 
