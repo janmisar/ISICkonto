@@ -103,12 +103,15 @@
                     OGDocument *document = responseObject;
                     
                     // pokud je ve stránce id #eduid_login, je tam pravděpodobně napsáno wrong credentials
-                    NSArray *eduidLogin = [document select:@"#eduid_login"];
+                    NSArray *eduidLogin = [document select:@"#cvut-login-form"];
                     if(eduidLogin.count) {
                         OGText *credentials = (OGText *)[(OGElement *)eduidLogin[0] first:@"font"];
                         if ([credentials.text rangeOfString:@"credentials" options:NSCaseInsensitiveSearch].location != NSNotFound) {
                             [self reloadViewWithBalance:0];
                             [SVProgressHUD showErrorWithStatus:@"Nesprávné přihlašovací údaje"];
+                            [self.navigationController pushViewController:[SettingsViewController new] animated:YES];
+                            [UserDefaults removeObjectForKey:@"password"];
+                            [UserDefaults synchronize];
                             return;
                         }
                     }
