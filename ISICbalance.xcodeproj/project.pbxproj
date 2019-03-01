@@ -150,8 +150,6 @@
 			children = (
 				1767697E18BB3C930028C562 /* AppDelegate.h */,
 				1767697F18BB3C930028C562 /* AppDelegate.m */,
-				1767698118BB3C930028C562 /* Images.xcassets */,
-				1767697618BB3C930028C562 /* Supporting Files */,
 				1793561A1909584700DF14F9 /* HTMLResponseSerializer.h */,
 				1793561B1909584700DF14F9 /* HTMLResponseSerializer.m */,
 				1793561D19095C1500DF14F9 /* BalanceViewController.h */,
@@ -160,6 +158,8 @@
 				17935622190998E400DF14F9 /* SettingsViewController.h */,
 				17935623190998E400DF14F9 /* SettingsViewController.m */,
 				17935624190998E400DF14F9 /* SettingsViewController.xib */,
+				1767698118BB3C930028C562 /* Images.xcassets */,
+				1767697618BB3C930028C562 /* Supporting Files */,
 			);
 			path = ISICbalance;
 			sourceTree = "<group>";
