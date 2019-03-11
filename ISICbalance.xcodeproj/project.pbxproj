@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		14C1904B2235A46F0033616E /* Localization */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 14C1904C2235A4700033616E /* Build configuration list for PBXAggregateTarget "Localization" */;
+			buildPhases = (
+				14C1904F2235A4770033616E /* Download from spreadsheet */,
+			);
+			dependencies = (
+			);
+			name = Localization;
+			productName = Localization;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
 		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
@@ -14,6 +28,7 @@
 		14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901D223596DC0033616E /* LaunchScreen.storyboard */; };
 		14C1902A223596DC0033616E /* ISICbalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19029223596DC0033616E /* ISICbalanceTests.swift */; };
 		14C19035223596DC0033616E /* ISICbalanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19034223596DC0033616E /* ISICbalanceUITests.swift */; };
+		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
@@ -50,6 +65,8 @@
 		14C19030223596DC0033616E /* ISICbalanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISICbalanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19034223596DC0033616E /* ISICbalanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISICbalanceUITests.swift; sourceTree = "<group>"; };
 		14C19036223596DC0033616E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14C190472235A2710033616E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14C190492235A2840033616E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +137,7 @@
 				14C1901B223596DC0033616E /* Assets.xcassets */,
 				14C1901D223596DC0033616E /* LaunchScreen.storyboard */,
 				14C19020223596DC0033616E /* Info.plist */,
+				14C190482235A2710033616E /* Localizable.strings */,
 			);
 			path = ISICbalance;
 			sourceTree = "<group>";
@@ -152,7 +170,6 @@
 				793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */,
 				29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -247,6 +264,9 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 14C19010223596DB0033616E;
 					};
+					14C1904B2235A46F0033616E = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 14C1900C223596DB0033616E /* Build configuration list for PBXProject "ISICbalance" */;
@@ -256,6 +276,7 @@
 			knownRegions = (
 				en,
 				Base,
+				cs,
 			);
 			mainGroup = 14C19008223596DB0033616E;
 			productRefGroup = 14C19012223596DB0033616E /* Products */;
@@ -265,6 +286,7 @@
 				14C19010223596DB0033616E /* ISICbalance */,
 				14C19024223596DC0033616E /* ISICbalanceTests */,
 				14C1902F223596DC0033616E /* ISICbalanceUITests */,
+				14C1904B2235A46F0033616E /* Localization */,
 			);
 		};
 /* End PBXProject section */
@@ -275,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */,
+				14C190462235A2710033616E /* Localizable.strings in Resources */,
 				14C1901C223596DC0033616E /* Assets.xcassets in Resources */,
 				14C1901A223596DB0033616E /* Main.storyboard in Resources */,
 			);
@@ -297,6 +320,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		14C1904F2235A4770033616E /* Download from spreadsheet */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Download from spreadsheet";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# https://docs.google.com/spreadsheets/d/1gPr9Fwnkyz64o7Gl_wUaT_Fel9SMIYymPsYi-8rTRcw/edit#gid=0\n#.Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"ISICbalance\" \"Localizable.strings\" \n\n\n\"$PROJECT_DIR/Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"$PROJECT_DIR/ISICbalance\" \"Localizable.strings\" \n";
+		};
 		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +486,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		14C190482235A2710033616E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C190472235A2710033616E /* en */,
+				14C190492235A2840033616E /* cs */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -452,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -513,6 +564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -682,6 +734,22 @@
 			};
 			name = Release;
 		};
+		14C1904D2235A4700033616E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14C1904E2235A4700033616E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -717,6 +785,15 @@
 			buildConfigurations = (
 				14C19040223596DC0033616E /* Debug */,
 				14C19041223596DC0033616E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14C1904C2235A4700033616E /* Build configuration list for PBXAggregateTarget "Localization" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C1904D2235A4700033616E /* Debug */,
+				14C1904E2235A4700033616E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
