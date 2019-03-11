@@ -11,14 +11,13 @@ import SnapKit
 
 class ViewController: UIViewController {
 
+    let balanceView = BalanceView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        print(L10n.Login.login)
-        
+        self.view = balanceView
     }
-
 
 }
 

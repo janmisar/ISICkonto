@@ -2,3 +2,4 @@
 "login.password" = "Password";
 "login.login" = "Login";
 "login.title" = "User";
+"balance.title" = "Your balance is";

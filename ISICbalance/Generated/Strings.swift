@@ -12,6 +12,11 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
 
+  internal enum Balance {
+    /// Your balance is
+    internal static let title = L10n.tr("Localizable", "balance.title")
+  }
+
   internal enum Login {
     /// Login
     internal static let login = L10n.tr("Localizable", "login.login")
