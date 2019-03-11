@@ -17,11 +17,11 @@ class BalanceView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(red: 75/255, green: 150/255, blue: 179/255, alpha: 1)
+        self.backgroundColor = UIColor.MyTheme.backgroundColor
         
         let balanceLabel = UILabel()
         balanceLabel.text = "1357 Kč"
-        balanceLabel.textColor = UIColor.white
+        balanceLabel.textColor = UIColor.MyTheme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
@@ -36,7 +36,7 @@ class BalanceView: UIView {
         
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor(red: 171/255, green: 213/255, blue: 242/255, alpha: 1)
+        balanceTitle.textColor = UIColor.MyTheme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
@@ -64,9 +64,12 @@ class BalanceView: UIView {
         
         let accountButton = UIButton()
         accountButton.setImage(UIImage(asset: Asset.accountIcon), for: .normal)
+        accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
         buttonsStackView.addArrangedSubview(accountButton)
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

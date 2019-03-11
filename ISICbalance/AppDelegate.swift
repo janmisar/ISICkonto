@@ -16,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().barTintColor = UIColor.MyTheme.backgroundColor
+        UINavigationBar.appearance().tintColor = UIColor.MyTheme.textColor
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
+        
+        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        
         return true
     }
 
