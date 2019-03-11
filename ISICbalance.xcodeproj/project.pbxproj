@@ -675,6 +675,7 @@
 			baseConfigurationReference = C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ISICbalance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -693,6 +694,7 @@
 			baseConfigurationReference = 7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ISICbalance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
