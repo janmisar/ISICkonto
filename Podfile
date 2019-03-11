@@ -8,6 +8,7 @@ target 'ISICbalance' do
   # Pods for ISICbalance
   pod 'SnapKit', '~> 4.0.0'
   pod 'ACKLocalization', '~> 0.1'
+  pod 'SwiftGen', '~> 6.0'
 
 
   target 'ISICbalanceTests' do

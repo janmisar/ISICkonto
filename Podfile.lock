@@ -1,20 +1,24 @@
 PODS:
   - ACKLocalization (0.3.2)
   - SnapKit (4.0.1)
+  - SwiftGen (6.1.0)
 
 DEPENDENCIES:
   - ACKLocalization (~> 0.1)
   - SnapKit (~> 4.0.0)
+  - SwiftGen (~> 6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACKLocalization
     - SnapKit
+    - SwiftGen
 
 SPEC CHECKSUMS:
   ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
 
-PODFILE CHECKSUM: d0f8fc7a957cefb87a7f16ddbe1b341c74951e8f
+PODFILE CHECKSUM: 8ce99518d4dcb9349b9353662bdf21456f729ed3
 
 COCOAPODS: 1.6.1

@@ -29,6 +29,7 @@
 		14C1902A223596DC0033616E /* ISICbalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19029223596DC0033616E /* ISICbalanceTests.swift */; };
 		14C19035223596DC0033616E /* ISICbalanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19034223596DC0033616E /* ISICbalanceUITests.swift */; };
 		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
+		14C190582235B1F80033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C190572235B1F80033616E /* Strings.swift */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
@@ -67,6 +68,7 @@
 		14C19036223596DC0033616E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C190472235A2710033616E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14C190492235A2840033616E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14C190572235B1F80033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
+				14C190522235AE370033616E /* Generated */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
 				14C19016223596DB0033616E /* ViewController.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
@@ -158,6 +161,14 @@
 				14C19036223596DC0033616E /* Info.plist */,
 			);
 			path = ISICbalanceUITests;
+			sourceTree = "<group>";
+		};
+		14C190522235AE370033616E /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				14C190572235B1F80033616E /* Strings.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		2B72B8C664D21E0754CB91FE /* Pods */ = {
@@ -191,6 +202,7 @@
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
+				14C190512235A9940033616E /* SwiftGen Script */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
@@ -338,6 +350,26 @@
 			shellPath = /bin/sh;
 			shellScript = "# https://docs.google.com/spreadsheets/d/1gPr9Fwnkyz64o7Gl_wUaT_Fel9SMIYymPsYi-8rTRcw/edit#gid=0\n#.Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"ISICbalance\" \"Localizable.strings\" \n\n\n\"$PROJECT_DIR/Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"$PROJECT_DIR/ISICbalance\" \"Localizable.strings\" \n";
 		};
+		14C190512235A9940033616E /* SwiftGen Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftGen Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/ISICbalance/Generated/Strings.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntouch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\ntouch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
+			showEnvVarsInLog = 0;
+		};
 		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14C19017223596DB0033616E /* ViewController.swift in Sources */,
+				14C190582235B1F80033616E /* Strings.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

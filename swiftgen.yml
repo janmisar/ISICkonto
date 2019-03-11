@@ -1,0 +1,7 @@
+strings:
+  inputs: ISICbalance/en.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: ISICbalance/Generated/Strings.swift
+ 
