@@ -1,24 +1,32 @@
 PODS:
   - ACKLocalization (0.3.2)
+  - Alamofire (4.0.1)
   - SnapKit (4.0.1)
   - SwiftGen (6.1.0)
+  - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
   - ACKLocalization (~> 0.1)
+  - Alamofire (~> 4.0.0)
   - SnapKit (~> 4.0.0)
   - SwiftGen (~> 6.0)
+  - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACKLocalization
+    - Alamofire
     - SnapKit
     - SwiftGen
+    - SwiftSoup
 
 SPEC CHECKSUMS:
   ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 8ce99518d4dcb9349b9353662bdf21456f729ed3
+PODFILE CHECKSUM: 3ca9b4ea3a5c489131ab016ba1186d2e7c7e7b5c
 
 COCOAPODS: 1.6.1
