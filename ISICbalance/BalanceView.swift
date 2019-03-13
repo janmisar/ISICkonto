@@ -10,6 +10,7 @@ import UIKit
 
 class BalanceView: UIView {
 
+    weak var screenStackView: UIStackView?
     weak var balanceLabel: UILabel?
     weak var balanceTitle: UILabel?
     weak var reloadButton: UIButton?
@@ -19,19 +20,13 @@ class BalanceView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.MyTheme.backgroundColor
         
-        let balanceLabel = UILabel()
-        balanceLabel.text = "1357 Kč"
-        balanceLabel.textColor = UIColor.MyTheme.textColor
-        balanceLabel.adjustsFontSizeToFitWidth = true
-        balanceLabel.textAlignment = .center
-        balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
-        self.balanceLabel = balanceLabel
-        self.addSubview(balanceLabel)
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 60
+        self.addSubview(stackView)
         
-        balanceLabel.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
+        stackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         let balanceTitle = UILabel()
@@ -40,27 +35,28 @@ class BalanceView: UIView {
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
-        self.addSubview(balanceTitle)
+        stackView.addArrangedSubview(balanceTitle)
         
-        balanceTitle.snp.makeConstraints { (make) in
-            make.bottom.equalTo(balanceLabel.snp.top).offset(-70)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-30)
-        }
+        let balanceLabel = UILabel()
+        balanceLabel.text = "1357 Kč"
+        balanceLabel.textColor = UIColor.MyTheme.textColor
+        balanceLabel.adjustsFontSizeToFitWidth = true
+        balanceLabel.textAlignment = .center
+        balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
+        self.balanceLabel = balanceLabel
+        stackView.addArrangedSubview(balanceLabel)
         
         let buttonsStackView = UIStackView()
         buttonsStackView.spacing = 100
-        self.addSubview(buttonsStackView)
-        
-        buttonsStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(balanceLabel.snp.bottom).offset(70)
-            make.centerX.equalToSuperview()
-        }
+        stackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
         reloadButton.setImage(UIImage(asset: Asset.reloadIcon), for: .normal)
         self.reloadButton = reloadButton
         buttonsStackView.addArrangedSubview(reloadButton)
+        
+        let spacerView = UIView()
+        buttonsStackView.addArrangedSubview(spacerView)
         
         let accountButton = UIButton()
         accountButton.setImage(UIImage(asset: Asset.accountIcon), for: .normal)

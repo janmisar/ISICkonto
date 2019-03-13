@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
         
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
         
         return true
     }
