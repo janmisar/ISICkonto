@@ -13,8 +13,7 @@ import SwiftSoup
 
 class ViewController: UIViewController {
     
-    let username = "xxx"
-    let password = "xxx"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,9 @@ class ViewController: UIViewController {
     
     func reloadData() {
         
-        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").response { [weak self] response in
+ 
+        do {
+            Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").response { [weak self] response in
             
             let responseURL = response.response?.url
             let hostUrl = responseURL?.host ?? ""
@@ -34,78 +35,37 @@ class ViewController: UIViewController {
             if hostUrl.contains("agata.suz.cvut") {
                 //readBalanceFromDocument
             } else {
-                let queryParams = self?.parseQueryString(queryString: responseURL?.query ?? "")
-                let dirtyReturnObject = queryParams?["return"] as? String
-                let returnObject = dirtyReturnObject?.removingPercentEncoding ?? ""
-                let returnURL = URL(string: returnObject)
-                let returnQuery = returnURL?.query
                 
-                // setup returnBase from returnUrl
-                let returnBase = NSURLComponents()
-                returnBase.scheme = returnURL?.scheme
-                returnBase.host = returnURL?.host
-                returnBase.path = returnURL?.path
-                let returnBaseUrlString = returnBase.url?.absoluteString ?? ""
-                
-                // parse next level of query to get filter and lang
-                let queryReturnObject = self?.parseQueryString(queryString: returnQuery ?? "")
-                queryParams?["return"] = queryReturnObject
-                
-                let samlds = queryReturnObject?["SAMLDS"] as? String ?? ""
-                let target = queryReturnObject?["target"] as? String ?? ""
-                let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
-                let filter = queryParams?["filter"] as? String ?? ""
-                //let filter = dirtyFilter?.replacingOccurrences(of: "=", with: "%3D") ?? ""
-                let lang = queryParams?["lang"] as? String ?? ""
-                
-                let urlString = String(format: "%@?SAMLDS=%@&target=%@&entityID=%@&filter=%@&lang=%@", returnBase,samlds,target,entityID,filter,lang)
-                
-                print("\(returnBase)\n\(samlds)\n\(target)\n\(entityID)\n\(filter)\n\(lang)")
-                
-                Alamofire.request(urlString).response { [weak self] responseR in
+                do {
+                    let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
                     
-                    let parameters: Parameters = [
-                        "j_username": self?.username,
-                        "j_password": self?.password,
-                        "_eventId_proceed" : ""
-                    ]
+                    let filter = responseURL?.valueOf("filter") ?? ""
+                    let lang = responseURL?.valueOf("lang") ?? ""
+                    let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
+                    let returnComponents = responseURL?.valueOf("return") ?? ""
+                    let returnComponentsUrl = try (returnComponents.asURL())
                     
-                    let url = responseR.request?.url?.absoluteString ?? ""
-                    print(url)
+                    let samlds = returnComponentsUrl.valueOf("SAMLDS") ?? ""
+                    let target = returnComponentsUrl.valueOf("target") ?? ""
                     
-                    // post with credentials
-                    Alamofire.request(url, method: .post, parameters: parameters).responseString { [weak self] response in
-                        
-                        //
-                        do{
-                            let doc: Document = try SwiftSoup.parse(response.result.value!)
-                            let link: Element = try doc.select("form").first()!
-                            let linkAction: String = try link.attr("action")
-                          
-                        } catch {}
-                    }
+                    let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
+                    
+                    print(urlString)
+                } catch {
+                    
                 }
             }
-        }
-    }
-    
-    // query parsing, parsing from string to dictionary
-    func parseQueryString(queryString: String) -> NSMutableDictionary {
-        let queryStringDictionary = NSMutableDictionary()
-        let urlComponents = queryString.components(separatedBy: "&")
-        
-        for keyValuePair in urlComponents {
-            if let equalSignIndex = keyValuePair.firstIndex(of: "=") {
-                let key = keyValuePair[..<equalSignIndex]
-                let equalSignIndexOffset = keyValuePair.index(equalSignIndex, offsetBy: 1)
-                let value = keyValuePair[equalSignIndexOffset...]
-                
-                queryStringDictionary[key] = value.removingPercentEncoding ?? ""
             }
+            
+        } catch {
+                
         }
-        print(queryStringDictionary)
-        print("---")
-        return queryStringDictionary
     }
 }
 
+extension URL {
+    func valueOf(_ queryParamaterName: String) -> String? {
+        guard let url = URLComponents(string: self.absoluteString) else { return nil }
+        return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
+    }
+}
