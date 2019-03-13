@@ -78,7 +78,20 @@ class ViewController: UIViewController {
                                     return
                                 }
                                 
-                               
+                                let inputs = try form.select("input")
+                                //get RelayState
+                                let inputName1 = try inputs.array()[0].attr("name")
+                                let inputValue1 = try inputs.array()[0].attr("value")
+                                //get SAMLResponse
+                                let inputName2 = try inputs.array()[1].attr("name")
+                                let inputValue2 = try inputs.array()[1].attr("value")
+                                
+                                let parameters1 = [
+                                    inputName1 : inputValue1,
+                                    inputName2 : inputValue2
+                                ]
+                                
+                                print(parameters1)
                             } catch {
                                 
                             }
