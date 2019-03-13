@@ -17,19 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Simulator data path
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         print(urls[urls.count-1] as URL)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         
+        // Navigation bar theme
         UINavigationBar.appearance().barTintColor = UIColor.MyTheme.backgroundColor
         UINavigationBar.appearance().tintColor = UIColor.MyTheme.textColor
-        
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
         
-//        window?.rootViewController = UINavigationController(rootViewController: ViewController())
-        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
+        
+        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
         
         return true
     }

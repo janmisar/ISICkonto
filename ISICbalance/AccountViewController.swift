@@ -14,7 +14,6 @@ class AccountViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        
         self.view = accountView
     }
     
@@ -23,22 +22,9 @@ class AccountViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = L10n.Login.title
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

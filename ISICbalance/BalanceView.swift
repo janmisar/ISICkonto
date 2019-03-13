@@ -65,8 +65,6 @@ class BalanceView: UIView {
         buttonsStackView.addArrangedSubview(accountButton)
     }
     
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
