@@ -50,7 +50,41 @@ class ViewController: UIViewController {
                     
                     let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
                     
-                    print(urlString)
+                    Alamofire.request(urlString).response { responseShibboleth in
+                        #warning("TODO - get credentials from keychain or userdefaults")
+                        let username = "xx"
+                        let password = "xx"
+                        //login parameters, username and password
+                        let parameters = [
+                            "j_username": username,
+                            "j_password": password,
+                            "_eventId_proceed" : ""
+                        ]
+                        
+                        let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
+                        
+                        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
+                            
+                            do{
+                                let doc: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+                                print(doc)
+                                let form: Element = try doc.select("form").array()[0]
+                                
+                                //get action value from form to check login process
+                                let action: String = try form.attr("action")
+                                if !action.contains("agata.suz.cvut.cz"){
+                                    #warning("TODO - error")
+                                    print("LOGIN FAILED")
+                                    return
+                                }
+                                
+                               
+                            } catch {
+                                
+                            }
+                        }
+                    }
+                    
                 } catch {
                     
                 }
