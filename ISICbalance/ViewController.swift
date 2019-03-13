@@ -23,11 +23,9 @@ class ViewController: UIViewController {
     }
     
     func reloadData() {
-        
- 
         do {
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").response { [weak self] response in
-            
+                
             let responseURL = response.response?.url
             let hostUrl = responseURL?.host ?? ""
             
@@ -35,7 +33,6 @@ class ViewController: UIViewController {
             if hostUrl.contains("agata.suz.cvut") {
                 //readBalanceFromDocument
             } else {
-                
                 do {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
                     
@@ -52,8 +49,8 @@ class ViewController: UIViewController {
                     
                     Alamofire.request(urlString).response { responseShibboleth in
                         #warning("TODO - get credentials from keychain or userdefaults")
-                        let username = "xx"
-                        let password = "xx"
+                        let username = "xxx"
+                        let password = "xxx"
                         //login parameters, username and password
                         let parameters = [
                             "j_username": username,
@@ -64,11 +61,9 @@ class ViewController: UIViewController {
                         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
                         
                         Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
-                            
-                            do{
-                                let doc: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-                                print(doc)
-                                let form: Element = try doc.select("form").array()[0]
+                            do {
+                                let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+                                let form: Element = try document.select("form").array()[0]
                                 
                                 //get action value from form to check login process
                                 let action: String = try form.attr("action")
@@ -86,26 +81,40 @@ class ViewController: UIViewController {
                                 let inputName2 = try inputs.array()[1].attr("name")
                                 let inputValue2 = try inputs.array()[1].attr("value")
                                 
-                                let parameters1 = [
+                                let formParameters = [
                                     inputName1 : inputValue1,
                                     inputName2 : inputValue2
                                 ]
                                 
-                                print(parameters1)
+                                Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
+                                    if responseBalanceSite.result.isSuccess {
+                                        self?.getBalanceFromDoc(dataResponse: responseBalanceSite)
+                                        print("get balance")
+                                    } else {
+                                        print("error: \(responseBalanceSite.result.error)")
+                                    }
+                                }
                             } catch {
-                                
+                                #warning("TODO - error")
                             }
                         }
                     }
-                    
                 } catch {
-                    
+                    #warning("TODO - error")
                 }
             }
             }
-            
         } catch {
-                
+            #warning("TODO - error")
+        }
+    }
+    
+    func getBalanceFromDoc(dataResponse: DataResponse<String>){
+        do {
+            let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
+            print(document)
+        } catch {
+            #warning("TODO - error")
         }
     }
 }
