@@ -13,8 +13,8 @@ import SwiftSoup
 
 class ViewController: UIViewController {
     
-    let username = ""
-    let password = ""
+    let username = "xxx"
+    let password = "xxx"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,7 @@ class ViewController: UIViewController {
             let responseURL = response.response?.url
             let hostUrl = responseURL?.host ?? ""
             
+            // if url contains agata.suz.cvut -> you are logged in
             if hostUrl.contains("agata.suz.cvut") {
                 //readBalanceFromDocument
             } else {
@@ -39,8 +40,14 @@ class ViewController: UIViewController {
                 let returnURL = URL(string: returnObject)
                 let returnQuery = returnURL?.query
                 
-                let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
+                // setup returnBase from returnUrl
+                let returnBase = NSURLComponents()
+                returnBase.scheme = returnURL?.scheme
+                returnBase.host = returnURL?.host
+                returnBase.path = returnURL?.path
+                let returnBaseUrlString = returnBase.url?.absoluteString ?? ""
                 
+                // parse next level of query to get filter and lang
                 let queryReturnObject = self?.parseQueryString(queryString: returnQuery ?? "")
                 queryParams?["return"] = queryReturnObject
                 
@@ -66,24 +73,23 @@ class ViewController: UIViewController {
                     let url = responseR.request?.url?.absoluteString ?? ""
                     print(url)
                     
+                    // post with credentials
                     Alamofire.request(url, method: .post, parameters: parameters).responseString { [weak self] response in
                         
-
+                        //
                         do{
-                            let doc:Document = try SwiftSoup.parse(response.result.value!)
+                            let doc: Document = try SwiftSoup.parse(response.result.value!)
                             let link: Element = try doc.select("form").first()!
                             let linkAction: String = try link.attr("action")
                           
                         } catch {}
-                        
                     }
                 }
-                
             }
         }
-        
     }
     
+    // query parsing, parsing from string to dictionary
     func parseQueryString(queryString: String) -> NSMutableDictionary {
         let queryStringDictionary = NSMutableDictionary()
         let urlComponents = queryString.components(separatedBy: "&")
