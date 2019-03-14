@@ -92,42 +92,53 @@ class ViewController: UIViewController {
         
         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
         
-        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
-            do {
-                let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-                let form: Element = try document.select("form").array()[0]
-                
-                //get action value from form to check login process
-                let action: String = try form.attr("action")
-                if !action.contains("agata.suz.cvut.cz"){
-                    #warning("TODO - error")
-                    print("LOGIN FAILED")
-                    return
-                }
-                
-                let inputs = try form.select("input")
-                //get RelayState
-                let inputName1 = try inputs.array()[0].attr("name")
-                let inputValue1 = try inputs.array()[0].attr("value")
-                //get SAMLResponse
-                let inputName2 = try inputs.array()[1].attr("name")
-                let inputValue2 = try inputs.array()[1].attr("value")
-                
-                let formParameters = [
-                    inputName1 : inputValue1,
-                    inputName2 : inputValue2
-                ]
-                
-                Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
-                    if responseBalanceSite.result.isSuccess {
-                        self.getBalanceFromDoc(dataResponse: responseBalanceSite)
-                    } else {
-                        print("error: \(responseBalanceSite.result.error)")
-                    }
-                }
-            } catch {
-                #warning("TODO - error")
+        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { [weak self] responseCredentials in
+            
+            switch responseCredentials.result {
+            case .success:
+                print("Credentials request success")
+                self?.credentialsRequestSucc(responseCredentials)
+            case .failure(let error):
+                return ((self?.handleError(error: RequestError.credentialsPostError(error: error)))!)
             }
+        }
+    }
+    
+    fileprivate func credentialsRequestSucc(_ responseCredentials: (DataResponse<String>)) {
+        do {
+            let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+            let form: Element = try document.select("form").array()[0]
+            
+            //get action value from form to check login process
+            let action: String = try form.attr("action")
+            if !action.contains("agata.suz.cvut.cz"){
+                #warning("TODO - error")
+                print("LOGIN FAILED")
+                return
+            }
+            
+            let inputs = try form.select("input")
+            //get RelayState
+            let inputName1 = try inputs.array()[0].attr("name")
+            let inputValue1 = try inputs.array()[0].attr("value")
+            //get SAMLResponse
+            let inputName2 = try inputs.array()[1].attr("name")
+            let inputValue2 = try inputs.array()[1].attr("value")
+            
+            let formParameters = [
+                inputName1 : inputValue1,
+                inputName2 : inputValue2
+            ]
+            
+            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
+                if responseBalanceSite.result.isSuccess {
+                    self?.getBalanceFromDoc(dataResponse: responseBalanceSite)
+                } else {
+                    print("error: \(responseBalanceSite.result.error)")
+                }
+            }
+        } catch {
+            #warning("TODO - error")
         }
     }
     
