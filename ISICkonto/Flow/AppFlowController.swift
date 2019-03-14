@@ -24,7 +24,11 @@ class AppFlowController : AppFlowControllerProtocol {
     }
     
     func launch() {
-        
+        if true {
+            navigationController.show(LogInViewController(), sender: self)
+        } else {
+            navigationController.show(BalanceViewController(), sender: self)
+        }
     }
     
     public func showLoginViewController() {
