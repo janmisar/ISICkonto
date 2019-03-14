@@ -12,7 +12,7 @@
 		0E42966F220CAFDF0093EC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */; };
 		0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E4447223B047D009E5514 /* AppFlowController.swift */; };
 		0E6E444D223B0758009E5514 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E444C223B0758009E5514 /* LoginViewController.swift */; };
-		0E6E444F223B0765009E5514 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E444E223B0765009E5514 /* BalanceViewModel.swift */; };
+		0E6E444F223B0765009E5514 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E444E223B0765009E5514 /* BalanceViewController.swift */; };
 		0E6E4453223B080B009E5514 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E4452223B080B009E5514 /* FormField.swift */; };
 		0E6E4459223B0955009E5514 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E445B223B0955009E5514 /* Localizable.strings */; };
 		0E6E445E223B09E2009E5514 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E445D223B09E2009E5514 /* String.swift */; };
@@ -27,7 +27,7 @@
 		0E429670220CAFDF0093EC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E6E4447223B047D009E5514 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		0E6E444C223B0758009E5514 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0E6E444E223B0765009E5514 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
+		0E6E444E223B0765009E5514 /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		0E6E4452223B080B009E5514 /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
 		0E6E4454223B08BF009E5514 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0E6E445A223B0955009E5514 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				0E6E444C223B0758009E5514 /* LoginViewController.swift */,
-				0E6E444E223B0765009E5514 /* BalanceViewModel.swift */,
+				0E6E444E223B0765009E5514 /* BalanceViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,7 +294,7 @@
 				0E6E444D223B0758009E5514 /* LoginViewController.swift in Sources */,
 				0E429665220CAFDD0093EC63 /* AppDelegate.swift in Sources */,
 				0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */,
-				0E6E444F223B0765009E5514 /* BalanceViewModel.swift in Sources */,
+				0E6E444F223B0765009E5514 /* BalanceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
