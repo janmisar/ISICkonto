@@ -1,7 +1,15 @@
-/* 
-  Localizable.strings
-  ISICkonto
+/*
+ Localizable.strings
+ ISICkonto
+ 
+ Created by Vendula Švastalová on 15/02/2019.
+ Copyright © 2019 Vendula Švastalová. All rights reserved.
+ */
 
-  Created by Vendula Švastalová on 14/03/2019.
-  Copyright © 2019 Vendula Švastalová. All rights reserved.
-*/
+"User" = "Uživatel";
+"Log In" = "Přihlásit se";
+"username" = "uživatelské jméno";
+"password" = "heslo";
+"Your balance is" = "Na účtu máš";
+"Success!" = "Jsi přihlášen!";
+"Wrong credentials" = "Nesprávné údaje";
