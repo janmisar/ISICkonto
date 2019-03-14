@@ -18,6 +18,14 @@ enum RequestError {
     case balanceScreenPostError(error: Error)
 }
 
+enum LoginError {
+    case loginFailed
+}
+
+enum SwiftSoupError {
+    case parseLoginSite(error: Error)
+}
+
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -50,7 +58,7 @@ class ViewController: UIViewController {
         
         // if url contains agata.suz.cvut -> you are logged in
         if hostUrl.contains("agata.suz.cvut") {
-            //readBalanceFromDocument
+            getBalanceFromDoc(dataResponse: response)
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
             
@@ -58,7 +66,6 @@ class ViewController: UIViewController {
             let lang = responseURL?.valueOf("lang") ?? ""
             let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
             let returnComponents = responseURL?.valueOf("return") ?? ""
-            //let returnComponentsUrl = try (returnComponents.asURL())
             let retunComponentsUrl = URL(string: returnComponents)
             
             let samlds = retunComponentsUrl?.valueOf("SAMLDS") ?? ""
@@ -81,8 +88,8 @@ class ViewController: UIViewController {
     
     fileprivate func ssoRequestSucc(_ responseShibboleth: (DataResponse<String>)) {
         #warning("TODO - get credentials from keychain or userdefaults")
-        let username = "xxx"
-        let password = "xxx"
+        let username = "xx"
+        let password = "xx"
         //login parameters, username and password
         let parameters = [
             "j_username": username,
@@ -112,9 +119,7 @@ class ViewController: UIViewController {
             //get action value from form to check login process
             let action: String = try form.attr("action")
             if !action.contains("agata.suz.cvut.cz"){
-                #warning("TODO - error")
-                print("LOGIN FAILED")
-                return
+                return handleLoginError(error: LoginError.loginFailed)
             }
             
             let inputs = try form.select("input")
@@ -131,21 +136,44 @@ class ViewController: UIViewController {
             ]
             
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
-                if responseBalanceSite.result.isSuccess {
+
+                switch responseBalanceSite.result {
+                case .success:
+                    print("Credentials request success")
                     self?.getBalanceFromDoc(dataResponse: responseBalanceSite)
-                } else {
-                    print("error: \(responseBalanceSite.result.error)")
+                case .failure(let error):
+                    return ((self?.handleError(error: RequestError.balanceScreenPostError(error: error)))!)
                 }
             }
         } catch {
-            #warning("TODO - error")
+            
         }
     }
     
     func getBalanceFromDoc(dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-            print(document)
+            let bodyElement: Element = try document.select("body").array()[0]
+            let table: Element = try bodyElement.select("tbody").array()[0]
+            let balanceLine: Element = try table.select("td").array()[4]
+            let lineText = balanceLine.ownText()
+            let lineElements = lineText.split(separator: " ")
+            let balance = lineElements[0]
+            
+            print(bodyElement)
+            print("-----------------------------------------")
+            print(table)
+            print("-----------------------------------------")
+            print(balanceLine)
+            print("-----------------------------------------")
+            print(lineText)
+            print("-----------------------------------------")
+            print(lineElements)
+            print("-----------------------------------------")
+            print(lineElements)
+            print("-----------------------------------------")
+            print(balance)
+            
         } catch {
             #warning("TODO - error")
         }
@@ -153,6 +181,17 @@ class ViewController: UIViewController {
     
     func handleError(error: RequestError) {
         print(error)
+        #warning("TODO - error action")
+    }
+    
+    func handleLoginError(error: LoginError) {
+        print(error)
+        #warning("TODO - error action")
+    }
+    
+    func handleSwiftSoupError(error: SwiftSoupError) {
+        print(error)
+        #warning("TODO - error action")
     }
 }
 
