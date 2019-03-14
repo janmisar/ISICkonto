@@ -11,6 +11,8 @@
 		0E42966C220CAFDF0093EC63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42966B220CAFDF0093EC63 /* Assets.xcassets */; };
 		0E42966F220CAFDF0093EC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */; };
 		0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E4447223B047D009E5514 /* AppFlowController.swift */; };
+		0E6E444D223B0758009E5514 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E444C223B0758009E5514 /* LoginViewController.swift */; };
+		0E6E444F223B0765009E5514 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E444E223B0765009E5514 /* BalanceViewModel.swift */; };
 		5FD71D6E33DF02D17C232A49 /* Pods_ISICkonto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +23,8 @@
 		0E42966E220CAFDF0093EC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E429670220CAFDF0093EC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E6E4447223B047D009E5514 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
+		0E6E444C223B0758009E5514 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0E6E444E223B0765009E5514 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		67F6C21F247D9D74D7C28545 /* Pods-ISICkonto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.debug.xcconfig"; sourceTree = "<group>"; };
 		C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICkonto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8D4AEA4C262BB7AAD9A92A /* Pods-ISICkonto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.release.xcconfig"; sourceTree = "<group>"; };
@@ -59,13 +63,39 @@
 		0E429663220CAFDD0093EC63 /* ISICkonto */ = {
 			isa = PBXGroup;
 			children = (
+				0E6E4449223B0712009E5514 /* Flow */,
 				0E429664220CAFDD0093EC63 /* AppDelegate.swift */,
-				0E6E4447223B047D009E5514 /* AppFlowController.swift */,
 				0E42966B220CAFDF0093EC63 /* Assets.xcassets */,
 				0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */,
 				0E429670220CAFDF0093EC63 /* Info.plist */,
 			);
 			path = ISICkonto;
+			sourceTree = "<group>";
+		};
+		0E6E4449223B0712009E5514 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				0E6E4447223B047D009E5514 /* AppFlowController.swift */,
+				0E6E444A223B0729009E5514 /* ViewControllers */,
+				0E6E444B223B0737009E5514 /* ViewModels */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		0E6E444A223B0729009E5514 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0E6E444C223B0758009E5514 /* LoginViewController.swift */,
+				0E6E444E223B0765009E5514 /* BalanceViewModel.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0E6E444B223B0737009E5514 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		6AAF3F4A18EA8351529CEBB4 /* Frameworks */ = {
@@ -222,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E6E444D223B0758009E5514 /* LoginViewController.swift in Sources */,
 				0E429665220CAFDD0093EC63 /* AppDelegate.swift in Sources */,
 				0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */,
+				0E6E444F223B0765009E5514 /* BalanceViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
