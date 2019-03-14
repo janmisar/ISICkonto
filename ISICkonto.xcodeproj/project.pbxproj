@@ -8,21 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		0E429665220CAFDD0093EC63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E429664220CAFDD0093EC63 /* AppDelegate.swift */; };
-		0E429667220CAFDD0093EC63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E429666220CAFDD0093EC63 /* ViewController.swift */; };
-		0E42966A220CAFDD0093EC63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E429668220CAFDD0093EC63 /* Main.storyboard */; };
 		0E42966C220CAFDF0093EC63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42966B220CAFDF0093EC63 /* Assets.xcassets */; };
 		0E42966F220CAFDF0093EC63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */; };
+		0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E4447223B047D009E5514 /* AppFlowController.swift */; };
 		5FD71D6E33DF02D17C232A49 /* Pods_ISICkonto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E429661220CAFDD0093EC63 /* ISICkonto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICkonto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E429664220CAFDD0093EC63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E429666220CAFDD0093EC63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0E429669220CAFDD0093EC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E42966B220CAFDF0093EC63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E42966E220CAFDF0093EC63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E429670220CAFDF0093EC63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E6E4447223B047D009E5514 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		67F6C21F247D9D74D7C28545 /* Pods-ISICkonto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.debug.xcconfig"; sourceTree = "<group>"; };
 		C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICkonto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8D4AEA4C262BB7AAD9A92A /* Pods-ISICkonto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.release.xcconfig"; sourceTree = "<group>"; };
@@ -62,11 +60,10 @@
 			isa = PBXGroup;
 			children = (
 				0E429664220CAFDD0093EC63 /* AppDelegate.swift */,
-				0E429666220CAFDD0093EC63 /* ViewController.swift */,
-				0E429668220CAFDD0093EC63 /* Main.storyboard */,
 				0E42966B220CAFDF0093EC63 /* Assets.xcassets */,
 				0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */,
 				0E429670220CAFDF0093EC63 /* Info.plist */,
+				0E6E4447223B047D009E5514 /* AppFlowController.swift */,
 			);
 			path = ISICkonto;
 			sourceTree = "<group>";
@@ -150,7 +147,6 @@
 			files = (
 				0E42966F220CAFDF0093EC63 /* LaunchScreen.storyboard in Resources */,
 				0E42966C220CAFDF0093EC63 /* Assets.xcassets in Resources */,
-				0E42966A220CAFDD0093EC63 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,22 +222,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E429667220CAFDD0093EC63 /* ViewController.swift in Sources */,
 				0E429665220CAFDD0093EC63 /* AppDelegate.swift in Sources */,
+				0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0E429668220CAFDD0093EC63 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0E429669220CAFDD0093EC63 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
