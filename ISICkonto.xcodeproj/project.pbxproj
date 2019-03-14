@@ -20,6 +20,8 @@
 		0E6E4467223B0C6A009E5514 /* Cabin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4463223B0C6A009E5514 /* Cabin-Regular.ttf */; };
 		0E6E4468223B0C6A009E5514 /* Cabin-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4464223B0C6A009E5514 /* Cabin-Bold.ttf */; };
 		0E6E4469223B0C6A009E5514 /* Cabin-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4465223B0C6A009E5514 /* Cabin-SemiBold.ttf */; };
+		0E6E446C223B105A009E5514 /* WebScrapingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E446B223B105A009E5514 /* WebScrapingService.swift */; };
+		0E6E446E223B1157009E5514 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E446D223B1157009E5514 /* Result.swift */; };
 		5FD71D6E33DF02D17C232A49 /* Pods_ISICkonto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		0E6E4463223B0C6A009E5514 /* Cabin-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-Regular.ttf"; sourceTree = "<group>"; };
 		0E6E4464223B0C6A009E5514 /* Cabin-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-Bold.ttf"; sourceTree = "<group>"; };
 		0E6E4465223B0C6A009E5514 /* Cabin-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-SemiBold.ttf"; sourceTree = "<group>"; };
+		0E6E446B223B105A009E5514 /* WebScrapingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScrapingService.swift; sourceTree = "<group>"; };
+		0E6E446D223B1157009E5514 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		67F6C21F247D9D74D7C28545 /* Pods-ISICkonto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.debug.xcconfig"; sourceTree = "<group>"; };
 		C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICkonto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8D4AEA4C262BB7AAD9A92A /* Pods-ISICkonto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 		0E429663220CAFDD0093EC63 /* ISICkonto */ = {
 			isa = PBXGroup;
 			children = (
+				0E6E446A223B1041009E5514 /* Services */,
 				0E6E4461223B0C4F009E5514 /* Fonts */,
 				0E6E4450223B07D7009E5514 /* Support */,
 				0E6E4449223B0712009E5514 /* Flow */,
@@ -122,6 +127,7 @@
 				0E6E445F223B09E7009E5514 /* Extensions */,
 				0E6E4451223B07FA009E5514 /* UI */,
 				0E6E445B223B0955009E5514 /* Localizable.strings */,
+				0E6E446D223B1157009E5514 /* Result.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -152,6 +158,14 @@
 			);
 			name = Fonts;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		0E6E446A223B1041009E5514 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0E6E446B223B105A009E5514 /* WebScrapingService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		6AAF3F4A18EA8351529CEBB4 /* Frameworks */ = {
@@ -320,6 +334,8 @@
 				0E429665220CAFDD0093EC63 /* AppDelegate.swift in Sources */,
 				0E6E4448223B047D009E5514 /* AppFlowController.swift in Sources */,
 				0E6E444F223B0765009E5514 /* BalanceViewController.swift in Sources */,
+				0E6E446E223B1157009E5514 /* Result.swift in Sources */,
+				0E6E446C223B105A009E5514 /* WebScrapingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
