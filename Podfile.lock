@@ -1,0 +1,57 @@
+PODS:
+  - Alamofire (4.8.1)
+  - Kanna (4.0.2)
+  - "NSObject+Rx (4.4.1)":
+    - RxSwift (~> 4.3)
+  - RxAlamofire (4.3.0):
+    - RxAlamofire/Core (= 4.3.0)
+  - RxAlamofire/Core (4.3.0):
+    - Alamofire (~> 4.5)
+    - RxSwift (~> 4)
+  - RxAtomic (4.4.1)
+  - RxCocoa (4.4.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.1):
+    - RxAtomic (~> 4.4)
+  - SnapKit (4.2.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftKeychainWrapper (3.2.0)
+
+DEPENDENCIES:
+  - Kanna (~> 4.0)
+  - "NSObject+Rx"
+  - RxAlamofire (~> 4.3)
+  - RxCocoa (~> 4.4)
+  - RxSwift (~> 4.4)
+  - SnapKit (~> 4.2)
+  - SVProgressHUD (~> 2.2)
+  - SwiftKeychainWrapper (~> 3.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Kanna
+    - "NSObject+Rx"
+    - RxAlamofire
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - SnapKit
+    - SVProgressHUD
+    - SwiftKeychainWrapper
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Kanna: c60b61d72554bf04ed1ee074f9b379855cab4892
+  "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
+
+PODFILE CHECKSUM: 4ea50361b8cce1f05fa83f744b842a492b2b787e
+
+COCOAPODS: 1.5.3
