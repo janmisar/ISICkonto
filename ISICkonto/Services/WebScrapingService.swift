@@ -78,7 +78,7 @@ enum WebScrapingService {
                                 
                                 /* if the resulting site contains Stale request in the title the session has expired */
                                 let staleRequest = sessionHtml.xpath("//title").first?.content
-                                if staleRequest != nil { return Observable.of(Result.resultFailed("Stale request")) }
+                                if staleRequest != nil && staleRequest!.contains("Stale request") { return Observable.of(Result.resultFailed("Stale request")) }
                                 
                                 /* if the resulting page contains an error message the user has entered wrong credentials */
                                 let possibleError = sessionHtml.xpath("//p[@class='error-message']").first?.content
