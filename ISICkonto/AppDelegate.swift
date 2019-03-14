@@ -42,5 +42,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
+    func setUpGlobalAppearance() {
+        
+        // for UINavigationBar
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().backgroundColor = UIColor.clear
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Cabin-Regular", size: 20)!]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Cabin-Medium", size: 17)!], for: [.normal, .highlighted])
+        
+        // for SVProgressHUD
+        SVProgressHUD.setFont(UIFont(name: "Cabin-Regular", size: 15)!)
+        SVProgressHUD.setBackgroundColor(.white)
+        SVProgressHUD.setForegroundColor(UIColor(red: 55/255, green: 131/255, blue: 160/255, alpha: 1))
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)
+        SVProgressHUD.setMinimumSize(CGSize(width: 150, height: 150))
+        SVProgressHUD.setRingRadius(40)
+        SVProgressHUD.setRingThickness(5)
+        SVProgressHUD.setImageViewSize(CGSize(width: 80, height: 80))
+    }
+    
 }
 
