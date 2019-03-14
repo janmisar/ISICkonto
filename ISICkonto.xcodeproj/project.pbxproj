@@ -60,10 +60,10 @@
 			isa = PBXGroup;
 			children = (
 				0E429664220CAFDD0093EC63 /* AppDelegate.swift */,
+				0E6E4447223B047D009E5514 /* AppFlowController.swift */,
 				0E42966B220CAFDF0093EC63 /* Assets.xcassets */,
 				0E42966D220CAFDF0093EC63 /* LaunchScreen.storyboard */,
 				0E429670220CAFDF0093EC63 /* Info.plist */,
-				0E6E4447223B047D009E5514 /* AppFlowController.swift */,
 			);
 			path = ISICkonto;
 			sourceTree = "<group>";
