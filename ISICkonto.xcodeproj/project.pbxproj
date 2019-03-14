@@ -16,6 +16,10 @@
 		0E6E4453223B080B009E5514 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E4452223B080B009E5514 /* FormField.swift */; };
 		0E6E4459223B0955009E5514 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E445B223B0955009E5514 /* Localizable.strings */; };
 		0E6E445E223B09E2009E5514 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E445D223B09E2009E5514 /* String.swift */; };
+		0E6E4466223B0C6A009E5514 /* Cabin-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4462223B0C6A009E5514 /* Cabin-Medium.ttf */; };
+		0E6E4467223B0C6A009E5514 /* Cabin-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4463223B0C6A009E5514 /* Cabin-Regular.ttf */; };
+		0E6E4468223B0C6A009E5514 /* Cabin-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4464223B0C6A009E5514 /* Cabin-Bold.ttf */; };
+		0E6E4469223B0C6A009E5514 /* Cabin-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6E4465223B0C6A009E5514 /* Cabin-SemiBold.ttf */; };
 		5FD71D6E33DF02D17C232A49 /* Pods_ISICkonto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +37,10 @@
 		0E6E445A223B0955009E5514 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E6E445C223B0959009E5514 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0E6E445D223B09E2009E5514 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		0E6E4462223B0C6A009E5514 /* Cabin-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-Medium.ttf"; sourceTree = "<group>"; };
+		0E6E4463223B0C6A009E5514 /* Cabin-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-Regular.ttf"; sourceTree = "<group>"; };
+		0E6E4464223B0C6A009E5514 /* Cabin-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-Bold.ttf"; sourceTree = "<group>"; };
+		0E6E4465223B0C6A009E5514 /* Cabin-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cabin-SemiBold.ttf"; sourceTree = "<group>"; };
 		67F6C21F247D9D74D7C28545 /* Pods-ISICkonto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.debug.xcconfig"; sourceTree = "<group>"; };
 		C42D5D950A0EEBA2C1D47D44 /* Pods_ISICkonto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICkonto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8D4AEA4C262BB7AAD9A92A /* Pods-ISICkonto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICkonto.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICkonto/Pods-ISICkonto.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +79,7 @@
 		0E429663220CAFDD0093EC63 /* ISICkonto */ = {
 			isa = PBXGroup;
 			children = (
+				0E6E4461223B0C4F009E5514 /* Fonts */,
 				0E6E4450223B07D7009E5514 /* Support */,
 				0E6E4449223B0712009E5514 /* Flow */,
 				0E429664220CAFDD0093EC63 /* AppDelegate.swift */,
@@ -131,6 +140,18 @@
 				0E6E445D223B09E2009E5514 /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E6E4461223B0C4F009E5514 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0E6E4464223B0C6A009E5514 /* Cabin-Bold.ttf */,
+				0E6E4462223B0C6A009E5514 /* Cabin-Medium.ttf */,
+				0E6E4463223B0C6A009E5514 /* Cabin-Regular.ttf */,
+				0E6E4465223B0C6A009E5514 /* Cabin-SemiBold.ttf */,
+			);
+			name = Fonts;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		6AAF3F4A18EA8351529CEBB4 /* Frameworks */ = {
@@ -211,9 +232,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E6E4467223B0C6A009E5514 /* Cabin-Regular.ttf in Resources */,
+				0E6E4468223B0C6A009E5514 /* Cabin-Bold.ttf in Resources */,
 				0E42966F220CAFDF0093EC63 /* LaunchScreen.storyboard in Resources */,
 				0E6E4459223B0955009E5514 /* Localizable.strings in Resources */,
 				0E42966C220CAFDF0093EC63 /* Assets.xcassets in Resources */,
+				0E6E4469223B0C6A009E5514 /* Cabin-SemiBold.ttf in Resources */,
+				0E6E4466223B0C6A009E5514 /* Cabin-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
