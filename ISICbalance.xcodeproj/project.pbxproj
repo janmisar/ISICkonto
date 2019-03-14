@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C61F223A6AD700A46BCA /* RequestManager.swift */; };
+		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14893B2E2237A3FE00690F4D /* BalanceViewController.swift */; };
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
 		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1408C61F223A6AD700A46BCA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14893B2E2237A3FE00690F4D /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				14C190522235AE370033616E /* Generated */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
 				14C19016223596DB0033616E /* ViewController.swift */,
+				1408C621223A6B0400A46BCA /* Errors.swift */,
+				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
 				14893B2E2237A3FE00690F4D /* BalanceViewController.swift */,
 				14C1905F223668000033616E /* BalanceView.swift */,
 				14C1906722368D040033616E /* AccountViewController.swift */,
@@ -493,7 +499,9 @@
 				14C19017223596DB0033616E /* ViewController.swift in Sources */,
 				14C1906822368D040033616E /* AccountViewController.swift in Sources */,
 				14C19060223668000033616E /* BalanceView.swift in Sources */,
+				1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
+				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
 				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
