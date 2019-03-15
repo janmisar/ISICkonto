@@ -35,23 +35,22 @@ class AccountViewController: BaseViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
         }
         
+        setupFormFields()
+        setupLoginButton()
+        setupBottomImages()
+    }
+    
+    fileprivate func setupFormFields() {
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
         usernameLabel.textColor = UIColor.MyTheme.labelBlue
         self.usernameLabel = usernameLabel
-        formStackView.addArrangedSubview(usernameLabel)
+        formStackView?.addArrangedSubview(usernameLabel)
         
-        let usernameTextField = UITextField()
-        usernameTextField.backgroundColor = UIColor.MyTheme.textFieldBackground
-        usernameTextField.textColor = UIColor.MyTheme.textColor
-        usernameTextField.tintColor = UIColor.MyTheme.textColor
-        usernameTextField.setLeftPaddingPoints(5)
-        usernameTextField.layer.cornerRadius = 2
-        usernameTextField.layer.masksToBounds = true
-        usernameTextField.autocorrectionType = .no
-        usernameTextField.autocapitalizationType = .none
+        let usernameTextField = FormTextField()
+        
         self.usernameTextField = usernameTextField
-        formStackView.addArrangedSubview(usernameTextField)
+        formStackView?.addArrangedSubview(usernameTextField)
         
         usernameTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
@@ -62,37 +61,33 @@ class AccountViewController: BaseViewController {
         passwordLabel.text = L10n.Login.password
         passwordLabel.textColor = UIColor.MyTheme.labelBlue
         self.passwordLabel = passwordLabel
-        formStackView.addArrangedSubview(passwordLabel)
+        formStackView?.addArrangedSubview(passwordLabel)
         
-        let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = UIColor.MyTheme.textFieldBackground
-        passwordTextField.textColor = UIColor.MyTheme.textColor
-        passwordTextField.tintColor = UIColor.MyTheme.textColor
-        passwordTextField.setLeftPaddingPoints(5)
-        passwordTextField.layer.cornerRadius = 2
-        passwordTextField.layer.masksToBounds = true
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.autocapitalizationType = .none
+        let passwordTextField = FormTextField()
         self.passwordTextField = passwordTextField
-        formStackView.addArrangedSubview(passwordTextField)
+        formStackView?.addArrangedSubview(passwordTextField)
         
         passwordTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
             make.height.equalTo(45)
         }
-        
+    }
+    
+    fileprivate func setupLoginButton() {
         let loginButton = UIButton()
         loginButton.setTitle(L10n.Login.login, for: .normal)
         loginButton.setTitleColor(UIColor.MyTheme.backgroundColor, for: .normal)
         loginButton.backgroundColor = UIColor.MyTheme.labelBlue
         self.loginButton = loginButton
-        formStackView.addArrangedSubview(loginButton)
+        formStackView?.addArrangedSubview(loginButton)
         
         loginButton.snp.makeConstraints { (make) in
             make.width.equalTo(280)
             make.height.equalTo(45)
         }
-        
+    }
+    
+    fileprivate func setupBottomImages() {
         let picturesStackView = UIStackView()
         self.view.addSubview(picturesStackView)
         

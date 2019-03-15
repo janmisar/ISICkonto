@@ -9,5 +9,7 @@
 import Foundation
 
 class AccountViewModel: BaseViewModel {
-    
+    override init() {
+        
+    }
 }

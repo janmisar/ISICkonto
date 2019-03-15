@@ -21,22 +21,28 @@ class BalanceViewController: BaseViewController {
         super.loadView()
         self.view.backgroundColor = UIColor.MyTheme.backgroundColor
         
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 60
-        self.view.addSubview(stackView)
+        let screenStackView = UIStackView()
+        screenStackView.axis = .vertical
+        screenStackView.spacing = 60
+        self.screenStackView = screenStackView
+        self.view.addSubview(screenStackView)
         
-        stackView.snp.makeConstraints { make in
+        screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
         
+        setupBalanceField()
+        setupButtonsStack()
+    }
+    
+    fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
         balanceTitle.textColor = UIColor.MyTheme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
-        stackView.addArrangedSubview(balanceTitle)
+        screenStackView?.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
         balanceLabel.text = "1357 Kč"
@@ -45,11 +51,13 @@ class BalanceViewController: BaseViewController {
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
         self.balanceLabel = balanceLabel
-        stackView.addArrangedSubview(balanceLabel)
-        
+        screenStackView?.addArrangedSubview(balanceLabel)
+    }
+    
+    fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
         buttonsStackView.spacing = 100
-        stackView.addArrangedSubview(buttonsStackView)
+        screenStackView?.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
         reloadButton.setImage(UIImage(asset: Asset.reloadIcon), for: .normal)
@@ -71,7 +79,11 @@ class BalanceViewController: BaseViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.isNavigationBarHidden = true
         self.accountButton?.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
+        self.reloadButton?.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
         
+    }
+    
+    @objc func reloadBalance() {
         let rm = RequestManager()
         do {
             try rm.reloadData()

@@ -12,5 +12,7 @@ import ReactiveSwift
 import  UIKit
 
 class BalanceViewModel: BaseViewModel {
-    
+    override init() {
+        
+    }
 }
