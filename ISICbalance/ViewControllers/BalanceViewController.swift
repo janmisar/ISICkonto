@@ -10,12 +10,22 @@ import UIKit
 import SwiftKeychainWrapper
 
 class BalanceViewController: BaseViewController {
-
-    weak var screenStackView: UIStackView?
-    weak var balanceLabel: UILabel?
-    weak var balanceTitle: UILabel?
-    weak var reloadButton: UIButton?
-    weak var accountButton: UIButton?
+    private var viewModel: BalanceViewModel
+    
+    weak var screenStackView: UIStackView!
+    weak var balanceLabel: UILabel!
+    weak var balanceTitle: UILabel!
+    weak var reloadButton: UIButton!
+    weak var accountButton: UIButton!
+    
+    override init() {
+        self.viewModel = BalanceViewModel()
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -42,7 +52,7 @@ class BalanceViewController: BaseViewController {
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
-        screenStackView?.addArrangedSubview(balanceTitle)
+        screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
         balanceLabel.text = "1357 Kč"
@@ -51,13 +61,13 @@ class BalanceViewController: BaseViewController {
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
         self.balanceLabel = balanceLabel
-        screenStackView?.addArrangedSubview(balanceLabel)
+        screenStackView.addArrangedSubview(balanceLabel)
     }
     
     fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
         buttonsStackView.spacing = 100
-        screenStackView?.addArrangedSubview(buttonsStackView)
+        screenStackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
         reloadButton.setImage(UIImage(asset: Asset.reloadIcon), for: .normal)
@@ -78,9 +88,8 @@ class BalanceViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.isNavigationBarHidden = true
-        self.accountButton?.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
-        self.reloadButton?.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
-        
+        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
+        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
     }
     
     @objc func reloadBalance() {

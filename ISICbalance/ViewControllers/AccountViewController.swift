@@ -10,17 +10,26 @@ import UIKit
 import SwiftKeychainWrapper
 
 class AccountViewController: BaseViewController {
-
-    weak var formStackView: UIStackView?
-    weak var usernameLabel: UILabel?
-    weak var usernameTextField: UITextField?
-    weak var passwordLabel: UILabel?
-    weak var passwordTextField: UITextField?
-    weak var loginButton: UIButton?
+    private var viewModel: AccountViewModel
+    
+    weak var formStackView: UIStackView!
+    weak var usernameLabel: UILabel!
+    weak var usernameTextField: UITextField!
+    weak var passwordLabel: UILabel!
+    weak var passwordTextField: UITextField!
+    weak var loginButton: UIButton!
+    
+    override init() {
+        self.viewModel = AccountViewModel()
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
-        
         self.view.backgroundColor = UIColor.MyTheme.backgroundColor
         
         let formStackView = UIStackView()
@@ -45,12 +54,11 @@ class AccountViewController: BaseViewController {
         usernameLabel.text = L10n.Login.username
         usernameLabel.textColor = UIColor.MyTheme.labelBlue
         self.usernameLabel = usernameLabel
-        formStackView?.addArrangedSubview(usernameLabel)
+        formStackView.addArrangedSubview(usernameLabel)
         
         let usernameTextField = FormTextField()
-        
         self.usernameTextField = usernameTextField
-        formStackView?.addArrangedSubview(usernameTextField)
+        formStackView.addArrangedSubview(usernameTextField)
         
         usernameTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
@@ -61,11 +69,11 @@ class AccountViewController: BaseViewController {
         passwordLabel.text = L10n.Login.password
         passwordLabel.textColor = UIColor.MyTheme.labelBlue
         self.passwordLabel = passwordLabel
-        formStackView?.addArrangedSubview(passwordLabel)
+        formStackView.addArrangedSubview(passwordLabel)
         
         let passwordTextField = FormTextField()
         self.passwordTextField = passwordTextField
-        formStackView?.addArrangedSubview(passwordTextField)
+        formStackView.addArrangedSubview(passwordTextField)
         
         passwordTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
@@ -79,7 +87,7 @@ class AccountViewController: BaseViewController {
         loginButton.setTitleColor(UIColor.MyTheme.backgroundColor, for: .normal)
         loginButton.backgroundColor = UIColor.MyTheme.labelBlue
         self.loginButton = loginButton
-        formStackView?.addArrangedSubview(loginButton)
+        formStackView.addArrangedSubview(loginButton)
         
         loginButton.snp.makeConstraints { (make) in
             make.width.equalTo(280)
@@ -114,12 +122,12 @@ class AccountViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = L10n.Login.title
         
-        loginButton?.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
+        loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
     }
     
     @objc func saveCredentials() {
-        let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField?.text ?? "", forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField?.text ?? "", forKey: "password")
+        let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField.text ?? "", forKey: "username")
+        let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField.text ?? "", forKey: "password")
         
         if saveUsername && savePassword {
             #warning("Push balance VC")
