@@ -30,6 +30,11 @@ class AccountViewModel: BaseViewModel {
         }
     }
     
+    func getCredentialsFromKeychain() {
+        username.value = KeychainWrapper.standard.string(forKey: "username") ?? ""
+        password.value = KeychainWrapper.standard.string(forKey: "password") ?? ""
+    }
+    
     func saveCredentials() {
         let saveUsername: Bool = KeychainWrapper.standard.set(username.value, forKey: "username")
         let savePassword: Bool = KeychainWrapper.standard.set(password.value, forKey: "password")

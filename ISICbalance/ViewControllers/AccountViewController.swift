@@ -127,6 +127,7 @@ class AccountViewController: BaseViewController {
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
         
         setupBindings()
+        viewModel.getCredentialsFromKeychain()
     }
     
     @objc func saveCredentials() {
