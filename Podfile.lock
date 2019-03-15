@@ -1,13 +1,29 @@
 PODS:
   - ACKLocalization (0.3.2)
+  - ACKReactiveExtensions (4.0.2):
+    - ACKReactiveExtensions/Core (= 4.0.2)
+    - ACKReactiveExtensions/UIKit (= 4.0.2)
+    - ReactiveCocoa (~> 8.0)
+  - ACKReactiveExtensions/Core (4.0.2):
+    - ReactiveCocoa (~> 8.0)
+  - ACKReactiveExtensions/UIKit (4.0.2):
+    - ACKReactiveExtensions/Core
+    - ReactiveCocoa (~> 8.0)
   - Alamofire (4.0.1)
+  - ReactiveCocoa (8.0.2):
+    - ReactiveSwift (~> 4.0)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.1.0)
   - SnapKit (4.0.1)
   - SwiftGen (6.1.0)
   - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
   - ACKLocalization (~> 0.1)
+  - ACKReactiveExtensions
   - Alamofire (~> 4.0.0)
+  - ReactiveSwift
   - SnapKit (~> 4.0.0)
   - SwiftGen (~> 6.0)
   - SwiftSoup
@@ -15,18 +31,26 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACKLocalization
+    - ACKReactiveExtensions
     - Alamofire
+    - ReactiveCocoa
+    - ReactiveSwift
+    - Result
     - SnapKit
     - SwiftGen
     - SwiftSoup
 
 SPEC CHECKSUMS:
   ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
+  ACKReactiveExtensions: 21f2aad823494e5787091c193213b96a16305563
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 3ca9b4ea3a5c489131ab016ba1186d2e7c7e7b5c
+PODFILE CHECKSUM: 4bdee400e227ae997ed19305332ce78af270e6f3
 
 COCOAPODS: 1.6.1

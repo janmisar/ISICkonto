@@ -8,9 +8,12 @@ target 'ISICbalance' do
   # Pods for ISICbalance
   pod 'SnapKit', '~> 4.0.0'
   pod 'ACKLocalization', '~> 0.1'
+  pod 'ACKReactiveExtensions'
   pod 'SwiftGen', '~> 6.0'
   pod 'Alamofire', '~> 4.0.0'
   pod 'SwiftSoup'
+  pod 'ReactiveSwift'
+  
 
 
   target 'ISICbalanceTests' do
