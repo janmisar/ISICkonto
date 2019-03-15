@@ -1,14 +1,14 @@
 //
-//  BalanceView.swift
+//  BalanceViewController.swift
 //  ISICbalance
 //
-//  Created by Rostislav Babáček on 11/03/2019.
+//  Created by Rostislav Babáček on 12/03/2019.
 //  Copyright © 2019 Rostislav Babáček. All rights reserved.
 //
 
 import UIKit
 
-class BalanceView: UIView {
+class BalanceViewController: BaseViewController {
 
     weak var screenStackView: UIStackView?
     weak var balanceLabel: UILabel?
@@ -16,14 +16,14 @@ class BalanceView: UIView {
     weak var reloadButton: UIButton?
     weak var accountButton: UIButton?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.MyTheme.backgroundColor
+    override func loadView() {
+        super.loadView()
+        self.view.backgroundColor = UIColor.MyTheme.backgroundColor
         
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 60
-        self.addSubview(stackView)
+        self.view.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
@@ -65,8 +65,15 @@ class BalanceView: UIView {
         buttonsStackView.addArrangedSubview(accountButton)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.isNavigationBarHidden = true
+        self.accountButton?.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
     }
     
+    @objc func accountBtnHandle() {
+        let VC = AccountViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
 }
