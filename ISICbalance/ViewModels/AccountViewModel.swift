@@ -16,18 +16,32 @@ class AccountViewModel: BaseViewModel {
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
     
-    var validationSignal: Signal<Bool, NoError>
+    var validationSignal: Property<Bool>
+    var validationErrors: Property<[LoginValidation]>
     
     lazy var loginAction = Action<(), User, LoginError> {
-        return .empty
+        if self.validationSignal.value {
+            return .empty
+        } else {
+            return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
+        }
     }
     
     lazy var canSubmitForm: Property<Bool> = Property<Bool>(initial: false, then: validationSignal.producer.and(loginAction.isExecuting.negate()))
     
     override init() {
-        validationSignal = username.combineLatest(with: password).signal.map { username, password in
-            (!username.isEmpty && !password.isEmpty)
+        validationErrors = username.combineLatest(with: password).map { username, password in
+            var validations: [LoginValidation] = []
+            if username.isEmpty {
+                validations.append(.username)
+            }
+            if password.isEmpty {
+                validations.append(.password)
+            }
+            return validations
         }
+        
+        validationSignal = validationErrors.map { $0.isEmpty }
     }
     
     func getCredentialsFromKeychain() {

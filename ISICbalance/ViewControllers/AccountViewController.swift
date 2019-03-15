@@ -126,8 +126,8 @@ class AccountViewController: BaseViewController {
         
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
         
-        setupBindings()
         viewModel.getCredentialsFromKeychain()
+        setupBindings()
     }
     
     @objc func saveCredentials() {
@@ -138,6 +138,10 @@ class AccountViewController: BaseViewController {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
         loginButton.reactive.isEnabled <~ viewModel.canSubmitForm
+        
+        viewModel.validationErrors.producer.startWithValues { errors in
+            print(errors)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -106,7 +106,6 @@ class RequestManager {
                 return handleLoginError(error: LoginError.loginFailed)
             }
             
-            print(form)
             let inputs = try form.select("input")
             //get RelayState
             let inputName1 = try inputs.array()[0].attr("name")

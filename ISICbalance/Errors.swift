@@ -16,8 +16,14 @@ enum RequestError: Error {
 enum LoginError: Error {
     case loginFailed
     case invalidCredentials
+    case validation([LoginValidation])
 }
 
 enum SwiftSoupError: Error {
     case parseLoginSite(error: Error)
+}
+
+enum LoginValidation: Error {
+    case username
+    case password
 }
