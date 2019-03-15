@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import ReactiveSwift
 
 class BalanceViewController: BaseViewController {
     private var viewModel: BalanceViewModel

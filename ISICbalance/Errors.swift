@@ -15,6 +15,7 @@ enum RequestError: Error {
 
 enum LoginError: Error {
     case loginFailed
+    case invalidCredentials
 }
 
 enum SwiftSoupError: Error {

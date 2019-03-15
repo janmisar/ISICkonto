@@ -1,5 +1,5 @@
 //
-//  BalanceViewModel.swift
+//  User.swift
 //  ISICbalance
 //
 //  Created by Rostislav Babáček on 15/03/2019.
@@ -7,13 +7,8 @@
 //
 
 import Foundation
-import Result
-import ReactiveSwift
-import UIKit
 
-class BalanceViewModel: BaseViewModel {
-    
-    override init() {
-        
-    }
+struct User {
+    var username: String
+    var password: String
 }

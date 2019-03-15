@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import ReactiveSwift
+import ACKReactiveExtensions
 
 class AccountViewController: BaseViewController {
     private var viewModel: AccountViewModel
@@ -123,18 +125,18 @@ class AccountViewController: BaseViewController {
         self.navigationItem.title = L10n.Login.title
         
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
+        
+        setupBindings()
     }
     
     @objc func saveCredentials() {
-        let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField.text ?? "", forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField.text ?? "", forKey: "password")
-        
-        if saveUsername && savePassword {
-            #warning("Push balance VC")
-        } else {
-            #warning("Show Error Message")
-            print("KeychainWrapper save error")
-        }
+        viewModel.saveCredentials()
+    }
+    
+    func setupBindings() {
+        usernameTextField <~> viewModel.username
+        passwordTextField <~> viewModel.password
+        loginButton.reactive.isEnabled <~ viewModel.canSubmitForm
     }
     
     override func viewWillDisappear(_ animated: Bool) {
