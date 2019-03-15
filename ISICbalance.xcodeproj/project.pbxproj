@@ -153,6 +153,7 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
+				14ECC27E223BB85D006430D1 /* Services */,
 				14ECC277223BB613006430D1 /* Extensions */,
 				14ECC274223BB4D6006430D1 /* ViewModels */,
 				14ECC273223BB212006430D1 /* ViewControllers */,
@@ -160,7 +161,6 @@
 				14C19014223596DB0033616E /* AppDelegate.swift */,
 				14C19016223596DB0033616E /* ViewController.swift */,
 				1408C621223A6B0400A46BCA /* Errors.swift */,
-				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
 				14C1901B223596DC0033616E /* Assets.xcassets */,
 				14C1901D223596DC0033616E /* LaunchScreen.storyboard */,
@@ -223,6 +223,14 @@
 				14ECC27C223BB67D006430D1 /* TextFieldExt.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14ECC27E223BB85D006430D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		2B72B8C664D21E0754CB91FE /* Pods */ = {
@@ -462,6 +470,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -474,6 +483,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

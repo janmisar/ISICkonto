@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class AccountViewController: BaseViewController {
 
@@ -48,6 +49,7 @@ class AccountViewController: BaseViewController {
         usernameTextField.layer.cornerRadius = 2
         usernameTextField.layer.masksToBounds = true
         usernameTextField.autocorrectionType = .no
+        usernameTextField.autocapitalizationType = .none
         self.usernameTextField = usernameTextField
         formStackView.addArrangedSubview(usernameTextField)
         
@@ -70,6 +72,7 @@ class AccountViewController: BaseViewController {
         passwordTextField.layer.cornerRadius = 2
         passwordTextField.layer.masksToBounds = true
         passwordTextField.autocorrectionType = .no
+        passwordTextField.autocapitalizationType = .none
         self.passwordTextField = passwordTextField
         formStackView.addArrangedSubview(passwordTextField)
         
@@ -115,6 +118,20 @@ class AccountViewController: BaseViewController {
         
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = L10n.Login.title
+        
+        loginButton?.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
+    }
+    
+    @objc func saveCredentials() {
+        let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField?.text ?? "", forKey: "username")
+        let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField?.text ?? "", forKey: "password")
+        
+        if saveUsername && savePassword {
+            #warning("Push balance VC")
+        } else {
+            #warning("Show Error Message")
+            print("KeychainWrapper save error")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -13,6 +13,7 @@ target 'ISICbalance' do
   pod 'Alamofire', '~> 4.0.0'
   pod 'SwiftSoup'
   pod 'ReactiveSwift'
+  pod 'SwiftKeychainWrapper'
   
 
 
