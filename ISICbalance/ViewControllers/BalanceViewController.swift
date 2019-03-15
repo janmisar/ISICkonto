@@ -71,6 +71,13 @@ class BalanceViewController: BaseViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationController?.isNavigationBarHidden = true
         self.accountButton?.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
+        
+        let rm = RequestManager()
+        do {
+            try rm.reloadData()
+        } catch {
+            print(error)
+        }
     }
     
     @objc func accountBtnHandle() {

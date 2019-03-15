@@ -9,28 +9,32 @@
 import Foundation
 import Alamofire
 import SwiftSoup
+import SwiftKeychainWrapper
 
+#warning("ask about problem with [weak self] in Alamofire closures")
 class RequestManager {
+    
     func reloadData() throws {
-        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
+        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
             
             switch response.result {
             case .success:
                 print("Agata request success")
-                self?.agataRequestSucc(response)
+                self.agataRequestSucc(response)
             case .failure(let error):
-                return (self?.handleError(error: RequestError.agataGetError(error: error)))!
+                return (self.handleError(error: RequestError.agataGetError(error: error)))
             }
         }
     }
     
-    fileprivate func agataRequestSucc(_ response: (DataResponse<String>)) {
+    func agataRequestSucc(_ response: (DataResponse<String>)) {
         
         let responseURL = response.response?.url
         let hostUrl = responseURL?.host ?? ""
         
         // if url contains agata.suz.cvut -> you are logged in
         if hostUrl.contains("agata.suz.cvut") {
+            print("YOU ARE IN")
             getBalanceFromDoc(dataResponse: response)
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
@@ -46,14 +50,14 @@ class RequestManager {
             
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
-            Alamofire.request(urlString).responseString { [weak self] responseShibboleth in
+            Alamofire.request(urlString).responseString { responseShibboleth in
                 
                 switch responseShibboleth.result {
                 case .success:
                     print("SSO request success")
-                    self?.ssoRequestSucc(responseShibboleth)
+                    self.ssoRequestSucc(responseShibboleth)
                 case .failure(let error):
-                    return ((self?.handleError(error: RequestError.ssoGetError(error: error)))!)
+                    return self.handleError(error: RequestError.ssoGetError(error: error))
                 }
             }
         }
@@ -61,8 +65,15 @@ class RequestManager {
     
     fileprivate func ssoRequestSucc(_ responseShibboleth: (DataResponse<String>)) {
         #warning("TODO - get credentials from keychain or userdefaults")
-        let username = "babacros"
-        let password = "xxx"
+        guard let username = KeychainWrapper.standard.string(forKey: "username") else {
+            #warning("TODO - move to AccountVC")
+            return
+        }
+        
+        guard let password = KeychainWrapper.standard.string(forKey: "password") else {
+            #warning("TODO - move to AccountVC")
+            return
+        }
         //login parameters, username and password
         let parameters = [
             "j_username": username,
@@ -72,14 +83,14 @@ class RequestManager {
         
         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
         
-        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { [weak self] responseCredentials in
+        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
             
             switch responseCredentials.result {
             case .success:
                 print("Credentials request success")
-                self?.credentialsRequestSucc(responseCredentials)
+                self.credentialsRequestSucc(responseCredentials)
             case .failure(let error):
-                return ((self?.handleError(error: RequestError.credentialsPostError(error: error)))!)
+                return self.handleError(error: RequestError.credentialsPostError(error: error))
             }
         }
     }
@@ -109,14 +120,14 @@ class RequestManager {
                 inputName2 : inputValue2
             ]
             
-            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
+            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
                 
                 switch responseBalanceSite.result {
                 case .success:
                     print("Credentials request success")
-                    self?.getBalanceFromDoc(dataResponse: responseBalanceSite)
+                    self.getBalanceFromDoc(dataResponse: responseBalanceSite)
                 case .failure(let error):
-                    return ((self?.handleError(error: RequestError.balanceScreenPostError(error: error)))!)
+                    return self.handleError(error: RequestError.balanceScreenPostError(error: error))
                 }
             }
         } catch {
@@ -155,11 +166,15 @@ class RequestManager {
         print(error)
         #warning("TODO - error action")
     }
+    
+    func printA() {
+        print("AAA")
+    }
 }
 
 extension URL {
     func valueOf(_ queryParamaterName: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
-}
+    }
 }

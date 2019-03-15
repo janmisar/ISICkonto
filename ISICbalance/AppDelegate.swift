@@ -31,8 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
 //        window?.rootViewController = UINavigationController(rootViewController: ViewController())
-        window?.rootViewController = UINavigationController(rootViewController: AccountViewController())
-        
+        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
+      
+    
         return true
     }
 
