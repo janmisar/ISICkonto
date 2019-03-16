@@ -24,6 +24,7 @@
 		1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C61F223A6AD700A46BCA /* RequestManager.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847320223D2D16006EF86F /* TextFieldExt.swift */; };
+		14847323223D30A0006EF86F /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847322223D30A0006EF86F /* FormTextField.swift */; };
 		14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14893B2E2237A3FE00690F4D /* BalanceViewController.swift */; };
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
 		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		1408C61F223A6AD700A46BCA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		14847320223D2D16006EF86F /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
+		14847322223D30A0006EF86F /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		14893B2E2237A3FE00690F4D /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				14847320223D2D16006EF86F /* TextFieldExt.swift */,
+				14C19065223678DA0033616E /* ColorExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -169,7 +172,7 @@
 				14C1905F223668000033616E /* BalanceView.swift */,
 				14C1906722368D040033616E /* AccountViewController.swift */,
 				14C19063223675A00033616E /* AccountView.swift */,
-				14C19065223678DA0033616E /* ColorExt.swift */,
+				14847322223D30A0006EF86F /* FormTextField.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
 				14C1901B223596DC0033616E /* Assets.xcassets */,
 				14C1901D223596DC0033616E /* LaunchScreen.storyboard */,
@@ -515,6 +518,7 @@
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
+				14847323223D30A0006EF86F /* FormTextField.swift in Sources */,
 				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
 				14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */,
 			);

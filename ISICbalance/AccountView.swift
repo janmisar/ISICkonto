@@ -32,13 +32,7 @@ class AccountView: UIView {
         usernameLabel.textColor = UIColor.Theme.labelBlue
         formStackView.addArrangedSubview(usernameLabel)
         
-        let usernameTextField = UITextField()
-        usernameTextField.backgroundColor = UIColor.Theme.textFieldBackground
-        usernameTextField.textColor = UIColor.Theme.textColor
-        usernameTextField.tintColor = UIColor.Theme.textColor
-        usernameTextField.setLeftPaddingPoints(5)
-        usernameTextField.layer.cornerRadius = 2
-        usernameTextField.layer.masksToBounds = true
+        let usernameTextField = FormTextField()
         formStackView.addArrangedSubview(usernameTextField)
         
         usernameTextField.snp.makeConstraints { (make) in
@@ -51,13 +45,7 @@ class AccountView: UIView {
         passwordLabel.textColor = UIColor.Theme.labelBlue
         formStackView.addArrangedSubview(passwordLabel)
         
-        let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = UIColor.Theme.textFieldBackground
-        passwordTextField.textColor = UIColor.Theme.textColor
-        passwordTextField.tintColor = UIColor.Theme.textColor
-        passwordTextField.setLeftPaddingPoints(5)
-        passwordTextField.layer.cornerRadius = 2
-        passwordTextField.layer.masksToBounds = true
+        let passwordTextField = FormTextField()
         formStackView.addArrangedSubview(passwordTextField)
         
         passwordTextField.snp.makeConstraints { (make) in

@@ -23,12 +23,12 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = L10n.Login.title
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.title = L10n.Login.title
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
 }

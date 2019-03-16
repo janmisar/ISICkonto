@@ -23,13 +23,12 @@ class BalanceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         self.balanceView.accountButton?.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
     }
     
     @objc func accountBtnHandle() {
         let VC = AccountViewController()
-        self.navigationController?.pushViewController(VC, animated: true)
+        navigationController?.pushViewController(VC, animated: true)
     }
 }
