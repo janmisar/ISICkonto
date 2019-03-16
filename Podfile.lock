@@ -10,7 +10,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0.0)
   - SnapKit (~> 4.0.0)
   - SwiftGen (~> 6.0)
-  - SwiftSoup
+  - SwiftSoup (~> 1.7.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,6 +27,6 @@ SPEC CHECKSUMS:
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 3ca9b4ea3a5c489131ab016ba1186d2e7c7e7b5c
+PODFILE CHECKSUM: d6e6e30ded5dfa3ca8fb285da36b2284b6c0d269
 
 COCOAPODS: 1.6.1

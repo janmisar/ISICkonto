@@ -10,7 +10,7 @@ target 'ISICbalance' do
   pod 'ACKLocalization', '~> 0.1'
   pod 'SwiftGen', '~> 6.0'
   pod 'Alamofire', '~> 4.0.0'
-  pod 'SwiftSoup'
+  pod 'SwiftSoup', '~> 1.7.4'
 
 
   target 'ISICbalanceTests' do
