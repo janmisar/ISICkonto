@@ -22,7 +22,7 @@ class AccountViewModel: BaseViewModel {
     
     lazy var loginAction = Action<(),User,LoginError> { [unowned self] in
         if self.validationSignal.value {
-            return self.requestManager.reload()
+            return self.requestManager.reloadData()
         } else {
             return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
         }

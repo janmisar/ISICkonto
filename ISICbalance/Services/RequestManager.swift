@@ -23,20 +23,23 @@ class RequestManager {
         return SignalProducer(value: user)
     }
     
-    func reloadData() {
-        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
-            
-            switch response.result {
-            case .success:
-                print("Agata request success")
-                self.agataRequestSucc(response)
-            case .failure(let error):
-                return (self.handleError(error: RequestError.agataGetError(error: error)))
+    func reloadData() -> SignalProducer<User,LoginError> {
+        return SignalProducer { observer, diposable in
+            Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
+                
+                switch response.result {
+                case .success:
+                    print("Agata request success")
+                    self.agataRequestSucc(observer, response)
+                case .failure(let error):
+                    let requestError = RequestError.agataGetError(error: error)
+                    observer.send(error: LoginError.requestsFailed(requestError))
+                }
             }
         }
     }
     
-    func agataRequestSucc(_ response: (DataResponse<String>)) {
+    func agataRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ response: (DataResponse<String>)) {
         
         let responseURL = response.response?.url
         let hostUrl = responseURL?.host ?? ""
@@ -44,7 +47,7 @@ class RequestManager {
         // if url contains agata.suz.cvut -> you are logged in
         if hostUrl.contains("agata.suz.cvut") {
             print("YOU ARE IN")
-            getBalanceFromDoc(dataResponse: response)
+            getBalanceFromDoc(observer, dataResponse: response)
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
             
@@ -64,23 +67,25 @@ class RequestManager {
                 switch responseShibboleth.result {
                 case .success:
                     print("SSO request success")
-                    self.ssoRequestSucc(responseShibboleth)
+                    self.ssoRequestSucc(observer, responseShibboleth)
                 case .failure(let error):
-                    return self.handleError(error: RequestError.ssoGetError(error: error))
+                    let requestError = RequestError.ssoGetError(error: error)
+                    observer.send(error: LoginError.requestsFailed(requestError))
                 }
             }
         }
     }
     
-    fileprivate func ssoRequestSucc(_ responseShibboleth: (DataResponse<String>)) {
-        #warning("TODO - get credentials from keychain or userdefaults")
+    fileprivate func ssoRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
         guard let username = KeychainWrapper.standard.string(forKey: "username") else {
-            #warning("TODO - move to AccountVC")
+            let requestError = LoginValidation.username
+            observer.send(error: LoginError.validation([requestError]))
             return
         }
         
         guard let password = KeychainWrapper.standard.string(forKey: "password") else {
-            #warning("TODO - move to AccountVC")
+            let requestError = LoginValidation.password
+            observer.send(error: LoginError.validation([requestError]))
             return
         }
         //login parameters, username and password
@@ -97,14 +102,15 @@ class RequestManager {
             switch responseCredentials.result {
             case .success:
                 print("Credentials request success")
-                self.credentialsRequestSucc(responseCredentials)
+                self.credentialsRequestSucc(observer, responseCredentials)
             case .failure(let error):
-                return self.handleError(error: RequestError.credentialsPostError(error: error))
+                let requestError = RequestError.credentialsPostError(error: error)
+                observer.send(error: LoginError.requestsFailed(requestError))
             }
         }
     }
     
-    fileprivate func credentialsRequestSucc(_ responseCredentials: (DataResponse<String>)) {
+    fileprivate func credentialsRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
             let form: Element = try document.select("form").array()[0]
@@ -112,7 +118,7 @@ class RequestManager {
             //get action value from form to check login process
             let action: String = try form.attr("action")
             if !action.contains("agata.suz.cvut.cz"){
-                return handleLoginError(error: LoginError.loginFailed)
+                observer.send(error: LoginError.loginFailed)
             }
             
             let inputs = try form.select("input")
@@ -132,18 +138,20 @@ class RequestManager {
                 
                 switch responseBalanceSite.result {
                 case .success:
-                    print("Credentials request success")
-                    self.getBalanceFromDoc(dataResponse: responseBalanceSite)
+                    print("Balance site request success")
+                    self.getBalanceFromDoc(observer, dataResponse: responseBalanceSite)
                 case .failure(let error):
-                    return self.handleError(error: RequestError.balanceScreenPostError(error: error))
+                    let requestError = RequestError.balanceScreenPostError(error: error)
+                    observer.send(error: LoginError.requestsFailed(requestError))
                 }
             }
         } catch {
-            
+            let requestError = RequestError.parseError
+            observer.send(error: LoginError.requestsFailed(requestError))
         }
     }
     
-    func getBalanceFromDoc(dataResponse: DataResponse<String>){
+    func getBalanceFromDoc(_ observer: Signal<User, LoginError>.Observer, dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
             let bodyElement: Element = try document.select("body").array()[0]
@@ -152,32 +160,14 @@ class RequestManager {
             let lineText = balanceLine.ownText()
             let lineElements = lineText.split(separator: " ")
             let balance = lineElements[0]
-//            currentBalance.value = User(username: "PPP")
-            
-            print("-----------------------------------------")
-            print(balance)
+            let user = User(username: "PPP", balance: "\(balance) Kč")
+            self.currentBalance.value = user
+            observer.send(value: user)
+            observer.sendCompleted()
         } catch {
-            #warning("TODO - error")
+            let requestError = RequestError.parseError
+            observer.send(error: LoginError.requestsFailed(requestError))
         }
-    }
-    
-    func handleError(error: RequestError) {
-        print(error)
-        #warning("TODO - error action")
-    }
-    
-    func handleLoginError(error: LoginError) {
-        print(error)
-        #warning("TODO - error action")
-    }
-    
-    func handleSwiftSoupError(error: SwiftSoupError) {
-        print(error)
-        #warning("TODO - error action")
-    }
-    
-    func printA() {
-        print("AAA")
     }
 }
 
