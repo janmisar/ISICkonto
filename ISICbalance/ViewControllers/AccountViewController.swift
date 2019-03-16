@@ -132,6 +132,7 @@ class AccountViewController: BaseViewController {
     
     @objc func saveCredentials() {
         viewModel.saveCredentials()
+        viewModel.loginAction.apply().start()
     }
     
     func setupBindings() {

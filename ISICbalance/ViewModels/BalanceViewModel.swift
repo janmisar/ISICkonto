@@ -14,9 +14,14 @@ import UIKit
 class BalanceViewModel: BaseViewModel {
     
     private var requestManager: RequestManager
-    var balance = MutableProperty<String>("")
+    let balance = MutableProperty<String>("0 Kč")
     
     init(_ requestManager: RequestManager) {
         self.requestManager = requestManager
+        super.init()
+        
+        requestManager.currentBalance.producer.skipNil().startWithValues { [unowned self] user in
+            self.balance.value = user.balance
+        }
     }
 }

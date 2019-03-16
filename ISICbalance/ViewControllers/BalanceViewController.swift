@@ -97,6 +97,11 @@ class BalanceViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
         self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        setupBindings()
+    }
+    
+    func setupBindings() {
+        self.balanceLabel.reactive.text <~ viewModel.balance
     }
     
     @objc func reloadBalance() {
@@ -110,7 +115,6 @@ class BalanceViewController: BaseViewController {
     
     @objc func accountBtnHandle() {
         let VC = AccountViewController(accountViewModel)
-//        self.balanceLabel.text <~
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }

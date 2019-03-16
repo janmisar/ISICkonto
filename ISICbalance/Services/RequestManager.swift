@@ -10,11 +10,20 @@ import Foundation
 import Alamofire
 import SwiftSoup
 import SwiftKeychainWrapper
+import ReactiveSwift
 
 #warning("ask about problem with [weak self] in Alamofire closures")
 class RequestManager {
     
-    func reloadData() throws {
+    var currentBalance = MutableProperty<User?>(nil)
+    
+    func reload() -> SignalProducer<User,LoginError> {
+        let user = User(username: "AAA", balance: "150Kč")
+        print(user.balance)
+        return SignalProducer(value: user)
+    }
+    
+    func reloadData() {
         Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
             
             switch response.result {
@@ -143,6 +152,7 @@ class RequestManager {
             let lineText = balanceLine.ownText()
             let lineElements = lineText.split(separator: " ")
             let balance = lineElements[0]
+//            currentBalance.value = User(username: "PPP")
             
             print("-----------------------------------------")
             print(balance)
