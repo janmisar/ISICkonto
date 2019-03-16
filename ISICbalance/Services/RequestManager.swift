@@ -98,6 +98,7 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+            #warning("check array size")
             let form: Element = try document.select("form").array()[0]
             
             //get action value from form to check login process
@@ -109,6 +110,7 @@ class RequestManager {
             print(form)
             let inputs = try form.select("input")
             //get RelayState
+            #warning("check array size")
             let inputName1 = try inputs.array()[0].attr("name")
             let inputValue1 = try inputs.array()[0].attr("value")
             //get SAMLResponse
@@ -138,6 +140,7 @@ class RequestManager {
     func getBalanceFromDoc(dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
+            #warning("check array size")
             let bodyElement: Element = try document.select("body").array()[0]
             let table: Element = try bodyElement.select("tbody").array()[0]
             let balanceLine: Element = try table.select("td").array()[4]
