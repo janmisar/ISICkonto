@@ -35,14 +35,14 @@ class RequestManager {
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
             
-            let filter = responseURL?.valueOf("filter") ?? ""
-            let lang = responseURL?.valueOf("lang") ?? ""
+            let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
+            let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
             let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
-            let returnComponents = responseURL?.valueOf("return") ?? ""
+            let returnComponents = responseURL?.getValueOfQueryParameter("return") ?? ""
             let retunComponentsUrl = URL(string: returnComponents)
             
-            let samlds = retunComponentsUrl?.valueOf("SAMLDS") ?? ""
-            let target = retunComponentsUrl?.valueOf("target") ?? ""
+            let samlds = retunComponentsUrl?.getValueOfQueryParameter("SAMLDS") ?? ""
+            let target = retunComponentsUrl?.getValueOfQueryParameter("target") ?? ""
             
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
@@ -158,8 +158,8 @@ class RequestManager {
 }
 
 extension URL {
-    func valueOf(_ queryParamaterName: String) -> String? {
+    func getValueOfQueryParameter(_ queryParamaterName: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
-}
+    }
 }

@@ -18,7 +18,7 @@ class BalanceView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.MyTheme.backgroundColor
+        self.backgroundColor = UIColor.Theme.backgroundColor
         
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -27,19 +27,22 @@ class BalanceView: UIView {
         
         stackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(20)
+            make.trailing.lessThanOrEqualTo(-20)
         }
         
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor.MyTheme.labelBlue
+        balanceTitle.textColor = UIColor.Theme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         stackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
+        #warning("TODO")
         balanceLabel.text = "1357 Kč"
-        balanceLabel.textColor = UIColor.MyTheme.textColor
+        balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)

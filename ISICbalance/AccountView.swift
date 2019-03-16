@@ -12,7 +12,7 @@ class AccountView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.MyTheme.backgroundColor
+        self.backgroundColor = UIColor.Theme.backgroundColor
         
         let formStackView = UIStackView()
         formStackView.spacing = 10
@@ -29,13 +29,13 @@ class AccountView: UIView {
         
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
-        usernameLabel.textColor = UIColor.MyTheme.labelBlue
+        usernameLabel.textColor = UIColor.Theme.labelBlue
         formStackView.addArrangedSubview(usernameLabel)
         
         let usernameTextField = UITextField()
-        usernameTextField.backgroundColor = UIColor.MyTheme.textFieldBackground
-        usernameTextField.textColor = UIColor.MyTheme.textColor
-        usernameTextField.tintColor = UIColor.MyTheme.textColor
+        usernameTextField.backgroundColor = UIColor.Theme.textFieldBackground
+        usernameTextField.textColor = UIColor.Theme.textColor
+        usernameTextField.tintColor = UIColor.Theme.textColor
         usernameTextField.setLeftPaddingPoints(5)
         usernameTextField.layer.cornerRadius = 2
         usernameTextField.layer.masksToBounds = true
@@ -48,13 +48,13 @@ class AccountView: UIView {
         
         let passwordLabel = UILabel()
         passwordLabel.text = L10n.Login.password
-        passwordLabel.textColor = UIColor.MyTheme.labelBlue
+        passwordLabel.textColor = UIColor.Theme.labelBlue
         formStackView.addArrangedSubview(passwordLabel)
         
         let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = UIColor.MyTheme.textFieldBackground
-        passwordTextField.textColor = UIColor.MyTheme.textColor
-        passwordTextField.tintColor = UIColor.MyTheme.textColor
+        passwordTextField.backgroundColor = UIColor.Theme.textFieldBackground
+        passwordTextField.textColor = UIColor.Theme.textColor
+        passwordTextField.tintColor = UIColor.Theme.textColor
         passwordTextField.setLeftPaddingPoints(5)
         passwordTextField.layer.cornerRadius = 2
         passwordTextField.layer.masksToBounds = true
@@ -67,8 +67,8 @@ class AccountView: UIView {
         
         let loginButton = UIButton()
         loginButton.setTitle(L10n.Login.login, for: .normal)
-        loginButton.setTitleColor(UIColor.MyTheme.backgroundColor, for: .normal)
-        loginButton.backgroundColor = UIColor.MyTheme.labelBlue
+        loginButton.setTitleColor(UIColor.Theme.backgroundColor, for: .normal)
+        loginButton.backgroundColor = UIColor.Theme.labelBlue
         formStackView.addArrangedSubview(loginButton)
         
         loginButton.snp.makeConstraints { (make) in

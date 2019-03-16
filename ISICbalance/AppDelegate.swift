@@ -25,12 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         // Navigation bar theme
-        UINavigationBar.appearance().barTintColor = UIColor.MyTheme.backgroundColor
-        UINavigationBar.appearance().tintColor = UIColor.MyTheme.textColor
+        UINavigationBar.appearance().barTintColor = UIColor.Theme.backgroundColor
+        UINavigationBar.appearance().tintColor = UIColor.Theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
         
         
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = UINavigationController(rootViewController: AccountViewController())
 //        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
         
         return true
