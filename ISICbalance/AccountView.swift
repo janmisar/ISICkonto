@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ACKategories
 
 class AccountView: UIView {
 
@@ -53,10 +54,10 @@ class AccountView: UIView {
             make.height.equalTo(45)
         }
         
-        let loginButton = UIButton()
+        let loginButton = UIButton(type: .system)
         loginButton.setTitle(L10n.Login.login, for: .normal)
         loginButton.setTitleColor(UIColor.Theme.backgroundColor, for: .normal)
-        loginButton.backgroundColor = UIColor.Theme.labelBlue
+        loginButton.setBackgroundImage(UIColor.Theme.labelBlue.image(), for: .normal)
         formStackView.addArrangedSubview(loginButton)
         
         loginButton.snp.makeConstraints { (make) in

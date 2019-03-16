@@ -1,4 +1,5 @@
 PODS:
+  - ACKategories (6.0.2)
   - ACKLocalization (0.3.2)
   - Alamofire (4.0.1)
   - SnapKit (4.0.1)
@@ -6,6 +7,7 @@ PODS:
   - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
+  - ACKategories
   - ACKLocalization (~> 0.1)
   - Alamofire (~> 4.0.0)
   - SnapKit (~> 4.0.0)
@@ -14,6 +16,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ACKategories
     - ACKLocalization
     - Alamofire
     - SnapKit
@@ -21,12 +24,13 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  ACKategories: 0ca3caac8d42d9b8bbb563472609328c180936f0
   ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: d6e6e30ded5dfa3ca8fb285da36b2284b6c0d269
+PODFILE CHECKSUM: 07e4eaf0b66974f4b976fc1357b24bb91c331b69
 
 COCOAPODS: 1.6.1
