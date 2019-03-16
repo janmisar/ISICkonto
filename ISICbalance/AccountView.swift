@@ -22,6 +22,8 @@ class AccountView: UIView {
         
         formStackView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(20)
+            make.trailing.lessThanOrEqualTo(-20)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
         }
         
@@ -73,37 +75,9 @@ class AccountView: UIView {
             make.width.equalTo(280)
             make.height.equalTo(45)
         }
-        
-        let picturesStackView = UIStackView()
-        self.addSubview(picturesStackView)
-        
-        picturesStackView.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-30)
-        }
-        
-        let authorPicture = UIImageView(image: UIImage(asset: Asset.janmisar))
-        picturesStackView.addArrangedSubview(authorPicture)
-        
-        let spacer = UIView()
-        picturesStackView.addArrangedSubview(spacer)
-        
-        let companyPicture = UIImageView(image: UIImage(asset: Asset.mightycreations))
-        companyPicture.contentMode = .scaleAspectFit
-        picturesStackView.addArrangedSubview(companyPicture)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension UITextField {
-    func setLeftPaddingPoints(_ amount: CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
     }
 }
