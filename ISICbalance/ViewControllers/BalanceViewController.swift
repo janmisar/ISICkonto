@@ -105,12 +105,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func reloadBalance() {
-        let rm = RequestManager()
-        do {
-            try rm.reloadData()
-        } catch {
-            print(error)
-        }
+        accountViewModel.loginAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
