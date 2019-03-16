@@ -14,7 +14,11 @@ class AccountViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        self.view = accountView
+        
+        view.addSubview(accountView)
+        accountView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     override func viewDidLoad() {

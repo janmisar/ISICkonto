@@ -15,7 +15,10 @@ class BalanceViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.view = balanceView
+        view.addSubview(balanceView)
+        balanceView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     override func viewDidLoad() {
