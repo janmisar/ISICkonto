@@ -12,6 +12,7 @@ import Result
 import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
+    private var requestManager: RequestManager
     
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
@@ -19,17 +20,17 @@ class AccountViewModel: BaseViewModel {
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
     
-    lazy var loginAction = Action<(), User, LoginError> {
+    lazy var loginAction = Action<(),User,LoginError> { [unowned self] in
         if self.validationSignal.value {
-            return .empty
+            return self.requestManager.reloadData()
         } else {
             return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
         }
     }
     
-    lazy var canSubmitForm: Property<Bool> = Property<Bool>(initial: false, then: validationSignal.producer.and(loginAction.isExecuting.negate()))
-    
-    override init() {
+    init(_ requestManager: RequestManager) {
+        self.requestManager = requestManager
+        
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
@@ -50,11 +51,12 @@ class AccountViewModel: BaseViewModel {
     }
     
     func saveCredentials() {
+        print("save")
         let saveUsername: Bool = KeychainWrapper.standard.set(username.value, forKey: "username")
         let savePassword: Bool = KeychainWrapper.standard.set(password.value, forKey: "password")
         
         if saveUsername && savePassword {
-            #warning("Push balance VC")
+            //loginAction.apply().start()
         } else {
             #warning("Show Error Message")
             print("KeychainWrapper save error")

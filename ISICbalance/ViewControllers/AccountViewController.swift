@@ -21,8 +21,8 @@ class AccountViewController: BaseViewController {
     weak var passwordTextField: UITextField!
     weak var loginButton: UIButton!
     
-    override init() {
-        self.viewModel = AccountViewModel()
+    init(_ viewModel: AccountViewModel) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -137,9 +137,9 @@ class AccountViewController: BaseViewController {
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
-        loginButton.reactive.isEnabled <~ viewModel.canSubmitForm
+        loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
         
-        viewModel.validationErrors.producer.startWithValues { errors in
+        viewModel.loginAction.errors.producer.startWithValues { errors in
             print(errors)
         }
     }

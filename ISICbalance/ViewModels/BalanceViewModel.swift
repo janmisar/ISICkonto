@@ -13,7 +13,10 @@ import UIKit
 
 class BalanceViewModel: BaseViewModel {
     
-    override init() {
-        
+    private var requestManager: RequestManager
+    var balance = MutableProperty<String>("")
+    
+    init(_ requestManager: RequestManager) {
+        self.requestManager = requestManager
     }
 }

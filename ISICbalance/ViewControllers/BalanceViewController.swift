@@ -9,9 +9,12 @@
 import UIKit
 import SwiftKeychainWrapper
 import ReactiveSwift
+import ACKReactiveExtensions
 
 class BalanceViewController: BaseViewController {
+    private var requestManager: RequestManager
     private var viewModel: BalanceViewModel
+    private var accountViewModel: AccountViewModel
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -20,7 +23,10 @@ class BalanceViewController: BaseViewController {
     weak var accountButton: UIButton!
     
     override init() {
-        self.viewModel = BalanceViewModel()
+        let requestManager = RequestManager()
+        self.requestManager = requestManager
+        self.viewModel = BalanceViewModel(requestManager)
+        self.accountViewModel = AccountViewModel(requestManager)
         super.init()
     }
     
@@ -103,7 +109,8 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let VC = AccountViewController()
+        let VC = AccountViewController(accountViewModel)
+//        self.balanceLabel.text <~
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
