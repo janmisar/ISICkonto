@@ -104,16 +104,7 @@ class AccountViewController: BaseViewController {
     }
     
     @objc func saveCredentials() {
-        #warning("TODO - create keychain manager")
-        let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField.text ?? "", forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField.text ?? "", forKey: "password")
-        
-        if saveUsername && savePassword {
-            #warning("Push balance VC")
-        } else {
-            #warning("Show Error Message")
-            print("KeychainWrapper save error")
-        }
+        viewModel.saveCredentials(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "")
     }
 }
 
