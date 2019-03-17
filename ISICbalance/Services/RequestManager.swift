@@ -11,7 +11,6 @@ import Alamofire
 import SwiftSoup
 import SwiftKeychainWrapper
 
-#warning("ask about problem with [weak self] in Alamofire closures")
 class RequestManager {
     
     func reloadData() throws {
@@ -120,7 +119,7 @@ class RequestManager {
                 inputName1 : inputValue1,
                 inputName2 : inputValue2
             ]
-            
+
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
                 
                 switch responseBalanceSite.result {

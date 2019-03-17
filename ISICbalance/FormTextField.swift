@@ -20,6 +20,10 @@ class FormTextField: UITextField {
         self.layer.masksToBounds = true
         self.autocorrectionType = .no
         self.autocapitalizationType = .none
+        
+        self.snp.makeConstraints { (make) in
+            make.height.equalTo(45)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

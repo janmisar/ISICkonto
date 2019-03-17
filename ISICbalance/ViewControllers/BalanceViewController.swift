@@ -70,7 +70,6 @@ class BalanceViewController: BaseViewController {
     
     fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
-        buttonsStackView.spacing = 100
         screenStackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
