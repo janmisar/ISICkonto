@@ -39,14 +39,14 @@ class RequestManager {
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
             
-            let filter = responseURL?.valueOf("filter") ?? ""
-            let lang = responseURL?.valueOf("lang") ?? ""
+            let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
+            let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
             let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
-            let returnComponents = responseURL?.valueOf("return") ?? ""
+            let returnComponents = responseURL?.getValueOfQueryParameter("return") ?? ""
             let retunComponentsUrl = URL(string: returnComponents)
             
-            let samlds = retunComponentsUrl?.valueOf("SAMLDS") ?? ""
-            let target = retunComponentsUrl?.valueOf("target") ?? ""
+            let samlds = retunComponentsUrl?.getValueOfQueryParameter("SAMLDS") ?? ""
+            let target = retunComponentsUrl?.getValueOfQueryParameter("target") ?? ""
             
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
@@ -64,14 +64,14 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ responseShibboleth: (DataResponse<String>)) {
-        #warning("TODO - get credentials from keychain or userdefaults")
+        #warning("TODO- create keychain manager")
         guard let username = KeychainWrapper.standard.string(forKey: "username") else {
-            #warning("TODO - move to AccountVC")
+            #warning("TODO - show AccountVC")
             return
         }
         
         guard let password = KeychainWrapper.standard.string(forKey: "password") else {
-            #warning("TODO - move to AccountVC")
+            #warning("TODO - show AccountVC")
             return
         }
         //login parameters, username and password
@@ -98,7 +98,7 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-            #warning("check array size")
+            #warning("TODO - check array size")
             let form: Element = try document.select("form").array()[0]
             
             //get action value from form to check login process
@@ -107,10 +107,9 @@ class RequestManager {
                 return handleLoginError(error: LoginError.loginFailed)
             }
             
-            print(form)
             let inputs = try form.select("input")
             //get RelayState
-            #warning("check array size")
+            #warning("TODO - check array size")
             let inputName1 = try inputs.array()[0].attr("name")
             let inputValue1 = try inputs.array()[0].attr("value")
             //get SAMLResponse
@@ -140,7 +139,7 @@ class RequestManager {
     func getBalanceFromDoc(dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-            #warning("check array size")
+            #warning("TODO - check array size")
             let bodyElement: Element = try document.select("body").array()[0]
             let table: Element = try bodyElement.select("tbody").array()[0]
             let balanceLine: Element = try table.select("td").array()[4]
@@ -169,14 +168,10 @@ class RequestManager {
         print(error)
         #warning("TODO - error action")
     }
-    
-    func printA() {
-        print("AAA")
-    }
 }
 
 extension URL {
-    func valueOf(_ queryParamaterName: String) -> String? {
+    func getValueOfQueryParameter(_ queryParamaterName: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import SnapKit
 
 class BalanceViewController: BaseViewController {
     private var viewModel: BalanceViewModel
@@ -29,7 +30,7 @@ class BalanceViewController: BaseViewController {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.MyTheme.backgroundColor
+        self.view.backgroundColor = UIColor.Theme.backgroundColor
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
@@ -39,6 +40,8 @@ class BalanceViewController: BaseViewController {
         
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(20)
+            make.trailing.lessThanOrEqualTo(-20)
         }
         
         setupBalanceField()
@@ -48,15 +51,16 @@ class BalanceViewController: BaseViewController {
     fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor.MyTheme.labelBlue
+        balanceTitle.textColor = UIColor.Theme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
+        #warning("TODO")
         balanceLabel.text = "1357 Kč"
-        balanceLabel.textColor = UIColor.MyTheme.textColor
+        balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
@@ -87,9 +91,9 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationController?.isNavigationBarHidden = true
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
+        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        
     }
     
     @objc func reloadBalance() {
@@ -103,6 +107,16 @@ class BalanceViewController: BaseViewController {
     
     @objc func accountBtnHandle() {
         let VC = AccountViewController()
-        self.navigationController?.pushViewController(VC, animated: true)
+        navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }

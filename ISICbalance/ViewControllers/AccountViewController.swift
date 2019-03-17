@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 import SwiftKeychainWrapper
+import ACKategories
 
 class AccountViewController: BaseViewController {
     private var viewModel: AccountViewModel
@@ -30,8 +32,8 @@ class AccountViewController: BaseViewController {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.MyTheme.backgroundColor
-        
+        self.view.backgroundColor = UIColor.Theme.backgroundColor
+
         let formStackView = UIStackView()
         formStackView.spacing = 10
         formStackView.alignment = .leading
@@ -41,25 +43,26 @@ class AccountViewController: BaseViewController {
         
         formStackView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(20)
+            make.trailing.lessThanOrEqualTo(-20)
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
         }
         
         setupFormFields()
         setupLoginButton()
-        setupBottomImages()
     }
     
     fileprivate func setupFormFields() {
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
-        usernameLabel.textColor = UIColor.MyTheme.labelBlue
+
+        usernameLabel.textColor = UIColor.Theme.labelBlue
         self.usernameLabel = usernameLabel
         formStackView.addArrangedSubview(usernameLabel)
         
         let usernameTextField = FormTextField()
         self.usernameTextField = usernameTextField
         formStackView.addArrangedSubview(usernameTextField)
-        
         usernameTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
             make.height.equalTo(45)
@@ -67,14 +70,13 @@ class AccountViewController: BaseViewController {
         
         let passwordLabel = UILabel()
         passwordLabel.text = L10n.Login.password
-        passwordLabel.textColor = UIColor.MyTheme.labelBlue
+        passwordLabel.textColor = UIColor.Theme.labelBlue
         self.passwordLabel = passwordLabel
         formStackView.addArrangedSubview(passwordLabel)
         
         let passwordTextField = FormTextField()
         self.passwordTextField = passwordTextField
         formStackView.addArrangedSubview(passwordTextField)
-        
         passwordTextField.snp.makeConstraints { (make) in
             make.width.equalTo(280)
             make.height.equalTo(45)
@@ -82,10 +84,10 @@ class AccountViewController: BaseViewController {
     }
     
     fileprivate func setupLoginButton() {
-        let loginButton = UIButton()
+        let loginButton = UIButton(type: .system)
         loginButton.setTitle(L10n.Login.login, for: .normal)
-        loginButton.setTitleColor(UIColor.MyTheme.backgroundColor, for: .normal)
-        loginButton.backgroundColor = UIColor.MyTheme.labelBlue
+        loginButton.setTitleColor(UIColor.Theme.backgroundColor, for: .normal)
+        loginButton.setBackgroundImage(UIColor.Theme.labelBlue.image(), for: .normal)
         self.loginButton = loginButton
         formStackView.addArrangedSubview(loginButton)
         
@@ -95,37 +97,14 @@ class AccountViewController: BaseViewController {
         }
     }
     
-    fileprivate func setupBottomImages() {
-        let picturesStackView = UIStackView()
-        self.view.addSubview(picturesStackView)
-        
-        picturesStackView.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-30)
-        }
-        
-        let authorPicture = UIImageView(image: UIImage(asset: Asset.janmisar))
-        picturesStackView.addArrangedSubview(authorPicture)
-        
-        let spacer = UIView()
-        picturesStackView.addArrangedSubview(spacer)
-        
-        let companyPicture = UIImageView(image: UIImage(asset: Asset.mightycreations))
-        companyPicture.contentMode = .scaleAspectFit
-        picturesStackView.addArrangedSubview(companyPicture)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = L10n.Login.title
-        
+        navigationItem.title = L10n.Login.title
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
     }
     
     @objc func saveCredentials() {
+        #warning("TODO - create keychain manager")
         let saveUsername: Bool = KeychainWrapper.standard.set(usernameTextField.text ?? "", forKey: "username")
         let savePassword: Bool = KeychainWrapper.standard.set(passwordTextField.text ?? "", forKey: "password")
         
@@ -135,10 +114,6 @@ class AccountViewController: BaseViewController {
             #warning("Show Error Message")
             print("KeychainWrapper save error")
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
     }
 }
 

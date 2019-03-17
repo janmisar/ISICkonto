@@ -21,11 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C61F223A6AD700A46BCA /* RequestManager.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
-		14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14893B2E2237A3FE00690F4D /* BalanceViewController.swift */; };
+		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
+		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
+		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
+		14847323223D30A0006EF86F /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847322223D30A0006EF86F /* FormTextField.swift */; };
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
-		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
 		14C1901A223596DB0033616E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C19018223596DB0033616E /* Main.storyboard */; };
 		14C1901C223596DC0033616E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
 		14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901D223596DC0033616E /* LaunchScreen.storyboard */; };
@@ -35,7 +36,6 @@
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
 		14C19066223678DA0033616E /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19065223678DA0033616E /* ColorExt.swift */; };
-		14C1906822368D040033616E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1906722368D040033616E /* AccountViewController.swift */; };
 		14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
 		14ECC279223BB623006430D1 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
 		14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27A223BB644006430D1 /* AccountViewModel.swift */; };
@@ -64,12 +64,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1408C61F223A6AD700A46BCA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		14893B2E2237A3FE00690F4D /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		14847322223D30A0006EF86F /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		14C19016223596DB0033616E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14C19019223596DB0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C1901B223596DC0033616E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C1901E223596DC0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		14C1905B22365EDC0033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		14C19065223678DA0033616E /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
-		14C1906722368D040033616E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		14ECC278223BB623006430D1 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		14ECC27A223BB644006430D1 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -161,9 +161,9 @@
 				14ECC273223BB212006430D1 /* ViewControllers */,
 				14C190522235AE370033616E /* Generated */,
 				14ECC27F223BE1DA006430D1 /* FormTextField.swift */,
-				1408C621223A6B0400A46BCA /* Errors.swift */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
-				14C19016223596DB0033616E /* ViewController.swift */,
+				1408C621223A6B0400A46BCA /* Errors.swift */,
+				14847322223D30A0006EF86F /* FormTextField.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
 				14C1901B223596DC0033616E /* Assets.xcassets */,
 				14C1901D223596DC0033616E /* LaunchScreen.storyboard */,
@@ -203,8 +203,8 @@
 		14ECC273223BB212006430D1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				14893B2E2237A3FE00690F4D /* BalanceViewController.swift */,
-				14C1906722368D040033616E /* AccountViewController.swift */,
+				143CB3CA223E51F400413568 /* AccountViewController.swift */,
+				143CB3CB223E51F400413568 /* BalanceViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 		14ECC27E223BB85D006430D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
+				143CB3C8223E51D800413568 /* RequestManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -267,6 +267,7 @@
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
+				14847324223D6626006EF86F /* Generate preprocess header */,
 				14C190512235A9940033616E /* SwiftGen Script */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
@@ -397,6 +398,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		14847324223D6626006EF86F /* Generate preprocess header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate preprocess header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMMITS=`git rev-list HEAD --count`\nHEADER_FILE=\"$PROJECT_DIR/info_preprocess_header.h\"\n\necho \"// Auto-generated\" > $HEADER_FILE\necho \"\" >> $HEADER_FILE\necho \"#define BUILD_NUMBER $COMMITS\" >> $HEADER_FILE\n\ntouch $INFOPLIST_FILE\n";
+		};
 		14C1904F2235A4770033616E /* Download from spreadsheet */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,9 +486,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ACKReactiveExtensions/ACKReactiveExtensions.framework",
+				"${BUILT_PRODUCTS_DIR}/ACKategories/ACKategories.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -480,9 +498,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACKReactiveExtensions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACKategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -545,16 +562,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */,
-				14C19017223596DB0033616E /* ViewController.swift in Sources */,
-				14C1906822368D040033616E /* AccountViewController.swift in Sources */,
+				143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */,
+				143CB3C9223E51D800413568 /* RequestManager.swift in Sources */,
 				14ECC280223BE1DA006430D1 /* FormTextField.swift in Sources */,
+				143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */,
 				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
-				1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
+				14847323223D30A0006EF86F /* FormTextField.swift in Sources */,
 				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
 				14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */,
 				14ECC279223BB623006430D1 /* Base.swift in Sources */,
@@ -626,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_VERSION = 1.0;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -688,6 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_VERSION = 1.0;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -748,6 +767,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ISICbalance/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,6 +788,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ISICbalance/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
