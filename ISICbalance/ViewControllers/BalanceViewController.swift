@@ -12,6 +12,7 @@ import SnapKit
 
 class BalanceViewController: BaseViewController {
     private let viewModel: BalanceViewModel
+    private let rm: RequestManager
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -21,6 +22,7 @@ class BalanceViewController: BaseViewController {
     
     override init() {
         self.viewModel = BalanceViewModel()
+        self.rm = RequestManager()
         super.init()
     }
     
@@ -96,12 +98,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func reloadBalance() {
-        let rm = RequestManager()
-        do {
-            try rm.reloadData()
-        } catch {
-            print(error)
-        }
+        rm.reloadData()
     }
     
     @objc func accountBtnHandle() {

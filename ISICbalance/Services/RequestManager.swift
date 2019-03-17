@@ -13,8 +13,9 @@ import SwiftKeychainWrapper
 
 class RequestManager {
     
-    func reloadData() throws {
-        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
+    func reloadData() {
+        Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
+            guard let self = self else { return }
             
             switch response.result {
             case .success:
@@ -49,7 +50,8 @@ class RequestManager {
             
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
-            Alamofire.request(urlString).responseString { responseShibboleth in
+            Alamofire.request(urlString).responseString { [weak self] responseShibboleth in
+                guard let self = self else { return }
                 
                 switch responseShibboleth.result {
                 case .success:
@@ -82,7 +84,8 @@ class RequestManager {
         
         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
         
-        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
+        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { [weak self] responseCredentials in
+            guard let self = self else { return }
             
             switch responseCredentials.result {
             case .success:
@@ -120,7 +123,8 @@ class RequestManager {
                 inputName2 : inputValue2
             ]
 
-            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
+            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
+                guard let self = self else { return }
                 
                 switch responseBalanceSite.result {
                 case .success:
