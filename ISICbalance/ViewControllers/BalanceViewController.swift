@@ -74,7 +74,7 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
-        reloadButton.setImage(UIImage(asset: Asset.reloadIcon), for: .normal)
+        reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
         buttonsStackView.addArrangedSubview(reloadButton)
         
@@ -82,7 +82,7 @@ class BalanceViewController: BaseViewController {
         buttonsStackView.addArrangedSubview(spacerView)
         
         let accountButton = UIButton()
-        accountButton.setImage(UIImage(asset: Asset.accountIcon), for: .normal)
+        accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
         buttonsStackView.addArrangedSubview(accountButton)
