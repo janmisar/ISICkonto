@@ -1,63 +1,36 @@
 PODS:
-  - ACKategories (2.2)
-  - AFNetworkActivityLogger (2.0.4):
-    - AFNetworking/NSURLConnection (~> 2.0)
-    - AFNetworking/NSURLSession (~> 2.0)
-  - AFNetworking (2.7.0):
-    - AFNetworking/NSURLConnection (= 2.7.0)
-    - AFNetworking/NSURLSession (= 2.7.0)
-    - AFNetworking/Reachability (= 2.7.0)
-    - AFNetworking/Security (= 2.7.0)
-    - AFNetworking/Serialization (= 2.7.0)
-    - AFNetworking/UIKit (= 2.7.0)
-  - AFNetworking/NSURLConnection (2.7.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.7.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.7.0)
-  - AFNetworking/Security (2.7.0)
-  - AFNetworking/Serialization (2.7.0)
-  - AFNetworking/UIKit (2.7.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - ObjectiveGumbo (0.1)
-  - SVProgressHUD (1.1.3)
+  - ACKategories (6.0.2)
+  - ACKLocalization (0.3.2)
+  - Alamofire (4.0.1)
+  - SnapKit (4.0.1)
+  - SwiftGen (6.1.0)
+  - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
-  - ACKategories (from `https://github.com/AckeeCZ/ACKategories.git`, commit `cc8e9b6`)
-  - AFNetworkActivityLogger (~> 2.0)
-  - AFNetworking (~> 2.0)
-  - ObjectiveGumbo (~> 0.1)
-  - SVProgressHUD (~> 1.0)
+  - ACKategories
+  - ACKLocalization (~> 0.1)
+  - Alamofire (~> 4.0.0)
+  - SnapKit (~> 4.0.0)
+  - SwiftGen (~> 6.0)
+  - SwiftSoup (~> 1.7.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AFNetworkActivityLogger
-    - AFNetworking
-    - ObjectiveGumbo
-    - SVProgressHUD
-
-EXTERNAL SOURCES:
-  ACKategories:
-    :commit: cc8e9b6
-    :git: https://github.com/AckeeCZ/ACKategories.git
-
-CHECKOUT OPTIONS:
-  ACKategories:
-    :commit: cc8e9b6
-    :git: https://github.com/AckeeCZ/ACKategories.git
+    - ACKategories
+    - ACKLocalization
+    - Alamofire
+    - SnapKit
+    - SwiftGen
+    - SwiftSoup
 
 SPEC CHECKSUMS:
-  ACKategories: 3481350b121537a6cbcccccc521ec7b388be23b0
-  AFNetworkActivityLogger: 121486778117d53b3ab1c61d264b88081d0c3eee
-  AFNetworking: 8dd5f9b9691e09186393069a12cc3b5ed7c8b511
-  ObjectiveGumbo: 0704c4930688132abb3d5df2000334f30504856f
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  ACKategories: 0ca3caac8d42d9b8bbb563472609328c180936f0
+  ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 9b628b5d887caac6cf805b3871ee2f9fb0bd49eb
+PODFILE CHECKSUM: 07e4eaf0b66974f4b976fc1357b24bb91c331b69
 
 COCOAPODS: 1.6.1

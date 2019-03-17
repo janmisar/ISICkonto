@@ -3,249 +3,249 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		14C1904B2235A46F0033616E /* Localization */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 14C1904C2235A4700033616E /* Build configuration list for PBXAggregateTarget "Localization" */;
+			buildPhases = (
+				14C1904F2235A4770033616E /* Download from spreadsheet */,
+			);
+			dependencies = (
+			);
+			name = Localization;
+			productName = Localization;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		1767697018BB3C930028C562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767696F18BB3C930028C562 /* Foundation.framework */; };
-		1767697218BB3C930028C562 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767697118BB3C930028C562 /* CoreGraphics.framework */; };
-		1767697418BB3C930028C562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767697318BB3C930028C562 /* UIKit.framework */; };
-		1767697A18BB3C930028C562 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1767697818BB3C930028C562 /* InfoPlist.strings */; };
-		1767697C18BB3C930028C562 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767697B18BB3C930028C562 /* main.m */; };
-		1767698018BB3C930028C562 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767697F18BB3C930028C562 /* AppDelegate.m */; };
-		1767698218BB3C930028C562 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1767698118BB3C930028C562 /* Images.xcassets */; };
-		1767698918BB3C940028C562 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767698818BB3C940028C562 /* XCTest.framework */; };
-		1767698A18BB3C940028C562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767696F18BB3C930028C562 /* Foundation.framework */; };
-		1767698B18BB3C940028C562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1767697318BB3C930028C562 /* UIKit.framework */; };
-		1767699318BB3C940028C562 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1767699118BB3C940028C562 /* InfoPlist.strings */; };
-		1767699518BB3C940028C562 /* ISICbalanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767699418BB3C940028C562 /* ISICbalanceTests.m */; };
-		1793561C1909584700DF14F9 /* HTMLResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1793561B1909584700DF14F9 /* HTMLResponseSerializer.m */; };
-		1793562019095C1500DF14F9 /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1793561E19095C1500DF14F9 /* BalanceViewController.m */; };
-		1793562119095C1500DF14F9 /* BalanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1793561F19095C1500DF14F9 /* BalanceViewController.xib */; };
-		17935625190998E400DF14F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17935623190998E400DF14F9 /* SettingsViewController.m */; };
-		17935626190998E400DF14F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17935624190998E400DF14F9 /* SettingsViewController.xib */; };
-		1793562A1909999F00DF14F9 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 179356291909999F00DF14F9 /* fontawesome.ttf */; };
-		17F542BC1913CF6D000F23C3 /* PTSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17F542BA1913CF6D000F23C3 /* PTSansBold.ttf */; };
-		17F542BD1913CF6D000F23C3 /* PTSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17F542BB1913CF6D000F23C3 /* PTSansRegular.ttf */; };
-		17F542C11913E32F000F23C3 /* accountIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F542BF1913E32F000F23C3 /* accountIcon@2x.png */; };
-		17F542C21913E32F000F23C3 /* reloadIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F542C01913E32F000F23C3 /* reloadIcon@2x.png */; };
-		17F542C41913FC6A000F23C3 /* janmisar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F542C31913FC6A000F23C3 /* janmisar@2x.png */; };
-		17F542C61913FCBF000F23C3 /* mightycreations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F542C51913FCBF000F23C3 /* mightycreations@2x.png */; };
-		29AE8C5AF41F99C35FAA232D /* libPods-ISICbalanceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DAC40733C6A6FD013DA8C9A /* libPods-ISICbalanceTests.a */; };
-		3073FFA79952A528CAB61D81 /* libPods-ISICbalance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C0480648FBA0279F2DA12D /* libPods-ISICbalance.a */; };
+		1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C61F223A6AD700A46BCA /* RequestManager.swift */; };
+		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
+		14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847320223D2D16006EF86F /* TextFieldExt.swift */; };
+		14847323223D30A0006EF86F /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847322223D30A0006EF86F /* FormTextField.swift */; };
+		14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14893B2E2237A3FE00690F4D /* BalanceViewController.swift */; };
+		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
+		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
+		14C1901A223596DB0033616E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C19018223596DB0033616E /* Main.storyboard */; };
+		14C1901C223596DC0033616E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
+		14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901D223596DC0033616E /* LaunchScreen.storyboard */; };
+		14C1902A223596DC0033616E /* ISICbalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19029223596DC0033616E /* ISICbalanceTests.swift */; };
+		14C19035223596DC0033616E /* ISICbalanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19034223596DC0033616E /* ISICbalanceUITests.swift */; };
+		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
+		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
+		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
+		14C19060223668000033616E /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905F223668000033616E /* BalanceView.swift */; };
+		14C19064223675A00033616E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19063223675A00033616E /* AccountView.swift */; };
+		14C19066223678DA0033616E /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19065223678DA0033616E /* ColorExt.swift */; };
+		14C1906822368D040033616E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1906722368D040033616E /* AccountViewController.swift */; };
+		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
+		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
+		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1767698C18BB3C940028C562 /* PBXContainerItemProxy */ = {
+		14C19026223596DC0033616E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1767696418BB3C930028C562 /* Project object */;
+			containerPortal = 14C19009223596DB0033616E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1767696B18BB3C930028C562;
+			remoteGlobalIDString = 14C19010223596DB0033616E;
+			remoteInfo = ISICbalance;
+		};
+		14C19031223596DC0033616E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C19009223596DB0033616E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14C19010223596DB0033616E;
 			remoteInfo = ISICbalance;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DAC40733C6A6FD013DA8C9A /* libPods-ISICbalanceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ISICbalanceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1767696C18BB3C930028C562 /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1767696F18BB3C930028C562 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1767697118BB3C930028C562 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1767697318BB3C930028C562 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1767697718BB3C930028C562 /* ISICbalance-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISICbalance-Info.plist"; sourceTree = "<group>"; };
-		1767697B18BB3C930028C562 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1767697D18BB3C930028C562 /* ISICbalance-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISICbalance-Prefix.pch"; sourceTree = "<group>"; };
-		1767697E18BB3C930028C562 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1767697F18BB3C930028C562 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1767698118BB3C930028C562 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1767698718BB3C940028C562 /* ISICbalanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISICbalanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1767698818BB3C940028C562 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		1767699018BB3C940028C562 /* ISICbalanceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISICbalanceTests-Info.plist"; sourceTree = "<group>"; };
-		1767699418BB3C940028C562 /* ISICbalanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISICbalanceTests.m; sourceTree = "<group>"; };
-		177F7B0A1915041700B37FFC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		177F7B0B1915041800B37FFC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1793561A1909584700DF14F9 /* HTMLResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLResponseSerializer.h; sourceTree = "<group>"; };
-		1793561B1909584700DF14F9 /* HTMLResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLResponseSerializer.m; sourceTree = "<group>"; };
-		1793561D19095C1500DF14F9 /* BalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
-		1793561E19095C1500DF14F9 /* BalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewController.m; sourceTree = "<group>"; };
-		1793561F19095C1500DF14F9 /* BalanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BalanceViewController.xib; sourceTree = "<group>"; };
-		17935622190998E400DF14F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		17935623190998E400DF14F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		17935624190998E400DF14F9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		179356291909999F00DF14F9 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
-		17F542BA1913CF6D000F23C3 /* PTSansBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansBold.ttf; sourceTree = "<group>"; };
-		17F542BB1913CF6D000F23C3 /* PTSansRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansRegular.ttf; sourceTree = "<group>"; };
-		17F542BF1913E32F000F23C3 /* accountIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accountIcon@2x.png"; sourceTree = "<group>"; };
-		17F542C01913E32F000F23C3 /* reloadIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reloadIcon@2x.png"; sourceTree = "<group>"; };
-		17F542C31913FC6A000F23C3 /* janmisar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "janmisar@2x.png"; sourceTree = "<group>"; };
-		17F542C51913FCBF000F23C3 /* mightycreations@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mightycreations@2x.png"; sourceTree = "<group>"; };
-		2ECB4774200FBD9CAE5BE92A /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
-		B5C0480648FBA0279F2DA12D /* libPods-ISICbalance.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ISICbalance.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCF3E6446D8ECE6006C18D15 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
-		CAEBAA1AE8AF59F9D0A6BCB6 /* Pods-ISICbalanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F1954BB42D694779B8D1528C /* Pods-ISICbalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISICbalance/Pods-ISICbalance.debug.xcconfig"; sourceTree = "<group>"; };
+		1408C61F223A6AD700A46BCA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		14847320223D2D16006EF86F /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
+		14847322223D30A0006EF86F /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		14893B2E2237A3FE00690F4D /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14C19016223596DB0033616E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14C19019223596DB0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		14C1901B223596DC0033616E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14C1901E223596DC0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		14C19020223596DC0033616E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14C19025223596DC0033616E /* ISICbalanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISICbalanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C19029223596DC0033616E /* ISICbalanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISICbalanceTests.swift; sourceTree = "<group>"; };
+		14C1902B223596DC0033616E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14C19030223596DC0033616E /* ISICbalanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISICbalanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C19034223596DC0033616E /* ISICbalanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISICbalanceUITests.swift; sourceTree = "<group>"; };
+		14C19036223596DC0033616E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14C190472235A2710033616E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14C190492235A2840033616E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14C1905B22365EDC0033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		14C1905F223668000033616E /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		14C19063223675A00033616E /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		14C19065223678DA0033616E /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		14C1906722368D040033616E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
+		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
+		777FB23EEB0700F21DAC4BFD /* Pods-ISICbalanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.debug.xcconfig"; sourceTree = "<group>"; };
+		D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1767696918BB3C930028C562 /* Frameworks */ = {
+		14C1900E223596DB0033616E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1767697218BB3C930028C562 /* CoreGraphics.framework in Frameworks */,
-				1767697418BB3C930028C562 /* UIKit.framework in Frameworks */,
-				1767697018BB3C930028C562 /* Foundation.framework in Frameworks */,
-				3073FFA79952A528CAB61D81 /* libPods-ISICbalance.a in Frameworks */,
+				F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1767698418BB3C940028C562 /* Frameworks */ = {
+		14C19022223596DC0033616E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1767698918BB3C940028C562 /* XCTest.framework in Frameworks */,
-				1767698B18BB3C940028C562 /* UIKit.framework in Frameworks */,
-				1767698A18BB3C940028C562 /* Foundation.framework in Frameworks */,
-				29AE8C5AF41F99C35FAA232D /* libPods-ISICbalanceTests.a in Frameworks */,
+				8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14C1902D223596DC0033616E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1767696318BB3C930028C562 = {
+		1484731F223D2CDC006EF86F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1767697518BB3C930028C562 /* ISICbalance */,
-				179356271909999F00DF14F9 /* Resources */,
-				1767696E18BB3C930028C562 /* Frameworks */,
-				1767696D18BB3C930028C562 /* Products */,
-				1767698E18BB3C940028C562 /* ISICbalanceTests */,
-				B4E88D872CC4B80CF3B1748C /* Pods */,
+				14847320223D2D16006EF86F /* TextFieldExt.swift */,
+				14C19065223678DA0033616E /* ColorExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14C19008223596DB0033616E = {
+			isa = PBXGroup;
+			children = (
+				14C19013223596DB0033616E /* ISICbalance */,
+				14C19028223596DC0033616E /* ISICbalanceTests */,
+				14C19033223596DC0033616E /* ISICbalanceUITests */,
+				14C19012223596DB0033616E /* Products */,
+				2B72B8C664D21E0754CB91FE /* Pods */,
+				AD462197CDB172B06184ADBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		1767696D18BB3C930028C562 /* Products */ = {
+		14C19012223596DB0033616E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1767696C18BB3C930028C562 /* ISICbalance.app */,
-				1767698718BB3C940028C562 /* ISICbalanceTests.xctest */,
+				14C19011223596DB0033616E /* ISICbalance.app */,
+				14C19025223596DC0033616E /* ISICbalanceTests.xctest */,
+				14C19030223596DC0033616E /* ISICbalanceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1767696E18BB3C930028C562 /* Frameworks */ = {
+		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
-				1767696F18BB3C930028C562 /* Foundation.framework */,
-				1767697118BB3C930028C562 /* CoreGraphics.framework */,
-				1767697318BB3C930028C562 /* UIKit.framework */,
-				1767698818BB3C940028C562 /* XCTest.framework */,
-				B5C0480648FBA0279F2DA12D /* libPods-ISICbalance.a */,
-				0DAC40733C6A6FD013DA8C9A /* libPods-ISICbalanceTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1767697518BB3C930028C562 /* ISICbalance */ = {
-			isa = PBXGroup;
-			children = (
-				1767697E18BB3C930028C562 /* AppDelegate.h */,
-				1767697F18BB3C930028C562 /* AppDelegate.m */,
-				1793561A1909584700DF14F9 /* HTMLResponseSerializer.h */,
-				1793561B1909584700DF14F9 /* HTMLResponseSerializer.m */,
-				1793561D19095C1500DF14F9 /* BalanceViewController.h */,
-				1793561E19095C1500DF14F9 /* BalanceViewController.m */,
-				1793561F19095C1500DF14F9 /* BalanceViewController.xib */,
-				17935622190998E400DF14F9 /* SettingsViewController.h */,
-				17935623190998E400DF14F9 /* SettingsViewController.m */,
-				17935624190998E400DF14F9 /* SettingsViewController.xib */,
-				1767698118BB3C930028C562 /* Images.xcassets */,
-				1767697618BB3C930028C562 /* Supporting Files */,
+				1484731F223D2CDC006EF86F /* Extensions */,
+				14C190522235AE370033616E /* Generated */,
+				14C19014223596DB0033616E /* AppDelegate.swift */,
+				14C19016223596DB0033616E /* ViewController.swift */,
+				1408C621223A6B0400A46BCA /* Errors.swift */,
+				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
+				14893B2E2237A3FE00690F4D /* BalanceViewController.swift */,
+				14C1905F223668000033616E /* BalanceView.swift */,
+				14C1906722368D040033616E /* AccountViewController.swift */,
+				14C19063223675A00033616E /* AccountView.swift */,
+				14847322223D30A0006EF86F /* FormTextField.swift */,
+				14C19018223596DB0033616E /* Main.storyboard */,
+				14C1901B223596DC0033616E /* Assets.xcassets */,
+				14C1901D223596DC0033616E /* LaunchScreen.storyboard */,
+				14C19020223596DC0033616E /* Info.plist */,
+				14C190482235A2710033616E /* Localizable.strings */,
 			);
 			path = ISICbalance;
 			sourceTree = "<group>";
 		};
-		1767697618BB3C930028C562 /* Supporting Files */ = {
+		14C19028223596DC0033616E /* ISICbalanceTests */ = {
 			isa = PBXGroup;
 			children = (
-				1767697718BB3C930028C562 /* ISICbalance-Info.plist */,
-				1767697818BB3C930028C562 /* InfoPlist.strings */,
-				1767697B18BB3C930028C562 /* main.m */,
-				1767697D18BB3C930028C562 /* ISICbalance-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1767698E18BB3C940028C562 /* ISICbalanceTests */ = {
-			isa = PBXGroup;
-			children = (
-				1767699418BB3C940028C562 /* ISICbalanceTests.m */,
-				1767698F18BB3C940028C562 /* Supporting Files */,
+				14C19029223596DC0033616E /* ISICbalanceTests.swift */,
+				14C1902B223596DC0033616E /* Info.plist */,
 			);
 			path = ISICbalanceTests;
 			sourceTree = "<group>";
 		};
-		1767698F18BB3C940028C562 /* Supporting Files */ = {
+		14C19033223596DC0033616E /* ISICbalanceUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1767699018BB3C940028C562 /* ISICbalanceTests-Info.plist */,
-				1767699118BB3C940028C562 /* InfoPlist.strings */,
+				14C19034223596DC0033616E /* ISICbalanceUITests.swift */,
+				14C19036223596DC0033616E /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = ISICbalanceUITests;
 			sourceTree = "<group>";
 		};
-		179356271909999F00DF14F9 /* Resources */ = {
+		14C190522235AE370033616E /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				17F542BE1913E32F000F23C3 /* Images */,
-				179356281909999F00DF14F9 /* Fonts */,
+				14C1905B22365EDC0033616E /* Strings.swift */,
+				14C1905D22365EE30033616E /* Assets.swift */,
 			);
-			path = Resources;
-			sourceTree = SOURCE_ROOT;
-		};
-		179356281909999F00DF14F9 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				17F542BA1913CF6D000F23C3 /* PTSansBold.ttf */,
-				17F542BB1913CF6D000F23C3 /* PTSansRegular.ttf */,
-				179356291909999F00DF14F9 /* fontawesome.ttf */,
-			);
-			path = Fonts;
+			path = Generated;
 			sourceTree = "<group>";
 		};
-		17F542BE1913E32F000F23C3 /* Images */ = {
+		2B72B8C664D21E0754CB91FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				17F542C51913FCBF000F23C3 /* mightycreations@2x.png */,
-				17F542C31913FC6A000F23C3 /* janmisar@2x.png */,
-				17F542BF1913E32F000F23C3 /* accountIcon@2x.png */,
-				17F542C01913E32F000F23C3 /* reloadIcon@2x.png */,
+				C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */,
+				7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */,
+				777FB23EEB0700F21DAC4BFD /* Pods-ISICbalanceTests.debug.xcconfig */,
+				5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */,
+				793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */,
+				29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */,
 			);
-			path = Images;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		B4E88D872CC4B80CF3B1748C /* Pods */ = {
+		AD462197CDB172B06184ADBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1954BB42D694779B8D1528C /* Pods-ISICbalance.debug.xcconfig */,
-				2ECB4774200FBD9CAE5BE92A /* Pods-ISICbalance.release.xcconfig */,
-				CAEBAA1AE8AF59F9D0A6BCB6 /* Pods-ISICbalanceTests.debug.xcconfig */,
-				BCF3E6446D8ECE6006C18D15 /* Pods-ISICbalanceTests.release.xcconfig */,
+				D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */,
+				A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */,
+				E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1767696B18BB3C930028C562 /* ISICbalance */ = {
+		14C19010223596DB0033616E /* ISICbalance */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1767699818BB3C940028C562 /* Build configuration list for PBXNativeTarget "ISICbalance" */;
+			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
-				9E7AAD799E16C1614725303D /* [CP] Check Pods Manifest.lock */,
-				1767696818BB3C930028C562 /* Sources */,
-				1767696918BB3C930028C562 /* Frameworks */,
-				1767696A18BB3C930028C562 /* Resources */,
-				EA92310B883F6178735F8C21 /* [CP] Copy Pods Resources */,
+				14847324223D6626006EF86F /* Generate preprocess header */,
+				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
+				14C190512235A9940033616E /* SwiftGen Script */,
+				14C1900D223596DB0033616E /* Sources */,
+				14C1900E223596DB0033616E /* Frameworks */,
+				14C1900F223596DB0033616E /* Resources */,
+				6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,105 +253,195 @@
 			);
 			name = ISICbalance;
 			productName = ISICbalance;
-			productReference = 1767696C18BB3C930028C562 /* ISICbalance.app */;
+			productReference = 14C19011223596DB0033616E /* ISICbalance.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1767698618BB3C940028C562 /* ISICbalanceTests */ = {
+		14C19024223596DC0033616E /* ISICbalanceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1767699B18BB3C940028C562 /* Build configuration list for PBXNativeTarget "ISICbalanceTests" */;
+			buildConfigurationList = 14C1903C223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalanceTests" */;
 			buildPhases = (
-				555B7AFCF919E7DCCFD0D022 /* [CP] Check Pods Manifest.lock */,
-				1767698318BB3C940028C562 /* Sources */,
-				1767698418BB3C940028C562 /* Frameworks */,
-				1767698518BB3C940028C562 /* Resources */,
+				5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */,
+				14C19021223596DC0033616E /* Sources */,
+				14C19022223596DC0033616E /* Frameworks */,
+				14C19023223596DC0033616E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1767698D18BB3C940028C562 /* PBXTargetDependency */,
+				14C19027223596DC0033616E /* PBXTargetDependency */,
 			);
 			name = ISICbalanceTests;
 			productName = ISICbalanceTests;
-			productReference = 1767698718BB3C940028C562 /* ISICbalanceTests.xctest */;
+			productReference = 14C19025223596DC0033616E /* ISICbalanceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		14C1902F223596DC0033616E /* ISICbalanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14C1903F223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalanceUITests" */;
+			buildPhases = (
+				94C2DF04234BCB541DA78CE3 /* [CP] Check Pods Manifest.lock */,
+				14C1902C223596DC0033616E /* Sources */,
+				14C1902D223596DC0033616E /* Frameworks */,
+				14C1902E223596DC0033616E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14C19032223596DC0033616E /* PBXTargetDependency */,
+			);
+			name = ISICbalanceUITests;
+			productName = ISICbalanceUITests;
+			productReference = 14C19030223596DC0033616E /* ISICbalanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1767696418BB3C930028C562 /* Project object */ = {
+		14C19009223596DB0033616E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Jan Mísař";
+				ORGANIZATIONNAME = "Rostislav Babáček";
 				TargetAttributes = {
-					1767696B18BB3C930028C562 = {
-						DevelopmentTeam = PXDF48X6VX;
-						ProvisioningStyle = Manual;
+					14C19010223596DB0033616E = {
+						CreatedOnToolsVersion = 10.1;
 					};
-					1767698618BB3C940028C562 = {
-						TestTargetID = 1767696B18BB3C930028C562;
+					14C19024223596DC0033616E = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 14C19010223596DB0033616E;
+					};
+					14C1902F223596DC0033616E = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 14C19010223596DB0033616E;
+					};
+					14C1904B2235A46F0033616E = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = 1767696718BB3C930028C562 /* Build configuration list for PBXProject "ISICbalance" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 14C1900C223596DB0033616E /* Build configuration list for PBXProject "ISICbalance" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 				cs,
 			);
-			mainGroup = 1767696318BB3C930028C562;
-			productRefGroup = 1767696D18BB3C930028C562 /* Products */;
+			mainGroup = 14C19008223596DB0033616E;
+			productRefGroup = 14C19012223596DB0033616E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1767696B18BB3C930028C562 /* ISICbalance */,
-				1767698618BB3C940028C562 /* ISICbalanceTests */,
+				14C19010223596DB0033616E /* ISICbalance */,
+				14C19024223596DC0033616E /* ISICbalanceTests */,
+				14C1902F223596DC0033616E /* ISICbalanceUITests */,
+				14C1904B2235A46F0033616E /* Localization */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1767696A18BB3C930028C562 /* Resources */ = {
+		14C1900F223596DB0033616E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1793562119095C1500DF14F9 /* BalanceViewController.xib in Resources */,
-				17F542C41913FC6A000F23C3 /* janmisar@2x.png in Resources */,
-				1767697A18BB3C930028C562 /* InfoPlist.strings in Resources */,
-				17F542BD1913CF6D000F23C3 /* PTSansRegular.ttf in Resources */,
-				1767698218BB3C930028C562 /* Images.xcassets in Resources */,
-				17F542BC1913CF6D000F23C3 /* PTSansBold.ttf in Resources */,
-				17935626190998E400DF14F9 /* SettingsViewController.xib in Resources */,
-				17F542C61913FCBF000F23C3 /* mightycreations@2x.png in Resources */,
-				17F542C21913E32F000F23C3 /* reloadIcon@2x.png in Resources */,
-				1793562A1909999F00DF14F9 /* fontawesome.ttf in Resources */,
-				17F542C11913E32F000F23C3 /* accountIcon@2x.png in Resources */,
+				14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */,
+				14C190462235A2710033616E /* Localizable.strings in Resources */,
+				14C1901C223596DC0033616E /* Assets.xcassets in Resources */,
+				14C1901A223596DB0033616E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1767698518BB3C940028C562 /* Resources */ = {
+		14C19023223596DC0033616E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1767699318BB3C940028C562 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14C1902E223596DC0033616E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		555B7AFCF919E7DCCFD0D022 /* [CP] Check Pods Manifest.lock */ = {
+		14847324223D6626006EF86F /* Generate preprocess header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate preprocess header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMMITS=`git rev-list HEAD --count`\nHEADER_FILE=\"$PROJECT_DIR/info_preprocess_header.h\"\n\necho \"// Auto-generated\" > $HEADER_FILE\necho \"\" >> $HEADER_FILE\necho \"#define BUILD_NUMBER $COMMITS\" >> $HEADER_FILE\n\ntouch $INFOPLIST_FILE\n";
+		};
+		14C1904F2235A4770033616E /* Download from spreadsheet */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Download from spreadsheet";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# https://docs.google.com/spreadsheets/d/1gPr9Fwnkyz64o7Gl_wUaT_Fel9SMIYymPsYi-8rTRcw/edit#gid=0\n#.Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"ISICbalance\" \"Localizable.strings\" \n\n\n\"$PROJECT_DIR/Pods/ACKLocalization/Localization\" \"1vTt_5tavPcR3sr9MIBz7j4BG6HrlB9Uhu6_ddRfqgRVrLYvqO14VqZqFvrRsl6kw9xtiu850SVj0wXa\" \"key_ios\" '{\"EN\": \"en\", \"CS\": \"cs\"}' \"$PROJECT_DIR/ISICbalance\" \"Localizable.strings\" \n";
+		};
+		14C190512235A9940033616E /* SwiftGen Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftGen Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/ISICbalance/Generated/Strings.swift",
+				"$(PROJECT_DIR)/ISICbalance/Generated/Assets.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntouch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\ntouch $PROJECT_DIR/ISICbalance/Generated/Assets.swift\n\ntouch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/ISICbalance/Assets.xcassets/AppIcon.appiconset\n\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
+			showEnvVarsInLog = 0;
+		};
+		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ISICbalanceTests-checkManifestLockResult.txt",
 			);
@@ -360,16 +450,70 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9E7AAD799E16C1614725303D /* [CP] Check Pods Manifest.lock */ = {
+		6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ACKategories/ACKategories.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACKategories.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C2DF04234BCB541DA78CE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ISICbalanceUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ISICbalance-checkManifestLockResult.txt",
 			);
@@ -378,92 +522,109 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA92310B883F6178735F8C21 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-resources.sh",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1767696818BB3C930028C562 /* Sources */ = {
+		14C1900D223596DB0033616E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1767698018BB3C930028C562 /* AppDelegate.m in Sources */,
-				1793561C1909584700DF14F9 /* HTMLResponseSerializer.m in Sources */,
-				17935625190998E400DF14F9 /* SettingsViewController.m in Sources */,
-				1767697C18BB3C930028C562 /* main.m in Sources */,
-				1793562019095C1500DF14F9 /* BalanceViewController.m in Sources */,
+				14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */,
+				14C19064223675A00033616E /* AccountView.swift in Sources */,
+				14C19017223596DB0033616E /* ViewController.swift in Sources */,
+				14C1906822368D040033616E /* AccountViewController.swift in Sources */,
+				14C19060223668000033616E /* BalanceView.swift in Sources */,
+				1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */,
+				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
+				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
+				14C1905E22365EE30033616E /* Assets.swift in Sources */,
+				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
+				14847323223D30A0006EF86F /* FormTextField.swift in Sources */,
+				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
+				14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1767698318BB3C940028C562 /* Sources */ = {
+		14C19021223596DC0033616E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1767699518BB3C940028C562 /* ISICbalanceTests.m in Sources */,
+				14C1902A223596DC0033616E /* ISICbalanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14C1902C223596DC0033616E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14C19035223596DC0033616E /* ISICbalanceUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1767698D18BB3C940028C562 /* PBXTargetDependency */ = {
+		14C19027223596DC0033616E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1767696B18BB3C930028C562 /* ISICbalance */;
-			targetProxy = 1767698C18BB3C940028C562 /* PBXContainerItemProxy */;
+			target = 14C19010223596DB0033616E /* ISICbalance */;
+			targetProxy = 14C19026223596DC0033616E /* PBXContainerItemProxy */;
+		};
+		14C19032223596DC0033616E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14C19010223596DB0033616E /* ISICbalance */;
+			targetProxy = 14C19031223596DC0033616E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1767697818BB3C930028C562 /* InfoPlist.strings */ = {
+		14C19018223596DB0033616E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				177F7B0A1915041700B37FFC /* cs */,
+				14C19019223596DB0033616E /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		1767699118BB3C940028C562 /* InfoPlist.strings */ = {
+		14C1901D223596DC0033616E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				177F7B0B1915041800B37FFC /* cs */,
+				14C1901E223596DC0033616E /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		14C190482235A2710033616E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C190472235A2710033616E /* en */,
+				14C190492235A2840033616E /* cs */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1767699618BB3C940028C562 /* Debug */ = {
+		14C19037223596DC0033616E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_VERSION = 1.0;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -475,13 +636,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -489,34 +652,42 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		1767699718BB3C940028C562 /* Release */ = {
+		14C19038223596DC0033616E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_VERSION = 1.0;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -528,142 +699,221 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		1767699918BB3C940028C562 /* Debug */ = {
+		14C1903A223596DC0033616E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1954BB42D694779B8D1528C /* Pods-ISICbalance.debug.xcconfig */;
+			baseConfigurationReference = C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pan Unicorn (48SP5J5YBN)";
-				DEVELOPMENT_TEAM = PXDF48X6VX;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ISICbalance/ISICbalance-Prefix.pch";
-				INFOPLIST_FILE = "ISICbalance/ISICbalance-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cz.ackee.enterprise.isic.dev;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalance/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				INFOPLIST_PREPROCESS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "35586bca-bf98-4bd7-a55f-6c242c781bec";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development cz.ackee.enterprise.*";
-				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1767699A18BB3C940028C562 /* Release */ = {
+		14C1903B223596DC0033616E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2ECB4774200FBD9CAE5BE92A /* Pods-ISICbalance.release.xcconfig */;
+			baseConfigurationReference = 7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 3SMVP6VZP8;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ISICbalance/ISICbalance-Prefix.pch";
-				INFOPLIST_FILE = "ISICbalance/ISICbalance-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cz.janmisar.ISICbalance;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalance/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				INFOPLIST_PREPROCESS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "ISIC konto";
-				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = app;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		1767699C18BB3C940028C562 /* Debug */ = {
+		14C1903D223596DC0033616E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAEBAA1AE8AF59F9D0A6BCB6 /* Pods-ISICbalanceTests.debug.xcconfig */;
+			baseConfigurationReference = 777FB23EEB0700F21DAC4BFD /* Pods-ISICbalanceTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ISICbalance.app/ISICbalance";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ISICbalance/ISICbalance-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ISICbalanceTests/ISICbalanceTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.janmisar.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ISICbalance.app/ISICbalance";
 			};
 			name = Debug;
 		};
-		1767699D18BB3C940028C562 /* Release */ = {
+		14C1903E223596DC0033616E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCF3E6446D8ECE6006C18D15 /* Pods-ISICbalanceTests.release.xcconfig */;
+			baseConfigurationReference = 5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ISICbalance.app/ISICbalance";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ISICbalance/ISICbalance-Prefix.pch";
-				INFOPLIST_FILE = "ISICbalanceTests/ISICbalanceTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "cz.janmisar.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ISICbalance.app/ISICbalance";
+			};
+			name = Release;
+		};
+		14C19040223596DC0033616E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ISICbalance;
+			};
+			name = Debug;
+		};
+		14C19041223596DC0033616E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ISICbalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ISICbalance;
+			};
+			name = Release;
+		};
+		14C1904D2235A4700033616E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14C1904E2235A4700033616E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1767696718BB3C930028C562 /* Build configuration list for PBXProject "ISICbalance" */ = {
+		14C1900C223596DB0033616E /* Build configuration list for PBXProject "ISICbalance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1767699618BB3C940028C562 /* Debug */,
-				1767699718BB3C940028C562 /* Release */,
+				14C19037223596DC0033616E /* Debug */,
+				14C19038223596DC0033616E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1767699818BB3C940028C562 /* Build configuration list for PBXNativeTarget "ISICbalance" */ = {
+		14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1767699918BB3C940028C562 /* Debug */,
-				1767699A18BB3C940028C562 /* Release */,
+				14C1903A223596DC0033616E /* Debug */,
+				14C1903B223596DC0033616E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1767699B18BB3C940028C562 /* Build configuration list for PBXNativeTarget "ISICbalanceTests" */ = {
+		14C1903C223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalanceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1767699C18BB3C940028C562 /* Debug */,
-				1767699D18BB3C940028C562 /* Release */,
+				14C1903D223596DC0033616E /* Debug */,
+				14C1903E223596DC0033616E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14C1903F223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C19040223596DC0033616E /* Debug */,
+				14C19041223596DC0033616E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14C1904C2235A4700033616E /* Build configuration list for PBXAggregateTarget "Localization" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C1904D2235A4700033616E /* Debug */,
+				14C1904E2235A4700033616E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1767696418BB3C930028C562 /* Project object */;
+	rootObject = 14C19009223596DB0033616E /* Project object */;
 }
