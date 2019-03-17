@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 import SnapKit
 
 class BalanceViewController: BaseViewController {
-    private var viewModel: BalanceViewModel
+    private let viewModel: BalanceViewModel
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!

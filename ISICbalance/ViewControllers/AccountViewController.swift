@@ -12,7 +12,7 @@ import SwiftKeychainWrapper
 import ACKategories
 
 class AccountViewController: BaseViewController {
-    private var viewModel: AccountViewModel
+    private let viewModel: AccountViewModel
     
     weak var formStackView: UIStackView!
     weak var usernameLabel: UILabel!
