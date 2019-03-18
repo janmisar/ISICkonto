@@ -43,4 +43,9 @@ class FormField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: 10, dy: 0)
     }
+    
+    public func deactivate() {
+        text = ""
+        resignFirstResponder()
+    }
 }
