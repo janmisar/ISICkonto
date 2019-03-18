@@ -104,8 +104,11 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-            //TODO: check array size
-            let form: Element = try document.select("form").array()[0]
+            let formArray = try document.select("form").array()
+            guard formArray.count > 0 else {
+                throw RequestError.parseError
+            }
+            let form: Element = formArray[0]
             
             //get action value from form to check login process
             let action: String = try form.attr("action")
@@ -113,14 +116,16 @@ class RequestManager {
                 observer.send(error: RequestError.loginFailed)
             }
             
-            let inputs = try form.select("input")
+            let inputsArray = try form.select("input").array()
+            guard inputsArray.count > 1 else {
+                throw RequestError.parseError
+            }
             //get RelayState
-            //TODO: check array size")
-            let inputName1 = try inputs.array()[0].attr("name")
-            let inputValue1 = try inputs.array()[0].attr("value")
+            let inputName1 = try inputsArray[0].attr("name")
+            let inputValue1 = try inputsArray[0].attr("value")
             //get SAMLResponse
-            let inputName2 = try inputs.array()[1].attr("name")
-            let inputValue2 = try inputs.array()[1].attr("value")
+            let inputName2 = try inputsArray[1].attr("name")
+            let inputValue2 = try inputsArray[1].attr("value")
             
             let formParameters = [
                 inputName1 : inputValue1,
@@ -153,9 +158,9 @@ class RequestManager {
             let lineText = balanceLine.ownText()
             let lineElements = lineText.split(separator: " ")
             let balance = lineElements[0]
-            let user = Balance(balance: "\(balance) Kč")
-            self.currentBalance.value = user
-            observer.send(value: user)
+            let balanceSt = Balance(balance: "\(balance) Kč")
+            self.currentBalance.value = balanceSt
+            observer.send(value: balanceSt)
             observer.sendCompleted()
         } catch {
             observer.send(error: RequestError.parseError)
