@@ -88,7 +88,7 @@ class AccountViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.Login.title
-        loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
+        loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchUpInside)
     }
     
     @objc func saveCredentials() {

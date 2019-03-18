@@ -92,8 +92,8 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
-        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         
     }
     
