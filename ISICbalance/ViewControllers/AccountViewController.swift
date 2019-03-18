@@ -24,8 +24,9 @@ class AccountViewController: BaseViewController {
     weak var passwordTextField: UITextField!
     weak var loginButton: UIButton!
     
-    init(_ viewModel: AccountViewModel) {
-        self.viewModel = viewModel
+    init(_ keychainManager: KeychainManager) {
+        self.viewModel = AccountViewModel(keychainManager)
+        // TODO: ask about super.init
         super.init()
     }
     
@@ -92,13 +93,11 @@ class AccountViewController: BaseViewController {
         super.viewDidLoad()
         navigationItem.title = L10n.Login.title
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchDown)
-        
-        viewModel.getCredentialsFromKeychain()
+
         setupBindings()
     }
     
     @objc func saveCredentials() {
-//        viewModel.saveCredentials()
         viewModel.loginAction.apply().start()
     }
     

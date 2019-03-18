@@ -12,7 +12,8 @@ import Result
 import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
-
+    let keychainManager: KeychainManager
+    
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
     var validationSignal: Property<Bool>
@@ -21,13 +22,13 @@ class AccountViewModel: BaseViewModel {
     
     lazy var loginAction = Action<(),(),LoginError> { [unowned self] in
         if self.validationSignal.value {
-            return self.saveCredentials()
+            return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
         } else {
             return SignalProducer<(), LoginError>(error: .validation(self.validationErrors.value))
         }
     }
 
-    override init() {
+    init(_ keychainManager: KeychainManager) {
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
@@ -40,25 +41,13 @@ class AccountViewModel: BaseViewModel {
         }
         
         validationSignal = validationErrors.map { $0.isEmpty }
-    }
-    
-    func getCredentialsFromKeychain() {
-        #warning("TODO: create KeychainManager")
-        username.value = KeychainWrapper.standard.string(forKey: "username") ?? ""
-        password.value = KeychainWrapper.standard.string(forKey: "password") ?? ""
-    }
-    
-    func saveCredentials() -> SignalProducer<(),LoginError> {
-        #warning("TODO: create KeychainManager")
-        return SignalProducer { [weak self] observer, disposable in
-            let saveUsername: Bool = KeychainWrapper.standard.set(self?.username.value ?? "", forKey: "username")
-            let savePassword: Bool = KeychainWrapper.standard.set(self?.password.value ?? "", forKey: "password")
 
-            if saveUsername && savePassword {
-                observer.sendCompleted()
-            } else {
-                observer.send(error: LoginError.keychainCredentialsFailed)
-            }
-        }
+        self.keychainManager = keychainManager
+        // TODO: Ask about super.init()
+        super.init()
+        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+            self?.username.value = user.username
+            self?.password.value = user.password
+        }).start()
     }
 }

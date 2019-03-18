@@ -13,8 +13,13 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 
 class RequestManager {
+    private let keychainManager: KeychainManager
     var currentBalance = MutableProperty<Balance?>(nil)
-    
+
+    init(_ keychainManager: KeychainManager) {
+        self.keychainManager = keychainManager
+    }
+
     func reloadData() -> SignalProducer<Balance,RequestError> {
         return SignalProducer { observer, diposable in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
@@ -69,16 +74,14 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
-        #warning("TODO- create keychain manager")
-        guard let username = KeychainWrapper.standard.string(forKey: "username") else {
-            observer.send(error: RequestError.credentialsError(.username))
-            return
-        }
+        var username: String = ""
+        var password: String = ""
+
+        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+            username = user.username
+            password = user.password
+        }).start()
         
-        guard let password = KeychainWrapper.standard.string(forKey: "password") else {
-            observer.send(error: RequestError.credentialsError(.password))
-            return
-        }
         //login parameters, username and password
         let parameters = [
             "j_username": username,

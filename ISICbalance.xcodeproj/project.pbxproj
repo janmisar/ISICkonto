@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		14089B572240038D00095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B562240038D00095BC2 /* KeychainManager.swift */; };
+		14089B592240057B00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B582240057B00095BC2 /* User.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
@@ -65,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14089B562240038D00095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		14089B582240057B00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 		14ECC27E223BB85D006430D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				14089B562240038D00095BC2 /* KeychainManager.swift */,
 				143CB3C8223E51D800413568 /* RequestManager.swift */,
 			);
 			path = Services;
@@ -243,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				14ECC282223BEB8A006430D1 /* Balance.swift */,
+				14089B582240057B00095BC2 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -584,6 +590,8 @@
 				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
+				14089B592240057B00095BC2 /* User.swift in Sources */,
+				14089B572240038D00095BC2 /* KeychainManager.swift in Sources */,
 				14ECC283223BEB8A006430D1 /* Balance.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,

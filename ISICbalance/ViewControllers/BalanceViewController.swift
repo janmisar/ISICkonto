@@ -15,7 +15,7 @@ import SnapKit
 class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
-    private let accountViewModel: AccountViewModel
+    private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -24,12 +24,13 @@ class BalanceViewController: BaseViewController {
     weak var accountButton: UIButton!
     
     override init() {
-        let requestManager = RequestManager()
+        let keychainManager = KeychainManager()
+        self.keychainManager = KeychainManager()
+        let requestManager = RequestManager(keychainManager)
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
-        #warning("TODO: waiting for flow coord. lecture")
-        self.accountViewModel = AccountViewModel()
-        
+        //TODO: waiting for flow coord. lecture
+
         super.init()
     }
     
@@ -118,7 +119,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let VC = AccountViewController(accountViewModel)
+        let VC = AccountViewController(keychainManager)
         navigationController?.pushViewController(VC, animated: true)
     }
     
