@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormField: UITextField, UITextFieldDelegate{
+class FormField: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
