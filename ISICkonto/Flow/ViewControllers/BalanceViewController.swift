@@ -30,12 +30,12 @@ class BalanceViewController : UIViewController {
         
         balanceLabel = UILabel()
         balanceLabel.textAlignment = .center
-        balanceLabel.font = UIFont(name: "Cabin-Bold", size: 85)!
+        balanceLabel.font = .cabinBold(size: 85)
         balanceLabel.textColor = UIColor.white
         
         textLabel = UILabel()
         textLabel.textAlignment = .center
-        textLabel.font = UIFont(name: "Cabin-Regular", size: 25)!
+        textLabel.font = .cabinRegular(size: 25)
         textLabel.textColor = UIColor(red: 182/255, green: 220/255, blue: 252/255, alpha: 1)
         textLabel.text = "Your balance is".localized
         

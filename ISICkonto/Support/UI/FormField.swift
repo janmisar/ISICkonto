@@ -29,7 +29,7 @@ class FormField: UITextField {
         self.textColor = UIColor.white
         self.tintColor = UIColor.white
         
-        self.font = UIFont(name: "Cabin-Regular", size: 17)!
+        self.font = .cabinRegular(size: 17)
     }
     
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {

@@ -59,13 +59,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().backgroundColor = UIColor.clear
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Cabin-Regular", size: 20)!]
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont(name: "Cabin-Medium", size: 17)!], for: [.normal, .highlighted])
+        UINavigationBar.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.cabinRegular(size: 20)]
+        UIBarButtonItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont.cabinMedium(size: 17)], for: [.normal, .highlighted])
         
         // for SVProgressHUD
-        SVProgressHUD.setFont(UIFont(name: "Cabin-Regular", size: 15)!)
+        SVProgressHUD.setFont(.cabinRegular(size: 15))
         SVProgressHUD.setBackgroundColor(.white)
         SVProgressHUD.setForegroundColor(UIColor(red: 55/255, green: 131/255, blue: 160/255, alpha: 1))
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.gradient)

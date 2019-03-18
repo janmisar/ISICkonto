@@ -43,7 +43,7 @@ class LogInViewController: UIViewController {
         loginButton = UIButton()
         loginButton.setTitle("Log In".localized, for: .normal)
         loginButton.setTitleColor(UIColor(red: 86/255, green: 129/255, blue: 154/255, alpha: 1), for: .normal)
-        loginButton.titleLabel?.font = UIFont(name: "Cabin-Regular", size: 17)!
+        loginButton.titleLabel?.font = .cabinRegular(size: 17)
         loginButton.backgroundColor = UIColor.white
         loginButton.layer.cornerRadius = 5.0
         
