@@ -69,12 +69,12 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
-        #warning("TODO- create keychain manager")
+        //TODO: create keychain manager
         guard let username = KeychainWrapper.standard.string(forKey: "username") else {
             observer.send(error: RequestError.credentialsError(.username))
             return
         }
-        
+
         guard let password = KeychainWrapper.standard.string(forKey: "password") else {
             observer.send(error: RequestError.credentialsError(.password))
             return
@@ -104,18 +104,18 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-            #warning("TODO - check array size")
+            //TODO: check array size
             let form: Element = try document.select("form").array()[0]
             
             //get action value from form to check login process
             let action: String = try form.attr("action")
-            if !action.contains("agata.suz.cvut.cz"){
+            if !action.contains("agata.suz.cvut.cz") {
                 observer.send(error: RequestError.loginFailed)
             }
             
             let inputs = try form.select("input")
             //get RelayState
-            #warning("TODO - check array size")
+            //TODO: check array size")
             let inputName1 = try inputs.array()[0].attr("name")
             let inputValue1 = try inputs.array()[0].attr("value")
             //get SAMLResponse
@@ -143,10 +143,10 @@ class RequestManager {
         }
     }
     
-    func getBalanceFromDoc(_ observer: Signal<Balance, RequestError>.Observer, dataResponse: DataResponse<String>){
+    func getBalanceFromDoc(_ observer: Signal<Balance, RequestError>.Observer, dataResponse: DataResponse<String>) {
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-            #warning("TODO - check array size")
+            //TODO: check array size")
             let bodyElement: Element = try document.select("body").array()[0]
             let table: Element = try bodyElement.select("tbody").array()[0]
             let balanceLine: Element = try table.select("td").array()[4]

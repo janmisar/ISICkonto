@@ -18,7 +18,6 @@ class AccountViewModel: BaseViewModel {
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
 
-    
     lazy var loginAction = Action<(),(),LoginError> { [unowned self] in
         if self.validationSignal.value {
             return self.saveCredentials()
@@ -43,13 +42,13 @@ class AccountViewModel: BaseViewModel {
     }
     
     func getCredentialsFromKeychain() {
-        #warning("TODO: create KeychainManager")
+        //TODO: create KeychainManager")
         username.value = KeychainWrapper.standard.string(forKey: "username") ?? ""
         password.value = KeychainWrapper.standard.string(forKey: "password") ?? ""
     }
     
     func saveCredentials() -> SignalProducer<(),LoginError> {
-        #warning("TODO: create KeychainManager")
+        //TODO: create KeychainManager
         return SignalProducer { [weak self] observer, disposable in
             let saveUsername: Bool = KeychainWrapper.standard.set(self?.username.value ?? "", forKey: "username")
             let savePassword: Bool = KeychainWrapper.standard.set(self?.password.value ?? "", forKey: "password")

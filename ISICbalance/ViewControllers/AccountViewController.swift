@@ -13,7 +13,6 @@ import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
 
-
 class AccountViewController: BaseViewController {
     private let viewModel: AccountViewModel
     
@@ -112,5 +111,3 @@ class AccountViewController: BaseViewController {
         }
     }
 }
-
-

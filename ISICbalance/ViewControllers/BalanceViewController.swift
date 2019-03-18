@@ -27,7 +27,7 @@ class BalanceViewController: BaseViewController {
         let requestManager = RequestManager()
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
-        #warning("TODO: waiting for flow coord. lecture")
+        //TODO: waiting for flow coord. lecture
         self.accountViewModel = AccountViewModel()
         
         super.init()
@@ -67,7 +67,7 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
-        #warning("TODO")
+        //TODO: delete
         balanceLabel.text = "1357 Kč"
         balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
@@ -113,13 +113,13 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func reloadBalance() {
-        #warning("TODO:")
+        //TODO:
         viewModel.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        let VC = AccountViewController(accountViewModel)
-        navigationController?.pushViewController(VC, animated: true)
+        let accountVC = AccountViewController(accountViewModel)
+        navigationController?.pushViewController(accountVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
