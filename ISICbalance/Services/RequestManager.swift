@@ -74,11 +74,18 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
-        let credentials = keychainManager.getCredentialsFromKeychain()
+        var username: String = ""
+        var password: String = ""
+
+        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+            username = user.username
+            password = user.password
+        }).start()
+
         //login parameters, username and password
         let parameters = [
-            "j_username": credentials.username,
-            "j_password": credentials.password,
+            "j_username": username,
+            "j_password": password,
             "_eventId_proceed" : ""
         ]
         

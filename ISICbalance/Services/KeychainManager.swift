@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveSwift
 import SwiftKeychainWrapper
+import Result
 
 class KeychainManager {
     var currentUser = MutableProperty<String>("OOO")
@@ -26,10 +27,14 @@ class KeychainManager {
         }
     }
 
-    func getCredentialsFromKeychain() -> (username: String, password: String) {
-        let username = KeychainWrapper.standard.string(forKey: "username") ?? ""
-        let password = KeychainWrapper.standard.string(forKey: "password") ?? ""
+    func getCredentialsFromKeychain() -> SignalProducer<User, NoError> {
+        return SignalProducer<User, NoError> { observer, disposable in
+            let username = KeychainWrapper.standard.string(forKey: "username") ?? ""
+            let password = KeychainWrapper.standard.string(forKey: "password") ?? ""
+            let user = User(username: username, password: password)
 
-        return (username: username, password: password)
+            observer.send(value: user)
+            observer.sendCompleted()
+        }
     }
 }

@@ -42,8 +42,10 @@ class AccountViewModel: BaseViewModel {
         
         validationSignal = validationErrors.map { $0.isEmpty }
 
-        let credentials = keychainManager.getCredentialsFromKeychain()
-        username.value = credentials.username
-        password.value = credentials.password
+        super.init()
+        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+            self?.username.value = user.username
+            self?.password.value = user.password
+        }).start()
     }
 }
