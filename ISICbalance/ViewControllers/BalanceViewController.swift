@@ -43,6 +43,8 @@ class BalanceViewController: BaseViewController {
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(50)
+            make.top.greaterThanOrEqualTo(30)
+            make.bottom.lessThanOrEqualTo(-30)
         }
         
         setupBalanceField()
