@@ -17,7 +17,7 @@ protocol AppFlowControllerProtocol {
 
 class AppFlowController : AppFlowControllerProtocol {
     
-    var navigationController: UINavigationController
+    let navigationController: UINavigationController
     
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
