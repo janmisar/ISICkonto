@@ -25,6 +25,7 @@ class BalanceViewController : UIViewController {
     }
   
     func setupUI() {
+        
         self.view.backgroundColor = UIColor(red: 93/255, green: 149/255, blue: 170/255, alpha: 1)
         
         balanceLabel = UILabel()
@@ -46,39 +47,39 @@ class BalanceViewController : UIViewController {
         
         buttonView = UIView()
         
-        view.addSubview(balanceLabel)
-        view.addSubview(textLabel)
         buttonView.addSubview(refreshButton)
         buttonView.addSubview(logOutButton)
         view.addSubview(buttonView)
+        view.addSubview(balanceLabel)
+        view.addSubview(textLabel)
         
     }
     
     func createConstraints() {
         textLabel.snp.makeConstraints { make in
             make.bottom.equalTo(balanceLabel.snp.top).offset(-10)
-            make.centerX.equalTo(balanceLabel.snp.centerX)
+            make.centerX.equalTo(balanceLabel)
         }
         
         balanceLabel.snp.makeConstraints { make in
-            make.center.equalTo(view.snp.center)
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.center.equalTo(view)
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
         }
         
         buttonView.snp.makeConstraints { make in
-            make.centerX.equalTo(view.snp.centerX)
+            make.centerX.equalTo(view)
             make.top.equalTo(balanceLabel.snp.bottom).offset(20)
         }
         
         refreshButton.snp.makeConstraints { make in
-            make.right.top.bottom.equalTo(buttonView).offset(-10)
+            make.leading.trailing.bottom.equalTo(buttonView).offset(-10)
             make.height.width.equalTo(50)
-            make.left.equalTo(logOutButton.snp.right).offset(50)
+            make.leading.equalTo(logOutButton.snp.trailing).offset(50)
         }
         
         logOutButton.snp.makeConstraints { make in
-            make.left.top.bottom.equalTo(buttonView).offset(-10)
+            make.leading.trailing.bottom.equalTo(buttonView).offset(-10)
             make.width.height.equalTo(50)
         }
         
