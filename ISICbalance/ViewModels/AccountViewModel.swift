@@ -21,13 +21,22 @@ class AccountViewModel: BaseViewModel {
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
     
-    lazy var loginAction = Action<(),User,LoginError> { [unowned self] in
-        if self.validationSignal.value {
-            return self.requestManager.reloadData()
-        } else {
-            return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
+//    lazy var loginAction = Action<(),User,LoginError> { [unowned self] in
+//        if self.validationSignal.value {
+//            return self.requestManager.reloadData()
+//        } else {
+//            return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
+//        }
+//    }
+    
+        lazy var loginAction = Action<(),User,LoginError> { [unowned self] in
+            if self.validationSignal.value {
+                return self.saveCredentials()
+            } else {
+                return SignalProducer<User, LoginError>(error: .validation(self.validationErrors.value))
+            }
         }
-    }
+
     
     init(_ requestManager: RequestManager) {
         self.requestManager = requestManager
@@ -51,29 +60,17 @@ class AccountViewModel: BaseViewModel {
         password.value = KeychainWrapper.standard.string(forKey: "password") ?? ""
     }
     
-    func saveCredentials() {
-        print("save")
-        let saveUsername: Bool = KeychainWrapper.standard.set(username.value, forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(password.value, forKey: "password")
-        
-        if saveUsername && savePassword {
-            //loginAction.apply().start()
-        } else {
-            #warning("Show Error Message")
-            print("KeychainWrapper save error")
-        }
-    }
-    
-    func saveCredentials(username: String, password: String) {
-        #warning("TODO - create keychain manager")
-        let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
-        let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
-        
-        if saveUsername && savePassword {
-            #warning("Push balance VC")
-        } else {
-            #warning("Show Error Message")
-            print("KeychainWrapper save error")
+    func saveCredentials() -> SignalProducer<User,LoginError> {
+        #warning("TODO: create KeychainManager")
+        return SignalProducer { [weak self] observer, disposable in
+            let saveUsername: Bool = KeychainWrapper.standard.set(self?.username.value ?? "", forKey: "username")
+            let savePassword: Bool = KeychainWrapper.standard.set(self?.password.value ?? "", forKey: "password")
+
+            if saveUsername && savePassword {
+                observer.sendCompleted()
+            } else {
+                observer.send(error: LoginError.keychainCredentialsFailed)
+            }
         }
     }
 }

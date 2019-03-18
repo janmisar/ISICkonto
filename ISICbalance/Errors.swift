@@ -17,6 +17,7 @@ enum RequestError: Error {
 enum LoginError: Error {
     case loginFailed
     case invalidCredentials
+    case keychainCredentialsFailed
     case validation([LoginValidation])
     case requestsFailed(RequestError)
 }

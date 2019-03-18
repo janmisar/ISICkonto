@@ -215,8 +215,8 @@
 		14ECC274223BB4D6006430D1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */,
 				14ECC27A223BB644006430D1 /* AccountViewModel.swift */,
+				14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

@@ -109,7 +109,8 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func reloadBalance() {
-        accountViewModel.loginAction.apply().start()
+        #warning("TODO:")
+//        accountViewModel.loginAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
