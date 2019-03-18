@@ -16,6 +16,7 @@ class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
+    private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -24,11 +25,13 @@ class BalanceViewController: BaseViewController {
     weak var accountButton: UIButton!
     
     override init() {
-        let requestManager = RequestManager()
+        let keychainManager = KeychainManager()
+        self.keychainManager = KeychainManager()
+        let requestManager = RequestManager(keychainManager)
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
         //TODO: waiting for flow coord. lecture
-        self.accountViewModel = AccountViewModel()
+        self.accountViewModel = AccountViewModel(keychainManager)
         
         super.init()
     }
@@ -67,8 +70,6 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
-        //TODO: delete
-        balanceLabel.text = "1357 Kč"
         balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
@@ -118,7 +119,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let accountVC = AccountViewController(accountViewModel)
+        let accountVC = AccountViewController(accountViewModel, keychainManager)
         navigationController?.pushViewController(accountVC, animated: true)
     }
     

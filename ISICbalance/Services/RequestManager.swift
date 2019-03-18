@@ -13,8 +13,13 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 
 class RequestManager {
+    private let keychainManager: KeychainManager
     var currentBalance = MutableProperty<Balance?>(nil)
-    
+
+    init(_ keychainManager: KeychainManager) {
+        self.keychainManager = keychainManager
+    }
+
     func reloadData() -> SignalProducer<Balance,RequestError> {
         return SignalProducer { observer, diposable in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
@@ -69,20 +74,11 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
-        //TODO: create keychain manager
-        guard let username = KeychainWrapper.standard.string(forKey: "username") else {
-            observer.send(error: RequestError.credentialsError(.username))
-            return
-        }
-
-        guard let password = KeychainWrapper.standard.string(forKey: "password") else {
-            observer.send(error: RequestError.credentialsError(.password))
-            return
-        }
+        let credentials = keychainManager.getCredentialsFromKeychain()
         //login parameters, username and password
         let parameters = [
-            "j_username": username,
-            "j_password": password,
+            "j_username": credentials.username,
+            "j_password": credentials.password,
             "_eventId_proceed" : ""
         ]
         
@@ -161,7 +157,6 @@ class RequestManager {
             let balanceLines = try table.select("td").array()
             guard balanceLines.count > 4 else { throw RequestError.parseError }
             let balanceLine: Element = balanceLines[4]
-
             let lineText = balanceLine.ownText()
 
             // get balance
