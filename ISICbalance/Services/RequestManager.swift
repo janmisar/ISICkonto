@@ -43,7 +43,6 @@ class RequestManager {
         
         // if url contains agata.suz.cvut -> you are logged in
         if hostUrl.contains("agata.suz.cvut") {
-            print("YOU ARE IN")
             getBalanceFromDoc(observer, dataResponse: response)
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"

@@ -52,8 +52,7 @@ class BalanceViewController: BaseViewController {
         
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.leading.greaterThanOrEqualTo(20)
-            make.trailing.lessThanOrEqualTo(-20)
+            make.leading.trailing.equalToSuperview().inset(50)
         }
         
         setupBalanceField()
@@ -80,16 +79,14 @@ class BalanceViewController: BaseViewController {
     
     fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
+        buttonsStackView.distribution = .fillEqually
         screenStackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
         buttonsStackView.addArrangedSubview(reloadButton)
-        
-        let spacerView = UIView()
-        buttonsStackView.addArrangedSubview(spacerView)
-        
+
         let accountButton = UIButton()
         accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
