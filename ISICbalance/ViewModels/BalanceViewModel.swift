@@ -26,6 +26,7 @@ class BalanceViewModel: BaseViewModel {
     
     init(_ requestManager: RequestManager) {
         self.requestManager = requestManager
+        // TODO: Ask about super.init()
         super.init()
         
         requestManager.currentBalance.producer.skipNil().startWithValues { [weak self] user in

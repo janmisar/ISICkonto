@@ -21,7 +21,8 @@ class RequestManager {
     }
 
     func reloadData() -> SignalProducer<Balance,RequestError> {
-        return SignalProducer { observer, diposable in
+        //TODO: disposable parameter?
+        return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
                 guard let self = self else { return }
     
@@ -37,7 +38,7 @@ class RequestManager {
     }
     
     func agataRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ response: (DataResponse<String>)) {
-        
+
         let responseURL = response.response?.url
         let hostUrl = responseURL?.host ?? ""
         
