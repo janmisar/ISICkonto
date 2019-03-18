@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveSwift
 import Result
+
 import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
@@ -57,6 +58,19 @@ class AccountViewModel: BaseViewModel {
         
         if saveUsername && savePassword {
             //loginAction.apply().start()
+        } else {
+            #warning("Show Error Message")
+            print("KeychainWrapper save error")
+        }
+    }
+    
+    func saveCredentials(username: String, password: String) {
+        #warning("TODO - create keychain manager")
+        let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
+        let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+        
+        if saveUsername && savePassword {
+            #warning("Push balance VC")
         } else {
             #warning("Show Error Message")
             print("KeychainWrapper save error")

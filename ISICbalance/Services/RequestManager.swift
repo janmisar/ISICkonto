@@ -12,7 +12,6 @@ import SwiftSoup
 import SwiftKeychainWrapper
 import ReactiveSwift
 
-#warning("ask about problem with [weak self] in Alamofire closures")
 class RequestManager {
     
     var currentBalance = MutableProperty<User?>(nil)
@@ -25,8 +24,9 @@ class RequestManager {
     
     func reloadData() -> SignalProducer<User,LoginError> {
         return SignalProducer { observer, diposable in
-            Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
-                
+            Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
+                guard let self = self else { return }
+    
                 switch response.result {
                 case .success:
                     print("Agata request success")
@@ -51,18 +51,19 @@ class RequestManager {
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
             
-            let filter = responseURL?.valueOf("filter") ?? ""
-            let lang = responseURL?.valueOf("lang") ?? ""
+            let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
+            let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
             let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
-            let returnComponents = responseURL?.valueOf("return") ?? ""
+            let returnComponents = responseURL?.getValueOfQueryParameter("return") ?? ""
             let retunComponentsUrl = URL(string: returnComponents)
             
-            let samlds = retunComponentsUrl?.valueOf("SAMLDS") ?? ""
-            let target = retunComponentsUrl?.valueOf("target") ?? ""
+            let samlds = retunComponentsUrl?.getValueOfQueryParameter("SAMLDS") ?? ""
+            let target = retunComponentsUrl?.getValueOfQueryParameter("target") ?? ""
             
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
-            Alamofire.request(urlString).responseString { responseShibboleth in
+            Alamofire.request(urlString).responseString { [weak self] responseShibboleth in
+                guard let self = self else { return }
                 
                 switch responseShibboleth.result {
                 case .success:
@@ -77,15 +78,19 @@ class RequestManager {
     }
     
     fileprivate func ssoRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
+        #warning("TODO- create keychain manager")
         guard let username = KeychainWrapper.standard.string(forKey: "username") else {
             let requestError = LoginValidation.username
             observer.send(error: LoginError.validation([requestError]))
+
             return
         }
         
         guard let password = KeychainWrapper.standard.string(forKey: "password") else {
             let requestError = LoginValidation.password
             observer.send(error: LoginError.validation([requestError]))
+            #warning("TODO - show AccountVC")
+
             return
         }
         //login parameters, username and password
@@ -97,7 +102,8 @@ class RequestManager {
         
         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
         
-        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
+        Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { [weak self] responseCredentials in
+            guard let self = self else { return }
             
             switch responseCredentials.result {
             case .success:
@@ -113,6 +119,7 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+            #warning("TODO - check array size")
             let form: Element = try document.select("form").array()[0]
             
             //get action value from form to check login process
@@ -123,6 +130,7 @@ class RequestManager {
             
             let inputs = try form.select("input")
             //get RelayState
+            #warning("TODO - check array size")
             let inputName1 = try inputs.array()[0].attr("name")
             let inputValue1 = try inputs.array()[0].attr("value")
             //get SAMLResponse
@@ -133,8 +141,9 @@ class RequestManager {
                 inputName1 : inputValue1,
                 inputName2 : inputValue2
             ]
-            
-            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
+
+            Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
+                guard let self = self else { return }
                 
                 switch responseBalanceSite.result {
                 case .success:
@@ -154,6 +163,7 @@ class RequestManager {
     func getBalanceFromDoc(_ observer: Signal<User, LoginError>.Observer, dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
+            #warning("TODO - check array size")
             let bodyElement: Element = try document.select("body").array()[0]
             let table: Element = try bodyElement.select("tbody").array()[0]
             let balanceLine: Element = try table.select("td").array()[4]
@@ -172,7 +182,7 @@ class RequestManager {
 }
 
 extension URL {
-    func valueOf(_ queryParamaterName: String) -> String? {
+    func getValueOfQueryParameter(_ queryParamaterName: String) -> String? {
         guard let url = URLComponents(string: self.absoluteString) else { return nil }
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
     }

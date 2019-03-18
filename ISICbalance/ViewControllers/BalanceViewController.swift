@@ -10,11 +10,13 @@ import UIKit
 import SwiftKeychainWrapper
 import ReactiveSwift
 import ACKReactiveExtensions
+import SnapKit
 
 class BalanceViewController: BaseViewController {
-    private var requestManager: RequestManager
-    private var viewModel: BalanceViewModel
-    private var accountViewModel: AccountViewModel
+    private let requestManager: RequestManager
+    private let viewModel: BalanceViewModel
+    private let accountViewModel: AccountViewModel
+    
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -27,6 +29,7 @@ class BalanceViewController: BaseViewController {
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
         self.accountViewModel = AccountViewModel(requestManager)
+        
         super.init()
     }
     
@@ -36,7 +39,7 @@ class BalanceViewController: BaseViewController {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.MyTheme.backgroundColor
+        self.view.backgroundColor = UIColor.Theme.backgroundColor
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
@@ -46,6 +49,8 @@ class BalanceViewController: BaseViewController {
         
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
+            make.leading.greaterThanOrEqualTo(20)
+            make.trailing.lessThanOrEqualTo(-20)
         }
         
         setupBalanceField()
@@ -55,15 +60,16 @@ class BalanceViewController: BaseViewController {
     fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor.MyTheme.labelBlue
+        balanceTitle.textColor = UIColor.Theme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
+        #warning("TODO")
         balanceLabel.text = "1357 Kč"
-        balanceLabel.textColor = UIColor.MyTheme.textColor
+        balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
@@ -73,11 +79,10 @@ class BalanceViewController: BaseViewController {
     
     fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
-        buttonsStackView.spacing = 100
         screenStackView.addArrangedSubview(buttonsStackView)
         
         let reloadButton = UIButton()
-        reloadButton.setImage(UIImage(asset: Asset.reloadIcon), for: .normal)
+        reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
         buttonsStackView.addArrangedSubview(reloadButton)
         
@@ -85,7 +90,7 @@ class BalanceViewController: BaseViewController {
         buttonsStackView.addArrangedSubview(spacerView)
         
         let accountButton = UIButton()
-        accountButton.setImage(UIImage(asset: Asset.accountIcon), for: .normal)
+        accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
         buttonsStackView.addArrangedSubview(accountButton)
@@ -94,7 +99,7 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
         self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
         setupBindings()
@@ -110,6 +115,17 @@ class BalanceViewController: BaseViewController {
     
     @objc func accountBtnHandle() {
         let VC = AccountViewController(accountViewModel)
-        self.navigationController?.pushViewController(VC, animated: true)
+        navigationController?.pushViewController(VC, animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
 }

@@ -1,4 +1,5 @@
 PODS:
+  - ACKategories (6.0.2)
   - ACKLocalization (0.3.2)
   - ACKReactiveExtensions (4.0.2):
     - ACKReactiveExtensions/Core (= 4.0.2)
@@ -21,17 +22,19 @@ PODS:
   - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
+  - ACKategories (~> 6.0.2)
   - ACKLocalization (~> 0.1)
   - ACKReactiveExtensions
   - Alamofire (~> 4.0.0)
-  - ReactiveSwift
+  - ReactiveSwift (~> 4.0.0)
   - SnapKit (~> 4.0.0)
   - SwiftGen (~> 6.0)
-  - SwiftKeychainWrapper
-  - SwiftSoup
+  - SwiftKeychainWrapper (~> 3.2.0)
+  - SwiftSoup (~> 1.7.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ACKategories
     - ACKLocalization
     - ACKReactiveExtensions
     - Alamofire
@@ -44,6 +47,7 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  ACKategories: 0ca3caac8d42d9b8bbb563472609328c180936f0
   ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
   ACKReactiveExtensions: 21f2aad823494e5787091c193213b96a16305563
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -55,6 +59,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 1b993ebceca3ea9ef44dfcf45b218e3d9dc7a089
+PODFILE CHECKSUM: b6d15eb1f7d4499e091756d1322c60b84eb27833
 
 COCOAPODS: 1.6.1
