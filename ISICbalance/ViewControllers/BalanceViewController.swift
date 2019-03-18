@@ -99,7 +99,6 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationController?.isNavigationBarHidden = true
         self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
         self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
         setupBindings()
