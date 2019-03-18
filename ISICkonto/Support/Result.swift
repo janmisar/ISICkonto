@@ -17,12 +17,6 @@ public struct Result<Element> {
     public let message: String?
     public let element: Element?
     
-    public init(info: ResultInformation, message: String?, element: Element?) {
-        self.info = info
-        self.message = message
-        self.element = element
-    }
-    
     static public func resultFailed(_ message: String? = nil) -> Result { return Result(info: .failure, message: message, element: nil) }
     static public func resultSuccess(_ message: String? = nil, element: Element) -> Result { return Result(info: .success, message: message, element: element) }
     static public func resultInProgress() -> Result { return Result(info: .inProgress, message: nil, element: nil) }
