@@ -105,9 +105,7 @@ class RequestManager {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
             let formArray = try document.select("form").array()
-            guard formArray.count > 0 else {
-                throw RequestError.parseError
-            }
+            guard formArray.count > 0 else { throw RequestError.parseError }
             let form: Element = formArray[0]
             
             //get action value from form to check login process
@@ -117,9 +115,7 @@ class RequestManager {
             }
             
             let inputsArray = try form.select("input").array()
-            guard inputsArray.count > 1 else {
-                throw RequestError.parseError
-            }
+            guard inputsArray.count > 1 else { throw RequestError.parseError }
             //get RelayState
             let inputName1 = try inputsArray[0].attr("name")
             let inputValue1 = try inputsArray[0].attr("value")
@@ -151,13 +147,28 @@ class RequestManager {
     func getBalanceFromDoc(_ observer: Signal<Balance, RequestError>.Observer, dataResponse: DataResponse<String>) {
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-            //TODO: check array size")
-            let bodyElement: Element = try document.select("body").array()[0]
-            let table: Element = try bodyElement.select("tbody").array()[0]
-            let balanceLine: Element = try table.select("td").array()[4]
+            // get body elements
+            let bodyElements = try document.select("body").array()
+            guard bodyElements.count > 0 else { throw RequestError.parseError }
+            let bodyElement: Element = bodyElements[0]
+
+            // get table elements
+            let tables = try bodyElement.select("tbody").array()
+            guard tables.count > 0 else { throw RequestError.parseError }
+            let table: Element = tables[0]
+
+            // get balance line
+            let balanceLines = try table.select("td").array()
+            guard balanceLines.count > 4 else { throw RequestError.parseError }
+            let balanceLine: Element = balanceLines[4]
+
             let lineText = balanceLine.ownText()
+
+            // get balance
             let lineElements = lineText.split(separator: " ")
+            guard lineElements.count > 0 else { throw RequestError.parseError }
             let balance = lineElements[0]
+
             let balanceSt = Balance(balance: "\(balance) Kč")
             self.currentBalance.value = balanceSt
             observer.send(value: balanceSt)
