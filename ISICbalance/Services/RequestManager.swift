@@ -13,14 +13,7 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 
 class RequestManager {
-    
     var currentBalance = MutableProperty<Balance?>(nil)
-    
-    func reload() -> SignalProducer<Balance,RequestError> {
-        let user = Balance(balance: "150Kč")
-        print(user.balance)
-        return SignalProducer(value: user)
-    }
     
     func reloadData() -> SignalProducer<Balance,RequestError> {
         return SignalProducer { observer, diposable in
