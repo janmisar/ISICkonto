@@ -23,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
-            window.rootViewController = UINavigationController()
-            appFlowController = AppFlowController(with: window.rootViewController as! UINavigationController)
+            let navigationController = UINavigationController()
+            window.rootViewController = navigationController
+            appFlowController = AppFlowController(with: navigationController)
             appFlowController!.launch()
             window.makeKeyAndVisible()
         }
