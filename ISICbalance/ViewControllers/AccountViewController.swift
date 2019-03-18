@@ -98,7 +98,6 @@ class AccountViewController: BaseViewController {
     }
     
     @objc func saveCredentials() {
-//        viewModel.saveCredentials()
         viewModel.loginAction.apply().start()
     }
     
@@ -109,6 +108,10 @@ class AccountViewController: BaseViewController {
         
         viewModel.loginAction.errors.producer.startWithValues { errors in
             print(errors)
+        }
+
+        viewModel.loginAction.completed.producer.startWithValues { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
         }
     }
 }

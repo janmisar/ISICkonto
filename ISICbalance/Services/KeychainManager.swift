@@ -12,7 +12,6 @@ import SwiftKeychainWrapper
 import Result
 
 class KeychainManager {
-    var currentUser = MutableProperty<String>("OOO")
 
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
         return SignalProducer { [weak self] observer, disposable in

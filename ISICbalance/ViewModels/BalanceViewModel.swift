@@ -28,8 +28,8 @@ class BalanceViewModel: BaseViewModel {
         self.requestManager = requestManager
         super.init()
         
-        requestManager.currentBalance.producer.skipNil().startWithValues { [unowned self] user in
-            self.balance.value = user.balance
+        requestManager.currentBalance.producer.skipNil().startWithValues { [weak self] user in
+            self?.balance.value = user.balance
         }
     }
 }

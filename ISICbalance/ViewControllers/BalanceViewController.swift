@@ -108,13 +108,13 @@ class BalanceViewController: BaseViewController {
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
         
-        viewModel.getBalanceAction.errors.producer.startWithValues { errors in
+        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] errors in
+            self?.accountBtnHandle()
             print(errors)
         }
     }
     
     @objc func reloadBalance() {
-        //TODO:
         viewModel.getBalanceAction.apply().start()
     }
     
