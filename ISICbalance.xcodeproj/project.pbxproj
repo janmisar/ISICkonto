@@ -284,6 +284,7 @@
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
 				6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */,
+				14089B4D223FA11900095BC2 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -409,6 +410,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		14089B4D223FA11900095BC2 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		14847324223D6626006EF86F /* Generate preprocess header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
