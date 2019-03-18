@@ -14,15 +14,15 @@ import ReactiveSwift
 
 class RequestManager {
     
-    var currentBalance = MutableProperty<User?>(nil)
+    var currentBalance = MutableProperty<Balance?>(nil)
     
-    func reload() -> SignalProducer<User,LoginError> {
-        let user = User(username: "AAA", balance: "150Kč")
+    func reload() -> SignalProducer<Balance,RequestError> {
+        let user = Balance(balance: "150Kč")
         print(user.balance)
         return SignalProducer(value: user)
     }
     
-    func reloadData() -> SignalProducer<User,LoginError> {
+    func reloadData() -> SignalProducer<Balance,RequestError> {
         return SignalProducer { observer, diposable in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
                 guard let self = self else { return }
@@ -32,14 +32,13 @@ class RequestManager {
                     print("Agata request success")
                     self.agataRequestSucc(observer, response)
                 case .failure(let error):
-                    let requestError = RequestError.agataGetError(error: error)
-                    observer.send(error: LoginError.requestsFailed(requestError))
+                    observer.send(error: RequestError.agataGetError(error: error))
                 }
             }
         }
     }
     
-    func agataRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ response: (DataResponse<String>)) {
+    func agataRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ response: (DataResponse<String>)) {
         
         let responseURL = response.response?.url
         let hostUrl = responseURL?.host ?? ""
@@ -70,27 +69,21 @@ class RequestManager {
                     print("SSO request success")
                     self.ssoRequestSucc(observer, responseShibboleth)
                 case .failure(let error):
-                    let requestError = RequestError.ssoGetError(error: error)
-                    observer.send(error: LoginError.requestsFailed(requestError))
+                    observer.send(error: RequestError.ssoGetError(error: error))
                 }
             }
         }
     }
     
-    fileprivate func ssoRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
+    fileprivate func ssoRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseShibboleth: (DataResponse<String>)) {
         #warning("TODO- create keychain manager")
         guard let username = KeychainWrapper.standard.string(forKey: "username") else {
-            let requestError = LoginValidation.username
-            observer.send(error: LoginError.validation([requestError]))
-
+            observer.send(error: RequestError.credentialsError(.username))
             return
         }
         
         guard let password = KeychainWrapper.standard.string(forKey: "password") else {
-            let requestError = LoginValidation.password
-            observer.send(error: LoginError.validation([requestError]))
-            #warning("TODO - show AccountVC")
-
+            observer.send(error: RequestError.credentialsError(.password))
             return
         }
         //login parameters, username and password
@@ -110,13 +103,12 @@ class RequestManager {
                 print("Credentials request success")
                 self.credentialsRequestSucc(observer, responseCredentials)
             case .failure(let error):
-                let requestError = RequestError.credentialsPostError(error: error)
-                observer.send(error: LoginError.requestsFailed(requestError))
+                observer.send(error: RequestError.credentialsPostError(error: error))
             }
         }
     }
     
-    fileprivate func credentialsRequestSucc(_ observer: Signal<User, LoginError>.Observer, _ responseCredentials: (DataResponse<String>)) {
+    fileprivate func credentialsRequestSucc(_ observer: Signal<Balance, RequestError>.Observer, _ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
             #warning("TODO - check array size")
@@ -125,7 +117,7 @@ class RequestManager {
             //get action value from form to check login process
             let action: String = try form.attr("action")
             if !action.contains("agata.suz.cvut.cz"){
-                observer.send(error: LoginError.loginFailed)
+                observer.send(error: RequestError.loginFailed)
             }
             
             let inputs = try form.select("input")
@@ -150,17 +142,15 @@ class RequestManager {
                     print("Balance site request success")
                     self.getBalanceFromDoc(observer, dataResponse: responseBalanceSite)
                 case .failure(let error):
-                    let requestError = RequestError.balanceScreenPostError(error: error)
-                    observer.send(error: LoginError.requestsFailed(requestError))
+                   observer.send(error: RequestError.balanceScreenPostError(error: error))
                 }
             }
         } catch {
-            let requestError = RequestError.parseError
-            observer.send(error: LoginError.requestsFailed(requestError))
+            observer.send(error: RequestError.parseError)
         }
     }
     
-    func getBalanceFromDoc(_ observer: Signal<User, LoginError>.Observer, dataResponse: DataResponse<String>){
+    func getBalanceFromDoc(_ observer: Signal<Balance, RequestError>.Observer, dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
             #warning("TODO - check array size")
@@ -170,13 +160,12 @@ class RequestManager {
             let lineText = balanceLine.ownText()
             let lineElements = lineText.split(separator: " ")
             let balance = lineElements[0]
-            let user = User(username: "PPP", balance: "\(balance) Kč")
+            let user = Balance(balance: "\(balance) Kč")
             self.currentBalance.value = user
             observer.send(value: user)
             observer.sendCompleted()
         } catch {
-            let requestError = RequestError.parseError
-            observer.send(error: LoginError.requestsFailed(requestError))
+            observer.send(error: RequestError.parseError)
         }
     }
 }

@@ -17,7 +17,6 @@ class BalanceViewController: BaseViewController {
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
     
-    
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
     weak var balanceTitle: UILabel!
@@ -28,7 +27,8 @@ class BalanceViewController: BaseViewController {
         let requestManager = RequestManager()
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
-        self.accountViewModel = AccountViewModel(requestManager)
+        #warning("TODO: waiting for flow coord. lecture")
+        self.accountViewModel = AccountViewModel()
         
         super.init()
     }
@@ -106,11 +106,15 @@ class BalanceViewController: BaseViewController {
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
+        
+        viewModel.getBalanceAction.errors.producer.startWithValues { errors in
+            print(errors)
+        }
     }
     
     @objc func reloadBalance() {
         #warning("TODO:")
-//        accountViewModel.loginAction.apply().start()
+        viewModel.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
@@ -127,5 +131,4 @@ class BalanceViewController: BaseViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
 }

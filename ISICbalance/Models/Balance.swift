@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct User {
-    var username: String
+struct Balance {
     var balance: String
 }
