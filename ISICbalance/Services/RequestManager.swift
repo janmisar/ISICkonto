@@ -46,11 +46,11 @@ class RequestManager {
                     return RequestManager.agataRequestSucc(urlString: urlString)
                 }
             }
-            .flatMap(.latest, { [weak self] responseShibboleth -> SignalProducer<DataResponse<String>, RequestError> in
+            .map { responseShibboleth -> (String, [String:String]) in
                 var username: String = ""
                 var password: String = ""
 
-                self?.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+                self.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
                     username = user.username
                     password = user.password
                 }).start()
@@ -63,6 +63,9 @@ class RequestManager {
                 ]
 
                 let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
+                return (credentialsUrl, parameters)
+            }
+            .flatMap(.latest, { (credentialsUrl, parameters) -> SignalProducer<DataResponse<String>, RequestError> in
                 return RequestManager.ssoRequestSucc(credentialsUrl: credentialsUrl, parameters: parameters)
             })
             .flatMap(.latest, { [weak self] responseCredentials -> SignalProducer<DataResponse<String>, RequestError> in
@@ -103,7 +106,7 @@ class RequestManager {
             .flatMap(.latest, { dataResponse -> SignalProducer<DataResponse<String>, RequestError> in
                 return self.parseDocument(dataResponse: dataResponse)
             })
-            
+
 
     }
 
