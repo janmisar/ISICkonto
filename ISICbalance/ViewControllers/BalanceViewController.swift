@@ -115,6 +115,7 @@ class BalanceViewController: BaseViewController {
     
     @objc func reloadBalance() {
         #warning("TODO:")
+        print("RELOAD")
         viewModel.getBalanceAction.apply().start()
     }
     
