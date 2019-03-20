@@ -30,7 +30,7 @@ class RequestManager {
     }
 
     func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
-        return RequestManager.reloadData().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
+        return RequestManager.agataRequest().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
@@ -53,7 +53,7 @@ class RequestManager {
 
                     let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
 
-                    return RequestManager.agataRequestSucc(urlString: urlString)
+                    return RequestManager.ssoRequest(urlString: urlString)
                 }
             }
             // TODO: Ask about line below
@@ -70,7 +70,7 @@ class RequestManager {
                 return (credentialsUrl, parameters)
             }
             .flatMap(.latest, { (credentialsUrl, parameters) -> SignalProducer<DataResponse<String>, RequestError> in
-                return RequestManager.ssoRequestSucc(credentialsUrl: credentialsUrl, parameters: parameters)
+                return RequestManager.credentialsRequest(credentialsUrl: credentialsUrl, parameters: parameters)
             })
             .flatMap(.latest, { responseCredentials -> SignalProducer<DataResponse<String>, RequestError> in
                 do {
@@ -98,7 +98,7 @@ class RequestManager {
                         inputName2 : inputValue2
                     ]
 
-                    return RequestManager.credentialsRequestSucc(action: action, formParameters: formParameters)
+                    return RequestManager.balanceSiteRequest(action: action, formParameters: formParameters)
                 } catch {
                     return SignalProducer.init(error: RequestError.parseError)
                 }
@@ -128,7 +128,8 @@ class RequestManager {
         }
     }
 
-    static func reloadData() -> SignalProducer<DataResponse<String>,RequestError> {
+    // MARK: - alamofireRequests
+    static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
 
@@ -143,7 +144,7 @@ class RequestManager {
         }
     }
 
-    static func agataRequestSucc(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
+    static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(urlString).responseString { responseShibboleth in
 
@@ -158,7 +159,7 @@ class RequestManager {
         }
     }
 
-    static func ssoRequestSucc(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
 
@@ -173,7 +174,7 @@ class RequestManager {
         }
     }
 
-    static func credentialsRequestSucc(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
 

@@ -13,7 +13,6 @@ import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
 
-
 class AccountViewController: BaseViewController {
     private let viewModel: AccountViewModel
     
@@ -26,7 +25,6 @@ class AccountViewController: BaseViewController {
     
     init(_ keychainManager: KeychainManager) {
         self.viewModel = AccountViewModel(keychainManager)
-        // TODO: ask about super.init
         super.init()
     }
     
@@ -45,9 +43,9 @@ class AccountViewController: BaseViewController {
         self.formStackView = formStackView
         
         formStackView.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
+            make.bottom.lessThanOrEqualTo(-20)
         }
         
         setupFormFields()

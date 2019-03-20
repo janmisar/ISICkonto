@@ -24,6 +24,7 @@
 		14089B572240038D00095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B562240038D00095BC2 /* KeychainManager.swift */; };
 		14089B592240057B00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B582240057B00095BC2 /* User.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
+		140A07112242A170002EB67F /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A07102242A16F002EB67F /* Balance.swift */; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
@@ -43,7 +44,6 @@
 		14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27A223BB644006430D1 /* AccountViewModel.swift */; };
 		14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27C223BB67D006430D1 /* TextFieldExt.swift */; };
 		14ECC280223BE1DA006430D1 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27F223BE1DA006430D1 /* FormTextField.swift */; };
-		14ECC283223BEB8A006430D1 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
@@ -70,6 +70,7 @@
 		14089B562240038D00095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		14089B582240057B00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		140A07102242A16F002EB67F /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		14ECC27A223BB644006430D1 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		14ECC27C223BB67D006430D1 /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
 		14ECC27F223BE1DA006430D1 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
-		14ECC282223BEB8A006430D1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 		14ECC281223BEB6B006430D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				14ECC282223BEB8A006430D1 /* Balance.swift */,
 				14089B582240057B00095BC2 /* User.swift */,
+				140A07102242A16F002EB67F /* Balance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,9 +592,9 @@
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14089B592240057B00095BC2 /* User.swift in Sources */,
 				14089B572240038D00095BC2 /* KeychainManager.swift in Sources */,
-				14ECC283223BEB8A006430D1 /* Balance.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
+				140A07112242A170002EB67F /* Balance.swift in Sources */,
 				14847323223D30A0006EF86F /* FormTextField.swift in Sources */,
 				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
 				14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */,

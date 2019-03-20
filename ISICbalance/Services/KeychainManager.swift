@@ -12,7 +12,6 @@ import SwiftKeychainWrapper
 import Result
 
 class KeychainManager {
-
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
         //TODO: disposable parameter?
         return SignalProducer { observer, _ in

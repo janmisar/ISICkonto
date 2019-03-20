@@ -118,8 +118,8 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let VC = AccountViewController(keychainManager)
-        navigationController?.pushViewController(VC, animated: true)
+        let accountViewController = AccountViewController(keychainManager)
+        navigationController?.pushViewController(accountViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

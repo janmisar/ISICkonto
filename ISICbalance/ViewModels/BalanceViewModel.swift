@@ -17,7 +17,7 @@ class BalanceViewModel: BaseViewModel {
     private var requestManager: RequestManager
     let balance = MutableProperty<String>("0 Kč")
 
-    // DataResponse<String> -> 💩
+    // DataResponse<String>
     lazy var getBalanceAction = Action<(),Balance,RequestError> { [weak self] in
         if let self = self {
             return self.requestManager.getBalance()
