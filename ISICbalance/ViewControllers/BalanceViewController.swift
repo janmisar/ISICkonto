@@ -50,8 +50,9 @@ class BalanceViewController: BaseViewController {
         
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.leading.greaterThanOrEqualTo(20)
-            make.trailing.lessThanOrEqualTo(-20)
+            make.leading.trailing.equalToSuperview().inset(50)
+            make.top.greaterThanOrEqualTo(30)
+            make.bottom.lessThanOrEqualTo(-30)
         }
         
         setupBalanceField()
@@ -80,16 +81,14 @@ class BalanceViewController: BaseViewController {
     
     fileprivate func setupButtonsStack() {
         let buttonsStackView = UIStackView()
+        buttonsStackView.distribution = .fillEqually
         screenStackView.addArrangedSubview(buttonsStackView)
-        
+
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
         buttonsStackView.addArrangedSubview(reloadButton)
-        
-        let spacerView = UIView()
-        buttonsStackView.addArrangedSubview(spacerView)
-        
+
         let accountButton = UIButton()
         accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
@@ -100,14 +99,13 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         setupBindings()
     }
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
-        
         viewModel.getBalanceAction.errors.producer.startWithValues { errors in
             print(errors)
         }

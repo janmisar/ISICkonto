@@ -15,9 +15,6 @@ target 'ISICbalance' do
   pod 'SwiftSoup', '~> 1.7.4' 
   pod 'ReactiveSwift', '~> 4.0.0' 
   pod 'SwiftKeychainWrapper', '~> 3.2.0'
-  pod 'AlamofireReactiveExtensions'
-
-  
   
   target 'ISICbalanceTests' do
     inherit! :search_paths

@@ -21,13 +21,14 @@ class RequestManager {
     }
 
     func getBalance() -> SignalProducer<DataResponse<String>,RequestError> {
-        return RequestManager.reloadData().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
+        return RequestManager.reloadData().flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
 
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
                     print("YOU ARE IN")
+                    guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
                     return self.parseDocument(dataResponse: response)
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
@@ -78,9 +79,7 @@ class RequestManager {
                     //get action value from form to check login process
                     let action: String = try form.attr("action")
                     if !action.contains("agata.suz.cvut.cz"){
-                        return SignalProducer { observer, _ in
-                            observer.send(error: RequestError.loginFailed)
-                        }
+                        return SignalProducer.init(error: RequestError.loginFailed)
                     }
 
                     let inputs = try form.select("input")
@@ -99,12 +98,11 @@ class RequestManager {
 
                     return RequestManager.credentialsRequestSucc(action: action, formParameters: formParameters)
                 } catch {
-                    return SignalProducer { observer, _ in
-                        observer.send(error: RequestError.parseError)
-                    }
+                    return SignalProducer.init(error: RequestError.parseError)
                 }
             })
-            .flatMap(.latest, { dataResponse -> SignalProducer<DataResponse<String>, RequestError> in
+            .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<DataResponse<String>, RequestError> in
+                guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
                 return self.parseDocument(dataResponse: dataResponse)
             })
     }
