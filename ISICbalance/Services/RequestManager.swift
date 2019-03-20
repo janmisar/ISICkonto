@@ -9,28 +9,32 @@
 import Foundation
 import Alamofire
 import SwiftSoup
+import SwiftKeychainWrapper
 
 class RequestManager {
-    func reloadData() throws {
+    
+    func reloadData() {
         Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { [weak self] response in
+            guard let self = self else { return }
             
             switch response.result {
             case .success:
                 print("Agata request success")
-                self?.agataRequestSucc(response)
+                self.agataRequestSucc(response)
             case .failure(let error):
-                return (self?.handleError(error: RequestError.agataGetError(error: error)))!
+                return (self.handleError(error: RequestError.agataGetError(error: error)))
             }
         }
     }
     
-    fileprivate func agataRequestSucc(_ response: (DataResponse<String>)) {
+    func agataRequestSucc(_ response: (DataResponse<String>)) {
         
         let responseURL = response.response?.url
         let hostUrl = responseURL?.host ?? ""
         
         // if url contains agata.suz.cvut -> you are logged in
         if hostUrl.contains("agata.suz.cvut") {
+            print("YOU ARE IN")
             getBalanceFromDoc(dataResponse: response)
         } else {
             let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
@@ -47,22 +51,30 @@ class RequestManager {
             let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
             
             Alamofire.request(urlString).responseString { [weak self] responseShibboleth in
+                guard let self = self else { return }
                 
                 switch responseShibboleth.result {
                 case .success:
                     print("SSO request success")
-                    self?.ssoRequestSucc(responseShibboleth)
+                    self.ssoRequestSucc(responseShibboleth)
                 case .failure(let error):
-                    return ((self?.handleError(error: RequestError.ssoGetError(error: error)))!)
+                    return self.handleError(error: RequestError.ssoGetError(error: error))
                 }
             }
         }
     }
     
     fileprivate func ssoRequestSucc(_ responseShibboleth: (DataResponse<String>)) {
-        #warning("TODO - get credentials from keychain or userdefaults")
-        let username = "babacros"
-        let password = "xxx"
+        #warning("TODO- create keychain manager")
+        guard let username = KeychainWrapper.standard.string(forKey: "username") else {
+            #warning("TODO - show AccountVC")
+            return
+        }
+        
+        guard let password = KeychainWrapper.standard.string(forKey: "password") else {
+            #warning("TODO - show AccountVC")
+            return
+        }
         //login parameters, username and password
         let parameters = [
             "j_username": username,
@@ -73,13 +85,14 @@ class RequestManager {
         let credentialsUrl = responseShibboleth.response?.url?.absoluteString ?? ""
         
         Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { [weak self] responseCredentials in
+            guard let self = self else { return }
             
             switch responseCredentials.result {
             case .success:
                 print("Credentials request success")
-                self?.credentialsRequestSucc(responseCredentials)
+                self.credentialsRequestSucc(responseCredentials)
             case .failure(let error):
-                return ((self?.handleError(error: RequestError.credentialsPostError(error: error)))!)
+                return self.handleError(error: RequestError.credentialsPostError(error: error))
             }
         }
     }
@@ -87,6 +100,7 @@ class RequestManager {
     fileprivate func credentialsRequestSucc(_ responseCredentials: (DataResponse<String>)) {
         do {
             let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
+            #warning("TODO - check array size")
             let form: Element = try document.select("form").array()[0]
             
             //get action value from form to check login process
@@ -95,9 +109,9 @@ class RequestManager {
                 return handleLoginError(error: LoginError.loginFailed)
             }
             
-            print(form)
             let inputs = try form.select("input")
             //get RelayState
+            #warning("TODO - check array size")
             let inputName1 = try inputs.array()[0].attr("name")
             let inputValue1 = try inputs.array()[0].attr("value")
             //get SAMLResponse
@@ -108,15 +122,16 @@ class RequestManager {
                 inputName1 : inputValue1,
                 inputName2 : inputValue2
             ]
-            
+
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { [weak self] responseBalanceSite in
+                guard let self = self else { return }
                 
                 switch responseBalanceSite.result {
                 case .success:
                     print("Credentials request success")
-                    self?.getBalanceFromDoc(dataResponse: responseBalanceSite)
+                    self.getBalanceFromDoc(dataResponse: responseBalanceSite)
                 case .failure(let error):
-                    return ((self?.handleError(error: RequestError.balanceScreenPostError(error: error)))!)
+                    return self.handleError(error: RequestError.balanceScreenPostError(error: error))
                 }
             }
         } catch {
@@ -127,6 +142,7 @@ class RequestManager {
     func getBalanceFromDoc(dataResponse: DataResponse<String>){
         do {
             let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
+            #warning("TODO - check array size")
             let bodyElement: Element = try document.select("body").array()[0]
             let table: Element = try bodyElement.select("tbody").array()[0]
             let balanceLine: Element = try table.select("td").array()[4]

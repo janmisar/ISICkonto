@@ -29,10 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.Theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
         
-        
 //        window?.rootViewController = UINavigationController(rootViewController: AccountViewController())
         window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
-        
+
         return true
     }
 

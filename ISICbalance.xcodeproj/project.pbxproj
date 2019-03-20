@@ -21,13 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C61F223A6AD700A46BCA /* RequestManager.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
-		14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847320223D2D16006EF86F /* TextFieldExt.swift */; };
+		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
+		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
+		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
 		14847323223D30A0006EF86F /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14847322223D30A0006EF86F /* FormTextField.swift */; };
-		14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14893B2E2237A3FE00690F4D /* BalanceViewController.swift */; };
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
-		14C19017223596DB0033616E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19016223596DB0033616E /* ViewController.swift */; };
 		14C1901A223596DB0033616E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C19018223596DB0033616E /* Main.storyboard */; };
 		14C1901C223596DC0033616E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
 		14C1901F223596DC0033616E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901D223596DC0033616E /* LaunchScreen.storyboard */; };
@@ -36,10 +35,12 @@
 		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
-		14C19060223668000033616E /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905F223668000033616E /* BalanceView.swift */; };
-		14C19064223675A00033616E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19063223675A00033616E /* AccountView.swift */; };
 		14C19066223678DA0033616E /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19065223678DA0033616E /* ColorExt.swift */; };
-		14C1906822368D040033616E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1906722368D040033616E /* AccountViewController.swift */; };
+		14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
+		14ECC279223BB623006430D1 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
+		14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27A223BB644006430D1 /* AccountViewModel.swift */; };
+		14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27C223BB67D006430D1 /* TextFieldExt.swift */; };
+		14ECC280223BE1DA006430D1 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27F223BE1DA006430D1 /* FormTextField.swift */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
@@ -63,14 +64,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1408C61F223A6AD700A46BCA /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		14847320223D2D16006EF86F /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
+		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		14847322223D30A0006EF86F /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
-		14893B2E2237A3FE00690F4D /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		14C19016223596DB0033616E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14C19019223596DB0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C1901B223596DC0033616E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C1901E223596DC0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,10 +85,12 @@
 		14C190492235A2840033616E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14C1905B22365EDC0033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		14C1905F223668000033616E /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
-		14C19063223675A00033616E /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		14C19065223678DA0033616E /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
-		14C1906722368D040033616E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
+		14ECC278223BB623006430D1 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		14ECC27A223BB644006430D1 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		14ECC27C223BB67D006430D1 /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
+		14ECC27F223BE1DA006430D1 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,15 +130,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1484731F223D2CDC006EF86F /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				14847320223D2D16006EF86F /* TextFieldExt.swift */,
-				14C19065223678DA0033616E /* ColorExt.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		14C19008223596DB0033616E = {
 			isa = PBXGroup;
 			children = (
@@ -162,16 +155,14 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
-				1484731F223D2CDC006EF86F /* Extensions */,
+				14ECC27E223BB85D006430D1 /* Services */,
+				14ECC277223BB613006430D1 /* Extensions */,
+				14ECC274223BB4D6006430D1 /* ViewModels */,
+				14ECC273223BB212006430D1 /* ViewControllers */,
 				14C190522235AE370033616E /* Generated */,
+				14ECC27F223BE1DA006430D1 /* FormTextField.swift */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
-				14C19016223596DB0033616E /* ViewController.swift */,
 				1408C621223A6B0400A46BCA /* Errors.swift */,
-				1408C61F223A6AD700A46BCA /* RequestManager.swift */,
-				14893B2E2237A3FE00690F4D /* BalanceViewController.swift */,
-				14C1905F223668000033616E /* BalanceView.swift */,
-				14C1906722368D040033616E /* AccountViewController.swift */,
-				14C19063223675A00033616E /* AccountView.swift */,
 				14847322223D30A0006EF86F /* FormTextField.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
 				14C1901B223596DC0033616E /* Assets.xcassets */,
@@ -209,6 +200,42 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		14ECC273223BB212006430D1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				143CB3CA223E51F400413568 /* AccountViewController.swift */,
+				143CB3CB223E51F400413568 /* BalanceViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		14ECC274223BB4D6006430D1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */,
+				14ECC27A223BB644006430D1 /* AccountViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		14ECC277223BB613006430D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14C19065223678DA0033616E /* ColorExt.swift */,
+				14ECC278223BB623006430D1 /* Base.swift */,
+				14ECC27C223BB67D006430D1 /* TextFieldExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14ECC27E223BB85D006430D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				143CB3C8223E51D800413568 /* RequestManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2B72B8C664D21E0754CB91FE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,8 +266,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
-				14847324223D6626006EF86F /* Generate preprocess header */,
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
+				14847324223D6626006EF86F /* Generate preprocess header */,
 				14C190512235A9940033616E /* SwiftGen Script */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
@@ -461,7 +488,10 @@
 				"${PODS_ROOT}/Target Support Files/Pods-ISICbalance/Pods-ISICbalance-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ACKategories/ACKategories.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -470,7 +500,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ACKategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,19 +562,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14893B2F2237A3FE00690F4D /* BalanceViewController.swift in Sources */,
-				14C19064223675A00033616E /* AccountView.swift in Sources */,
-				14C19017223596DB0033616E /* ViewController.swift in Sources */,
-				14C1906822368D040033616E /* AccountViewController.swift in Sources */,
-				14C19060223668000033616E /* BalanceView.swift in Sources */,
-				1408C620223A6AD700A46BCA /* RequestManager.swift in Sources */,
+				143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */,
+				143CB3C9223E51D800413568 /* RequestManager.swift in Sources */,
+				14ECC280223BE1DA006430D1 /* FormTextField.swift in Sources */,
+				143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */,
+				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
 				14847323223D30A0006EF86F /* FormTextField.swift in Sources */,
 				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
-				14847321223D2D16006EF86F /* TextFieldExt.swift in Sources */,
+				14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */,
+				14ECC279223BB623006430D1 /* Base.swift in Sources */,
+				14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

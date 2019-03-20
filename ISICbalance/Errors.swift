@@ -6,17 +6,17 @@
 //  Copyright © 2019 Rostislav Babáček. All rights reserved.
 //
 
-enum RequestError {
+enum RequestError: Error {
     case agataGetError(error: Error)
     case ssoGetError(error: Error)
     case credentialsPostError(error: Error)
     case balanceScreenPostError(error: Error)
 }
 
-enum LoginError {
+enum LoginError: Error {
     case loginFailed
 }
 
-enum SwiftSoupError {
+enum SwiftSoupError: Error {
     case parseLoginSite(error: Error)
 }

@@ -11,6 +11,7 @@ import UIKit
 class FormTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         self.backgroundColor = UIColor.Theme.textFieldBackground
         self.textColor = UIColor.Theme.textColor
         self.tintColor = UIColor.Theme.textColor
@@ -19,6 +20,10 @@ class FormTextField: UITextField {
         self.layer.masksToBounds = true
         self.autocorrectionType = .no
         self.autocapitalizationType = .none
+        
+        self.snp.makeConstraints { (make) in
+            make.height.equalTo(45)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
