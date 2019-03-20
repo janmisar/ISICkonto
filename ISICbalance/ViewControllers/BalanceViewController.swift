@@ -16,6 +16,7 @@ class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
+
     private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
@@ -32,7 +33,7 @@ class BalanceViewController: BaseViewController {
         self.viewModel = BalanceViewModel(requestManager)
         //TODO: waiting for flow coord. lecture
         self.accountViewModel = AccountViewModel(keychainManager)
-        
+
         super.init()
     }
     
@@ -53,6 +54,8 @@ class BalanceViewController: BaseViewController {
         screenStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(50)
+            make.top.greaterThanOrEqualTo(30)
+            make.bottom.lessThanOrEqualTo(-30)
         }
         
         setupBalanceField()
@@ -81,7 +84,7 @@ class BalanceViewController: BaseViewController {
         let buttonsStackView = UIStackView()
         buttonsStackView.distribution = .fillEqually
         screenStackView.addArrangedSubview(buttonsStackView)
-        
+
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
@@ -97,27 +100,27 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchDown)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchDown)
+        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         setupBindings()
     }
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
-        
         viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] errors in
             self?.accountBtnHandle()
-            print(errors)
         }
     }
     
     @objc func reloadBalance() {
+        #warning("TODO:")
+        print("RELOAD")
         viewModel.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        let accountVC = AccountViewController(accountViewModel, keychainManager)
-        navigationController?.pushViewController(accountVC, animated: true)
+        let accountViewController = AccountViewController(keychainManager)
+        navigationController?.pushViewController(accountViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

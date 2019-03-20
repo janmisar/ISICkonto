@@ -13,7 +13,6 @@ import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
     let keychainManager: KeychainManager
-
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
     var validationSignal: Property<Bool>
@@ -40,9 +39,8 @@ class AccountViewModel: BaseViewModel {
         }
         
         validationSignal = validationErrors.map { $0.isEmpty }
-
         self.keychainManager = keychainManager
-        // TODO: Ask about super.init()
+
         super.init()
         keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
             self?.username.value = user.username

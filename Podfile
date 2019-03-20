@@ -18,7 +18,6 @@ target 'ISICbalance' do
   pod 'SwiftLint', '~> 0.31.0'
 
   
-  
   target 'ISICbalanceTests' do
     inherit! :search_paths
     # Pods for testing
