@@ -81,7 +81,7 @@ class RequestManager {
 
                     //get action value from form to check login process
                     let action: String = try form.attr("action")
-                    if !action.contains("agata.suz.cvut.cz"){
+                    if !action.contains("agata.suz.cvut.cz") {
                         return SignalProducer.init(error: RequestError.loginFailed(message: "Error - login failed"))
                     }
 

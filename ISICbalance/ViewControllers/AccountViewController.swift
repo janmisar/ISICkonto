@@ -23,7 +23,6 @@ class AccountViewController: BaseViewController {
     weak var passwordTextField: UITextField!
     weak var loginButton: UIButton!
     
-
     init(_ keychainManager: KeychainManager) {
         self.viewModel = AccountViewModel(keychainManager)
 

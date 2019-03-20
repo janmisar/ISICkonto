@@ -107,13 +107,14 @@ class BalanceViewController: BaseViewController {
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
+        // pop viewController if problems with getBalanceAction
         viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] errors in
             self?.accountBtnHandle()
         }
     }
     
     @objc func reloadBalance() {
-        #warning("TODO:")
+        // TODO:
         print("RELOAD")
         viewModel.getBalanceAction.apply().start()
     }
@@ -130,6 +131,7 @@ class BalanceViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // TODO: load balance during didFinishLaunchingWithOptions
         viewModel.getBalanceAction.apply().start()
     }
     
