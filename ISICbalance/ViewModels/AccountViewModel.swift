@@ -19,7 +19,6 @@ class AccountViewModel: BaseViewModel {
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
 
-    
     lazy var loginAction = Action<(),(),LoginError> { [unowned self] in
         if self.validationSignal.value {
             return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)

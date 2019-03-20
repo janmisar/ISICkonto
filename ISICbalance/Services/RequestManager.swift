@@ -20,19 +20,27 @@ class RequestManager {
         self.keychainManager = keychainManager
     }
 
-    func getBalance() -> SignalProducer<DataResponse<String>,RequestError> {
-        return RequestManager.reloadData().flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
+    func getBalance() -> SignalProducer<Balance, RequestError> {
+        return getRequestsResult()
+            .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<Balance, RequestError> in
+                guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
+                return self.parseDocument(dataResponse: dataResponse)
+            })
+    }
+
+    func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
+        return RequestManager.reloadData().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
-
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    print("YOU ARE IN")
-                    guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
-                    return self.parseDocument(dataResponse: response)
+                    return SignalProducer<DataResponse<String>, RequestError> { observer, disposable in
+                        observer.send(value: response)
+                        observer.sendCompleted()
+                    }
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
-
+//                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL
                     let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
                     let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
                     let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
@@ -52,7 +60,7 @@ class RequestManager {
                 var password: String = ""
 
                 // TODO: add UserRepository in following branch
-                self.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+                self.keychainManager.getCredentialsFromKeychain().on(value: { user in
                     username = user.username
                     password = user.password
                 }).start()
@@ -70,7 +78,7 @@ class RequestManager {
             .flatMap(.latest, { (credentialsUrl, parameters) -> SignalProducer<DataResponse<String>, RequestError> in
                 return RequestManager.ssoRequestSucc(credentialsUrl: credentialsUrl, parameters: parameters)
             })
-            .flatMap(.latest, { [weak self] responseCredentials -> SignalProducer<DataResponse<String>, RequestError> in
+            .flatMap(.latest, { responseCredentials -> SignalProducer<DataResponse<String>, RequestError> in
                 do {
                     let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
                     #warning("TODO - check array size")
@@ -101,13 +109,9 @@ class RequestManager {
                     return SignalProducer.init(error: RequestError.parseError)
                 }
             })
-            .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<DataResponse<String>, RequestError> in
-                guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
-                return self.parseDocument(dataResponse: dataResponse)
-            })
     }
 
-    func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<DataResponse<String>,RequestError> {
+    func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
         return SignalProducer { [weak self] observer, _ in
             do {
                 let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
@@ -120,8 +124,10 @@ class RequestManager {
                 let balance = lineElements[0]
                 let user = Balance(balance: "\(balance) Kč")
                 self?.currentBalance.value = user
-                // TODO: 
+                // TODO: doesnt "unlock" Action"
                 observer.sendCompleted()
+                // TODO: solution ?
+                // observer.send(error: RequestError.successfulParse)
             } catch {
                 observer.send(error: RequestError.parseError)
             }
@@ -181,6 +187,7 @@ class RequestManager {
                 case .success:
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
+                    observer.sendCompleted()
                 case .failure(let error):
                     observer.send(error: RequestError.balanceScreenPostError(error: error))
                 }

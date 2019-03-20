@@ -16,12 +16,13 @@ class BalanceViewModel: BaseViewModel {
     
     private var requestManager: RequestManager
     let balance = MutableProperty<String>("0 Kč")
-    
-    lazy var getBalanceAction = Action<(),DataResponse<String>,RequestError> { [weak self] in
+
+    // DataResponse<String> -> 💩
+    lazy var getBalanceAction = Action<(),Balance,RequestError> { [weak self] in
         if let self = self {
             return self.requestManager.getBalance()
         } else {
-            return SignalProducer<DataResponse<String>, RequestError>(error: RequestError.actionError)
+            return SignalProducer<Balance, RequestError>(error: RequestError.actionError)
         }
     }
     
