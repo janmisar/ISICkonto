@@ -11,6 +11,7 @@ import Alamofire
 import SwiftSoup
 import SwiftKeychainWrapper
 import ReactiveSwift
+import Result
 
 class RequestManager {
     private let keychainManager: KeychainManager
@@ -55,20 +56,13 @@ class RequestManager {
                     return RequestManager.agataRequestSucc(urlString: urlString)
                 }
             }
-            .map { responseShibboleth -> (String, [String:String]) in
-                var username: String = ""
-                var password: String = ""
-
-                // TODO: add UserRepository in following branch
-                self.keychainManager.getCredentialsFromKeychain().on(value: { user in
-                    username = user.username
-                    password = user.password
-                }).start()
-
+            // TODO: Ask about line below
+            .combineLatest(with: keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
+            .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
                 let parameters = [
-                    "j_username": username,
-                    "j_password": password,
+                    "j_username": user.username,
+                    "j_password": user.password,
                     "_eventId_proceed" : ""
                 ]
 
