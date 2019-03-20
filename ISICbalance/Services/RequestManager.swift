@@ -50,6 +50,7 @@ class RequestManager {
                 var username: String = ""
                 var password: String = ""
 
+                // TODO: add UserRepository in following branch
                 self.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
                     username = user.username
                     password = user.password
@@ -106,14 +107,10 @@ class RequestManager {
             .flatMap(.latest, { dataResponse -> SignalProducer<DataResponse<String>, RequestError> in
                 return self.parseDocument(dataResponse: dataResponse)
             })
-
-
     }
 
     func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { [weak self] observer, _ in
-            guard let self = self else { return }
-
             do {
                 let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
                 #warning("TODO - check array size")
@@ -124,7 +121,8 @@ class RequestManager {
                 let lineElements = lineText.split(separator: " ")
                 let balance = lineElements[0]
                 let user = Balance(balance: "\(balance) Kč")
-                self.currentBalance.value = user
+                self?.currentBalance.value = user
+                // TODO: 
                 observer.sendCompleted()
             } catch {
                 observer.send(error: RequestError.parseError)

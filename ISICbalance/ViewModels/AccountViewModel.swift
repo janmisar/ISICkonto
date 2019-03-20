@@ -45,6 +45,7 @@ class AccountViewModel: BaseViewModel {
         self.keychainManager = keychainManager
         // TODO: Ask about super.init()
         super.init()
+        // TODO: add UserRepository in following branch
         keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
             self?.username.value = user.username
             self?.password.value = user.password
