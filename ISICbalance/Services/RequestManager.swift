@@ -35,9 +35,7 @@ class RequestManager {
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer<DataResponse<String>, RequestError> { observer, _ in
-                        observer.send(value: response)
-                    }
+                    return SignalProducer(value: response)
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
 //                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
