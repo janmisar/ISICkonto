@@ -6,17 +6,23 @@ target 'ISICbalance' do
   use_frameworks!
 
   # Pods for ISICbalance
+  # UI
   pod 'SnapKit', '~> 4.0.0'
-  pod 'ACKLocalization', '~> 0.1'
+  # Bunch of tools
   pod 'ACKategories', '~> 6.0.2'
-  pod 'ACKReactiveExtensions', '~> 4.0.2'
-  pod 'SwiftGen', '~> 6.0'
+  # Networking
   pod 'Alamofire', '~> 4.0.0'
-  pod 'SwiftSoup', '~> 1.7.4' 
-  pod 'ReactiveSwift', '~> 4.0.0' 
-  pod 'SwiftKeychainWrapper', '~> 3.2.0'
+  pod 'SwiftSoup', '~> 1.7.4'
+  # Localization
+  pod 'ACKLocalization', '~> 0.1'
+  pod 'SwiftGen', '~> 6.0'
+  # Reactive
+  pod 'ReactiveSwift', '~> 4.0.0'
+  pod 'ACKReactiveExtensions', '~> 4.0.2'
+  # Keychain
+    pod 'SwiftKeychainWrapper', '~> 3.2.0'
+  # Style and conventions checker
   pod 'SwiftLint', '~> 0.31.0'
-
   
   target 'ISICbalanceTests' do
     inherit! :search_paths

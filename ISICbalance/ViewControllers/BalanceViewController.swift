@@ -16,7 +16,6 @@ class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
-
     private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
