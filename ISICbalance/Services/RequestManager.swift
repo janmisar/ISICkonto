@@ -15,7 +15,6 @@ import Result
 
 class RequestManager {
     private let keychainManager: KeychainManager
-    var currentBalance = MutableProperty<Balance?>(nil)
 
     init(_ keychainManager: KeychainManager) {
         self.keychainManager = keychainManager
@@ -114,7 +113,6 @@ class RequestManager {
                 let lineElements = lineText.split(separator: " ")
                 let balance = lineElements[0]
                 let balanceStruct = Balance(balance: "\(balance) Kč")
-                self?.currentBalance.value = balanceStruct
                 // TODO: doesnt "unlock" Action"
                 observer.send(value: balanceStruct)
                 observer.sendCompleted()

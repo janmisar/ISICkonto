@@ -25,13 +25,13 @@ class BalanceViewModel: BaseViewModel {
             return SignalProducer<Balance, RequestError>(error: RequestError.actionError)
         }
     }
-    
+
     init(_ requestManager: RequestManager) {
         self.requestManager = requestManager
         super.init()
         
-        requestManager.currentBalance.producer.skipNil().startWithValues { [unowned self] user in
-            self.balance.value = user.balance
+        self.getBalanceAction.values.producer.startWithValues { balance in
+            self.balance.value = balance.balance
         }
     }
 }
