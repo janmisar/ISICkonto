@@ -13,8 +13,7 @@ import Alamofire
 import UIKit
 
 class BalanceViewModel: BaseViewModel {
-    
-    private var requestManager: RequestManager
+    private let requestManager: RequestManager
     let balance = MutableProperty<String>("0 Kč")
 
     // DataResponse<String>
