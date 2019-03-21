@@ -35,13 +35,12 @@ class RequestManager {
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer<DataResponse<String>, RequestError> { observer, disposable in
+                    return SignalProducer<DataResponse<String>, RequestError> { observer, _ in
                         observer.send(value: response)
-                        observer.sendCompleted()
                     }
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
-//                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL
+//                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
                     let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
                     let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
                     let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
@@ -116,9 +115,10 @@ class RequestManager {
                 let lineText = balanceLine.ownText()
                 let lineElements = lineText.split(separator: " ")
                 let balance = lineElements[0]
-                let user = Balance(balance: "\(balance) Kč")
-                self?.currentBalance.value = user
+                let balanceStruct = Balance(balance: "\(balance) Kč")
+                self?.currentBalance.value = balanceStruct
                 // TODO: doesnt "unlock" Action"
+                observer.send(value: balanceStruct)
                 observer.sendCompleted()
                 // TODO: solution ?
                 // observer.send(error: RequestError.successfulParse)
@@ -182,7 +182,6 @@ class RequestManager {
                 case .success:
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
-                    observer.sendCompleted()
                 case .failure(let error):
                     observer.send(error: RequestError.balanceScreenPostError(error: error))
                 }
