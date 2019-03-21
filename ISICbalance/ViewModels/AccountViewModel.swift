@@ -30,10 +30,10 @@ class AccountViewModel: BaseViewModel {
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
-                validations.append(.username)
+                validations.append(.username(message: "Error - username is incorrect"))
             }
             if password.isEmpty {
-                validations.append(.password)
+                validations.append(.password(message: "Error - password is incorrect"))
             }
             return validations
         }

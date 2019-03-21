@@ -18,8 +18,7 @@ enum RequestError: Error {
 }
 
 enum LoginError: Error {
-    case invalidCredentials
-    case keychainCredentialsFailed
+    case keychainCredentialsFailed(message: String)
     case validation([LoginValidation])
 }
 
@@ -28,6 +27,6 @@ enum SwiftSoupError: Error {
 }
 
 enum LoginValidation: Error {
-    case username
-    case password
+    case username(message: String)
+    case password(message: String)
 }

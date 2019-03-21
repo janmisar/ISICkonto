@@ -21,7 +21,7 @@ class KeychainManager {
             if saveUsername && savePassword {
                 observer.sendCompleted()
             } else {
-                observer.send(error: LoginError.keychainCredentialsFailed)
+                observer.send(error: LoginError.keychainCredentialsFailed(message: "Error - saving credentials to keychain failed"))
             }
         }
     }
