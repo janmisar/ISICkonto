@@ -15,7 +15,7 @@ import UIKit
 class BalanceViewModel: BaseViewModel {
     
     private var requestManager: RequestManager
-    let balance = MutableProperty<String>("0 Kč")
+    lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
 
     // DataResponse<String>
     lazy var getBalanceAction = Action<(),Balance,RequestError> { [weak self] in
@@ -29,9 +29,5 @@ class BalanceViewModel: BaseViewModel {
     init(_ requestManager: RequestManager) {
         self.requestManager = requestManager
         super.init()
-        
-        self.getBalanceAction.values.producer.startWithValues { balance in
-            self.balance.value = balance.balance
-        }
     }
 }
