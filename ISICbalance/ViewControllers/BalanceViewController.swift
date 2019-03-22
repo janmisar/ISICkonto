@@ -13,7 +13,6 @@ import ACKReactiveExtensions
 import SnapKit
 
 class BalanceViewController: BaseViewController {
-    private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
     
@@ -24,9 +23,7 @@ class BalanceViewController: BaseViewController {
     private weak var accountButton: UIButton!
     
     override init() {
-        let requestManager = RequestManager()
-        self.requestManager = requestManager
-        self.viewModel = BalanceViewModel(requestManager)
+        self.viewModel = BalanceViewModel()
         //TODO: waiting for flow coord. lecture
         self.accountViewModel = AccountViewModel()
         super.init()

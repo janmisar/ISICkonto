@@ -24,8 +24,8 @@ class BalanceViewModel: BaseViewModel {
         }
     }
 
-    init(_ requestManager: RequestManager) {
-        self.requestManager = requestManager
+    override init() {
+        self.requestManager = RequestManager.shared
         super.init()
     }
 }

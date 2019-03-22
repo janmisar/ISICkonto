@@ -14,11 +14,8 @@ import ReactiveSwift
 import Result
 
 class RequestManager {
-    private let keychainManager: KeychainManager
-
-    init() {
-        self.keychainManager = KeychainManager.shared
-    }
+    private init() { }
+    static let shared = RequestManager()
 
     func getBalance() -> SignalProducer<Balance, RequestError> {
         return getRequestsResult()
@@ -52,7 +49,7 @@ class RequestManager {
                     return RequestManager.ssoRequest(urlString: urlString)
                 }
             }
-            .combineLatest(with: keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
+            .combineLatest(with: KeychainManager.shared.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
                 let parameters = [
