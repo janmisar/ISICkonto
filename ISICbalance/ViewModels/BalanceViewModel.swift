@@ -16,15 +16,13 @@ class BalanceViewModel: BaseViewModel {
     private var requestManager: RequestManager
     lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
 
-    lazy var getBalanceAction = Action<(),Balance,RequestError> { [weak self] in
-        if let self = self {
-            return self.requestManager.getBalance()
-        } else {
-            return SignalProducer<Balance, RequestError>(error: RequestError.actionError(message: "Error - self in getBalanceAction is nil"))
-        }
-    }
+    let getBalanceAction: Action<(),Balance,RequestError>
 
     override init() {
+        self.getBalanceAction = Action {
+            return RequestManager.shared.getBalance()
+        }
+
         self.requestManager = RequestManager.shared
         super.init()
     }

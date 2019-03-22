@@ -46,9 +46,12 @@ class AccountViewModel: BaseViewModel {
         self.keychainManager = KeychainManager.shared
 
         super.init()
+        // TODO:
         keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
             self?.username.value = user.username
             self?.password.value = user.password
         }).start()
+
+
     }
 }
