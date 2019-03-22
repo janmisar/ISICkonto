@@ -26,20 +26,6 @@ class BalanceViewModel: AppViewModel {
         }
     }
     
-    var requestBalance: Observable<Credentials> {
-        return refreshAction.asObservable().map { [weak self] in
-            print("reguest balance balance vm")
-            guard let strongSelf = self else { return (username: "", password: "") }
-            return strongSelf.getCredentials() }
-    }
-    
-    var resultRequestBalancePage: Observable<Result<String>> {
-        return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
-            SVProgressHUD.show(withStatus: "Refreshing balance...".localized)
-            return (self?.request(credentials: credentials))!
-        }
-    }
-    
     var retrieveBalance : Observable<String> {
         return resultRequestBalancePage.map { [weak self] in
             guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else {
@@ -49,10 +35,22 @@ class BalanceViewModel: AppViewModel {
             }
             SVProgressHUD.dismiss(withDelay: 1.0)
             return strongSelf.scrapeBalance(from: balancePage)
-            }
+        }
     }
     
+    private var requestBalance: Observable<Credentials> {
+        return refreshAction.asObservable().map { [weak self] in
+            print("reguest balance balance vm")
+            guard let strongSelf = self else { return (username: "", password: "") }
+            return strongSelf.getCredentials() }
+    }
     
+    private var resultRequestBalancePage: Observable<Result<String>> {
+        return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
+            SVProgressHUD.show(withStatus: "Refreshing balance...".localized)
+            return (self?.request(credentials: credentials))!
+        }
+    }
     
     private func request(credentials: Credentials) -> Observable<Result<String>> {
         return WebScrapingService.authenticate(credentials).request()

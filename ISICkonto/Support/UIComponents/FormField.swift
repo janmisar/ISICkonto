@@ -44,7 +44,7 @@ class FormField: UITextField {
         return bounds.insetBy(dx: 10, dy: 0)
     }
     
-    public func deactivate() {
+    func deactivate() {
         text = ""
         resignFirstResponder()
     }

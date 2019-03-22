@@ -14,14 +14,14 @@ import RxCocoa
 infix operator >>>
 infix operator -->
 
-public func >>> (button: UIButton, to: Variable<Void>)  -> Disposable {
+func >>> (button: UIButton, to: Variable<Void>)  -> Disposable {
     return button.rx.tap.bind(to: to)
 }
 
-public func >>> (textField: UITextField, to: Variable<String>) -> Disposable {
+func >>> (textField: UITextField, to: Variable<String>) -> Disposable {
     return textField.rx.text.orEmpty.asObservable().bind(to: to)
 }
 
-public func --> <Element>(observable: Observable<Element>, closure: @escaping (Element) -> ()) -> Disposable {
+func --> <Element>(observable: Observable<Element>, closure: @escaping (Element) -> ()) -> Disposable {
     return observable.subscribe(onNext: { closure($0) })
 }

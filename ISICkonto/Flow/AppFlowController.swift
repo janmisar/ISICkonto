@@ -31,7 +31,7 @@ class AppFlowController : AppFlowControllerProtocol {
         }
     }
     
-    public func showLoginViewController() {
+    func showLoginViewController() {
         let loginViewController = LogInViewController()
         navigationController.show(loginViewController, sender: self)
         
@@ -40,7 +40,7 @@ class AppFlowController : AppFlowControllerProtocol {
         }
     }
     
-    public func pushBalanceViewController(with page: String?) {
+    func pushBalanceViewController(with page: String?) {
         let balanceViewController = BalanceViewController()
         if let page = page {
             (balanceViewController.viewModel as! BalanceViewModel).balancePage.value = page

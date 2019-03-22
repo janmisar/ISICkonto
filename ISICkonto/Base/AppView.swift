@@ -22,11 +22,11 @@ class AppView: UIView {
         createConstraints()
     }
     
-    open func setupUI() {
+    func setupUI() {
         
     }
     
-    open func createConstraints() {
+    func createConstraints() {
         
     }
 

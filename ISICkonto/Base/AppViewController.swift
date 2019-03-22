@@ -27,15 +27,15 @@ class AppViewController: UIViewController {
     }
     
     
-    open func setView() {
+    func setView() {
         
     }
     
-    open func setViewModel() {
+    func setViewModel() {
         
     }
     
-    open func bindViewToViewModel(v: UIView, vm: AppViewModel) {
+    func bindViewToViewModel(v: UIView, vm: AppViewModel) {
         
     }
 

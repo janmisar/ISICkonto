@@ -22,19 +22,6 @@ class LoginViewModel: AppViewModel {
         return Observable.combineLatest(username.asObservable(), password.asObservable()) { !$0.isEmpty && !$1.isEmpty }
     }
     
-    var requestBalance: Observable<Credentials> {
-        return loginAction.asObservable().withLatestFrom(loginEnabled).filter { $0 }.map { [weak self] _ -> Credentials in print("Request login");
-            return Credentials(username: (self?.username.value)!, password: (self?.password.value)!)
-        }
-    }
-
-    var resultRequestBalancePage: Observable<Result<String>> {
-        return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
-            SVProgressHUD.show(withStatus: "Loading balance...".localized)
-            return (self?.request(credentials: credentials))!
-        }
-    }
-    
     var balancePageString: Observable<String> {
         return resultRequestBalancePage.map { [weak self] in
             guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else {
@@ -46,6 +33,19 @@ class LoginViewModel: AppViewModel {
             SVProgressHUD.dismiss(withDelay: 1.0)
             strongSelf.save(credentials: (username: strongSelf.username.value, password: strongSelf.password.value))
             return balancePage
+        }
+    }
+    
+    private var requestBalance: Observable<Credentials> {
+        return loginAction.asObservable().withLatestFrom(loginEnabled).filter { $0 }.map { [weak self] _ -> Credentials in print("Request login");
+            return Credentials(username: (self?.username.value)!, password: (self?.password.value)!)
+        }
+    }
+
+    private var resultRequestBalancePage: Observable<Result<String>> {
+        return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
+            SVProgressHUD.show(withStatus: "Loading balance...".localized)
+            return (self?.request(credentials: credentials))!
         }
     }
     
