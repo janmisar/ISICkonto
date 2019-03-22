@@ -13,15 +13,15 @@ import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
 
-class AccountViewController: BaseViewController {
+class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private let viewModel: AccountViewModel
 
-    weak var formStackView: UIStackView!
-    weak var usernameLabel: UILabel!
-    weak var usernameTextField: UITextField!
-    weak var passwordLabel: UILabel!
-    weak var passwordTextField: UITextField!
-    weak var loginButton: UIButton!
+    private weak var formStackView: UIStackView!
+    private weak var usernameLabel: UILabel!
+    private weak var usernameTextField: UITextField!
+    private weak var passwordLabel: UILabel!
+    private weak var passwordTextField: UITextField!
+    private weak var loginButton: UIButton!
     
     init(_ keychainManager: KeychainManager) {
         self.viewModel = AccountViewModel(keychainManager)
@@ -104,9 +104,12 @@ class AccountViewController: BaseViewController {
         passwordTextField <~> viewModel.password
         loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
         
-        viewModel.loginAction.errors.producer.startWithValues { errors in
-            print(errors)
-        }
+        viewModel.loginAction.errors
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] error in
+                self?.presentValidationError(error.localizedDescription)
+
+            }
 
         viewModel.loginAction.completed.producer.startWithValues { [weak self] in
             self?.navigationController?.popViewController(animated: true)

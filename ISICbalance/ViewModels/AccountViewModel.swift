@@ -12,11 +12,11 @@ import Result
 import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
-    let keychainManager: KeychainManager
+    private let keychainManager: KeychainManager
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
-    var validationSignal: Property<Bool>
-    var validationErrors: Property<[LoginValidation]>
+    private var validationSignal: Property<Bool>
+    private var validationErrors: Property<[LoginValidation]>
 
     lazy var loginAction = Action<(),(),LoginError> { [weak self] in
         guard let self = self else {

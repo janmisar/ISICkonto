@@ -18,11 +18,11 @@ class BalanceViewController: BaseViewController {
     private let accountViewModel: AccountViewModel
     private let keychainManager: KeychainManager
     
-    weak var screenStackView: UIStackView!
-    weak var balanceLabel: UILabel!
-    weak var balanceTitle: UILabel!
-    weak var reloadButton: UIButton!
-    weak var accountButton: UIButton!
+    private weak var screenStackView: UIStackView!
+    private weak var balanceLabel: UILabel!
+    private weak var balanceTitle: UILabel!
+    private weak var reloadButton: UIButton!
+    private weak var accountButton: UIButton!
     
     override init() {
         let keychainManager = KeychainManager()
