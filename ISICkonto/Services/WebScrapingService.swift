@@ -22,8 +22,8 @@ typealias Credentials = (username: String, password: String)
 
 enum WebScrapingService {
     case authenticate( _ requestData : Credentials)
-    
-    func start() -> Observable<Result<String>> {
+
+    func request() -> Observable<Result<String>>{
         switch self {
         case .authenticate(let requestData):
             return requestSsoLogin(credentials: requestData)
