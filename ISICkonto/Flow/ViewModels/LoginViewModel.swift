@@ -18,32 +18,32 @@ class LoginViewModel: AppViewModel {
     var password: Variable<String> = Variable("")
     var loginAction: Variable<Void> = Variable(())
     
-    var loginEnabled: Observable<Bool> {
+    var isLoginEnabled: Observable<Bool> {
         return Observable.combineLatest(username.asObservable(), password.asObservable()) { !$0.isEmpty && !$1.isEmpty }
     }
     
-    var balancePageString: Observable<String> {
-        return resultRequestBalancePage.map { [weak self] in
-            guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else {
+    var isLoginSuccess: Observable<Bool> {
+        return resultRequestLogin.map { [weak self] in
+            guard let strongSelf = self, $0.info == .loggedIn else {
                 SVProgressHUD.showError(withStatus: "Wrong credentials".localized)
                 SVProgressHUD.dismiss(withDelay: 1.0)
-                return ""
+                return false
             }
             SVProgressHUD.showSuccess(withStatus: "Success!")
             SVProgressHUD.dismiss(withDelay: 1.0)
             strongSelf.save(credentials: (username: strongSelf.username.value, password: strongSelf.password.value))
-            return balancePage
-        }
+            return true
+            }.filter{ $0 }
     }
     
-    private var requestBalance: Observable<Credentials> {
-        return loginAction.asObservable().withLatestFrom(loginEnabled).filter { $0 }.map { [weak self] _ -> Credentials in print("Request login");
+    private var credentials: Observable<Credentials> {
+        return loginAction.asObservable().withLatestFrom(isLoginEnabled).filter { $0 }.map { [weak self] _ -> Credentials in
             return Credentials(username: (self?.username.value)!, password: (self?.password.value)!)
         }
     }
 
-    private var resultRequestBalancePage: Observable<Result<String>> {
-        return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
+    private var resultRequestLogin: Observable<Result<String>> {
+        return credentials.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
             SVProgressHUD.show(withStatus: "Loading balance...".localized)
             return (self?.request(credentials: credentials))!
         }

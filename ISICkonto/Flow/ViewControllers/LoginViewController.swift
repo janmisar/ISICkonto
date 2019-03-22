@@ -14,7 +14,7 @@ import SVProgressHUD
 
 class LogInViewController: AppViewController {
  
-    var onLoginSuccess: (String) -> () = { _ in }
+    var onLoginSuccess: () -> () = { }
     
     override func setView() {
         view = LoginView()
@@ -22,6 +22,37 @@ class LogInViewController: AppViewController {
     
     override func setViewModel() {
         viewModel = LoginViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let loginView = view as! LoginView
+        
+        loginView.logo.snp.makeConstraints { [unowned loginView] make in
+            make.leading.equalTo(loginView).offset(50)
+            make.trailing.equalTo(loginView).offset(-50)
+            make.height.equalTo(loginView.logo.snp.width)
+            make.center.equalTo(loginView.snp.center)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let loginView = view as! LoginView
+        
+        loginView.logo.snp.removeConstraints()
+        loginView.logo.snp.makeConstraints { [unowned loginView] make in
+            make.leading.equalTo(loginView).offset(100)
+            make.trailing.equalTo(loginView).offset(-100)
+            make.height.equalTo(loginView.logo.snp.width)
+            make.top.equalTo(loginView.safeAreaLayoutGuide).offset(30)
+        }
+        
+        UIView.animate(withDuration: 1) { [unowned loginView] in
+            loginView.layoutIfNeeded()
+        }
     }
     
     override func bindViewToViewModel(v: UIView, vm: AppViewModel) {
@@ -34,13 +65,13 @@ class LogInViewController: AppViewController {
         (loginView.loginButton >>> vm.loginAction).disposed(by: disposeBag)
         
         // Input bindings
-        (vm.balancePageString --> {
-                $0.isEmpty ? nil : self.onLoginSuccess($0)
+        (vm.isLoginSuccess --> { [unowned self] _ in
+                self.onLoginSuccess()
                 loginView.usernameTextField.deactivate()
                 loginView.passwordTextField.deactivate()
             }).disposed(by: disposeBag)
         
-        (vm.loginEnabled --> {
+        (vm.isLoginEnabled --> {
                 loginView.loginButton.set(alpha: $0 ? 1.0 : 0.2)
             }).disposed(by: disposeBag)
     }

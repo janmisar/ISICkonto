@@ -35,7 +35,7 @@ class BalanceViewController: AppViewController {
             }.disposed(by: disposeBag)
         
         // Input bindings
-        (Observable.merge(vm.balance, vm.retrieveBalance) --> {
+        (vm.balance --> { [unowned balanceView] in
             balanceView.balanceLabel.text = $0 + " Kč"
             }).disposed(by: disposeBag)
     }

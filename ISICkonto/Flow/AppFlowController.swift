@@ -36,15 +36,12 @@ class AppFlowController : AppFlowControllerProtocol {
         navigationController.show(loginViewController, sender: self)
         
         loginViewController.onLoginSuccess = { [unowned self] in
-            self.pushBalanceViewController(with: $0)
+            self.pushBalanceViewController()
         }
     }
     
-    func pushBalanceViewController(with page: String?) {
+    func pushBalanceViewController() {
         let balanceViewController = BalanceViewController()
-        if let page = page {
-            (balanceViewController.viewModel as! BalanceViewModel).balancePage.value = page
-        }
         navigationController.pushViewController(balanceViewController, animated: true)
         
         balanceViewController.onPopBalanceViewController = { [unowned self] in

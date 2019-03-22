@@ -13,20 +13,11 @@ import SwiftKeychainWrapper
 import SVProgressHUD
 
 class BalanceViewModel: AppViewModel {
-    
-    var balancePage: Variable<String> = Variable("")
     var refreshAction: Variable<Void> = Variable(())
     
     var disposeBag = DisposeBag()
     
-    var balance: Observable<String> {
-        return balancePage.asObservable().map { [weak self] in
-            guard let strongSelf = self else { return "" }
-            return strongSelf.scrapeBalance(from: $0)
-        }
-    }
-    
-    var retrieveBalance : Observable<String> {
+    var balance : Observable<String> {
         return resultRequestBalancePage.map { [weak self] in
             guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else {
                 SVProgressHUD.showError(withStatus: "Failed".localized)
