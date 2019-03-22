@@ -15,7 +15,6 @@ import Result
 
 class RequestManager {
     private let keychainManager: KeychainManager
-    var currentBalance = MutableProperty<Balance?>(nil)
 
     init(_ keychainManager: KeychainManager) {
         self.keychainManager = keychainManager
@@ -35,13 +34,10 @@ class RequestManager {
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer<DataResponse<String>, RequestError> { observer, _ in
-                        observer.send(value: response)
-                        observer.sendCompleted()
-                    }
+                    return SignalProducer(value: response)
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
-//                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL
+//                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
                     let filter = responseURL?.getValueOfQueryParameter("filter") ?? ""
                     let lang = responseURL?.getValueOfQueryParameter("lang") ?? ""
                     let entityID = "https://idp2.civ.cvut.cz/idp/shibboleth"
@@ -56,7 +52,6 @@ class RequestManager {
                     return RequestManager.ssoRequest(urlString: urlString)
                 }
             }
-            // TODO: Ask about line below
             .combineLatest(with: keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
@@ -107,7 +102,7 @@ class RequestManager {
     }
 
     func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
-        return SignalProducer { [weak self] observer, _ in
+        return SignalProducer { observer, _ in
             do {
                 let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
                 // get body elements
@@ -130,10 +125,9 @@ class RequestManager {
                 let lineElements = lineText.split(separator: " ")
                 guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
                 let balance = lineElements[0]
-
-                let user = Balance(balance: "\(balance) Kč")
-                self?.currentBalance.value = user
+                let balanceStruct = Balance(balance: "\(balance) Kč")
                 // TODO: doesnt "unlock" Action"
+                observer.send(value: balanceStruct)
                 observer.sendCompleted()
                 // TODO: solution ?
                 // observer.send(error: RequestError.successfulParse)
@@ -198,9 +192,8 @@ class RequestManager {
                     // TODO: delete after dev
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
-                    observer.sendCompleted()
                 case .failure:
-                    observer.send(error: RequestError.balanceScreenPostError(message: "Error - move to balance site request failed"))
+                     observer.send(error: RequestError.balanceScreenPostError(message: "Error - move to balance site request failed"))
                 }
             }
         }

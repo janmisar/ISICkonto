@@ -21,12 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-
 		14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B54223FF5EB00095BC2 /* FormTextField.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
-		140A07112242A170002EB67F /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A07102242A16F002EB67F /* Balance.swift */; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
@@ -72,7 +70,6 @@
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		14089B54223FF5EB00095BC2 /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		140A07102242A16F002EB67F /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
@@ -238,7 +235,6 @@
 		14ECC27E223BB85D006430D1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				14089B562240038D00095BC2 /* KeychainManager.swift */,
 				143CB3C8223E51D800413568 /* RequestManager.swift */,
 				14089B50223FC41000095BC2 /* KeychainManager.swift */,
 			);

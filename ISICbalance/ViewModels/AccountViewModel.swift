@@ -18,7 +18,11 @@ class AccountViewModel: BaseViewModel {
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
 
-    lazy var loginAction = Action<(),(),LoginError> { [unowned self] in
+    lazy var loginAction = Action<(),(),LoginError> { [weak self] in
+        guard let self = self else {
+            return SignalProducer<(), LoginError>(error: LoginError.actionError(message: "Error - self in loginAction is nil"))
+        }
+        
         if self.validationSignal.value {
             return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
         } else {

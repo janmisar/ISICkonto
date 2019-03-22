@@ -106,8 +106,8 @@ class BalanceViewController: BaseViewController {
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
-        // pop viewController if problems with getBalanceAction
-        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] errors in
+        // push accountViewController if there is some error duting balanceAction 
+        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] _ in
             self?.accountBtnHandle()
         }
     }

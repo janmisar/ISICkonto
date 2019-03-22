@@ -20,6 +20,7 @@ enum RequestError: Error {
 enum LoginError: Error {
     case keychainCredentialsFailed(message: String)
     case validation([LoginValidation])
+    case actionError(message: String)
 }
 
 enum SwiftSoupError: Error {
