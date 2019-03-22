@@ -11,12 +11,23 @@ enum RequestError: Error {
     case ssoGetError(error: Error)
     case credentialsPostError(error: Error)
     case balanceScreenPostError(error: Error)
+    case parseError
+    case credentialsError(LoginValidation)
+    case loginFailed
+    case actionError
 }
 
 enum LoginError: Error {
-    case loginFailed
+    case invalidCredentials
+    case keychainCredentialsFailed
+    case validation([LoginValidation])
 }
 
 enum SwiftSoupError: Error {
     case parseLoginSite(error: Error)
+}
+
+enum LoginValidation: Error {
+    case username
+    case password
 }

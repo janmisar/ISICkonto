@@ -8,11 +8,14 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import ReactiveSwift
+import ACKReactiveExtensions
 import SnapKit
 
 class BalanceViewController: BaseViewController {
+    private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
-    private let rm: RequestManager
+    private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
     weak var balanceLabel: UILabel!
@@ -21,8 +24,13 @@ class BalanceViewController: BaseViewController {
     weak var accountButton: UIButton!
     
     override init() {
-        self.viewModel = BalanceViewModel()
-        self.rm = RequestManager()
+        let keychainManager = KeychainManager()
+        self.keychainManager = KeychainManager()
+        let requestManager = RequestManager(keychainManager)
+        self.requestManager = requestManager
+        self.viewModel = BalanceViewModel(requestManager)
+        //TODO: waiting for flow coord. lecture
+
         super.init()
     }
     
@@ -91,18 +99,27 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
-        
+        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        setupBindings()
+    }
+    
+    func setupBindings() {
+        self.balanceLabel.reactive.text <~ viewModel.balance
+        viewModel.getBalanceAction.errors.producer.startWithValues { errors in
+            print(errors)
+        }
     }
     
     @objc func reloadBalance() {
-        rm.reloadData()
+        #warning("TODO:")
+        print("RELOAD")
+        viewModel.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        let VC = AccountViewController()
-        navigationController?.pushViewController(VC, animated: true)
+        let accountViewController = AccountViewController(keychainManager)
+        navigationController?.pushViewController(accountViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

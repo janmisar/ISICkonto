@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 import SwiftKeychainWrapper
+import ReactiveSwift
+import ACKReactiveExtensions
 import ACKategories
 
 class AccountViewController: BaseViewController {
@@ -21,8 +23,8 @@ class AccountViewController: BaseViewController {
     weak var passwordTextField: UITextField!
     weak var loginButton: UIButton!
     
-    override init() {
-        self.viewModel = AccountViewModel()
+    init(_ keychainManager: KeychainManager) {
+        self.viewModel = AccountViewModel(keychainManager)
         super.init()
     }
     
@@ -41,9 +43,9 @@ class AccountViewController: BaseViewController {
         self.formStackView = formStackView
         
         formStackView.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
+            make.bottom.lessThanOrEqualTo(-20)
         }
         
         setupFormFields()
@@ -88,11 +90,23 @@ class AccountViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.Login.title
+
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchUpInside)
+        setupBindings()
     }
     
     @objc func saveCredentials() {
-        viewModel.saveCredentials(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "")
+        viewModel.loginAction.apply().start()
+    }
+    
+    func setupBindings() {
+        usernameTextField <~> viewModel.username
+        passwordTextField <~> viewModel.password
+        loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
+        
+        viewModel.loginAction.errors.producer.startWithValues { errors in
+            print(errors)
+        }
     }
 }
 

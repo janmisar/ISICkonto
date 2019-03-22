@@ -9,15 +9,13 @@ target 'ISICbalance' do
   pod 'SnapKit', '~> 4.0.0'
   pod 'ACKLocalization', '~> 0.1'
   pod 'ACKategories', '~> 6.0.2'
+  pod 'ACKReactiveExtensions', '~> 4.0.2'
   pod 'SwiftGen', '~> 6.0'
   pod 'Alamofire', '~> 4.0.0'
   pod 'SwiftSoup', '~> 1.7.4' 
   pod 'ReactiveSwift', '~> 4.0.0' 
   pod 'SwiftKeychainWrapper', '~> 3.2.0'
-
   
-
-
   target 'ISICbalanceTests' do
     inherit! :search_paths
     # Pods for testing
