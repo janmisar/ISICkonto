@@ -283,11 +283,11 @@
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
 				14847324223D6626006EF86F /* Generate preprocess header */,
 				14C190512235A9940033616E /* SwiftGen Script */,
+				14089B4D223FA11900095BC2 /* SwiftLint */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
 				6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */,
-				14089B4D223FA11900095BC2 /* SwiftLint */,
 			);
 			buildRules = (
 			);
