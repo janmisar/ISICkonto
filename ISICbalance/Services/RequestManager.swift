@@ -16,8 +16,8 @@ import Result
 class RequestManager {
     private let keychainManager: KeychainManager
 
-    init(_ keychainManager: KeychainManager) {
-        self.keychainManager = keychainManager
+    init() {
+        self.keychainManager = KeychainManager.shared
     }
 
     func getBalance() -> SignalProducer<Balance, RequestError> {

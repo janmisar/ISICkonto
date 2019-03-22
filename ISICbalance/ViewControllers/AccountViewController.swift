@@ -23,8 +23,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private weak var passwordTextField: UITextField!
     private weak var loginButton: UIButton!
     
-    init(_ keychainManager: KeychainManager) {
-        self.viewModel = AccountViewModel(keychainManager)
+    override init() {
+        self.viewModel = AccountViewModel()
 
         super.init()
     }
@@ -106,8 +106,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         
         viewModel.loginAction.errors
             .observe(on: UIScheduler())
-            .observeValues { [weak self] error in
-                self?.presentValidationError(error.localizedDescription)
+            .observeValues { [weak self] _ in
+                self?.presentValidationError("You must fill out all fields.")
 
             }
 

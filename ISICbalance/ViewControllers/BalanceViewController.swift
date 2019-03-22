@@ -16,7 +16,6 @@ class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
     private let accountViewModel: AccountViewModel
-    private let keychainManager: KeychainManager
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
@@ -25,14 +24,11 @@ class BalanceViewController: BaseViewController {
     private weak var accountButton: UIButton!
     
     override init() {
-        let keychainManager = KeychainManager()
-        self.keychainManager = KeychainManager()
-        let requestManager = RequestManager(keychainManager)
+        let requestManager = RequestManager()
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
         //TODO: waiting for flow coord. lecture
-        self.accountViewModel = AccountViewModel(keychainManager)
-
+        self.accountViewModel = AccountViewModel()
         super.init()
     }
     
@@ -119,7 +115,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let accountViewController = AccountViewController(keychainManager)
+        let accountViewController = AccountViewController()
         navigationController?.pushViewController(accountViewController, animated: true)
     }
     

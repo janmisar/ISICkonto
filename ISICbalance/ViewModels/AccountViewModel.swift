@@ -30,7 +30,7 @@ class AccountViewModel: BaseViewModel {
         }
     }
 
-    init(_ keychainManager: KeychainManager) {
+    override init() {
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
@@ -43,7 +43,7 @@ class AccountViewModel: BaseViewModel {
         }
         
         validationSignal = validationErrors.map { $0.isEmpty }
-        self.keychainManager = keychainManager
+        self.keychainManager = KeychainManager.shared
 
         super.init()
         keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
