@@ -15,6 +15,8 @@ final class AppDependency: HasNoDependency {
     static let shared = AppDependency()
 
     lazy var requestManager: RequestManagering = RequestManager()
+    lazy var keychainManager: KeychainManagering = KeychainManager()
 }
 
 extension AppDependency: HasRequestManager { }
+extension AppDependency: HasKeychainManager { }

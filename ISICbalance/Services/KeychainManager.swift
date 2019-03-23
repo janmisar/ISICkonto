@@ -11,10 +11,16 @@ import ReactiveSwift
 import SwiftKeychainWrapper
 import Result
 
-class KeychainManager {
-    private init() { }
-    static let shared = KeychainManager()
+protocol HasKeychainManager {
+    var keychainManager: KeychainManagering { get }
+}
 
+protocol KeychainManagering {
+    func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError>
+    func getCredentialsFromKeychain() -> SignalProducer<User, NoError>
+}
+
+class KeychainManager: KeychainManagering {
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
         //TODO: disposable parameter?
         return SignalProducer { observer, _ in
