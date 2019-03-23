@@ -13,9 +13,15 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import Result
 
-class RequestManager {
-    private init() { }
-    static let shared = RequestManager()
+protocol HasRequestManager {
+    var requestManager: RequestManagering { get }
+}
+
+protocol RequestManagering {
+    func getBalance() -> SignalProducer<Balance, RequestError>
+}
+
+class RequestManager: RequestManagering {
 
     func getBalance() -> SignalProducer<Balance, RequestError> {
         return getRequestsResult()
@@ -25,7 +31,7 @@ class RequestManager {
             })
     }
 
-    func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
+    private func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
         return RequestManager.agataRequest().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
@@ -98,7 +104,7 @@ class RequestManager {
             })
     }
 
-    func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
+    private func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
         return SignalProducer { observer, _ in
             do {
                 let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
@@ -135,7 +141,7 @@ class RequestManager {
     }
 
     // MARK: - alamofireRequests
-    static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
                 switch response.result {
@@ -150,7 +156,7 @@ class RequestManager {
         }
     }
 
-    static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(urlString).responseString { responseShibboleth in
                 switch responseShibboleth.result {
@@ -165,7 +171,7 @@ class RequestManager {
         }
     }
 
-    static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
                 switch responseCredentials.result {
@@ -180,7 +186,7 @@ class RequestManager {
         }
     }
 
-    static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
 

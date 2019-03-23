@@ -51,7 +51,5 @@ class AccountViewModel: BaseViewModel {
             self?.username.value = user.username
             self?.password.value = user.password
         }).start()
-
-
     }
 }
