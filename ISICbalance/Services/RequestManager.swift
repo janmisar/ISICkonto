@@ -22,6 +22,12 @@ protocol RequestManagering {
 }
 
 class RequestManager: RequestManagering {
+    typealias Dependencies = HasKeychainManager
+    let dependencies: Dependencies
+
+    init() {
+        self.dependencies = AppDependency.shared
+    }
 
     func getBalance() -> SignalProducer<Balance, RequestError> {
         return getRequestsResult()
@@ -55,7 +61,7 @@ class RequestManager: RequestManagering {
                     return RequestManager.ssoRequest(urlString: urlString)
                 }
             }
-            .combineLatest(with: KeychainManager.shared.getCredentialsFromKeychain().promoteError(RequestError.self))
+            .combineLatest(with: dependencies.keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
                 let parameters = [
