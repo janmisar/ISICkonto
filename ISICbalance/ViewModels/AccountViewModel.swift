@@ -11,8 +11,16 @@ import ReactiveSwift
 import Result
 import SwiftKeychainWrapper
 
-class AccountViewModel: BaseViewModel {
-    private let keychainManager: KeychainManager
+protocol AccountViewModeling {
+    var username: MutableProperty<String> { get }
+    var password: MutableProperty<String> { get }
+
+    var loginAction: Action<(),(),LoginError> { get }
+}
+
+class AccountViewModel: BaseViewModel, AccountViewModeling {
+    typealias Dependencies = HasKeychainManager
+
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
     private var validationSignal: Property<Bool>
@@ -24,13 +32,17 @@ class AccountViewModel: BaseViewModel {
         }
         
         if self.validationSignal.value {
-            return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
+            return self.dependencies.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
         } else {
             return SignalProducer<(), LoginError>(error: .validation(self.validationErrors.value))
         }
     }
 
-    override init() {
+    let dependencies: Dependencies
+
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
@@ -43,11 +55,10 @@ class AccountViewModel: BaseViewModel {
         }
         
         validationSignal = validationErrors.map { $0.isEmpty }
-        self.keychainManager = KeychainManager.shared
 
         super.init()
         // TODO:
-        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
+        dependencies.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
             self?.username.value = user.username
             self?.password.value = user.password
         }).start()

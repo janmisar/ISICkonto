@@ -14,7 +14,6 @@ import SnapKit
 
 class BalanceViewController: BaseViewController {
     private let viewModel: BalanceViewModel
-    private let accountViewModel: AccountViewModel
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
@@ -24,8 +23,6 @@ class BalanceViewController: BaseViewController {
     
     override init() {
         self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
-        //TODO: waiting for flow coord. lecture
-        self.accountViewModel = AccountViewModel()
         super.init()
     }
     

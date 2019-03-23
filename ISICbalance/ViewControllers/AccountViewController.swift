@@ -24,7 +24,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private weak var loginButton: UIButton!
     
     override init() {
-        self.viewModel = AccountViewModel()
+        self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
 
         super.init()
     }
