@@ -12,18 +12,26 @@ import ReactiveSwift
 import Alamofire
 import UIKit
 
-class BalanceViewModel: BaseViewModel {
-    private var requestManager: RequestManager
-    lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
+protocol BalanceViewModeling {
+    var balance: Property<String> { get }
+    var getBalanceAction: Action<(),Balance,RequestError> { get }
+}
 
+class BalanceViewModel: BaseViewModel, BalanceViewModeling {
+    typealias Dependencies = HasRequestManager
+
+    lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
     let getBalanceAction: Action<(),Balance,RequestError>
 
-    override init() {
+    private let dependencies: Dependencies
+
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+
         self.getBalanceAction = Action {
-            return RequestManager.shared.getBalance()
+            return dependencies.requestManager.getBalance()
         }
 
-        self.requestManager = RequestManager.shared
         super.init()
     }
 }

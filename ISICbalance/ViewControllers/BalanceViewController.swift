@@ -23,7 +23,7 @@ class BalanceViewController: BaseViewController {
     private weak var accountButton: UIButton!
     
     override init() {
-        self.viewModel = BalanceViewModel()
+        self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
         //TODO: waiting for flow coord. lecture
         self.accountViewModel = AccountViewModel()
         super.init()
