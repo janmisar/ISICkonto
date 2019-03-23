@@ -105,7 +105,7 @@ class BalanceViewController: BaseViewController {
     @objc func reloadBalance() {
         // TODO:
         print("RELOAD")
-        viewModel.getBalanceAction.apply().start()
+        viewModel.actions.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
@@ -121,7 +121,7 @@ class BalanceViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // TODO: load balance during didFinishLaunchingWithOptions
-        viewModel.getBalanceAction.apply().start()
+        viewModel.actions.getBalanceAction.apply().start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

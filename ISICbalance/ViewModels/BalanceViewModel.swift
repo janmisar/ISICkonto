@@ -14,10 +14,19 @@ import UIKit
 
 protocol BalanceViewModeling {
     var balance: Property<String> { get }
+    
+    var actions: BalanceViewModelingActions { get }
+}
+
+protocol BalanceViewModelingActions {
     var getBalanceAction: Action<(),Balance,RequestError> { get }
 }
 
-class BalanceViewModel: BaseViewModel, BalanceViewModeling {
+extension BalanceViewModelingActions where Self: BalanceViewModeling {
+    var actions: BalanceViewModelingActions { return self }
+}
+
+class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
 
     lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
