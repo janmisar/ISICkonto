@@ -15,10 +15,18 @@ protocol AccountViewModeling {
     var username: MutableProperty<String> { get }
     var password: MutableProperty<String> { get }
 
+    var actions: AccountViewModelingActions { get }
+}
+
+protocol AccountViewModelingActions {
     var loginAction: Action<(),(),LoginError> { get }
 }
 
-class AccountViewModel: BaseViewModel, AccountViewModeling {
+extension AccountViewModelingActions where Self: AccountViewModeling {
+    var actions: AccountViewModelingActions { return self }
+}
+
+class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
 
     let username = MutableProperty<String>("")
