@@ -287,9 +287,10 @@
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
+				14F43154224803F20085FD16 /* SwiftLint autocorrect */,
+				14089B4D223FA11900095BC2 /* SwiftLint */,
 				14847324223D6626006EF86F /* Generate preprocess header */,
 				14C190512235A9940033616E /* SwiftGen Script */,
-				14089B4D223FA11900095BC2 /* SwiftLint */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
@@ -435,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		14847324223D6626006EF86F /* Generate preprocess header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -493,6 +494,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntouch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\ntouch $PROJECT_DIR/ISICbalance/Generated/Assets.swift\n\ntouch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/ISICbalance/Assets.xcassets/AppIcon.appiconset\n\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
 			showEnvVarsInLog = 0;
+		};
+		14F43154224803F20085FD16 /* SwiftLint autocorrect */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint autocorrect";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

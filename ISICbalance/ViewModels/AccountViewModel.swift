@@ -29,27 +29,20 @@ extension AccountViewModelingActions where Self: AccountViewModeling {
 class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
 
-    let username = MutableProperty<String>("")
-    let password = MutableProperty<String>("")
+    let username: MutableProperty<String>
+    let password: MutableProperty<String>
     private var validationSignal: Property<Bool>
     private var validationErrors: Property<[LoginValidation]>
 
-    lazy var loginAction = Action<(),(),LoginError> { [weak self] in
-        guard let self = self else {
-            return SignalProducer<(), LoginError>(error: LoginError.actionError(message: "Error - self in loginAction is nil"))
-        }
-        
-        if self.validationSignal.value {
-            return self.dependencies.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
-        } else {
-            return SignalProducer<(), LoginError>(error: .validation(self.validationErrors.value))
-        }
-    }
+    let loginAction: Action<(),(),LoginError>
 
     let dependencies: Dependencies
 
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+
+        username = MutableProperty("")
+        password = MutableProperty("")
 
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
@@ -61,8 +54,17 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
             }
             return validations
         }
-        
         validationSignal = validationErrors.map { $0.isEmpty }
+
+        loginAction = Action(state: Property.combineLatest(username, password, validationErrors, validationSignal)) { state in
+            let (username, password, validationErrors, validationSignal) = state
+
+            if validationSignal {
+                return dependencies.keychainManager.saveCredentials(username: username, password: password)
+            } else {
+                return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors))
+            }
+        }
 
         super.init()
         // TODO:
