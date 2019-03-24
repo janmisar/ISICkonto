@@ -29,12 +29,42 @@ class RequestManager: RequestManagering {
         self.dependencies = AppDependency.shared
     }
 
-    func getBalance() -> SignalProducer<Balance, RequestError> {
+    func getBalance() -> SignalProducer<Balance,RequestError> {
         return getRequestsResult()
-            .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<Balance, RequestError> in
-                print("PARSE")
-                guard let self = self else { return SignalProducer.init(error: RequestError.parseError(message: "Error - self is nil in getRequestsResult flatMap")) }
-                return self.parseDocument(dataResponse: dataResponse)
+            .flatMap(.latest, { response -> SignalProducer<Balance, RequestError> in
+                do {
+                    let document: Document = try SwiftSoup.parse(response.result.value!)
+                    // get body elements
+                    let bodyElements = try document.select("body").array()
+                    guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
+                    let bodyElement: Element = bodyElements[0]
+                    
+                    // get table elements
+                    let tables = try bodyElement.select("tbody").array()
+                    guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
+                    let table: Element = tables[0]
+                    
+                    // get balance line
+                    let balanceLines = try table.select("td").array()
+                    guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
+                    let balanceLine: Element = balanceLines[4]
+                    let lineText = balanceLine.ownText()
+                    
+                    // get balance
+                    let lineElements = lineText.split(separator: " ")
+                    guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
+                    let balance = lineElements[0]
+                    let balanceStruct = Balance(balance: "\(balance) Kč")
+                    
+                    return SignalProducer { observer, _ in
+                        observer.send(value: balanceStruct)
+                        // TODO: actions does not unlock when completed is send
+                        //                                observer.sendCompleted()
+                        observer.send(error: RequestError.successfulParse)
+                    }
+                } catch {
+                    return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing balance site failed"))
+                }
             })
 
     }
@@ -117,42 +147,6 @@ class RequestManager: RequestManagering {
                     return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing login site failed"))
                 }
             })
-    }
-
-    private func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
-        return SignalProducer { observer, _ in
-            do {
-                let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-                // get body elements
-                let bodyElements = try document.select("body").array()
-                guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
-                let bodyElement: Element = bodyElements[0]
-
-                // get table elements
-                let tables = try bodyElement.select("tbody").array()
-                guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
-                let table: Element = tables[0]
-
-                // get balance line
-                let balanceLines = try table.select("td").array()
-                guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
-                let balanceLine: Element = balanceLines[4]
-                let lineText = balanceLine.ownText()
-
-                // get balance
-                let lineElements = lineText.split(separator: " ")
-                guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
-                let balance = lineElements[0]
-                let balanceStruct = Balance(balance: "\(balance) Kč")
-                // TODO: doesnt "unlock" Action"
-                observer.send(value: balanceStruct)
-                observer.sendCompleted()
-                // TODO: solution ?
-//                 observer.send(error: RequestError.successfulParse)
-            } catch {
-                observer.send(error: RequestError.parseError(message: "Error - parsing balance site failed"))
-            }
-        }
     }
 
     // MARK: - alamofireRequests

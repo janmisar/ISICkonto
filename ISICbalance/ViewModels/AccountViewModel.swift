@@ -33,7 +33,6 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
     let password: MutableProperty<String>
     private var validationSignal: Property<Bool>
     private var validationErrors: Property<[LoginValidation]>
-
     let loginAction: Action<(),(),LoginError>
 
     let dependencies: Dependencies
@@ -67,7 +66,7 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
         }
 
         super.init()
-        
+
         let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain()
         self.username <~ userCredentials.map { $0.username }
         self.password <~ userCredentials.map { $0.password }
