@@ -67,10 +67,9 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
         }
 
         super.init()
-        // TODO:
-        dependencies.keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
-            self?.username.value = user.username
-            self?.password.value = user.password
-        }).start()
+        
+        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain()
+        self.username <~ userCredentials.map { $0.username }
+        self.password <~ userCredentials.map { $0.password }
     }
 }
