@@ -32,18 +32,23 @@ class RequestManager: RequestManagering {
     func getBalance() -> SignalProducer<Balance, RequestError> {
         return getRequestsResult()
             .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<Balance, RequestError> in
+                print("PARSE")
                 guard let self = self else { return SignalProducer.init(error: RequestError.parseError(message: "Error - self is nil in getRequestsResult flatMap")) }
                 return self.parseDocument(dataResponse: dataResponse)
             })
+
     }
 
     private func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
-        return RequestManager.agataRequest().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
+        return RequestManager.agataRequest()
+            .flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer(value: response)
+                    return SignalProducer { observer, _ in
+                        observer.send(value: response)
+                    }
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
 //                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
@@ -58,9 +63,13 @@ class RequestManager: RequestManagering {
 
                     let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
 
-                    return RequestManager.ssoRequest(urlString: urlString)
+                    return self.loginRequest(urlString: urlString)
                 }
             }
+    }
+
+    private func loginRequest(urlString: String) -> SignalProducer<DataResponse<String>, RequestError> {
+         return RequestManager.ssoRequest(urlString: urlString)
             .combineLatest(with: dependencies.keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
@@ -139,7 +148,7 @@ class RequestManager: RequestManagering {
                 observer.send(value: balanceStruct)
                 observer.sendCompleted()
                 // TODO: solution ?
-                // observer.send(error: RequestError.successfulParse)
+//                 observer.send(error: RequestError.successfulParse)
             } catch {
                 observer.send(error: RequestError.parseError(message: "Error - parsing balance site failed"))
             }
