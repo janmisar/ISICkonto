@@ -12,6 +12,7 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
+import SVProgressHUD
 
 class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private let viewModel: AccountViewModel
@@ -117,6 +118,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
 
     // MARK: - Actions
     @objc func saveCredentials() {
+        SVProgressHUD.showInfo(withStatus: L10n.Login.reload)
         viewModel.loginAction.apply().start()
     }
 }

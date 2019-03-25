@@ -482,6 +482,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/ISICbalance/en.lproj/Localizable.strings",
 			);
 			name = "SwiftGen Script";
 			outputFileListPaths = (
@@ -492,7 +493,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntouch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\ntouch $PROJECT_DIR/ISICbalance/Generated/Assets.swift\n\ntouch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/ISICbalance/Assets.xcassets/AppIcon.appiconset\n\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#touch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\n#touch $PROJECT_DIR/ISICbalance/Generated/Assets.swift\n\n#touch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/ISICbalance/Assets.xcassets/AppIcon.appiconset\n\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
 			showEnvVarsInLog = 0;
 		};
 		14F43154224803F20085FD16 /* SwiftLint autocorrect */ = {

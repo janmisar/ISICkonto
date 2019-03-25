@@ -26,6 +26,8 @@ internal enum L10n {
     internal static let login = L10n.tr("Localizable", "login.login")
     /// Password
     internal static let password = L10n.tr("Localizable", "login.password")
+    /// Restart app to show changes. (API is 💩)
+    internal static let reload = L10n.tr("Localizable", "login.reload")
     /// User
     internal static let title = L10n.tr("Localizable", "login.title")
     /// Username

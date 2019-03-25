@@ -2,6 +2,7 @@
 "login.password" = "Password";
 "login.login" = "Login";
 "login.title" = "User";
+"login.reload" = "Restart app to show changes. (API is 💩)";
 "balance.title" = "Your balance is";
 "balance.loading" = "Loading...";
 "balance.credentialsError" = "Wrong credentials";
