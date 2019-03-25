@@ -26,33 +26,18 @@ class LogInViewController: AppViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         let loginView = view as! LoginView
-        
-        loginView.logo.snp.makeConstraints { [unowned loginView] make in
-            make.leading.equalTo(loginView).offset(50)
-            make.trailing.equalTo(loginView).offset(-50)
-            make.height.equalTo(loginView.logo.snp.width)
-            make.center.equalTo(loginView.snp.center)
-        }
+        loginView.constraintSmallLogo()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         let loginView = view as! LoginView
+        loginView.animateLogo()
         
-        loginView.logo.snp.removeConstraints()
-        loginView.logo.snp.makeConstraints { [unowned loginView] make in
-            make.leading.equalTo(loginView).offset(100)
-            make.trailing.equalTo(loginView).offset(-100)
-            make.height.equalTo(loginView.logo.snp.width)
-            make.top.equalTo(loginView.safeAreaLayoutGuide).offset(30)
-        }
-        
-        UIView.animate(withDuration: 1) { [unowned loginView] in
-            loginView.layoutIfNeeded()
-        }
+
     }
     
     override func bindViewToViewModel(v: UIView, vm: AppViewModel) {

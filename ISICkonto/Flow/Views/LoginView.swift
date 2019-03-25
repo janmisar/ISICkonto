@@ -40,12 +40,6 @@ class LoginView: AppView {
     }
     
     override func createConstraints() {
-        logo.snp.makeConstraints { make in
-            make.leading.equalTo(self).offset(100)
-            make.trailing.equalTo(self).offset(-100)
-            make.height.equalTo(logo.snp.width)
-            make.top.equalTo(safeAreaLayoutGuide).offset(30)
-        }
         
         usernameTextField.snp.makeConstraints { make in
             make.leading.equalTo(self).offset(20)
@@ -68,4 +62,27 @@ class LoginView: AppView {
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
         }
     }
+    
+    func constraintSmallLogo() {
+        logo.snp.makeConstraints { [unowned self] make in
+            make.leading.equalTo(self).offset(50)
+            make.trailing.equalTo(self).offset(-50)
+            make.height.equalTo(logo.snp.width)
+            make.center.equalTo(self.snp.center)
+        }
+    }
+    
+    func animateLogo() {
+            logo.snp.removeConstraints()
+            logo.snp.makeConstraints { [unowned self] make in
+            make.leading.equalTo(self).offset(100)
+            make.trailing.equalTo(self).offset(-100)
+            make.height.equalTo(logo.snp.width)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+        }
+        UIView.animate(withDuration: 1) { [unowned self] in
+            self.layoutIfNeeded()
+        }
+    }
+  
 }
