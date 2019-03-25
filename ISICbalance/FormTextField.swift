@@ -9,6 +9,7 @@
 import UIKit
 
 class FormTextField: UITextField {
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
 

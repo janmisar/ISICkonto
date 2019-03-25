@@ -23,40 +23,44 @@ protocol RequestManagering {
 
 class RequestManager: RequestManagering {
     typealias Dependencies = HasKeychainManager
-    let dependencies: Dependencies
+    private let dependencies: Dependencies
 
+    // MARK: - Initialization
     init() {
         self.dependencies = AppDependency.shared
     }
 
     func getBalance() -> SignalProducer<Balance,RequestError> {
-        return getRequestsResult()
+        return getBalanceSite()
             .flatMap(.latest, { response -> SignalProducer<Balance, RequestError> in
+                // parse site with balance
                 do {
                     let document: Document = try SwiftSoup.parse(response.result.value!)
                     // get body elements
                     let bodyElements = try document.select("body").array()
                     guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
                     let bodyElement: Element = bodyElements[0]
-                    
+
                     // get table elements
                     let tables = try bodyElement.select("tbody").array()
                     guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
                     let table: Element = tables[0]
-                    
+
                     // get balance line
                     let balanceLines = try table.select("td").array()
                     guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
                     let balanceLine: Element = balanceLines[4]
                     let lineText = balanceLine.ownText()
-                    
+
                     // get balance
                     let lineElements = lineText.split(separator: " ")
                     guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
                     let balance = lineElements[0]
                     let balanceStruct = Balance(balance: "\(balance) Kč")
-                    
+
                     return SignalProducer { observer, _ in
+                        // TODO: delete after dev
+                        print("✅ parse success")
                         observer.send(value: balanceStruct)
                         // TODO: actions does not unlock when completed is send
                         //                                observer.sendCompleted()
@@ -66,19 +70,16 @@ class RequestManager: RequestManagering {
                     return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing balance site failed"))
                 }
             })
-
     }
 
-    private func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
+    private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
         return RequestManager.agataRequest()
             .flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer { observer, _ in
-                        observer.send(value: response)
-                    }
+                    return SignalProducer.init(value: response)
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
 //                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
@@ -149,7 +150,7 @@ class RequestManager: RequestManagering {
             })
     }
 
-    // MARK: - alamofireRequests
+    // MARK: - Alamofire requests
     private static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
@@ -198,7 +199,6 @@ class RequestManager: RequestManagering {
     private static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
-
                 switch responseBalanceSite.result {
                 case .success:
                     // TODO: delete after dev

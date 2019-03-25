@@ -22,7 +22,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private weak var passwordLabel: UILabel!
     private weak var passwordTextField: UITextField!
     private weak var loginButton: UIButton!
-    
+
+    // MARK: - Initialization
     override init() {
         self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
 
@@ -32,7 +33,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = UIColor.Theme.backgroundColor
@@ -52,7 +54,15 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         setupFormFields()
         setupLoginButton()
     }
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = L10n.Login.title
+        loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchUpInside)
+        setupBindings()
+    }
+
+    // MARK: - UI setup
     fileprivate func setupFormFields() {
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
@@ -87,18 +97,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
             make.height.equalTo(45)
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = L10n.Login.title
-        loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchUpInside)
-        setupBindings()
-    }
-    
-    @objc func saveCredentials() {
-        viewModel.loginAction.apply().start()
-    }
-    
+
+    // MARK: - Bindings
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
@@ -108,11 +108,15 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
                 self?.presentValidationError("You must fill out all fields.")
-
             }
 
         viewModel.loginAction.completed.producer.startWithValues { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
+    }
+
+    // MARK: - Actions
+    @objc func saveCredentials() {
+        viewModel.loginAction.apply().start()
     }
 }

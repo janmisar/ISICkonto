@@ -19,7 +19,7 @@ protocol AccountViewModeling {
 }
 
 protocol AccountViewModelingActions {
-    var loginAction: Action<(),(),LoginError> { get }
+    var loginAction: Action<(),(),LoginError> { get }
 }
 
 extension AccountViewModelingActions where Self: AccountViewModeling {
@@ -28,6 +28,7 @@ extension AccountViewModelingActions where Self: AccountViewModeling {
 
 class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
+    private let dependencies: Dependencies
 
     let username: MutableProperty<String>
     let password: MutableProperty<String>
@@ -35,8 +36,7 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
     private var validationErrors: Property<[LoginValidation]>
     let loginAction: Action<(),(),LoginError>
 
-    let dependencies: Dependencies
-
+    // MARK: - Initialization
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
 

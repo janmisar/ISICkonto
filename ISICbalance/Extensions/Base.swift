@@ -30,7 +30,6 @@ class BaseViewModel {
     
     init() {
         NSLog("🧠 👶 \(self)")
-        
     }
     
     deinit {

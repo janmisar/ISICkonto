@@ -28,12 +28,12 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
 
 class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
+    private let dependencies: Dependencies
 
     lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
     let getBalanceAction: Action<(),Balance,RequestError>
 
-    private let dependencies: Dependencies
-
+    // MARK: - Initialization
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
 
