@@ -19,6 +19,7 @@ PODS:
   - SnapKit (4.0.1)
   - SwiftGen (6.1.0)
   - SwiftKeychainWrapper (3.2.0)
+  - SwiftLint (0.31.0)
   - SwiftSoup (1.7.4)
 
 DEPENDENCIES:
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - SnapKit (~> 4.0.0)
   - SwiftGen (~> 6.0)
   - SwiftKeychainWrapper (~> 3.2.0)
+  - SwiftLint (~> 0.31.0)
   - SwiftSoup (~> 1.7.4)
 
 SPEC REPOS:
@@ -44,6 +46,7 @@ SPEC REPOS:
     - SnapKit
     - SwiftGen
     - SwiftKeychainWrapper
+    - SwiftLint
     - SwiftSoup
 
 SPEC CHECKSUMS:
@@ -57,8 +60,9 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: 815d369968648c6dd97765110dc7bc84c631b102
+PODFILE CHECKSUM: ba32929e7f1f9afceb1c4fb10d604ddd528128e2
 
 COCOAPODS: 1.6.1

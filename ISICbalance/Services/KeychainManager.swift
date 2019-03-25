@@ -2,7 +2,7 @@
 //  KeychainManager.swift
 //  ISICbalance
 //
-//  Created by Rostislav Babáček on 16/03/2019.
+//  Created by Rostislav Babáček on 18/03/2019.
 //  Copyright © 2019 Rostislav Babáček. All rights reserved.
 //
 
@@ -19,10 +19,9 @@ class KeychainManager {
             let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
 
             if saveUsername && savePassword {
-                print("saved")
                 observer.sendCompleted()
             } else {
-                observer.send(error: LoginError.keychainCredentialsFailed)
+                observer.send(error: LoginError.keychainCredentialsFailed(message: "Error - saving credentials to keychain failed"))
             }
         }
     }

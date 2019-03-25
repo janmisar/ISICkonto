@@ -7,20 +7,20 @@
 //
 
 enum RequestError: Error {
-    case agataGetError(error: Error)
-    case ssoGetError(error: Error)
-    case credentialsPostError(error: Error)
-    case balanceScreenPostError(error: Error)
-    case parseError
+    case agataGetError(message: String)
+    case ssoGetError(message: String)
+    case credentialsPostError(message: String)
+    case balanceScreenPostError(message: String)
+    case parseError(message: String)
     case credentialsError(LoginValidation)
-    case loginFailed
-    case actionError
+    case loginFailed(message: String)
+    case actionError(message: String)
 }
 
 enum LoginError: Error {
-    case invalidCredentials
-    case keychainCredentialsFailed
+    case keychainCredentialsFailed(message: String)
     case validation([LoginValidation])
+    case actionError(message: String)
 }
 
 enum SwiftSoupError: Error {
@@ -28,6 +28,6 @@ enum SwiftSoupError: Error {
 }
 
 enum LoginValidation: Error {
-    case username
-    case password
+    case username(message: String)
+    case password(message: String)
 }

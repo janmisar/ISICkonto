@@ -13,13 +13,16 @@ import SwiftKeychainWrapper
 
 class AccountViewModel: BaseViewModel {
     let keychainManager: KeychainManager
-    
     let username = MutableProperty<String>("")
     let password = MutableProperty<String>("")
     var validationSignal: Property<Bool>
     var validationErrors: Property<[LoginValidation]>
 
-    lazy var loginAction = Action<(),(),LoginError> { [unowned self] in
+    lazy var loginAction = Action<(),(),LoginError> { [weak self] in
+        guard let self = self else {
+            return SignalProducer<(), LoginError>(error: LoginError.actionError(message: "Error - self in loginAction is nil"))
+        }
+        
         if self.validationSignal.value {
             return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
         } else {
@@ -31,17 +34,17 @@ class AccountViewModel: BaseViewModel {
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
-                validations.append(.username)
+                validations.append(.username(message: "Error - username is incorrect"))
             }
             if password.isEmpty {
-                validations.append(.password)
+                validations.append(.password(message: "Error - password is incorrect"))
             }
             return validations
         }
         
         validationSignal = validationErrors.map { $0.isEmpty }
         self.keychainManager = keychainManager
-        
+
         super.init()
         keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
             self?.username.value = user.username

@@ -15,7 +15,7 @@ import ACKategories
 
 class AccountViewController: BaseViewController {
     private let viewModel: AccountViewModel
-    
+
     weak var formStackView: UIStackView!
     weak var usernameLabel: UILabel!
     weak var usernameTextField: UITextField!
@@ -25,6 +25,7 @@ class AccountViewController: BaseViewController {
     
     init(_ keychainManager: KeychainManager) {
         self.viewModel = AccountViewModel(keychainManager)
+
         super.init()
     }
     
@@ -90,7 +91,6 @@ class AccountViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = L10n.Login.title
-
         loginButton.addTarget(self, action: #selector(saveCredentials), for: .touchUpInside)
         setupBindings()
     }
@@ -107,7 +107,9 @@ class AccountViewController: BaseViewController {
         viewModel.loginAction.errors.producer.startWithValues { errors in
             print(errors)
         }
+
+        viewModel.loginAction.completed.producer.startWithValues { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 }
-
-

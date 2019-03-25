@@ -23,7 +23,7 @@ class RequestManager {
     func getBalance() -> SignalProducer<Balance, RequestError> {
         return getRequestsResult()
             .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<Balance, RequestError> in
-                guard let self = self else { return SignalProducer.init(error: RequestError.parseError) }
+                guard let self = self else { return SignalProducer.init(error: RequestError.parseError(message: "Error - self is nil in getRequestsResult flatMap")) }
                 return self.parseDocument(dataResponse: dataResponse)
             })
     }
@@ -52,7 +52,6 @@ class RequestManager {
                     return RequestManager.ssoRequest(urlString: urlString)
                 }
             }
-            // TODO: Ask about line below
             .combineLatest(with: keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
@@ -71,23 +70,24 @@ class RequestManager {
             .flatMap(.latest, { responseCredentials -> SignalProducer<DataResponse<String>, RequestError> in
                 do {
                     let document: Document = try SwiftSoup.parse(responseCredentials.result.value!)
-                    #warning("TODO - check array size")
-                    let form: Element = try document.select("form").array()[0]
+                    let formArray = try document.select("form").array()
+                    guard formArray.count > 0 else { throw RequestError.parseError(message: "Error - form does not exist") }
+                    let form: Element = formArray[0]
 
                     //get action value from form to check login process
                     let action: String = try form.attr("action")
-                    if !action.contains("agata.suz.cvut.cz"){
-                        return SignalProducer.init(error: RequestError.loginFailed)
+                    if !action.contains("agata.suz.cvut.cz") {
+                        return SignalProducer.init(error: RequestError.loginFailed(message: "Error - login failed"))
                     }
 
-                    let inputs = try form.select("input")
+                    let inputsArray = try form.select("input").array()
+                    guard inputsArray.count > 1 else { throw RequestError.parseError(message: "Error - input does not exist") }
                     //get RelayState
-                    #warning("TODO - check array size")
-                    let inputName1 = try inputs.array()[0].attr("name")
-                    let inputValue1 = try inputs.array()[0].attr("value")
+                    let inputName1 = try inputsArray[0].attr("name")
+                    let inputValue1 = try inputsArray[0].attr("value")
                     //get SAMLResponse
-                    let inputName2 = try inputs.array()[1].attr("name")
-                    let inputValue2 = try inputs.array()[1].attr("value")
+                    let inputName2 = try inputsArray[1].attr("name")
+                    let inputValue2 = try inputsArray[1].attr("value")
 
                     let formParameters = [
                         inputName1 : inputValue1,
@@ -96,21 +96,34 @@ class RequestManager {
 
                     return RequestManager.balanceSiteRequest(action: action, formParameters: formParameters)
                 } catch {
-                    return SignalProducer.init(error: RequestError.parseError)
+                    return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing login site failed"))
                 }
             })
     }
 
     func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
-        return SignalProducer { [weak self] observer, _ in
+        return SignalProducer { observer, _ in
             do {
                 let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-                #warning("TODO - check array size")
-                let bodyElement: Element = try document.select("body").array()[0]
-                let table: Element = try bodyElement.select("tbody").array()[0]
-                let balanceLine: Element = try table.select("td").array()[4]
+                // get body elements
+                let bodyElements = try document.select("body").array()
+                guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
+                let bodyElement: Element = bodyElements[0]
+
+                // get table elements
+                let tables = try bodyElement.select("tbody").array()
+                guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
+                let table: Element = tables[0]
+
+                // get balance line
+                let balanceLines = try table.select("td").array()
+                guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
+                let balanceLine: Element = balanceLines[4]
                 let lineText = balanceLine.ownText()
+
+                // get balance
                 let lineElements = lineText.split(separator: " ")
+                guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
                 let balance = lineElements[0]
                 let balanceStruct = Balance(balance: "\(balance) Kč")
                 // TODO: doesnt "unlock" Action"
@@ -119,7 +132,7 @@ class RequestManager {
                 // TODO: solution ?
                 // observer.send(error: RequestError.successfulParse)
             } catch {
-                observer.send(error: RequestError.parseError)
+                observer.send(error: RequestError.parseError(message: "Error - parsing balance site failed"))
             }
         }
     }
@@ -128,13 +141,13 @@ class RequestManager {
     static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
-
                 switch response.result {
                 case .success:
+                    // TODO: delete after dev
                     print("Agata request success")
                     observer.send(value: response)
-                case .failure(let error):
-                    observer.send(error: RequestError.agataGetError(error: error))
+                case .failure:
+                    observer.send(error: RequestError.agataGetError(message: "Error - agata get request failed"))
                 }
             }
         }
@@ -143,13 +156,13 @@ class RequestManager {
     static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(urlString).responseString { responseShibboleth in
-
                 switch responseShibboleth.result {
                 case .success:
+                    // TODO: delete after dev
                     print("SSO request success")
                     observer.send(value: responseShibboleth)
-                case .failure(let error):
-                    observer.send(error: RequestError.ssoGetError(error: error))
+                case .failure:
+                    observer.send(error: RequestError.ssoGetError(message: "Error - sso get request failed"))
                 }
             }
         }
@@ -158,13 +171,13 @@ class RequestManager {
     static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
-
                 switch responseCredentials.result {
                 case .success:
+                    // TODO: delete after dev
                     print("Credentials request success")
                     observer.send(value: responseCredentials)
-                case .failure(let error):
-                    observer.send(error: RequestError.credentialsPostError(error: error))
+                case .failure:
+                    observer.send(error: RequestError.credentialsPostError(message: "Error - credencial post request failed"))
                 }
             }
         }
@@ -176,10 +189,11 @@ class RequestManager {
 
                 switch responseBalanceSite.result {
                 case .success:
+                    // TODO: delete after dev
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
-                case .failure(let error):
-                    observer.send(error: RequestError.balanceScreenPostError(error: error))
+                case .failure:
+                     observer.send(error: RequestError.balanceScreenPostError(message: "Error - move to balance site request failed"))
                 }
             }
         }

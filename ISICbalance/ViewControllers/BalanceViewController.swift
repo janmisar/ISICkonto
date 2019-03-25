@@ -15,6 +15,7 @@ import SnapKit
 class BalanceViewController: BaseViewController {
     private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
+    private let accountViewModel: AccountViewModel
     private let keychainManager: KeychainManager
     
     weak var screenStackView: UIStackView!
@@ -30,6 +31,7 @@ class BalanceViewController: BaseViewController {
         self.requestManager = requestManager
         self.viewModel = BalanceViewModel(requestManager)
         //TODO: waiting for flow coord. lecture
+        self.accountViewModel = AccountViewModel(keychainManager)
 
         super.init()
     }
@@ -69,8 +71,6 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
-        #warning("TODO")
-        balanceLabel.text = "1357 Kč"
         balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
@@ -106,13 +106,14 @@ class BalanceViewController: BaseViewController {
     
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
-        viewModel.getBalanceAction.errors.producer.startWithValues { errors in
-            print(errors)
+        // push accountViewController if there is some error duting balanceAction 
+        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] _ in
+            self?.accountBtnHandle()
         }
     }
     
     @objc func reloadBalance() {
-        #warning("TODO:")
+        // TODO:
         print("RELOAD")
         viewModel.getBalanceAction.apply().start()
     }
@@ -125,6 +126,12 @@ class BalanceViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // TODO: load balance during didFinishLaunchingWithOptions
+        viewModel.getBalanceAction.apply().start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
