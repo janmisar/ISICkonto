@@ -3,3 +3,5 @@
 "login.login" = "Login";
 "login.title" = "User";
 "balance.title" = "Your balance is";
+"balance.loading" = "Loading...";
+"balance.credentialsError" = "Wrong credentials";

@@ -3,3 +3,5 @@
 "login.login" = "Přihlásit se";
 "login.title" = "Uživatel";
 "balance.title" = "Na účtu máte";
+"balance.loading" = "Načítání stavu...";
+"balance.credentialsError" = "Nesprávné přihlašovací údaje";

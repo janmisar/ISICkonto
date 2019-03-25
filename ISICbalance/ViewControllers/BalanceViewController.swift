@@ -11,6 +11,7 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import ACKReactiveExtensions
 import SnapKit
+import SVProgressHUD
 
 class BalanceViewController: BaseViewController {
     private let viewModel: BalanceViewModel
@@ -20,6 +21,7 @@ class BalanceViewController: BaseViewController {
     private weak var balanceTitle: UILabel!
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
+    private weak var refreshControll: UIRefreshControl!
 
     // MARK: - Initialization
     override init() {
@@ -69,7 +71,7 @@ class BalanceViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // TODO: load balance during didFinishLaunchingWithOptions
-        viewModel.actions.getBalanceAction.apply().start()
+        reloadBalance()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,19 +118,25 @@ class BalanceViewController: BaseViewController {
     // MARK: - Bindings
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
-        // push accountViewController if there is some error duting balanceAction 
-        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
-            guard case RequestError.successfulParse = error else {
-                self?.accountBtnHandle()
-                return
+        // push accountViewController if there is some error duting balanceAction
+        viewModel.getBalanceAction.errors
+            .observeValues { [weak self] error in
+                guard case RequestError.successfulParse = error else {
+                    SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                    SVProgressHUD.dismiss(withDelay: 1)
+                    self?.accountBtnHandle()
+                    return
+                }
+
+                SVProgressHUD.dismiss()
             }
-        }
     }
 
     // MARK: - Actions
     @objc func reloadBalance() {
         // TODO: delete after dev
         print("RELOAD BALANCE HANDLE")
+        SVProgressHUD.show(withStatus: L10n.Balance.loading)
         viewModel.actions.getBalanceAction.apply().start()
     }
     

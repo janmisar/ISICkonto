@@ -13,6 +13,10 @@ import Foundation
 internal enum L10n {
 
   internal enum Balance {
+    /// Wrong credentials
+    internal static let credentialsError = L10n.tr("Localizable", "balance.credentialsError")
+    /// Loading...
+    internal static let loading = L10n.tr("Localizable", "balance.loading")
     /// Your balance is
     internal static let title = L10n.tr("Localizable", "balance.title")
   }
