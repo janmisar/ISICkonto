@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AppView: UIView {
   
@@ -28,6 +29,20 @@ class AppView: UIView {
     
     func createConstraints() {
         
+    }
+    
+    func showSuccess(with message: String) {
+        SVProgressHUD.showSuccess(withStatus: message)
+        SVProgressHUD.dismiss(withDelay: 1.0)
+    }
+    
+    func showError(with message: String) {
+        SVProgressHUD.showError(withStatus: message)
+        SVProgressHUD.dismiss(withDelay: 1.0)
+    }
+    
+    func showLoading(with message: String) {
+        SVProgressHUD.show(withStatus: message)
     }
 
 }

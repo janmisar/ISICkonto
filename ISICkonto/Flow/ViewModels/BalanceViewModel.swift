@@ -19,12 +19,7 @@ class BalanceViewModel: AppViewModel {
     
     var balance : Observable<String> {
         return resultRequestBalancePage.map { [weak self] in
-            guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else {
-                SVProgressHUD.showError(withStatus: "Failed".localized)
-                SVProgressHUD.dismiss(withDelay: 1.0)
-                return "..."
-            }
-            SVProgressHUD.dismiss(withDelay: 1.0)
+            guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else { return "..." }
             return strongSelf.scrapeBalance(from: balancePage)
         }
     }
@@ -37,7 +32,6 @@ class BalanceViewModel: AppViewModel {
     
     private var resultRequestBalancePage: Observable<Result<String>> {
         return requestBalance.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
-            SVProgressHUD.show(withStatus: "Loading balance...".localized)
             return (self?.request(credentials: credentials))!
         }
     }

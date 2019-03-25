@@ -24,16 +24,10 @@ class LoginViewModel: AppViewModel {
     
     var isLoginSuccess: Observable<Bool> {
         return resultRequestLogin.map { [weak self] in
-            guard let strongSelf = self, $0.info == .loggedIn else {
-                SVProgressHUD.showError(withStatus: "Wrong credentials".localized)
-                SVProgressHUD.dismiss(withDelay: 1.0)
-                return false
-            }
-            SVProgressHUD.showSuccess(withStatus: "Success!")
-            SVProgressHUD.dismiss(withDelay: 1.0)
+            guard let strongSelf = self, $0.info == .loggedIn else { return false }
             strongSelf.save(credentials: (username: strongSelf.username.value, password: strongSelf.password.value))
             return true
-            }.filter{ $0 }
+        }.filter{ $0 }
     }
     
     private var credentials: Observable<Credentials> {
@@ -44,7 +38,6 @@ class LoginViewModel: AppViewModel {
 
     private var resultRequestLogin: Observable<Result<String>> {
         return credentials.flatMapLatest { [weak self] (credentials) -> Observable<Result<String>> in
-            SVProgressHUD.show(withStatus: "Loading balance...".localized)
             return (self?.request(credentials: credentials))!
         }
     }

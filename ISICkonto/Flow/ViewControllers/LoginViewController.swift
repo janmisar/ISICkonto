@@ -64,9 +64,17 @@ class LogInViewController: AppViewController {
         (loginView.passwordTextField >>> vm.password).disposed(by: disposeBag)
         (loginView.loginButton >>> vm.loginAction).disposed(by: disposeBag)
         
+        loginView.loginButton.rx.tap.bind {
+            loginView.showLoading(with: "Loading balance...".localized)
+        }.disposed(by: disposeBag)
+        
         // Input bindings
-        (vm.isLoginSuccess --> { [unowned self] _ in
-                self.onLoginSuccess()
+        (vm.isLoginSuccess --> { [unowned self, unowned loginView] success in
+                if !success { loginView.showError(with: "Wrong credentials".localized) }
+                else {
+                    loginView.showSuccess(with: "Success!".localized)
+                    self.onLoginSuccess()
+                }
                 loginView.usernameTextField.deactivate()
                 loginView.passwordTextField.deactivate()
             }).disposed(by: disposeBag)

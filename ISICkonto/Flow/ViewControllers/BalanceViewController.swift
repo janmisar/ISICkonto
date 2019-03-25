@@ -30,12 +30,21 @@ class BalanceViewController: AppViewController {
         // Output bindings
         (balanceView.refreshButton >>> vm.refreshAction).disposed(by: disposeBag)
         
+        balanceView.refreshButton.rx.tap.bind { [unowned balanceView] in
+            balanceView.showLoading(with: "Loading balance...".localized)
+        }.disposed(by: disposeBag)
+        
         balanceView.logOutButton.rx.tap.bind { [unowned self] in
             self.onPopBalanceViewController()
             }.disposed(by: disposeBag)
         
         // Input bindings
         (vm.balance --> { [unowned balanceView] in
+            if $0 != "..." {
+                SVProgressHUD.dismiss(withDelay: 1.0)
+            } else {
+                balanceView.showError(with: "Failed".localized)
+            }
             balanceView.balanceLabel.text = $0 + " Kč"
             }).disposed(by: disposeBag)
     }
