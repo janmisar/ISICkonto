@@ -1,0 +1,15 @@
+/*
+ Localizable.strings
+ ISICkonto
+ 
+ Created by Vendula Švastalová on 15/02/2019.
+ Copyright © 2019 Vendula Švastalová. All rights reserved.
+ */
+
+"User" = "User";
+"Log In" = "Log In";
+"username" = "username";
+"password" = "password";
+"Your balance is" = "Your balance is";
+"Success!" = "Success!";
+"Wrong credentials" = "Wrong credentials";
