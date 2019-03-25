@@ -75,6 +75,8 @@ class RequestManager: RequestManagering {
     private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
         return RequestManager.agataRequest()
             .flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
+                guard let self = self else { return SignalProducer.init(error: RequestError.agataGetError(message: "Error - self is nil")) }
+                
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
@@ -94,7 +96,7 @@ class RequestManager: RequestManagering {
 
                     let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
 
-                    return self?.loginRequest(urlString: urlString)
+                    return self.loginRequest(urlString: urlString)
                 }
             }
     }
