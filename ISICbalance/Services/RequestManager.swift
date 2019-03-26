@@ -62,9 +62,7 @@ class RequestManager: RequestManagering {
                         // TODO: delete after dev
                         print("✅ parse success")
                         observer.send(value: balanceStruct)
-                        // TODO: actions does not unlock when completed is send
-                        //                                observer.sendCompleted()
-                        observer.send(error: RequestError.successfulParse)
+                        observer.sendCompleted()
                     }
                 } catch {
                     return SignalProducer(error: RequestError.parseError(message: "Error - parsing balance site failed"))
@@ -161,6 +159,7 @@ class RequestManager: RequestManagering {
                     // TODO: delete after dev
                     print("Agata request success")
                     observer.send(value: response)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.agataGetError(message: "Error - agata get request failed"))
                 }
@@ -176,6 +175,7 @@ class RequestManager: RequestManagering {
                     // TODO: delete after dev
                     print("SSO request success")
                     observer.send(value: responseShibboleth)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.ssoGetError(message: "Error - sso get request failed"))
                 }
@@ -191,6 +191,7 @@ class RequestManager: RequestManagering {
                     // TODO: delete after dev
                     print("Credentials request success")
                     observer.send(value: responseCredentials)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.credentialsPostError(message: "Error - credencial post request failed"))
                 }
@@ -206,6 +207,7 @@ class RequestManager: RequestManagering {
                     // TODO: delete after dev
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
+                    observer.sendCompleted()
                 case .failure:
                      observer.send(error: RequestError.balanceScreenPostError(message: "Error - move to balance site request failed"))
                 }
