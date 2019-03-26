@@ -26,8 +26,8 @@ class RequestManager: RequestManagering {
     private let dependencies: Dependencies
 
     // MARK: - Initialization
-    init() {
-        self.dependencies = AppDependency.shared
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
 
     func getBalance() -> SignalProducer<Balance,RequestError> {
