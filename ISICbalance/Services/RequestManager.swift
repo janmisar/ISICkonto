@@ -67,7 +67,7 @@ class RequestManager: RequestManagering {
                         observer.send(error: RequestError.successfulParse)
                     }
                 } catch {
-                    return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing balance site failed"))
+                    return SignalProducer(error: RequestError.parseError(message: "Error - parsing balance site failed"))
                 }
             })
     }
@@ -75,13 +75,13 @@ class RequestManager: RequestManagering {
     private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
         return RequestManager.agataRequest()
             .flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
-                guard let self = self else { return SignalProducer.init(error: RequestError.agataGetError(message: "Error - self is nil")) }
+                guard let self = self else { return SignalProducer(error: RequestError.agataGetError(message: "Error - self is nil")) }
                 
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
                 if hostUrl.contains("agata.suz.cvut") {
-                    return SignalProducer.init(value: response)
+                    return SignalProducer(value: response)
                 } else {
                     let returnBase = "https://agata.suz.cvut.cz/Shibboleth.sso/Login"
 //                    let returnBase = "httpuz.cvut.cz/Shibboleth.sso/Login" -> FAIL TEST
@@ -128,7 +128,7 @@ class RequestManager: RequestManagering {
                     //get action value from form to check login process
                     let action: String = try form.attr("action")
                     if !action.contains("agata.suz.cvut.cz") {
-                        return SignalProducer.init(error: RequestError.loginFailed(message: "Error - login failed"))
+                        return SignalProducer(error: RequestError.loginFailed(message: "Error - login failed"))
                     }
 
                     let inputsArray = try form.select("input").array()
@@ -147,7 +147,7 @@ class RequestManager: RequestManagering {
 
                     return RequestManager.balanceSiteRequest(action: action, formParameters: formParameters)
                 } catch {
-                    return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing login site failed"))
+                    return SignalProducer(error: RequestError.parseError(message: "Error - parsing login site failed"))
                 }
             })
     }

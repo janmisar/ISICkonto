@@ -30,7 +30,7 @@ class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingA
     typealias Dependencies = HasRequestManager
     private let dependencies: Dependencies
 
-    lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
+    lazy var balance = Property<String>(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
     let getBalanceAction: Action<(),Balance,RequestError>
 
     // MARK: - Initialization
