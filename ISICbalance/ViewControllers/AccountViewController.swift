@@ -38,7 +38,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.Theme.backgroundColor
+        self.view.backgroundColor = UIColor.theme.backgroundColor
 
         let formStackView = UIStackView()
         formStackView.spacing = 10
@@ -67,7 +67,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     fileprivate func setupFormFields() {
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
-        usernameLabel.textColor = UIColor.Theme.labelBlue
+        usernameLabel.textColor = UIColor.theme.labelBlue
         self.usernameLabel = usernameLabel
         formStackView.addArrangedSubview(usernameLabel)
         
@@ -77,7 +77,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         
         let passwordLabel = UILabel()
         passwordLabel.text = L10n.Login.password
-        passwordLabel.textColor = UIColor.Theme.labelBlue
+        passwordLabel.textColor = UIColor.theme.labelBlue
         self.passwordLabel = passwordLabel
         formStackView.addArrangedSubview(passwordLabel)
         
@@ -89,8 +89,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     fileprivate func setupLoginButton() {
         let loginButton = UIButton(type: .system)
         loginButton.setTitle(L10n.Login.login, for: .normal)
-        loginButton.setTitleColor(UIColor.Theme.backgroundColor, for: .normal)
-        loginButton.setBackgroundImage(UIColor.Theme.labelBlue.image(), for: .normal)
+        loginButton.setTitleColor(UIColor.theme.backgroundColor, for: .normal)
+        loginButton.setBackgroundImage(UIColor.theme.labelBlue.image(), for: .normal)
         self.loginButton = loginButton
         formStackView.addArrangedSubview(loginButton)
         

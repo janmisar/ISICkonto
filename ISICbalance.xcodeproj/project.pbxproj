@@ -38,7 +38,8 @@
 		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
-		14C19066223678DA0033616E /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19065223678DA0033616E /* ColorExt.swift */; };
+		14E2E89B224C239000D90285 /* ThemeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89A224C239000D90285 /* ThemeProvider.swift */; };
+		14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89C224C23F900D90285 /* UIColor+Theme.swift */; };
 		14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
 		14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
 		14ECC279223BB623006430D1 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
@@ -92,7 +93,8 @@
 		14C190492235A2840033616E /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14C1905B22365EDC0033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		14C19065223678DA0033616E /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		14E2E89A224C239000D90285 /* ThemeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProvider.swift; sourceTree = "<group>"; };
+		14E2E89C224C23F900D90285 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		14EBF3B52246588D0092D282 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		14ECC278223BB623006430D1 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
+				14E2E899224C232700D90285 /* Theme */,
 				14ECC281223BEB6B006430D1 /* Models */,
 				14ECC27E223BB85D006430D1 /* Services */,
 				14ECC277223BB613006430D1 /* Extensions */,
@@ -209,6 +212,15 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		14E2E899224C232700D90285 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				14E2E89A224C239000D90285 /* ThemeProvider.swift */,
+				14E2E89C224C23F900D90285 /* UIColor+Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		14ECC273223BB212006430D1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +242,6 @@
 		14ECC277223BB613006430D1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				14C19065223678DA0033616E /* ColorExt.swift */,
 				14ECC278223BB623006430D1 /* Base.swift */,
 				14ECC27C223BB67D006430D1 /* TextFieldExt.swift */,
 				148659E022452240006B6E1F /* UIViewControler+ValidationError.swift */,
@@ -497,7 +508,6 @@
 			showEnvVarsInLog = 0;
 		};
 		14F43154224803F20085FD16 /* SwiftLint autocorrect */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -506,7 +516,6 @@
 			);
 			inputPaths = (
 			);
-
 			name = "SwiftLint autocorrect";
 			outputFileListPaths = (
 			);
@@ -634,6 +643,7 @@
 				148659E122452240006B6E1F /* UIViewControler+ValidationError.swift in Sources */,
 				143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */,
 				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
+				14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
 				14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */,
 				14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */,
@@ -643,8 +653,8 @@
 				14ECC283223BEB8A006430D1 /* Balance.swift in Sources */,
 				14C1905E22365EE30033616E /* Assets.swift in Sources */,
 				14C19015223596DB0033616E /* AppDelegate.swift in Sources */,
-				14C19066223678DA0033616E /* ColorExt.swift in Sources */,
 				14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */,
+				14E2E89B224C239000D90285 /* ThemeProvider.swift in Sources */,
 				14ECC279223BB623006430D1 /* Base.swift in Sources */,
 				14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */,
 			);

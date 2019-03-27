@@ -13,9 +13,9 @@ class FormTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor.Theme.textFieldBackground
-        self.textColor = UIColor.Theme.textColor
-        self.tintColor = UIColor.Theme.textColor
+        self.backgroundColor = UIColor.theme.textFieldBackground
+        self.textColor = UIColor.theme.textColor
+        self.tintColor = UIColor.theme.textColor
         self.setLeftPaddingPoints(5)
         self.layer.cornerRadius = 2
         self.layer.masksToBounds = true

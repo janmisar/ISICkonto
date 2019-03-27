@@ -36,7 +36,7 @@ class BalanceViewController: BaseViewController {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.Theme.backgroundColor
+        self.view.backgroundColor = UIColor.theme.backgroundColor
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
@@ -83,14 +83,14 @@ class BalanceViewController: BaseViewController {
     fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor.Theme.labelBlue
+        balanceTitle.textColor = UIColor.theme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
         
         let balanceLabel = UILabel()
-        balanceLabel.textColor = UIColor.Theme.textColor
+        balanceLabel.textColor = UIColor.theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
