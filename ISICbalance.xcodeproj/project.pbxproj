@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
-		14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B54223FF5EB00095BC2 /* FormTextField.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
@@ -40,6 +39,7 @@
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
 		14E2E89B224C239000D90285 /* ThemeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89A224C239000D90285 /* ThemeProvider.swift */; };
 		14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89C224C23F900D90285 /* UIColor+Theme.swift */; };
+		14E2E8A0224C252700D90285 /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89F224C252700D90285 /* UITextField+Theme.swift */; };
 		14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
 		14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
 		14ECC279223BB623006430D1 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
@@ -71,7 +71,6 @@
 /* Begin PBXFileReference section */
 		14089B50223FC41000095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		14089B54223FF5EB00095BC2 /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +94,7 @@
 		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		14E2E89A224C239000D90285 /* ThemeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProvider.swift; sourceTree = "<group>"; };
 		14E2E89C224C23F900D90285 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		14E2E89F224C252700D90285 /* UITextField+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Theme.swift"; sourceTree = "<group>"; };
 		14EBF3B52246588D0092D282 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		14ECC278223BB623006430D1 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 				14ECC274223BB4D6006430D1 /* ViewModels */,
 				14ECC273223BB212006430D1 /* ViewControllers */,
 				14C190522235AE370033616E /* Generated */,
-				14089B54223FF5EB00095BC2 /* FormTextField.swift */,
 				14EBF3B52246588D0092D282 /* AppDependency.swift */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
 				1408C621223A6B0400A46BCA /* Errors.swift */,
@@ -217,6 +216,7 @@
 			children = (
 				14E2E89A224C239000D90285 /* ThemeProvider.swift */,
 				14E2E89C224C23F900D90285 /* UIColor+Theme.swift */,
+				14E2E89F224C252700D90285 /* UITextField+Theme.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -641,12 +641,12 @@
 				143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */,
 				143CB3C9223E51D800413568 /* RequestManager.swift in Sources */,
 				148659E122452240006B6E1F /* UIViewControler+ValidationError.swift in Sources */,
+				14E2E8A0224C252700D90285 /* UITextField+Theme.swift in Sources */,
 				143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */,
 				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
 				14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
 				14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */,
-				14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */,
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14089B53223FC4AF00095BC2 /* User.swift in Sources */,
 				14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */,

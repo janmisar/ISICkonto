@@ -71,7 +71,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         self.usernameLabel = usernameLabel
         formStackView.addArrangedSubview(usernameLabel)
         
-        let usernameTextField = FormTextField()
+        let usernameTextField = UITextField.theme.formTextField
         self.usernameTextField = usernameTextField
         formStackView.addArrangedSubview(usernameTextField)
         
@@ -81,7 +81,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         self.passwordLabel = passwordLabel
         formStackView.addArrangedSubview(passwordLabel)
         
-        let passwordTextField = FormTextField()
+        let passwordTextField = UITextField.theme.formTextField
         self.passwordTextField = passwordTextField
         formStackView.addArrangedSubview(passwordTextField)
     }
