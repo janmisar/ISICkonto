@@ -120,16 +120,14 @@ class BalanceViewController: BaseViewController {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction
         viewModel.getBalanceAction.errors
-            .observeValues { [weak self] error in
-                guard case RequestError.successfulParse = error else {
-                    SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
-                    SVProgressHUD.dismiss(withDelay: 1)
-                    self?.accountBtnHandle()
-                    return
-                }
-
-                SVProgressHUD.dismiss()
+            .observeValues { [weak self] _ in
+                SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                SVProgressHUD.dismiss(withDelay: 1)
+                self?.accountBtnHandle()
             }
+
+        viewModel.getBalanceAction.completed
+            .observeValues { SVProgressHUD.dismiss() }
     }
 
     // MARK: - Actions
