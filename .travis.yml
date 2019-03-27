@@ -3,7 +3,7 @@ language: objective-c
 cache: cocoapods
 install:
 - gem update bundler
-- bundle install --gemfile Gemfile
+- bundle install --gemfile ISICkonto/Gemfile
 script:
 - bundle exec fastlane beta
 - cd -
