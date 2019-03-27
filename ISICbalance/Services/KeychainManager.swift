@@ -20,7 +20,7 @@ protocol KeychainManagering {
     func getCredentialsFromKeychain() -> SignalProducer<User, NoError>
 }
 
-class KeychainManager: KeychainManagering {
+final class KeychainManager: KeychainManagering {
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
         return SignalProducer { observer, _ in
             let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")

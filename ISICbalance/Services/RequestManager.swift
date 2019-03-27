@@ -21,7 +21,7 @@ protocol RequestManagering {
     func getBalance() -> SignalProducer<Balance, RequestError>
 }
 
-class RequestManager: RequestManagering {
+final class RequestManager: RequestManagering {
     typealias Dependencies = HasKeychainManager
     private let dependencies: Dependencies
 

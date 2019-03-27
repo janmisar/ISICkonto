@@ -26,7 +26,7 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
     var actions: BalanceViewModelingActions { return self }
 }
 
-class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
+final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
     private let dependencies: Dependencies
 

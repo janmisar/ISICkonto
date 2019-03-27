@@ -26,7 +26,7 @@ extension AccountViewModelingActions where Self: AccountViewModeling {
     var actions: AccountViewModelingActions { return self }
 }
 
-class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
+final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
     private let dependencies: Dependencies
 

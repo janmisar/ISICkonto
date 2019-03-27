@@ -14,7 +14,7 @@ import ACKReactiveExtensions
 import ACKategories
 import SVProgressHUD
 
-class AccountViewController: BaseViewController, ValidateErrorPresentable {
+final class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private let viewModel: AccountViewModel
 
     private weak var formStackView: UIStackView!

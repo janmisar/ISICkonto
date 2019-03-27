@@ -11,7 +11,6 @@ import UIKit
 extension UITextField: ThemeProvider { }
 
 extension Theme where Base: UITextField {
-//    static var labelBlue: UIColor { return UIColor(red: 171/255, green: 213/255, blue: 242/255, alpha: 1) }
 
     static var formTextField: UITextField {
         let textField = UITextField()

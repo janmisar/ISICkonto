@@ -13,7 +13,7 @@ import ACKReactiveExtensions
 import SnapKit
 import SVProgressHUD
 
-class BalanceViewController: BaseViewController {
+final class BalanceViewController: BaseViewController {
     private let viewModel: BalanceViewModel
     
     private weak var screenStackView: UIStackView!
