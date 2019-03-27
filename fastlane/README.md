@@ -15,12 +15,11 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## iOS
-### ios custom_lane
+### beta
 ```
-fastlane ios custom_lane
+fastlane beta
 ```
-Description of what the lane does
+Run tests, build app and upload to HockeyApp
 
 ----
 

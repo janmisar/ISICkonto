@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='ISICbalanceTests.xctest' tests='2' failures='0'>
+  <testsuite name='ISICbalanceTests.ISICbalanceTests' tests='2' failures='0'>
+    <testcase classname='ISICbalanceTests.ISICbalanceTests' name='testExample' time='0.002'/>
+    <testcase classname='ISICbalanceTests.ISICbalanceTests' name='testPerformanceExample' time='0.459'/>
+  </testsuite>
+</testsuites>
