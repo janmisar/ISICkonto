@@ -30,7 +30,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0.0)
   - ReactiveSwift (~> 4.0.0)
   - SnapKit (~> 4.0.0)
-  - SVProgressHUD
+  - SVProgressHUD (~> 2.2.5)
   - SwiftGen (~> 6.0)
   - SwiftKeychainWrapper (~> 3.2.0)
   - SwiftLint (~> 0.31.0)
@@ -67,6 +67,6 @@ SPEC CHECKSUMS:
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
 
-PODFILE CHECKSUM: d2a377e4f6c1db305c9986c25239f0158a6c7c98
+PODFILE CHECKSUM: cab1eaf6010bbd2bcccbce071e41555f9c529f8c
 
 COCOAPODS: 1.6.1

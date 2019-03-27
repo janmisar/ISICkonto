@@ -497,6 +497,7 @@
 			showEnvVarsInLog = 0;
 		};
 		14F43154224803F20085FD16 /* SwiftLint autocorrect */ = {
+
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -505,6 +506,7 @@
 			);
 			inputPaths = (
 			);
+
 			name = "SwiftLint autocorrect";
 			outputFileListPaths = (
 			);
