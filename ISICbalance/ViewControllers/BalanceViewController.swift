@@ -120,6 +120,7 @@ final class BalanceViewController: BaseViewController {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction
         viewModel.getBalanceAction.errors
+            // TODO: Musí být metoda yccountBtnHandle volána na hlavním vlákně? 
             .observeValues { [weak self] _ in
                 SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
                 SVProgressHUD.dismiss(withDelay: 1)

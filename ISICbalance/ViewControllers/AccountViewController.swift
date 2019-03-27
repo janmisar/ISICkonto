@@ -118,7 +118,6 @@ final class AccountViewController: BaseViewController, ValidateErrorPresentable 
 
     // MARK: - Actions
     @objc func saveCredentials() {
-        SVProgressHUD.showInfo(withStatus: L10n.Login.reload)
         viewModel.loginAction.apply().start()
     }
 }
