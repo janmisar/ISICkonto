@@ -13,33 +13,25 @@ import ACKReactiveExtensions
 import SnapKit
 
 class BalanceViewController: BaseViewController {
-    private let requestManager: RequestManager
     private let viewModel: BalanceViewModel
-    private let accountViewModel: AccountViewModel
-    private let keychainManager: KeychainManager
     
-    weak var screenStackView: UIStackView!
-    weak var balanceLabel: UILabel!
-    weak var balanceTitle: UILabel!
-    weak var reloadButton: UIButton!
-    weak var accountButton: UIButton!
-    
-    override init() {
-        let keychainManager = KeychainManager()
-        self.keychainManager = KeychainManager()
-        let requestManager = RequestManager(keychainManager)
-        self.requestManager = requestManager
-        self.viewModel = BalanceViewModel(requestManager)
-        //TODO: waiting for flow coord. lecture
-        self.accountViewModel = AccountViewModel(keychainManager)
+    private weak var screenStackView: UIStackView!
+    private weak var balanceLabel: UILabel!
+    private weak var balanceTitle: UILabel!
+    private weak var reloadButton: UIButton!
+    private weak var accountButton: UIButton!
 
+    // MARK: - Initialization
+    override init() {
+        self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
         super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = UIColor.Theme.backgroundColor
@@ -60,7 +52,32 @@ class BalanceViewController: BaseViewController {
         setupBalanceField()
         setupButtonsStack()
     }
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        setupBindings()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // TODO: load balance during didFinishLaunchingWithOptions
+        viewModel.actions.getBalanceAction.apply().start()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    // MARK: - UI setup
     fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
@@ -95,47 +112,28 @@ class BalanceViewController: BaseViewController {
         self.accountButton = accountButton
         buttonsStackView.addArrangedSubview(accountButton)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
-        setupBindings()
-    }
-    
+
+    // MARK: - Bindings
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction 
-        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] _ in
-            self?.accountBtnHandle()
+        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
+            guard case RequestError.successfulParse = error else {
+                self?.accountBtnHandle()
+                return
+            }
         }
     }
-    
+
+    // MARK: - Actions
     @objc func reloadBalance() {
-        // TODO:
-        print("RELOAD")
-        viewModel.getBalanceAction.apply().start()
+        // TODO: delete after dev
+        print("RELOAD BALANCE HANDLE")
+        viewModel.actions.getBalanceAction.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        let accountViewController = AccountViewController(keychainManager)
+        let accountViewController = AccountViewController()
         navigationController?.pushViewController(accountViewController, animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // TODO: load balance during didFinishLaunchingWithOptions
-        viewModel.getBalanceAction.apply().start()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }

@@ -12,20 +12,35 @@ import ReactiveSwift
 import Alamofire
 import UIKit
 
-class BalanceViewModel: BaseViewModel {
-    private var requestManager: RequestManager
-    lazy var balance = Property<String>.init(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
+protocol BalanceViewModeling {
+    var balance: Property<String> { get }
+    
+    var actions: BalanceViewModelingActions { get }
+}
 
-    lazy var getBalanceAction = Action<(),Balance,RequestError> { [weak self] in
-        if let self = self {
-            return self.requestManager.getBalance()
-        } else {
-            return SignalProducer<Balance, RequestError>(error: RequestError.actionError(message: "Error - self in getBalanceAction is nil"))
+protocol BalanceViewModelingActions {
+    var getBalanceAction: Action<(),Balance,RequestError> { get }
+}
+
+extension BalanceViewModelingActions where Self: BalanceViewModeling {
+    var actions: BalanceViewModelingActions { return self }
+}
+
+class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
+    typealias Dependencies = HasRequestManager
+    private let dependencies: Dependencies
+
+    lazy var balance = Property<String>(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
+    let getBalanceAction: Action<(),Balance,RequestError>
+
+    // MARK: - Initialization
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+
+        self.getBalanceAction = Action {
+            return dependencies.requestManager.getBalance()
         }
-    }
 
-    init(_ requestManager: RequestManager) {
-        self.requestManager = requestManager
         super.init()
     }
 }

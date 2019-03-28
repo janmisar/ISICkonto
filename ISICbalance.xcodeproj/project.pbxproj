@@ -28,6 +28,7 @@
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
+		148659E122452240006B6E1F /* UIViewControler+ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148659E022452240006B6E1F /* UIViewControler+ValidationError.swift */; };
 		14C19015223596DB0033616E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19014223596DB0033616E /* AppDelegate.swift */; };
 		14C1901A223596DB0033616E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C19018223596DB0033616E /* Main.storyboard */; };
 		14C1901C223596DC0033616E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
 		14C19066223678DA0033616E /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C19065223678DA0033616E /* ColorExt.swift */; };
+		14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
 		14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
 		14ECC279223BB623006430D1 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
 		14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27A223BB644006430D1 /* AccountViewModel.swift */; };
@@ -73,6 +75,7 @@
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		148659E022452240006B6E1F /* UIViewControler+ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewControler+ValidationError.swift"; sourceTree = "<group>"; };
 		14C19011223596DB0033616E /* ISICbalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISICbalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C19014223596DB0033616E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14C19019223596DB0033616E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		14C1905B22365EDC0033616E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		14C1905D22365EE30033616E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		14C19065223678DA0033616E /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		14EBF3B52246588D0092D282 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
 		14ECC278223BB623006430D1 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		14ECC27A223BB644006430D1 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				14ECC273223BB212006430D1 /* ViewControllers */,
 				14C190522235AE370033616E /* Generated */,
 				14089B54223FF5EB00095BC2 /* FormTextField.swift */,
+				14EBF3B52246588D0092D282 /* AppDependency.swift */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
 				1408C621223A6B0400A46BCA /* Errors.swift */,
 				14C19018223596DB0033616E /* Main.storyboard */,
@@ -228,6 +233,7 @@
 				14C19065223678DA0033616E /* ColorExt.swift */,
 				14ECC278223BB623006430D1 /* Base.swift */,
 				14ECC27C223BB67D006430D1 /* TextFieldExt.swift */,
+				148659E022452240006B6E1F /* UIViewControler+ValidationError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,9 +287,9 @@
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
 			buildPhases = (
 				DC04ABB6D7E2BD93A93B0384 /* [CP] Check Pods Manifest.lock */,
-				14847324223D6626006EF86F /* Generate preprocess header */,
-				14F43153224803070085FD16 /* SwiftLint aurocorrect */,
+				14F43154224803F20085FD16 /* SwiftLint autocorrect */,
 				14089B4D223FA11900095BC2 /* SwiftLint */,
+				14847324223D6626006EF86F /* Generate preprocess header */,
 				14C190512235A9940033616E /* SwiftGen Script */,
 				14C1900D223596DB0033616E /* Sources */,
 				14C1900E223596DB0033616E /* Frameworks */,
@@ -489,7 +495,8 @@
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntouch $PROJECT_DIR/ISICbalance/Generated/Strings.swift\ntouch $PROJECT_DIR/ISICbalance/Generated/Assets.swift\n\ntouch $PROJECT_DIR/ISICbalance/en.lproj/Localizable.strings\n#touch $PROJECT_DIR/ISICbalance/Assets.xcassets/AppIcon.appiconset\n\n#touch $PROJECT_DIR/swiftgen.yml\n$PROJECT_DIR/Pods/SwiftGen/bin/swiftgen\n";
 			showEnvVarsInLog = 0;
 		};
-		14F43153224803070085FD16 /* SwiftLint aurocorrect */ = {
+		14F43154224803F20085FD16 /* SwiftLint autocorrect */ = {
+
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -498,7 +505,8 @@
 			);
 			inputPaths = (
 			);
-			name = "SwiftLint aurocorrect";
+
+			name = "SwiftLint autocorrect";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -620,9 +628,11 @@
 			files = (
 				143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */,
 				143CB3C9223E51D800413568 /* RequestManager.swift in Sources */,
+				148659E122452240006B6E1F /* UIViewControler+ValidationError.swift in Sources */,
 				143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */,
 				14ECC276223BB5B4006430D1 /* BalanceViewModel.swift in Sources */,
 				14C1905C22365EDD0033616E /* Strings.swift in Sources */,
+				14EBF3B62246588D0092D282 /* AppDependency.swift in Sources */,
 				14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */,
 				1408C622223A6B0400A46BCA /* Errors.swift in Sources */,
 				14089B53223FC4AF00095BC2 /* User.swift in Sources */,

@@ -15,6 +15,7 @@ enum RequestError: Error {
     case credentialsError(LoginValidation)
     case loginFailed(message: String)
     case actionError(message: String)
+    case successfulParse
 }
 
 enum LoginError: Error {

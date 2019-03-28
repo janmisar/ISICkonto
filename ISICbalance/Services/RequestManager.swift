@@ -13,23 +13,68 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import Result
 
-class RequestManager {
-    private let keychainManager: KeychainManager
+protocol HasRequestManager {
+    var requestManager: RequestManagering { get }
+}
 
-    init(_ keychainManager: KeychainManager) {
-        self.keychainManager = keychainManager
+protocol RequestManagering {
+    func getBalance() -> SignalProducer<Balance, RequestError>
+}
+
+class RequestManager: RequestManagering {
+    typealias Dependencies = HasKeychainManager
+    private let dependencies: Dependencies
+
+    // MARK: - Initialization
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
 
-    func getBalance() -> SignalProducer<Balance, RequestError> {
-        return getRequestsResult()
-            .flatMap(.latest, { [weak self] dataResponse -> SignalProducer<Balance, RequestError> in
-                guard let self = self else { return SignalProducer.init(error: RequestError.parseError(message: "Error - self is nil in getRequestsResult flatMap")) }
-                return self.parseDocument(dataResponse: dataResponse)
+    func getBalance() -> SignalProducer<Balance,RequestError> {
+        return getBalanceSite()
+            .flatMap(.latest, { response -> SignalProducer<Balance, RequestError> in
+                // parse site with balance
+                do {
+                    let document: Document = try SwiftSoup.parse(response.result.value!)
+                    // get body elements
+                    let bodyElements = try document.select("body").array()
+                    guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
+                    let bodyElement: Element = bodyElements[0]
+
+                    // get table elements
+                    let tables = try bodyElement.select("tbody").array()
+                    guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
+                    let table: Element = tables[0]
+
+                    // get balance line
+                    let balanceLines = try table.select("td").array()
+                    guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
+                    let balanceLine: Element = balanceLines[4]
+                    let lineText = balanceLine.ownText()
+
+                    // get balance
+                    let lineElements = lineText.split(separator: " ")
+                    guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
+                    let balance = lineElements[0]
+                    let balanceStruct = Balance(balance: "\(balance) Kč")
+
+                    return SignalProducer { observer, _ in
+                        // TODO: delete after dev
+                        print("✅ parse success")
+                        observer.send(value: balanceStruct)
+                        observer.sendCompleted()
+                    }
+                } catch {
+                    return SignalProducer(error: RequestError.parseError(message: "Error - parsing balance site failed"))
+                }
             })
     }
 
-    func getRequestsResult() -> SignalProducer<DataResponse<String>, RequestError> {
-        return RequestManager.agataRequest().flatMap(.latest) { response -> SignalProducer<DataResponse<String>, RequestError> in
+    private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
+        return RequestManager.agataRequest()
+            .flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
+                guard let self = self else { return SignalProducer(error: RequestError.agataGetError(message: "Error - self is nil")) }
+                
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in
@@ -49,10 +94,14 @@ class RequestManager {
 
                     let urlString = "\(returnBase)?SAMLDS=\(samlds)&target=\(target)&entityID=\(entityID)&filter=\(filter)&lang=\(lang)"
 
-                    return RequestManager.ssoRequest(urlString: urlString)
+                    return self.loginRequest(urlString: urlString)
                 }
             }
-            .combineLatest(with: keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
+    }
+
+    private func loginRequest(urlString: String) -> SignalProducer<DataResponse<String>, RequestError> {
+         return RequestManager.ssoRequest(urlString: urlString)
+            .combineLatest(with: dependencies.keychainManager.getCredentialsFromKeychain().promoteError(RequestError.self))
             .map { responseShibboleth, user -> (String, [String:String]) in
                 //login parameters, username and password
                 let parameters = [
@@ -77,7 +126,7 @@ class RequestManager {
                     //get action value from form to check login process
                     let action: String = try form.attr("action")
                     if !action.contains("agata.suz.cvut.cz") {
-                        return SignalProducer.init(error: RequestError.loginFailed(message: "Error - login failed"))
+                        return SignalProducer(error: RequestError.loginFailed(message: "Error - login failed"))
                     }
 
                     let inputsArray = try form.select("input").array()
@@ -96,49 +145,13 @@ class RequestManager {
 
                     return RequestManager.balanceSiteRequest(action: action, formParameters: formParameters)
                 } catch {
-                    return SignalProducer.init(error: RequestError.parseError(message: "Error - parsing login site failed"))
+                    return SignalProducer(error: RequestError.parseError(message: "Error - parsing login site failed"))
                 }
             })
     }
 
-    func parseDocument(dataResponse: DataResponse<String>) -> SignalProducer<Balance,RequestError> {
-        return SignalProducer { observer, _ in
-            do {
-                let document: Document = try SwiftSoup.parse(dataResponse.result.value!)
-                // get body elements
-                let bodyElements = try document.select("body").array()
-                guard bodyElements.count > 0 else { throw RequestError.parseError(message: "Error - body is not included in document") }
-                let bodyElement: Element = bodyElements[0]
-
-                // get table elements
-                let tables = try bodyElement.select("tbody").array()
-                guard tables.count > 0 else { throw RequestError.parseError(message: "Error - tbody is not included in body") }
-                let table: Element = tables[0]
-
-                // get balance line
-                let balanceLines = try table.select("td").array()
-                guard balanceLines.count > 4 else { throw RequestError.parseError(message: "Error - balance line is not included in tbody") }
-                let balanceLine: Element = balanceLines[4]
-                let lineText = balanceLine.ownText()
-
-                // get balance
-                let lineElements = lineText.split(separator: " ")
-                guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
-                let balance = lineElements[0]
-                let balanceStruct = Balance(balance: "\(balance) Kč")
-                // TODO: doesnt "unlock" Action"
-                observer.send(value: balanceStruct)
-                observer.sendCompleted()
-                // TODO: solution ?
-                // observer.send(error: RequestError.successfulParse)
-            } catch {
-                observer.send(error: RequestError.parseError(message: "Error - parsing balance site failed"))
-            }
-        }
-    }
-
-    // MARK: - alamofireRequests
-    static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
+    // MARK: - Alamofire requests
+    private static func agataRequest() -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
                 switch response.result {
@@ -146,6 +159,7 @@ class RequestManager {
                     // TODO: delete after dev
                     print("Agata request success")
                     observer.send(value: response)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.agataGetError(message: "Error - agata get request failed"))
                 }
@@ -153,7 +167,7 @@ class RequestManager {
         }
     }
 
-    static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func ssoRequest(urlString: String) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(urlString).responseString { responseShibboleth in
                 switch responseShibboleth.result {
@@ -161,6 +175,7 @@ class RequestManager {
                     // TODO: delete after dev
                     print("SSO request success")
                     observer.send(value: responseShibboleth)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.ssoGetError(message: "Error - sso get request failed"))
                 }
@@ -168,7 +183,7 @@ class RequestManager {
         }
     }
 
-    static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func credentialsRequest(credentialsUrl: String, parameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
                 switch responseCredentials.result {
@@ -176,6 +191,7 @@ class RequestManager {
                     // TODO: delete after dev
                     print("Credentials request success")
                     observer.send(value: responseCredentials)
+                    observer.sendCompleted()
                 case .failure:
                     observer.send(error: RequestError.credentialsPostError(message: "Error - credencial post request failed"))
                 }
@@ -183,15 +199,15 @@ class RequestManager {
         }
     }
 
-    static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
+    private static func balanceSiteRequest(action: String, formParameters: [String : String]) -> SignalProducer<DataResponse<String>,RequestError> {
         return SignalProducer { observer, _ in
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
-
                 switch responseBalanceSite.result {
                 case .success:
                     // TODO: delete after dev
                     print("Balance site request success")
                     observer.send(value: responseBalanceSite)
+                    observer.sendCompleted()
                 case .failure:
                      observer.send(error: RequestError.balanceScreenPostError(message: "Error - move to balance site request failed"))
                 }

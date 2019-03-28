@@ -11,9 +11,17 @@ import ReactiveSwift
 import SwiftKeychainWrapper
 import Result
 
-class KeychainManager {
+protocol HasKeychainManager {
+    var keychainManager: KeychainManagering { get }
+}
+
+protocol KeychainManagering {
+    func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError>
+    func getCredentialsFromKeychain() -> SignalProducer<User, NoError>
+}
+
+class KeychainManager: KeychainManagering {
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
-        //TODO: disposable parameter?
         return SignalProducer { observer, _ in
             let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
             let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
@@ -27,7 +35,6 @@ class KeychainManager {
     }
 
     func getCredentialsFromKeychain() -> SignalProducer<User, NoError> {
-        //TODO: disposable parameter?
         return SignalProducer<User, NoError> { observer, _ in
             let username = KeychainWrapper.standard.string(forKey: "username") ?? ""
             let password = KeychainWrapper.standard.string(forKey: "password") ?? ""

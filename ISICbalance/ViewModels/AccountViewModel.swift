@@ -11,26 +11,38 @@ import ReactiveSwift
 import Result
 import SwiftKeychainWrapper
 
-class AccountViewModel: BaseViewModel {
-    let keychainManager: KeychainManager
-    let username = MutableProperty<String>("")
-    let password = MutableProperty<String>("")
-    var validationSignal: Property<Bool>
-    var validationErrors: Property<[LoginValidation]>
+protocol AccountViewModeling {
+    var username: MutableProperty<String> { get }
+    var password: MutableProperty<String> { get }
 
-    lazy var loginAction = Action<(),(),LoginError> { [weak self] in
-        guard let self = self else {
-            return SignalProducer<(), LoginError>(error: LoginError.actionError(message: "Error - self in loginAction is nil"))
-        }
-        
-        if self.validationSignal.value {
-            return self.keychainManager.saveCredentials(username: self.username.value, password: self.password.value)
-        } else {
-            return SignalProducer<(), LoginError>(error: .validation(self.validationErrors.value))
-        }
-    }
+    var actions: AccountViewModelingActions { get }
+}
 
-    init(_ keychainManager: KeychainManager) {
+protocol AccountViewModelingActions {
+    var loginAction: Action<(),(),LoginError> { get }
+}
+
+extension AccountViewModelingActions where Self: AccountViewModeling {
+    var actions: AccountViewModelingActions { return self }
+}
+
+class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
+    typealias Dependencies = HasKeychainManager
+    private let dependencies: Dependencies
+
+    let username: MutableProperty<String>
+    let password: MutableProperty<String>
+    private var validationSignal: Property<Bool>
+    private var validationErrors: Property<[LoginValidation]>
+    let loginAction: Action<(),(),LoginError>
+
+    // MARK: - Initialization
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+
+        username = MutableProperty("")
+        password = MutableProperty("")
+
         validationErrors = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
@@ -41,14 +53,22 @@ class AccountViewModel: BaseViewModel {
             }
             return validations
         }
-        
         validationSignal = validationErrors.map { $0.isEmpty }
-        self.keychainManager = keychainManager
+
+        loginAction = Action(state: Property.combineLatest(username, password, validationErrors, validationSignal)) { state in
+            let (username, password, validationErrors, validationSignal) = state
+
+            if validationSignal {
+                return dependencies.keychainManager.saveCredentials(username: username, password: password)
+            } else {
+                return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors))
+            }
+        }
 
         super.init()
-        keychainManager.getCredentialsFromKeychain().on(value: { [weak self] user in
-            self?.username.value = user.username
-            self?.password.value = user.password
-        }).start()
+
+        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain()
+        self.username <~ userCredentials.map { $0.username }
+        self.password <~ userCredentials.map { $0.password }
     }
 }
