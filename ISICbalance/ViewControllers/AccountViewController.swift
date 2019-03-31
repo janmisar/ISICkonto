@@ -25,6 +25,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
 
     // MARK: - Initialization
     override init() {
+        // TODO: nedostatečný DI
         self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
 
         super.init()
@@ -37,17 +38,17 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.Theme.backgroundColor
+        self.view.backgroundColor = UIColor.Theme.backgroundColor // TODO: fuck self
 
         let formStackView = UIStackView()
         formStackView.spacing = 10
         formStackView.axis = .vertical
-        self.view.addSubview(formStackView)
+        self.view.addSubview(formStackView) // TODO: fuck self
         self.formStackView = formStackView
         
         formStackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(30)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20) // TODO: fuck self
             make.bottom.lessThanOrEqualTo(-20)
         }
         

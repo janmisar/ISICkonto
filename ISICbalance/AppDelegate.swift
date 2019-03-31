@@ -18,16 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Simulator data path
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        print(urls[urls.count-1] as URL)
+        print(urls[urls.count-1] as URL) // TODO: jen pro dev/simulator
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.makeKeyAndVisible()
+        self.window = UIWindow(frame: UIScreen.main.bounds) // TODO: ne self
+        self.window?.makeKeyAndVisible() // TODO: ne self
         
         // Navigation bar theme
         UINavigationBar.appearance().barTintColor = UIColor.Theme.backgroundColor
         UINavigationBar.appearance().tintColor = UIColor.Theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
         
+        // TODO: nenechávat zakomentovaný kód
 //        window?.rootViewController = UINavigationController(rootViewController: AccountViewController())
         window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
 
