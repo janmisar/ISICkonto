@@ -13,6 +13,12 @@ import Foundation
 internal enum L10n {
 
   internal enum Balance {
+    /// Wrong credentials
+    internal static let credentialsError = L10n.tr("Localizable", "balance.credentialsError")
+    /// CZK
+    internal static let currency = L10n.tr("Localizable", "balance.currency")
+    /// Loading...
+    internal static let loading = L10n.tr("Localizable", "balance.loading")
     /// Your balance is
     internal static let title = L10n.tr("Localizable", "balance.title")
   }
@@ -22,6 +28,8 @@ internal enum L10n {
     internal static let login = L10n.tr("Localizable", "login.login")
     /// Password
     internal static let password = L10n.tr("Localizable", "login.password")
+    /// Restart app to show changes. (API is 💩)
+    internal static let reload = L10n.tr("Localizable", "login.reload")
     /// User
     internal static let title = L10n.tr("Localizable", "login.title")
     /// Username

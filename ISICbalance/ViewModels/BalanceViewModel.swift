@@ -28,17 +28,14 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
 
 class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
-    private let dependencies: Dependencies // TODO: není potřeba
 
-    lazy var balance = Property<String>(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance }) // TODO: kč lokalizovat a přilepovat až ve view a vůbec.. možná spíš vracet číslo než string
+    lazy var balance = Property<String>(initial: "0", then: getBalanceAction.values.map { $0.balance }) // TODO: kč lokalizovat a přilepovat až ve view a vůbec.. možná spíš vracet číslo než string -> Kč lokalizováno a přilepeno ve view. Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
     let getBalanceAction: Action<(),Balance,RequestError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-
         self.getBalanceAction = Action {
-            return dependencies.requestManager.getBalance() // TODO: není potřeba return
+            dependencies.requestManager.getBalance()
         }
 
         super.init()

@@ -17,6 +17,7 @@ class BalanceViewController: BaseViewController {
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
+    private weak var currencyLabel: UILabel!
     private weak var balanceTitle: UILabel!
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
@@ -88,6 +89,9 @@ class BalanceViewController: BaseViewController {
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
+
+        let balanceStack = UIStackView()
+        balanceStack.axis = .horizontal
         
         let balanceLabel = UILabel()
         balanceLabel.textColor = UIColor.Theme.textColor
@@ -95,7 +99,18 @@ class BalanceViewController: BaseViewController {
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
         self.balanceLabel = balanceLabel
-        screenStackView.addArrangedSubview(balanceLabel)
+        balanceStack.addArrangedSubview(balanceLabel)
+
+        let currencyLabel = UILabel()
+        currencyLabel.textColor = UIColor.Theme.textColor
+        currencyLabel.adjustsFontSizeToFitWidth = true
+        currencyLabel.textAlignment = .center
+        currencyLabel.font = UIFont.boldSystemFont(ofSize: 80)
+        currencyLabel.text = L10n.Balance.currency
+        self.currencyLabel = currencyLabel
+        balanceStack.addArrangedSubview(currencyLabel)
+
+        screenStackView.addArrangedSubview(balanceStack)
     }
     
     fileprivate func setupButtonsStack() {
@@ -117,7 +132,8 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Bindings
     func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.balance
+        balanceLabel.reactive.text <~ viewModel.balance
+
         // push accountViewController if there is some error duting balanceAction 
         viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
             guard case RequestError.successfulParse = error else {
