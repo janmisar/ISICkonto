@@ -45,7 +45,6 @@ class BalanceViewController: BaseViewController {
         self.view.addSubview(screenStackView)
         
         screenStackView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview() // TODO: zbytečný centerX
             make.leading.trailing.equalToSuperview().inset(50)
             make.top.greaterThanOrEqualTo(30)
             make.bottom.lessThanOrEqualTo(-30)
@@ -58,9 +57,8 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // TODO: fuck self
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         setupBindings()
     }
 
@@ -137,8 +135,7 @@ class BalanceViewController: BaseViewController {
         // push accountViewController if there is some error duting balanceAction 
         viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
             guard case RequestError.successfulParse = error else {
-                // TODO: nevolat handle odjinud než z buttonu
-                self?.accountBtnHandle()
+                self?.presentAccountVC()
                 return
             }
         }
@@ -152,6 +149,10 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
+        presentAccountVC()
+    }
+
+    func presentAccountVC() {
         let accountViewController = AccountViewController()
         navigationController?.pushViewController(accountViewController, animated: true)
     }
