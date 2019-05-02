@@ -20,8 +20,8 @@ extension ValidateErrorPresentable {
 
 extension ValidateErrorPresentable {
     func presentValidationError(_ errorMessage: String) {
-        let alertController = UIAlertController(title: "Validation error!", message: errorMessage, preferredStyle: .alert) // TODO: chybí lokalizace
-        let alertAction = UIAlertAction(title: "OK", style: .default) // TODO: chybí lokalizace
+        let alertController = UIAlertController(title: L10n.Validate.error, message: errorMessage, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: L10n.Validate.ok, style: .default)
         alertController.addAction(alertAction)
 
         present(alertController, animated: true)

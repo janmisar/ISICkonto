@@ -7,3 +7,5 @@
 "balance.loading" = "Loading...";
 "balance.credentialsError" = "Wrong credentials";
 "balance.currency" = "CZK";
+"validate.error" = "Validation error!";
+"validate.ok" = "Ok";

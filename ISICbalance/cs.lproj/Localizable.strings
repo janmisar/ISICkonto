@@ -7,3 +7,5 @@
 "balance.loading" = "Načítání stavu...";
 "balance.credentialsError" = "Nesprávné přihlašovací údaje";
 "balance.currency" = "Kč";
+"validate.error" = "Chyba validace!";
+"validate.ok" = "Hotovo";
