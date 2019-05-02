@@ -28,17 +28,14 @@ extension AccountViewModelingActions where Self: AccountViewModeling {
 
 class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
-    private let dependencies: Dependencies // TODO: není potřeba
 
     let username: MutableProperty<String>
     let password: MutableProperty<String>
-    private var validationSignal: Property<Bool> // TODO: není potřeba
-    private var validationErrors: Property<[LoginValidation]> // TODO: není potřeba
+private var validationErrors: Property<[LoginValidation]> // TODO: není potřeba
     let loginAction: Action<(),(),LoginError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-        self.dependencies = dependencies
 
         username = MutableProperty("")
         password = MutableProperty("")
@@ -53,12 +50,11 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
             }
             return validations
         }
-        validationSignal = validationErrors.map { $0.isEmpty } // TODO: potřebuju tohle?
 
-        loginAction = Action(state: Property.combineLatest(username, password, validationErrors, validationSignal)) { state in
-            let (username, password, validationErrors, validationSignal) = state // TODO: naming
+        loginAction = Action(state: Property.combineLatest(username, password, validationErrors)) { stateParameters in
+            let (username, password, validationErrors) = stateParameters
 
-            if validationSignal {
+            if validationErrors.isEmpty {
                 return dependencies.keychainManager.saveCredentials(username: username, password: password)
             } else {
                 return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors)) // TODO: zbytečně moc typů
