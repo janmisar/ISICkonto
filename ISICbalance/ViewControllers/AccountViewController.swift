@@ -25,7 +25,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
 
     // MARK: - Initialization
     override init() {
-        // TODO: nedostatečný DI
+        // TODO: nedostatečný DI -> bude opraveno s FlowCoordinátorama
         self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
 
         super.init()
@@ -108,7 +108,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
         viewModel.loginAction.errors
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-                self?.presentValidationError("You must fill out all fields.")
+                self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
         viewModel.loginAction.completed.producer.startWithValues { [weak self] in

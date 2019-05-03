@@ -24,7 +24,7 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Initialization
     override init() {
-        // TODO: nedostatečný DI
+        // TODO: nedostatečný DI -> bude opraveno s FlowCoordinátorama
         self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
         super.init()
     }
@@ -46,6 +46,7 @@ class BalanceViewController: BaseViewController {
         
         screenStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(50)
+            make.centerY.equalToSuperview()
             make.top.greaterThanOrEqualTo(30)
             make.bottom.lessThanOrEqualTo(-30)
         }

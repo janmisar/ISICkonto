@@ -39,6 +39,8 @@ internal enum L10n {
   internal enum Validate {
     /// Validation error!
     internal static let error = L10n.tr("Localizable", "validate.error")
+    /// You must fill out all fields.
+    internal static let errorMessage = L10n.tr("Localizable", "validate.errorMessage")
     /// Ok
     internal static let ok = L10n.tr("Localizable", "validate.ok")
   }

@@ -9,3 +9,4 @@
 "balance.currency" = "Kč";
 "validate.error" = "Chyba validace!";
 "validate.ok" = "Hotovo";
+"validate.errorMessage" = "Musíš vyplnit všechny pole.";

@@ -31,7 +31,7 @@ class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingA
 
     let username: MutableProperty<String>
     let password: MutableProperty<String>
-private var validationErrors: Property<[LoginValidation]> // TODO: není potřeba
+
     let loginAction: Action<(),(),LoginError>
 
     // MARK: - Initialization
@@ -40,7 +40,7 @@ private var validationErrors: Property<[LoginValidation]> // TODO: není potřeb
         username = MutableProperty("")
         password = MutableProperty("")
 
-        validationErrors = username.combineLatest(with: password).map { username, password in // TODO: používat Producer.combineLatest([...])
+        var validationErrors: Property<[LoginValidation]> = username.combineLatest(with: password).map { username, password in // TODO: používat Producer.combineLatest([...])
             var validations: [LoginValidation] = []
             if username.isEmpty {
                 validations.append(.username(message: "Error - username is incorrect"))
