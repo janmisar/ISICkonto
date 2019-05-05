@@ -12,8 +12,12 @@ import ReactiveSwift
 import ACKReactiveExtensions
 import SnapKit
 
+protocol BalanceFlowDelegate: class {
+
+}
+
 class BalanceViewController: BaseViewController {
-    private let viewModel: BalanceViewModel
+    private let viewModel: BalanceViewModeling
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
@@ -22,10 +26,11 @@ class BalanceViewController: BaseViewController {
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
 
+    weak var flowDelegate: BalanceFlowDelegate?
+
     // MARK: - Initialization
-    override init() {
-        // TODO: nedostatečný DI -> bude opraveno s FlowCoordinátorama
-        self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
+    init(viewModel: BalanceViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -131,7 +136,7 @@ class BalanceViewController: BaseViewController {
         balanceLabel.reactive.text <~ viewModel.balance
 
         // push accountViewController if there is some error duting balanceAction 
-        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
+        viewModel.actions.getBalanceAction.errors.producer.startWithValues { [weak self] error in
             guard case RequestError.successfulParse = error else {
                 self?.presentAccountVC()
                 return

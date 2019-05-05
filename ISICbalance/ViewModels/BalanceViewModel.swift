@@ -14,7 +14,6 @@ import UIKit
 
 protocol BalanceViewModeling {
     var balance: Property<String> { get }
-    
     var actions: BalanceViewModelingActions { get }
 }
 
@@ -29,7 +28,7 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
 class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
 
-    lazy var balance = Property<String>(initial: "0", then: getBalanceAction.values.map { $0.balance }) // TODO: kč lokalizovat a přilepovat až ve view a vůbec.. možná spíš vracet číslo než string -> Kč lokalizováno a přilepeno ve view. Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
+    lazy var balance = Property<String>(initial: "0", then: getBalanceAction.values.map { $0.balance }) // TODO: možná spíš vracet číslo než string -> Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
     let getBalanceAction: Action<(),Balance,RequestError>
 
     // MARK: - Initialization

@@ -25,6 +25,7 @@
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		14089B55223FF5EB00095BC2 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B54223FF5EB00095BC2 /* FormTextField.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
+		141BB5F7227EE02F00233C3E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
@@ -72,6 +73,7 @@
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		14089B54223FF5EB00095BC2 /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141BB5F5227EE02F00233C3E /* FlowCoordinators */ = {
+			isa = PBXGroup;
+			children = (
+				141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */,
+			);
+			path = FlowCoordinators;
+			sourceTree = "<group>";
+		};
 		14C19008223596DB0033616E = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +179,7 @@
 				14ECC274223BB4D6006430D1 /* ViewModels */,
 				14ECC273223BB212006430D1 /* ViewControllers */,
 				14C190522235AE370033616E /* Generated */,
+				141BB5F5227EE02F00233C3E /* FlowCoordinators */,
 				14089B54223FF5EB00095BC2 /* FormTextField.swift */,
 				14EBF3B52246588D0092D282 /* AppDependency.swift */,
 				14C19014223596DB0033616E /* AppDelegate.swift */,
@@ -642,6 +653,7 @@
 				14ECC27B223BB644006430D1 /* AccountViewModel.swift in Sources */,
 				14ECC279223BB623006430D1 /* Base.swift in Sources */,
 				14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */,
+				141BB5F7227EE02F00233C3E /* AppFlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

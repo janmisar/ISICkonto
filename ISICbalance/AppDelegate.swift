@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appFlowCoordinator: AppFlowCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.Theme.backgroundColor
         UINavigationBar.appearance().tintColor = UIColor.Theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        
-        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
+
+        appFlowCoordinator = AppFlowCoordinator()
+        appFlowCoordinator.start(in: window!)
 
         return true
     }
