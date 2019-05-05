@@ -40,6 +40,7 @@ class BalanceViewController: BaseViewController {
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
+        screenStackView.alignment = .center
         screenStackView.spacing = 60
         self.screenStackView = screenStackView
         self.view.addSubview(screenStackView)
@@ -68,8 +69,7 @@ class BalanceViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {        super.viewDidAppear(animated)
         // TODO: load balance during didFinishLaunchingWithOptions
         viewModel.actions.getBalanceAction.apply().start()
     }
@@ -91,7 +91,8 @@ class BalanceViewController: BaseViewController {
 
         let balanceStack = UIStackView()
         balanceStack.axis = .horizontal
-        
+        screenStackView.addArrangedSubview(balanceStack)
+
         let balanceLabel = UILabel()
         balanceLabel.textColor = UIColor.Theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
@@ -105,28 +106,24 @@ class BalanceViewController: BaseViewController {
         currencyLabel.adjustsFontSizeToFitWidth = true
         currencyLabel.textAlignment = .center
         currencyLabel.font = UIFont.boldSystemFont(ofSize: 80)
-        currencyLabel.text = L10n.Balance.currency
+        currencyLabel.text = " \(L10n.Balance.currency)"
         self.currencyLabel = currencyLabel
         balanceStack.addArrangedSubview(currencyLabel)
-
-        screenStackView.addArrangedSubview(balanceStack)
     }
     
     fileprivate func setupButtonsStack() {
-        let buttonsStackView = UIStackView()
-        buttonsStackView.distribution = .fillEqually
-        screenStackView.addArrangedSubview(buttonsStackView)
-
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
-        buttonsStackView.addArrangedSubview(reloadButton)
 
         let accountButton = UIButton()
         accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
-        buttonsStackView.addArrangedSubview(accountButton)
+
+        let buttonsStackView = UIStackView(arrangedSubviews: [reloadButton, UIView(), accountButton])
+        buttonsStackView.distribution = .fillEqually
+        screenStackView.addArrangedSubview(buttonsStackView)
     }
 
     // MARK: - Bindings
