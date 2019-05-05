@@ -138,7 +138,8 @@ class BalanceViewController: BaseViewController {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalanceAction.errors
-            // TODO: Musí být metoda yccountBtnHandle volána na hlavním vlákně? 
+            // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
+            .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
                 SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
                 SVProgressHUD.dismiss(withDelay: 1)
@@ -146,14 +147,19 @@ class BalanceViewController: BaseViewController {
             }
 
         viewModel.actions.getBalanceAction.completed
-            .observeValues { SVProgressHUD.dismiss() }
+            .observe(on: UIScheduler())
+            .observeValues {
+                SVProgressHUD.dismiss()
+            }
     }
 
     // MARK: - Actions
     @objc func reloadBalance() {
         // TODO: delete after dev
         print("RELOAD BALANCE HANDLE")
-        SVProgressHUD.show(withStatus: L10n.Balance.loading)
+        DispatchQueue.main.async {
+            SVProgressHUD.show(withStatus: L10n.Balance.loading)
+        }
         viewModel.actions.getBalanceAction.apply().start()
     }
     

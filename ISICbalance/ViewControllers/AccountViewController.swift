@@ -116,9 +116,10 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
                 self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
-        viewModel.actions.loginAction.completed.producer.startWithValues { [weak self] in
-            guard let self = self else { return }
-            self.flowDelegate?.balanceActionCompleted(in: self)
+        viewModel.actions.loginAction.completed.producer
+            .observe(on: UIScheduler())
+            .startWithValues { [weak self] in
+            self?.flowDelegate?.balanceActionCompleted(in: self!)
         }
     }
 
