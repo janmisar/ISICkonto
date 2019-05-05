@@ -76,7 +76,8 @@ class BalanceViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    override func viewDidAppear(_ animated: Bool) {        super.viewDidAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // TODO: load balance during didFinishLaunchingWithOptions
         reloadBalance()
     }
@@ -137,7 +138,7 @@ class BalanceViewController: BaseViewController {
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction
-        viewModel.actions.getBalanceAction.errors
+        viewModel.actions.getBalance.errors
             // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
@@ -146,7 +147,7 @@ class BalanceViewController: BaseViewController {
                 self?.presentAccountVC()
             }
 
-        viewModel.actions.getBalanceAction.completed
+        viewModel.actions.getBalance.completed
             .observe(on: UIScheduler())
             .observeValues {
                 SVProgressHUD.dismiss()
@@ -160,7 +161,7 @@ class BalanceViewController: BaseViewController {
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
-        viewModel.actions.getBalanceAction.apply().start()
+        viewModel.actions.getBalance.apply().start()
     }
     
     @objc func accountBtnHandle() {

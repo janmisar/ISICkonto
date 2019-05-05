@@ -19,7 +19,7 @@ protocol AccountViewModeling {
 }
 
 protocol AccountViewModelingActions {
-    var loginAction: Action<(),(),LoginError> { get }
+    var login: Action<(),(),LoginError> { get }
 }
 
 extension AccountViewModelingActions where Self: AccountViewModeling {
@@ -32,7 +32,7 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
     let username: MutableProperty<String>
     let password: MutableProperty<String>
 
-    let loginAction: Action<(),(),LoginError>
+    let login: Action<(),(),LoginError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
@@ -51,7 +51,7 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
             return validations
         }
 
-        loginAction = Action(state: Property.combineLatest(username, password, validationErrors)) { stateParameters in
+        login = Action(state: Property.combineLatest(username, password, validationErrors)) { stateParameters in
             let (username, password, validationErrors) = stateParameters
 
             if validationErrors.isEmpty {

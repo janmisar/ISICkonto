@@ -108,15 +108,15 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
-        loginButton.reactive.isEnabled <~ viewModel.actions.loginAction.isExecuting.negate()
+        loginButton.reactive.isEnabled <~ viewModel.actions.login.isExecuting.negate()
         
-        viewModel.actions.loginAction.errors
+        viewModel.actions.login.errors
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
                 self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
-        viewModel.actions.loginAction.completed.producer
+        viewModel.actions.login.completed.producer
             .observe(on: UIScheduler())
             .startWithValues { [weak self] in
             self?.flowDelegate?.balanceActionCompleted(in: self!)
@@ -125,6 +125,6 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
 
     // MARK: - Actions
     @objc func saveCredentials() {
-        viewModel.actions.loginAction.apply().start()
+        viewModel.actions.login.apply().start()
     }
 }
