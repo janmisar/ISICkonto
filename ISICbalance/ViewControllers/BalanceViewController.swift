@@ -78,7 +78,6 @@ class BalanceViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // TODO: load balance during didFinishLaunchingWithOptions
         reloadBalance()
     }
 
@@ -136,21 +135,21 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Bindings
     func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.balance
+        self.balanceLabel.reactive.text <~ viewModel.balance.map { String($0) }
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalance.errors
             // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-                SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
-                SVProgressHUD.dismiss(withDelay: 1)
+               // SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                //SVProgressHUD.dismiss(withDelay: 1)
                 self?.presentAccountVC()
             }
 
         viewModel.actions.getBalance.completed
             .observe(on: UIScheduler())
             .observeValues {
-                SVProgressHUD.dismiss()
+//                SVProgressHUD.dismiss()
             }
     }
 
@@ -158,8 +157,9 @@ class BalanceViewController: BaseViewController {
     @objc func reloadBalance() {
         // TODO: delete after dev
         print("RELOAD BALANCE HANDLE")
+
         DispatchQueue.main.async {
-            SVProgressHUD.show(withStatus: L10n.Balance.loading)
+//            SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
     }

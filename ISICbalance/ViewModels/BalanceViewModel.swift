@@ -13,7 +13,7 @@ import Alamofire
 import UIKit
 
 protocol BalanceViewModeling {
-    var balance: Property<String> { get }
+    var balance: Property<Int> { get }
     var actions: BalanceViewModelingActions { get }
 }
 
@@ -28,7 +28,7 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
 final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
 
-    lazy var balance = Property<String>(initial: "0", then: getBalance.values.map { $0.balance }) // TODO: možná spíš vracet číslo než string -> Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
+    lazy var balance = Property<Int>(initial: 0, then: getBalance.values.map { $0.balance }) // TODO: možná spíš vracet číslo než string -> Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
     let getBalance: Action<(),Balance,RequestError>
 
     // MARK: - Initialization
