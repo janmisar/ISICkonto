@@ -63,11 +63,9 @@ final class RequestManager: RequestManagering {
                 }
             })
             .flatMap(.latest, { balance -> SignalProducer<Balance, RequestError> in
-
                 let separatedBalance = balance.split(separator: ",")
                 let stringBalance = String(separatedBalance[0] ?? "0")
                 let intBalance = Int(stringBalance) ?? 0
-
                 let balanceStruct = Balance(balance: intBalance)
 
                 return SignalProducer { observer, _ in
