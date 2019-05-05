@@ -109,7 +109,7 @@ class BalanceViewController: BaseViewController {
         balanceStack.addArrangedSubview(balanceLabel)
 
         let currencyLabel = UILabel()
-        currencyLabel.textColor = UIColor.Theme.textColor
+        currencyLabel.textColor = UIColor.theme.textColor
         currencyLabel.adjustsFontSizeToFitWidth = true
         currencyLabel.textAlignment = .center
         currencyLabel.font = UIFont.boldSystemFont(ofSize: 80)
@@ -137,7 +137,7 @@ class BalanceViewController: BaseViewController {
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance
         // push accountViewController if there is some error duting balanceAction
-        viewModel.getBalanceAction.errors
+        viewModel.actions.getBalanceAction.errors
             // TODO: Musí být metoda yccountBtnHandle volána na hlavním vlákně? 
             .observeValues { [weak self] _ in
                 SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
@@ -145,7 +145,7 @@ class BalanceViewController: BaseViewController {
                 self?.presentAccountVC()
             }
 
-        viewModel.getBalanceAction.completed
+        viewModel.actions.getBalanceAction.completed
             .observeValues { SVProgressHUD.dismiss() }
     }
 

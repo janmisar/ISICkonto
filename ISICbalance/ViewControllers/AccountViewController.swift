@@ -14,7 +14,6 @@ import ACKReactiveExtensions
 import ACKategories
 import SVProgressHUD
 
-
 protocol AccountFlowDelegate: class {
     func balanceActionCompleted(in viewController: AccountViewController)
 }
@@ -44,7 +43,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        view.backgroundColor = UIColor.Theme.backgroundColor
+        view.backgroundColor = UIColor.theme.backgroundColor
 
         let formStackView = UIStackView()
         formStackView.spacing = 10
