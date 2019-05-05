@@ -22,7 +22,6 @@ class BalanceViewController: BaseViewController {
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
-    private weak var currencyLabel: UILabel!
     private weak var balanceTitle: UILabel!
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
@@ -96,26 +95,13 @@ class BalanceViewController: BaseViewController {
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
 
-        let balanceStack = UIStackView()
-        balanceStack.axis = .horizontal
-        screenStackView.addArrangedSubview(balanceStack)
-
         let balanceLabel = UILabel()
         balanceLabel.textColor = UIColor.theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
         self.balanceLabel = balanceLabel
-        balanceStack.addArrangedSubview(balanceLabel)
-
-        let currencyLabel = UILabel()
-        currencyLabel.textColor = UIColor.theme.textColor
-        currencyLabel.adjustsFontSizeToFitWidth = true
-        currencyLabel.textAlignment = .center
-        currencyLabel.font = UIFont.boldSystemFont(ofSize: 80)
-        currencyLabel.text = " \(L10n.Balance.currency)"
-        self.currencyLabel = currencyLabel
-        //balanceStack.addArrangedSubview(currencyLabel)
+        screenStackView.addArrangedSubview(balanceLabel)
     }
     
     fileprivate func setupButtonsStack() {
