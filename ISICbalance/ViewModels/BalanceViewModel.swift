@@ -14,7 +14,6 @@ import UIKit
 
 protocol BalanceViewModeling {
     var balance: Property<String> { get }
-    
     var actions: BalanceViewModelingActions { get }
 }
 
@@ -28,17 +27,14 @@ extension BalanceViewModelingActions where Self: BalanceViewModeling {
 
 final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
-    private let dependencies: Dependencies
 
-    lazy var balance = Property<String>(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance })
+    lazy var balance = Property<String>(initial: "0", then: getBalanceAction.values.map { $0.balance }) // TODO: možná spíš vracet číslo než string -> Opravdu to mám převádět pomocí formatteru do double a pak to zase formátovat do double s čárkou?
     let getBalanceAction: Action<(),Balance,RequestError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-
         self.getBalanceAction = Action {
-            return dependencies.requestManager.getBalance()
+            dependencies.requestManager.getBalance()
         }
 
         super.init()

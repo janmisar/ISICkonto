@@ -56,7 +56,7 @@ final class RequestManager: RequestManagering {
                     let lineElements = lineText.split(separator: " ")
                     guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
                     let balance = lineElements[0]
-                    let balanceStruct = Balance(balance: "\(balance) Kč")
+                    let balanceStruct = Balance(balance: String(balance))
 
                     return SignalProducer { observer, _ in
                         // TODO: delete after dev

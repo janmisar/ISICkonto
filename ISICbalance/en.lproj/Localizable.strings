@@ -6,3 +6,7 @@
 "balance.title" = "Your balance is";
 "balance.loading" = "Loading...";
 "balance.credentialsError" = "Wrong credentials";
+"balance.currency" = "CZK";
+"validate.error" = "Validation error!";
+"validate.ok" = "Ok";
+"validate.errorMessage" = "You must fill out all fields.";

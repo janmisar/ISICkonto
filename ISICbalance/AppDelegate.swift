@@ -12,24 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appFlowCoordinator: AppFlowCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Simulator data path
-        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        print(urls[urls.count-1] as URL)
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
         
         // Navigation bar theme
         UINavigationBar.appearance().barTintColor = UIColor.theme.backgroundColor
         UINavigationBar.appearance().tintColor = UIColor.theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        
-//        window?.rootViewController = UINavigationController(rootViewController: AccountViewController())
-        window?.rootViewController = UINavigationController(rootViewController: BalanceViewController())
+
+        appFlowCoordinator = AppFlowCoordinator()
+        appFlowCoordinator.start(in: window!)
 
         return true
     }

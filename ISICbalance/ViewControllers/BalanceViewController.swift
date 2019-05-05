@@ -13,19 +13,26 @@ import ACKReactiveExtensions
 import SnapKit
 import SVProgressHUD
 
-final class BalanceViewController: BaseViewController {
-    private let viewModel: BalanceViewModel
+protocol BalanceFlowDelegate: class {
+    func presentAccountController(in viewController: BalanceViewController)
+}
+
+class BalanceViewController: BaseViewController {
+    private let viewModel: BalanceViewModeling
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
+    private weak var currencyLabel: UILabel!
     private weak var balanceTitle: UILabel!
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
     private weak var refreshControll: UIRefreshControl!
 
+    weak var flowDelegate: BalanceFlowDelegate?
+
     // MARK: - Initialization
-    override init() {
-        self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
+    init(viewModel: BalanceViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -40,13 +47,14 @@ final class BalanceViewController: BaseViewController {
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
+        screenStackView.alignment = .center
         screenStackView.spacing = 60
         self.screenStackView = screenStackView
         self.view.addSubview(screenStackView)
         
         screenStackView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(50)
+            make.centerY.equalToSuperview()
             make.top.greaterThanOrEqualTo(30)
             make.bottom.lessThanOrEqualTo(-30)
         }
@@ -58,8 +66,8 @@ final class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         setupBindings()
     }
 
@@ -68,8 +76,7 @@ final class BalanceViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {        super.viewDidAppear(animated)
         // TODO: load balance during didFinishLaunchingWithOptions
         reloadBalance()
     }
@@ -88,31 +95,42 @@ final class BalanceViewController: BaseViewController {
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
-        
+
+        let balanceStack = UIStackView()
+        balanceStack.axis = .horizontal
+        screenStackView.addArrangedSubview(balanceStack)
+
         let balanceLabel = UILabel()
         balanceLabel.textColor = UIColor.theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
         self.balanceLabel = balanceLabel
-        screenStackView.addArrangedSubview(balanceLabel)
+        balanceStack.addArrangedSubview(balanceLabel)
+
+        let currencyLabel = UILabel()
+        currencyLabel.textColor = UIColor.Theme.textColor
+        currencyLabel.adjustsFontSizeToFitWidth = true
+        currencyLabel.textAlignment = .center
+        currencyLabel.font = UIFont.boldSystemFont(ofSize: 80)
+        currencyLabel.text = " \(L10n.Balance.currency)"
+        self.currencyLabel = currencyLabel
+        balanceStack.addArrangedSubview(currencyLabel)
     }
     
     fileprivate func setupButtonsStack() {
-        let buttonsStackView = UIStackView()
-        buttonsStackView.distribution = .fillEqually
-        screenStackView.addArrangedSubview(buttonsStackView)
-
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
-        buttonsStackView.addArrangedSubview(reloadButton)
 
         let accountButton = UIButton()
         accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
-        buttonsStackView.addArrangedSubview(accountButton)
+
+        let buttonsStackView = UIStackView(arrangedSubviews: [reloadButton, UIView(), accountButton])
+        buttonsStackView.distribution = .fillEqually
+        screenStackView.addArrangedSubview(buttonsStackView)
     }
 
     // MARK: - Bindings
@@ -124,7 +142,7 @@ final class BalanceViewController: BaseViewController {
             .observeValues { [weak self] _ in
                 SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
                 SVProgressHUD.dismiss(withDelay: 1)
-                self?.accountBtnHandle()
+                self?.presentAccountVC()
             }
 
         viewModel.getBalanceAction.completed
@@ -140,7 +158,10 @@ final class BalanceViewController: BaseViewController {
     }
     
     @objc func accountBtnHandle() {
-        let accountViewController = AccountViewController()
-        navigationController?.pushViewController(accountViewController, animated: true)
+        presentAccountVC()
+    }
+
+    func presentAccountVC() {
+        flowDelegate?.presentAccountController(in: self)
     }
 }

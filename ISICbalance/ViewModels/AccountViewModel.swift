@@ -28,22 +28,19 @@ extension AccountViewModelingActions where Self: AccountViewModeling {
 
 final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewModelingActions {
     typealias Dependencies = HasKeychainManager
-    private let dependencies: Dependencies
 
     let username: MutableProperty<String>
     let password: MutableProperty<String>
-    private var validationSignal: Property<Bool>
-    private var validationErrors: Property<[LoginValidation]>
+
     let loginAction: Action<(),(),LoginError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-        self.dependencies = dependencies
 
         username = MutableProperty("")
         password = MutableProperty("")
 
-        validationErrors = username.combineLatest(with: password).map { username, password in
+        var validationErrors: Property<[LoginValidation]> = username.combineLatest(with: password).map { username, password in // TODO: používat Producer.combineLatest([...])
             var validations: [LoginValidation] = []
             if username.isEmpty {
                 validations.append(.username(message: "Error - username is incorrect"))
@@ -53,21 +50,20 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
             }
             return validations
         }
-        validationSignal = validationErrors.map { $0.isEmpty }
 
-        loginAction = Action(state: Property.combineLatest(username, password, validationErrors, validationSignal)) { state in
-            let (username, password, validationErrors, validationSignal) = state
+        loginAction = Action(state: Property.combineLatest(username, password, validationErrors)) { stateParameters in
+            let (username, password, validationErrors) = stateParameters
 
-            if validationSignal {
+            if validationErrors.isEmpty {
                 return dependencies.keychainManager.saveCredentials(username: username, password: password)
             } else {
-                return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors))
+                return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors)) // TODO: zbytečně moc typů
             }
         }
 
         super.init()
 
-        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain()
+        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain() // TODO: divný, zkonzultovat s Kubou asi
         self.username <~ userCredentials.map { $0.username }
         self.password <~ userCredentials.map { $0.password }
     }

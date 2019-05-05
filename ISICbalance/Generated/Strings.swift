@@ -15,6 +15,8 @@ internal enum L10n {
   internal enum Balance {
     /// Wrong credentials
     internal static let credentialsError = L10n.tr("Localizable", "balance.credentialsError")
+    /// CZK
+    internal static let currency = L10n.tr("Localizable", "balance.currency")
     /// Loading...
     internal static let loading = L10n.tr("Localizable", "balance.loading")
     /// Your balance is
@@ -32,6 +34,15 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "login.title")
     /// Username
     internal static let username = L10n.tr("Localizable", "login.username")
+  }
+
+  internal enum Validate {
+    /// Validation error!
+    internal static let error = L10n.tr("Localizable", "validate.error")
+    /// You must fill out all fields.
+    internal static let errorMessage = L10n.tr("Localizable", "validate.errorMessage")
+    /// Ok
+    internal static let ok = L10n.tr("Localizable", "validate.ok")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

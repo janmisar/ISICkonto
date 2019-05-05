@@ -6,3 +6,7 @@
 "balance.title" = "Na účtu máte";
 "balance.loading" = "Načítání stavu...";
 "balance.credentialsError" = "Nesprávné přihlašovací údaje";
+"balance.currency" = "Kč";
+"validate.error" = "Chyba validace!";
+"validate.ok" = "Hotovo";
+"validate.errorMessage" = "Musíš vyplnit všechny pole.";

@@ -14,8 +14,13 @@ import ACKReactiveExtensions
 import ACKategories
 import SVProgressHUD
 
-final class AccountViewController: BaseViewController, ValidateErrorPresentable {
-    private let viewModel: AccountViewModel
+
+protocol AccountFlowDelegate: class {
+    func balanceActionCompleted(in viewController: AccountViewController)
+}
+
+class AccountViewController: BaseViewController, ValidateErrorPresentable {
+    private let viewModel: AccountViewModeling
 
     private weak var formStackView: UIStackView!
     private weak var usernameLabel: UILabel!
@@ -24,10 +29,11 @@ final class AccountViewController: BaseViewController, ValidateErrorPresentable 
     private weak var passwordTextField: UITextField!
     private weak var loginButton: UIButton!
 
-    // MARK: - Initialization
-    override init() {
-        self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
+    weak var flowDelegate: AccountFlowDelegate?
 
+    // MARK: - Initialization
+    init(viewModel: AccountViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -38,17 +44,17 @@ final class AccountViewController: BaseViewController, ValidateErrorPresentable 
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.theme.backgroundColor
+        view.backgroundColor = UIColor.Theme.backgroundColor
 
         let formStackView = UIStackView()
         formStackView.spacing = 10
         formStackView.axis = .vertical
-        self.view.addSubview(formStackView)
+        view.addSubview(formStackView)
         self.formStackView = formStackView
         
         formStackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(30)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.bottom.lessThanOrEqualTo(-20)
         }
         
@@ -103,21 +109,22 @@ final class AccountViewController: BaseViewController, ValidateErrorPresentable 
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
-        loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
+        loginButton.reactive.isEnabled <~ viewModel.actions.loginAction.isExecuting.negate()
         
-        viewModel.loginAction.errors
+        viewModel.actions.loginAction.errors
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-                self?.presentValidationError("You must fill out all fields.")
+                self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
-        viewModel.loginAction.completed.producer.startWithValues { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+        viewModel.actions.loginAction.completed.producer.startWithValues { [weak self] in
+            guard let self = self else { return }
+            self.flowDelegate?.balanceActionCompleted(in: self)
         }
     }
 
     // MARK: - Actions
     @objc func saveCredentials() {
-        viewModel.loginAction.apply().start()
+        viewModel.actions.loginAction.apply().start()
     }
 }
