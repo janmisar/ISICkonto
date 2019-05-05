@@ -14,14 +14,13 @@ class AppFlowCoordinator: BaseFlowCoordinator {
     weak var navigationController: UINavigationController!
 
     func start(in window: UIWindow) {
-        let navigationController = UINavigationController()
-        window.rootViewController = navigationController
-        self.navigationController = navigationController
-
         let balanceVM = BalanceViewModel(dependencies: AppDependency.shared)
         let balanceVC = BalanceViewController(viewModel: balanceVM)
         balanceVC.flowDelegate = self
-        navigationController.setViewControllers([balanceVC], animated: true)
+
+        let navigationController = UINavigationController(rootViewController: balanceVC)
+        window.rootViewController = navigationController
+        self.navigationController = navigationController
     }
 }
 
