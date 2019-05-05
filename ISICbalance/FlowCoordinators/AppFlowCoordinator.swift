@@ -14,7 +14,6 @@ class AppFlowCoordinator: BaseFlowCoordinator {
     weak var navigationController: UINavigationController!
 
     func start(in window: UIWindow) {
-
         let navigationController = UINavigationController()
         window.rootViewController = navigationController
         self.navigationController = navigationController
@@ -27,8 +26,16 @@ class AppFlowCoordinator: BaseFlowCoordinator {
 }
 
 extension AppFlowCoordinator: BalanceFlowDelegate {
-//    func accountButtonTapped(in viewController: BalanceViewController) {
-//        let vm = AccountViewModel(dependencies: AppDependency.shared)
-//        let vc = AccountViewController(
-//    }
+    func presentAccountController(in viewController: BalanceViewController) {
+        let vm = AccountViewModel(dependencies: AppDependency.shared)
+        let vc = AccountViewController(viewModel: vm)
+        vc.flowDelegate = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+}
+
+extension AppFlowCoordinator: AccountFlowDelegate {
+    func balanceActionCompleted(in viewController: AccountViewController) {
+        navigationController.popViewController(animated: true)
+    }
 }

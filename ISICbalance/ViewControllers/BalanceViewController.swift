@@ -13,7 +13,7 @@ import ACKReactiveExtensions
 import SnapKit
 
 protocol BalanceFlowDelegate: class {
-
+    func presentAccountController(in viewController: BalanceViewController)
 }
 
 class BalanceViewController: BaseViewController {
@@ -156,7 +156,6 @@ class BalanceViewController: BaseViewController {
     }
 
     func presentAccountVC() {
-        let accountViewController = AccountViewController()
-        navigationController?.pushViewController(accountViewController, animated: true)
+        flowDelegate?.presentAccountController(in: self)
     }
 }

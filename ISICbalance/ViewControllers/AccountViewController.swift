@@ -13,8 +13,12 @@ import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
 
+protocol AccountFlowDelegate: class {
+    func balanceActionCompleted(in viewController: AccountViewController)
+}
+
 class AccountViewController: BaseViewController, ValidateErrorPresentable {
-    private let viewModel: AccountViewModel
+    private let viewModel: AccountViewModeling
 
     private weak var formStackView: UIStackView!
     private weak var usernameLabel: UILabel!
@@ -23,11 +27,11 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private weak var passwordTextField: UITextField!
     private weak var loginButton: UIButton!
 
-    // MARK: - Initialization
-    override init() {
-        // TODO: nedostatečný DI -> bude opraveno s FlowCoordinátorama
-        self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
+    weak var flowDelegate: AccountFlowDelegate?
 
+    // MARK: - Initialization
+    init(viewModel: AccountViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -103,21 +107,22 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
-        loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
+        loginButton.reactive.isEnabled <~ viewModel.actions.loginAction.isExecuting.negate()
         
-        viewModel.loginAction.errors
+        viewModel.actions.loginAction.errors
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
                 self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
-        viewModel.loginAction.completed.producer.startWithValues { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+        viewModel.actions.loginAction.completed.producer.startWithValues { [weak self] in
+            guard let self = self else { return }
+            self.flowDelegate?.balanceActionCompleted(in: self)
         }
     }
 
     // MARK: - Actions
     @objc func saveCredentials() {
-        viewModel.loginAction.apply().start()
+        viewModel.actions.loginAction.apply().start()
     }
 }
