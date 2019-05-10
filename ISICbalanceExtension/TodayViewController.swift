@@ -6,6 +6,7 @@
 //  Copyright © 2019 Rostislav Babáček. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import NotificationCenter
 import SnapKit
@@ -13,6 +14,8 @@ import SnapKit
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     weak var isicImageView: UIButton?
+    weak var balanceTitle: UILabel?
+    weak var balanceLabel: UILabel?
 
     override func loadView() {
         super.loadView()
@@ -25,11 +28,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         let balanceTitle = UILabel()
         balanceTitle.text = "Na účtu máte:"
+        self.balanceTitle = balanceTitle
         balanceStack.addArrangedSubview(balanceTitle)
 
         let balanceLabel = UILabel()
-        balanceLabel.text = "135 CZK"
-        balanceLabel.font = UIFont.boldSystemFont(ofSize: 26)
+        balanceLabel.text = "0 CZK"
+        balanceLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        self.balanceLabel = balanceLabel
         balanceStack.addArrangedSubview(balanceLabel)
 
         balanceStack.snp.makeConstraints { make in
@@ -54,6 +59,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Do any additional setup after loading the view.
         isicImageView?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
 
+        setupData()
+    }
+
+    func setupData() {
+        if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
+
+            let currency = userDefaults.string(forKey: "currency") ?? "CZK"
+            let balance = userDefaults.string(forKey: "balance") ?? "0"
+            let title = userDefaults.string(forKey: "balanceTitle") ?? "Na účtu máte"
+
+            balanceLabel?.text = Int(balance)?.asLocalCurrency(currency: currency)
+            balanceTitle?.text = title
+        }
     }
 
     @objc func isicImageTapped() {
@@ -64,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         })
     }
-        
+
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
         
@@ -75,4 +93,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.newData)
     }
     
+}
+
+extension Int {
+    func asLocalCurrency(currency: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.currencyCode = currency
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale(identifier: "es_Es")
+        numberFormatter.maximumFractionDigits = 0
+        return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
+    }
 }
