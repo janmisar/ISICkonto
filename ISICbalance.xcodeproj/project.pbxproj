@@ -26,6 +26,10 @@
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		141BB5F7227EE02F00233C3E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */; };
 		1433221B227F541200EEAD95 /* CurrencyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433221A227F541200EEAD95 /* CurrencyExt.swift */; };
+		14332223227F56D300EEAD95 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14332222227F56D300EEAD95 /* NotificationCenter.framework */; };
+		14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14332225227F56D300EEAD95 /* TodayViewController.swift */; };
+		14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14332227227F56D300EEAD95 /* MainInterface.storyboard */; };
+		1433222D227F56D300EEAD95 /* ISICbalanceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
@@ -54,6 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1433222B227F56D300EEAD95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C19009223596DB0033616E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14332220227F56D300EEAD95;
+			remoteInfo = ISICbalanceExtension;
+		};
 		14C19026223596DC0033616E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14C19009223596DB0033616E /* Project object */;
@@ -70,12 +81,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		14332231227F56D300EEAD95 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1433222D227F56D300EEAD95 /* ISICbalanceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		14089B50223FC41000095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		1433221A227F541200EEAD95 /* CurrencyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExt.swift; sourceTree = "<group>"; };
+		1433221C227F560E00EEAD95 /* ISICbalance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ISICbalance.entitlements; sourceTree = "<group>"; };
+		14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ISICbalanceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		14332222227F56D300EEAD95 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		14332225227F56D300EEAD95 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		14332228227F56D300EEAD95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1433222A227F56D300EEAD95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14332232227F56E000EEAD95 /* ISICbalanceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ISICbalanceExtension.entitlements; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +149,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1433221E227F56D300EEAD95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14332223227F56D300EEAD95 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900E223596DB0033616E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,12 +192,24 @@
 			path = FlowCoordinators;
 			sourceTree = "<group>";
 		};
+		14332224227F56D300EEAD95 /* ISICbalanceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				14332232227F56E000EEAD95 /* ISICbalanceExtension.entitlements */,
+				14332225227F56D300EEAD95 /* TodayViewController.swift */,
+				14332227227F56D300EEAD95 /* MainInterface.storyboard */,
+				1433222A227F56D300EEAD95 /* Info.plist */,
+			);
+			path = ISICbalanceExtension;
+			sourceTree = "<group>";
+		};
 		14C19008223596DB0033616E = {
 			isa = PBXGroup;
 			children = (
 				14C19013223596DB0033616E /* ISICbalance */,
 				14C19028223596DC0033616E /* ISICbalanceTests */,
 				14C19033223596DC0033616E /* ISICbalanceUITests */,
+				14332224227F56D300EEAD95 /* ISICbalanceExtension */,
 				14C19012223596DB0033616E /* Products */,
 				2B72B8C664D21E0754CB91FE /* Pods */,
 				AD462197CDB172B06184ADBD /* Frameworks */,
@@ -170,6 +222,7 @@
 				14C19011223596DB0033616E /* ISICbalance.app */,
 				14C19025223596DC0033616E /* ISICbalanceTests.xctest */,
 				14C19030223596DC0033616E /* ISICbalanceUITests.xctest */,
+				14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +230,7 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
+				1433221C227F560E00EEAD95 /* ISICbalance.entitlements */,
 				14E2E899224C232700D90285 /* Theme */,
 				14ECC281223BEB6B006430D1 /* Models */,
 				14ECC27E223BB85D006430D1 /* Services */,
@@ -300,6 +354,7 @@
 				D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */,
 				A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */,
 				E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */,
+				14332222227F56D300EEAD95 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -307,6 +362,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		14332220227F56D300EEAD95 /* ISICbalanceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1433222E227F56D300EEAD95 /* Build configuration list for PBXNativeTarget "ISICbalanceExtension" */;
+			buildPhases = (
+				1433221D227F56D300EEAD95 /* Sources */,
+				1433221E227F56D300EEAD95 /* Frameworks */,
+				1433221F227F56D300EEAD95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ISICbalanceExtension;
+			productName = ISICbalanceExtension;
+			productReference = 14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		14C19010223596DB0033616E /* ISICbalance */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
@@ -320,10 +392,12 @@
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
 				6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */,
+				14332231227F56D300EEAD95 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1433222C227F56D300EEAD95 /* PBXTargetDependency */,
 			);
 			name = ISICbalance;
 			productName = ISICbalance;
@@ -374,12 +448,25 @@
 		14C19009223596DB0033616E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rostislav Babáček";
 				TargetAttributes = {
+					14332220227F56D300EEAD95 = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					14C19010223596DB0033616E = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					14C19024223596DC0033616E = {
 						CreatedOnToolsVersion = 10.1;
@@ -412,11 +499,20 @@
 				14C19024223596DC0033616E /* ISICbalanceTests */,
 				14C1902F223596DC0033616E /* ISICbalanceUITests */,
 				14C1904B2235A46F0033616E /* Localization */,
+				14332220227F56D300EEAD95 /* ISICbalanceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1433221F227F56D300EEAD95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900F223596DB0033616E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -648,6 +744,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1433221D227F56D300EEAD95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900D223596DB0033616E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,6 +799,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1433222C227F56D300EEAD95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14332220227F56D300EEAD95 /* ISICbalanceExtension */;
+			targetProxy = 1433222B227F56D300EEAD95 /* PBXContainerItemProxy */;
+		};
 		14C19027223596DC0033616E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14C19010223596DB0033616E /* ISICbalance */;
@@ -708,6 +817,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		14332227227F56D300EEAD95 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14332228227F56D300EEAD95 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		14C19018223596DB0033616E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -736,6 +853,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1433222F227F56D300EEAD95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GRHTXFGCU;
+				INFOPLIST_FILE = ISICbalanceExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14332230227F56D300EEAD95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GRHTXFGCU;
+				INFOPLIST_FILE = ISICbalanceExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		14C19037223596DC0033616E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -860,8 +1023,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ISICbalance/ISICbalance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GRHTXFGCU;
@@ -884,8 +1049,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ISICbalance/ISICbalance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GRHTXFGCU;
@@ -1005,6 +1172,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1433222E227F56D300EEAD95 /* Build configuration list for PBXNativeTarget "ISICbalanceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1433222F227F56D300EEAD95 /* Debug */,
+				14332230227F56D300EEAD95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14C1900C223596DB0033616E /* Build configuration list for PBXProject "ISICbalance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
