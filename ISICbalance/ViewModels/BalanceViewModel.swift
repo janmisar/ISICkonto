@@ -38,5 +38,16 @@ final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewMod
         }
 
         super.init()
+
+        setupBindings()
+    }
+
+    func setupBindings() {
+        balance.producer.startWithValues { value in
+            if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
+                userDefaults.set(value, forKey: "balance")
+                userDefaults.set(L10n.Balance.currency, forKey: "currency")
+            }
+        }
     }
 }

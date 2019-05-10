@@ -127,15 +127,15 @@ class BalanceViewController: BaseViewController {
             // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-               // SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
-                //SVProgressHUD.dismiss(withDelay: 1)
+                SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                SVProgressHUD.dismiss(withDelay: 1)
                 self?.presentAccountVC()
             }
 
         viewModel.actions.getBalance.completed
             .observe(on: UIScheduler())
             .observeValues {
-//                SVProgressHUD.dismiss()
+                SVProgressHUD.dismiss(withDelay: 1)
             }
     }
 
@@ -145,7 +145,7 @@ class BalanceViewController: BaseViewController {
         print("RELOAD BALANCE HANDLE")
 
         DispatchQueue.main.async {
-//            SVProgressHUD.show(withStatus: L10n.Balance.loading)
+            SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
     }
