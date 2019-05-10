@@ -27,12 +27,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         view.addSubview(balanceStack)
 
         let balanceTitle = UILabel()
-        balanceTitle.text = "Na účtu máte:"
         self.balanceTitle = balanceTitle
         balanceStack.addArrangedSubview(balanceTitle)
 
         let balanceLabel = UILabel()
-        balanceLabel.text = "0 CZK"
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 30)
         self.balanceLabel = balanceLabel
         balanceStack.addArrangedSubview(balanceLabel)
@@ -58,14 +56,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         isicImageView?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
-
         setupData()
     }
 
     func setupData() {
         if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
-
-            let currency = userDefaults.string(forKey: "currency") ?? "CZK"
+            let currency = userDefaults.string(forKey: "currency") ?? "Kč"
             let balance = userDefaults.string(forKey: "balance") ?? "0"
             let title = userDefaults.string(forKey: "balanceTitle") ?? "Na účtu máte"
 
@@ -78,7 +74,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let myAppUrl = URL(string: "ISICbalance://")!
         extensionContext?.open(myAppUrl, completionHandler: { (success) in
             if !success {
-                // let the user know it failed
+                print("❌ open app failed")
             }
         })
     }

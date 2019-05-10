@@ -122,7 +122,7 @@ class BalanceViewController: BaseViewController {
     // MARK: - Bindings
     func setupBindings() {
         self.balanceLabel.reactive.text <~ viewModel.balance.map { $0.asLocalCurrency() }
-        // push accountViewController if there is some error duting balanceAction
+        // push accountViewController if there is some error during balanceAction
         viewModel.actions.getBalance.errors
             // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
             .observe(on: UIScheduler())
@@ -141,9 +141,6 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Actions
     @objc func reloadBalance() {
-        // TODO: delete after dev
-        print("RELOAD BALANCE HANDLE")
-
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }

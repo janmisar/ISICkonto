@@ -163,8 +163,6 @@ final class RequestManager: RequestManagering {
             Alamofire.request("https://agata.suz.cvut.cz/secure/index.php").responseString { response in
                 switch response.result {
                 case .success:
-                    // TODO: delete after dev
-                    print("Agata request success")
                     observer.send(value: response)
                     observer.sendCompleted()
                 case .failure:
@@ -179,8 +177,6 @@ final class RequestManager: RequestManagering {
             Alamofire.request(urlString).responseString { responseShibboleth in
                 switch responseShibboleth.result {
                 case .success:
-                    // TODO: delete after dev
-                    print("SSO request success")
                     observer.send(value: responseShibboleth)
                     observer.sendCompleted()
                 case .failure:
@@ -195,8 +191,6 @@ final class RequestManager: RequestManagering {
             Alamofire.request(credentialsUrl, method: .post, parameters: parameters).responseString { responseCredentials in
                 switch responseCredentials.result {
                 case .success:
-                    // TODO: delete after dev
-                    print("Credentials request success")
                     observer.send(value: responseCredentials)
                     observer.sendCompleted()
                 case .failure:
@@ -211,8 +205,6 @@ final class RequestManager: RequestManagering {
             Alamofire.request(action, method: .post, parameters: formParameters) .responseString { responseBalanceSite in
                 switch responseBalanceSite.result {
                 case .success:
-                    // TODO: delete after dev
-                    print("Balance site request success")
                     observer.send(value: responseBalanceSite)
                     observer.sendCompleted()
                 case .failure:

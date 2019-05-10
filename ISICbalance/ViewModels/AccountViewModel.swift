@@ -36,7 +36,6 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-
         username = MutableProperty("")
         password = MutableProperty("")
 
