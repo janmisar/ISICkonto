@@ -43,6 +43,7 @@
 		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
+		14D8A39422859A4C00CDCEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
 		14E2E89B224C239000D90285 /* ThemeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89A224C239000D90285 /* ThemeProvider.swift */; };
 		14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89C224C23F900D90285 /* UIColor+Theme.swift */; };
 		14E2E8A0224C252700D90285 /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89F224C252700D90285 /* UITextField+Theme.swift */; };
@@ -519,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */,
+				14D8A39422859A4C00CDCEDA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
