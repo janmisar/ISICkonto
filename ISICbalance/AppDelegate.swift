@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.theme.textColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
 
+        if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
+            userDefaults.set(L10n.Balance.title, forKey: "balanceTitle")
+            userDefaults.set(L10n.Balance.currency, forKey: "currency")
+        }
+
         appFlowCoordinator = AppFlowCoordinator()
         appFlowCoordinator.start(in: window!)
 
