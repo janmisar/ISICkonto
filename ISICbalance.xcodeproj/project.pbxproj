@@ -53,6 +53,7 @@
 		14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27C223BB67D006430D1 /* TextFieldExt.swift */; };
 		14ECC283223BEB8A006430D1 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
+		7511ADF7CD728A1E492C148F /* Pods_ISICbalanceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
 /* End PBXBuildFile section */
@@ -138,10 +139,13 @@
 		14ECC27C223BB67D006430D1 /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
 		14ECC282223BEB8A006430D1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceExtension.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceExtension/Pods-ISICbalanceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
+		76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		777FB23EEB0700F21DAC4BFD /* Pods-ISICbalanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceExtension.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceExtension/Pods-ISICbalanceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.debug.xcconfig"; sourceTree = "<group>"; };
 		D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14332223227F56D300EEAD95 /* NotificationCenter.framework in Frameworks */,
+				7511ADF7CD728A1E492C148F /* Pods_ISICbalanceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +349,8 @@
 				5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */,
 				793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */,
 				29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */,
+				2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */,
+				7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -355,6 +362,7 @@
 				A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */,
 				E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */,
 				14332222227F56D300EEAD95 /* NotificationCenter.framework */,
+				76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1433222E227F56D300EEAD95 /* Build configuration list for PBXNativeTarget "ISICbalanceExtension" */;
 			buildPhases = (
+				16577DFA27B5F89FFC69B307 /* [CP] Check Pods Manifest.lock */,
 				1433221D227F56D300EEAD95 /* Sources */,
 				1433221E227F56D300EEAD95 /* Frameworks */,
 				1433221F227F56D300EEAD95 /* Resources */,
@@ -635,6 +644,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
+		16577DFA27B5F89FFC69B307 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ISICbalanceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -855,6 +886,7 @@
 /* Begin XCBuildConfiguration section */
 		1433222F227F56D300EEAD95 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -878,6 +910,7 @@
 		};
 		14332230227F56D300EEAD95 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
