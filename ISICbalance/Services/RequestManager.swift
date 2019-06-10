@@ -62,19 +62,15 @@ final class RequestManager: RequestManagering {
                     return SignalProducer(error: RequestError.parseError(message: "Error - parsing balance site failed"))
                 }
             })
-            .flatMap(.latest, { balance -> SignalProducer<Balance, RequestError> in
+            .map { balance in
                 let separatedBalance = balance.split(separator: ",")
                 let stringBalance = String(separatedBalance[0])
                 let intBalance = Int(stringBalance) ?? 0
                 let balanceStruct = Balance(balance: intBalance)
 
-                return SignalProducer { observer, _ in
-                    // TODO: delete after dev
-                    print("✅ parse success")
-                    observer.send(value: balanceStruct)
-                    observer.sendCompleted()
-                }
-            })
+                print("✅ parse success")
+                return balanceStruct
+            }
     }
 
     private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
