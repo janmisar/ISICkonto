@@ -13,7 +13,7 @@ extension Int {
         let numberFormatter = NumberFormatter()
         numberFormatter.currencyCode = L10n.Balance.currency
         numberFormatter.numberStyle = .currency
-        numberFormatter.locale = Locale(identifier: "es_Es")
+        numberFormatter.locale = Locale.current
         numberFormatter.maximumFractionDigits = 0
         return numberFormatter.string(from: self) ?? "0"
     }

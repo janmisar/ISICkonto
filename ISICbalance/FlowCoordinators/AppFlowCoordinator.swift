@@ -25,6 +25,15 @@ class AppFlowCoordinator: BaseFlowCoordinator {
 }
 
 extension AppFlowCoordinator: BalanceFlowDelegate {
+
+    func balanceRequestError(in viewController: BalanceViewController) {
+        presentAccountController(in: viewController)
+    }
+
+    func accountButtonTapped(in viewController: BalanceViewController) {
+        presentAccountController(in: viewController)
+    }
+
     func presentAccountController(in viewController: BalanceViewController) {
         let vm = AccountViewModel(dependencies: AppDependency.shared)
         let vc = AccountViewController(viewModel: vm)
