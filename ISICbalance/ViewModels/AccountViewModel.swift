@@ -57,13 +57,13 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
             if validationErrors.isEmpty {
                 return dependencies.keychainManager.saveCredentials(username: username, password: password)
             } else {
-                return SignalProducer<(), LoginError>(error: LoginError.validation(validationErrors)) // TODO: zbytečně moc typů
+                return SignalProducer<(), LoginError>(error: LoginError.validation(message: L10n.Validate.errorMessage))
             }
         }
 
         super.init()
 
-        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain() // TODO: divný, zkonzultovat s Kubou asi
+        let userCredentials = dependencies.keychainManager.getCredentialsFromKeychain()
         self.username <~ userCredentials.map { $0.username }
         self.password <~ userCredentials.map { $0.password }
     }

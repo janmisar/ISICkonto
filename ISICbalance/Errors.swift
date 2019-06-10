@@ -20,7 +20,7 @@ enum RequestError: Error {
 
 enum LoginError: Error {
     case keychainCredentialsFailed(message: String)
-    case validation([LoginValidation])
+    case validation(message: String)
     case actionError(message: String)
 }
 

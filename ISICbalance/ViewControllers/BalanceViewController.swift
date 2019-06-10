@@ -142,9 +142,6 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Actions
     @objc func reloadBalance() {
-        // TODO: delete after dev
-        print("RELOAD BALANCE HANDLE")
-
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
