@@ -87,6 +87,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         
         completionHandler(NCUpdateResult.newData)
+
     }
     
 }
@@ -96,7 +97,7 @@ extension Int {
         let numberFormatter = NumberFormatter()
         numberFormatter.currencyCode = currency
         numberFormatter.numberStyle = .currency
-        numberFormatter.locale = Locale(identifier: "es_Es")
+        numberFormatter.locale = Locale.current
         numberFormatter.maximumFractionDigits = 0
         return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
     }
