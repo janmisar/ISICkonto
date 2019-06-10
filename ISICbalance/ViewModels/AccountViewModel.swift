@@ -40,7 +40,7 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
         username = MutableProperty("")
         password = MutableProperty("")
 
-        let validationErrors: Property<[LoginValidation]> = username.combineLatest(with: password).map { username, password in // TODO: používat Producer.combineLatest([...])
+        let validationErrors: Property<[LoginValidation]> = username.combineLatest(with: password).map { username, password in
             var validations: [LoginValidation] = []
             if username.isEmpty {
                 validations.append(.username(message: "Error - username is incorrect"))

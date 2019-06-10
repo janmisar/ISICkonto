@@ -14,7 +14,8 @@ import SnapKit
 import SVProgressHUD
 
 protocol BalanceFlowDelegate: class {
-    func presentAccountController(in viewController: BalanceViewController)
+    func balanceRequestError(in viewController: BalanceViewController)
+    func accountButtonTapped(in viewController: BalanceViewController)
 }
 
 class BalanceViewController: BaseViewController {
@@ -121,21 +122,21 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Bindings
     func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.balance.map { $0.asLocalCurrency() }
+        self.balanceLabel.reactive.text <~ viewModel.localeBalance
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalance.errors
-            // TODO: Musí být metoda presentAccountVC volána na hlavním vlákně?
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-               // SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
-                //SVProgressHUD.dismiss(withDelay: 1)
-                self?.presentAccountVC()
+                guard let self = self else { return }
+                SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                SVProgressHUD.dismiss(withDelay: 1)
+                self.flowDelegate?.balanceRequestError(in: self)
             }
 
         viewModel.actions.getBalance.completed
             .observe(on: UIScheduler())
             .observeValues {
-//                SVProgressHUD.dismiss()
+                SVProgressHUD.dismiss()
             }
     }
 
@@ -145,16 +146,12 @@ class BalanceViewController: BaseViewController {
         print("RELOAD BALANCE HANDLE")
 
         DispatchQueue.main.async {
-//            SVProgressHUD.show(withStatus: L10n.Balance.loading)
+            SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        presentAccountVC()
-    }
-
-    func presentAccountVC() {
-        flowDelegate?.presentAccountController(in: self)
+        flowDelegate?.accountButtonTapped(in: self)
     }
 }
