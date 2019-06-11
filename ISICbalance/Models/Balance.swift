@@ -9,5 +9,5 @@
 import Foundation
 
 struct Balance {
-    var balance: String
+    var balance: Int
 }

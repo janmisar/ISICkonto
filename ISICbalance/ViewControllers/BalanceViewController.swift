@@ -11,20 +11,28 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import ACKReactiveExtensions
 import SnapKit
+import SVProgressHUD
+
+protocol BalanceFlowDelegate: class {
+    func balanceRequestError(in viewController: BalanceViewController)
+    func accountButtonTapped(in viewController: BalanceViewController)
+}
 
 class BalanceViewController: BaseViewController {
-    private let viewModel: BalanceViewModel
+    private let viewModel: BalanceViewModeling
     
     private weak var screenStackView: UIStackView!
     private weak var balanceLabel: UILabel!
     private weak var balanceTitle: UILabel!
     private weak var reloadButton: UIButton!
     private weak var accountButton: UIButton!
+    private weak var refreshControll: UIRefreshControl!
+
+    weak var flowDelegate: BalanceFlowDelegate?
 
     // MARK: - Initialization
-    override init() {
-        // TODO: nedostatečný DI
-        self.viewModel = BalanceViewModel(dependencies: AppDependency.shared)
+    init(viewModel: BalanceViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -35,17 +43,18 @@ class BalanceViewController: BaseViewController {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.Theme.backgroundColor
+        self.view.backgroundColor = UIColor.theme.backgroundColor
         
         let screenStackView = UIStackView()
         screenStackView.axis = .vertical
+        screenStackView.alignment = .center
         screenStackView.spacing = 60
         self.screenStackView = screenStackView
         self.view.addSubview(screenStackView)
         
         screenStackView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview() // TODO: zbytečný centerX
             make.leading.trailing.equalToSuperview().inset(50)
+            make.centerY.equalToSuperview()
             make.top.greaterThanOrEqualTo(30)
             make.bottom.lessThanOrEqualTo(-30)
         }
@@ -57,9 +66,8 @@ class BalanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // TODO: fuck self
-        self.accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        self.reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
         setupBindings()
     }
 
@@ -70,8 +78,7 @@ class BalanceViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // TODO: load balance during didFinishLaunchingWithOptions
-        viewModel.actions.getBalanceAction.apply().start()
+        reloadBalance()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,14 +90,14 @@ class BalanceViewController: BaseViewController {
     fileprivate func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
-        balanceTitle.textColor = UIColor.Theme.labelBlue
+        balanceTitle.textColor = UIColor.theme.labelBlue
         balanceTitle.textAlignment = .center
         balanceTitle.font = UIFont.systemFont(ofSize: 18)
         self.balanceTitle = balanceTitle
         screenStackView.addArrangedSubview(balanceTitle)
-        
+
         let balanceLabel = UILabel()
-        balanceLabel.textColor = UIColor.Theme.textColor
+        balanceLabel.textColor = UIColor.theme.textColor
         balanceLabel.adjustsFontSizeToFitWidth = true
         balanceLabel.textAlignment = .center
         balanceLabel.font = UIFont.boldSystemFont(ofSize: 80)
@@ -99,44 +106,49 @@ class BalanceViewController: BaseViewController {
     }
     
     fileprivate func setupButtonsStack() {
-        let buttonsStackView = UIStackView()
-        buttonsStackView.distribution = .fillEqually
-        screenStackView.addArrangedSubview(buttonsStackView)
-
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
-        buttonsStackView.addArrangedSubview(reloadButton)
 
         let accountButton = UIButton()
         accountButton.setImage(Asset.accountIcon.image, for: .normal)
         accountButton.isUserInteractionEnabled = true
         self.accountButton = accountButton
-        buttonsStackView.addArrangedSubview(accountButton)
+
+        let buttonsStackView = UIStackView(arrangedSubviews: [reloadButton, UIView(), accountButton])
+        buttonsStackView.distribution = .fillEqually
+        screenStackView.addArrangedSubview(buttonsStackView)
     }
 
     // MARK: - Bindings
     func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.balance
-        // push accountViewController if there is some error duting balanceAction 
-        viewModel.getBalanceAction.errors.producer.startWithValues { [weak self] error in
-            guard case RequestError.successfulParse = error else {
-                // TODO: nevolat handle odjinud než z buttonu
-                self?.accountBtnHandle()
-                return
+        self.balanceLabel.reactive.text <~ viewModel.localeBalance
+        // push accountViewController if there is some error duting balanceAction
+        viewModel.actions.getBalance.errors
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] _ in
+                guard let self = self else { return }
+                SVProgressHUD.showError(withStatus: L10n.Balance.credentialsError)
+                SVProgressHUD.dismiss(withDelay: 1)
+                self.flowDelegate?.balanceRequestError(in: self)
             }
-        }
+
+        viewModel.actions.getBalance.completed
+            .observe(on: UIScheduler())
+            .observeValues {
+                SVProgressHUD.dismiss()
+            }
     }
 
     // MARK: - Actions
     @objc func reloadBalance() {
-        // TODO: delete after dev
-        print("RELOAD BALANCE HANDLE")
-        viewModel.actions.getBalanceAction.apply().start()
+        DispatchQueue.main.async {
+            SVProgressHUD.show(withStatus: L10n.Balance.loading)
+        }
+        viewModel.actions.getBalance.apply().start()
     }
     
     @objc func accountBtnHandle() {
-        let accountViewController = AccountViewController()
-        navigationController?.pushViewController(accountViewController, animated: true)
+        flowDelegate?.accountButtonTapped(in: self)
     }
 }

@@ -12,9 +12,14 @@ import SwiftKeychainWrapper
 import ReactiveSwift
 import ACKReactiveExtensions
 import ACKategories
+import SVProgressHUD
+
+protocol AccountFlowDelegate: class {
+    func balanceActionCompleted(in viewController: AccountViewController)
+}
 
 class AccountViewController: BaseViewController, ValidateErrorPresentable {
-    private let viewModel: AccountViewModel
+    private let viewModel: AccountViewModeling
 
     private weak var formStackView: UIStackView!
     private weak var usernameLabel: UILabel!
@@ -23,11 +28,11 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     private weak var passwordTextField: UITextField!
     private weak var loginButton: UIButton!
 
-    // MARK: - Initialization
-    override init() {
-        // TODO: nedostatečný DI
-        self.viewModel = AccountViewModel(dependencies: AppDependency.shared)
+    weak var flowDelegate: AccountFlowDelegate?
 
+    // MARK: - Initialization
+    init(viewModel: AccountViewModeling) {
+        self.viewModel = viewModel
         super.init()
     }
     
@@ -38,17 +43,17 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = UIColor.Theme.backgroundColor // TODO: fuck self
+        view.backgroundColor = UIColor.theme.backgroundColor
 
         let formStackView = UIStackView()
         formStackView.spacing = 10
         formStackView.axis = .vertical
-        self.view.addSubview(formStackView) // TODO: fuck self
+        view.addSubview(formStackView)
         self.formStackView = formStackView
         
         formStackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(30)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(20) // TODO: fuck self
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.bottom.lessThanOrEqualTo(-20)
         }
         
@@ -67,21 +72,21 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     fileprivate func setupFormFields() {
         let usernameLabel = UILabel()
         usernameLabel.text = L10n.Login.username
-        usernameLabel.textColor = UIColor.Theme.labelBlue
+        usernameLabel.textColor = UIColor.theme.labelBlue
         self.usernameLabel = usernameLabel
         formStackView.addArrangedSubview(usernameLabel)
         
-        let usernameTextField = FormTextField()
+        let usernameTextField = UITextField.theme.formTextField
         self.usernameTextField = usernameTextField
         formStackView.addArrangedSubview(usernameTextField)
         
         let passwordLabel = UILabel()
         passwordLabel.text = L10n.Login.password
-        passwordLabel.textColor = UIColor.Theme.labelBlue
+        passwordLabel.textColor = UIColor.theme.labelBlue
         self.passwordLabel = passwordLabel
         formStackView.addArrangedSubview(passwordLabel)
         
-        let passwordTextField = FormTextField()
+        let passwordTextField = UITextField.theme.formTextField
         self.passwordTextField = passwordTextField
         formStackView.addArrangedSubview(passwordTextField)
     }
@@ -89,8 +94,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     fileprivate func setupLoginButton() {
         let loginButton = UIButton(type: .system)
         loginButton.setTitle(L10n.Login.login, for: .normal)
-        loginButton.setTitleColor(UIColor.Theme.backgroundColor, for: .normal)
-        loginButton.setBackgroundImage(UIColor.Theme.labelBlue.image(), for: .normal)
+        loginButton.setTitleColor(UIColor.theme.backgroundColor, for: .normal)
+        loginButton.setBackgroundImage(UIColor.theme.labelBlue.image(), for: .normal)
         self.loginButton = loginButton
         formStackView.addArrangedSubview(loginButton)
         
@@ -103,21 +108,23 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
-        loginButton.reactive.isEnabled <~ viewModel.loginAction.isExecuting.negate()
+        loginButton.reactive.isEnabled <~ viewModel.actions.login.isExecuting.negate()
         
-        viewModel.loginAction.errors
+        viewModel.actions.login.errors
             .observe(on: UIScheduler())
             .observeValues { [weak self] _ in
-                self?.presentValidationError("You must fill out all fields.")
+                self?.presentValidationError(L10n.Validate.errorMessage)
             }
 
-        viewModel.loginAction.completed.producer.startWithValues { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+        viewModel.actions.login.completed.producer
+            .observe(on: UIScheduler())
+            .startWithValues { [weak self] in
+            self?.flowDelegate?.balanceActionCompleted(in: self!)
         }
     }
 
     // MARK: - Actions
     @objc func saveCredentials() {
-        viewModel.loginAction.apply().start()
+        viewModel.actions.login.apply().start()
     }
 }

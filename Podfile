@@ -25,6 +25,8 @@ target 'ISICbalance' do
     pod 'SwiftKeychainWrapper', '~> 3.2.0'
   # Style and conventions checker
   pod 'SwiftLint', '~> 0.31.0'
+  # Balance requests progress
+  pod 'SVProgressHUD', '~> 2.2.5'
   
   target 'ISICbalanceTests' do
     inherit! :search_paths

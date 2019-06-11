@@ -21,7 +21,7 @@ protocol RequestManagering {
     func getBalance() -> SignalProducer<Balance, RequestError>
 }
 
-class RequestManager: RequestManagering {
+final class RequestManager: RequestManagering {
     typealias Dependencies = HasKeychainManager
     private let dependencies: Dependencies
 
@@ -32,7 +32,7 @@ class RequestManager: RequestManagering {
 
     func getBalance() -> SignalProducer<Balance,RequestError> {
         return getBalanceSite()
-            .flatMap(.latest, { response -> SignalProducer<Balance, RequestError> in
+            .flatMap(.latest, { response -> SignalProducer<String, RequestError> in
                 // parse site with balance
                 do {
                     let document: Document = try SwiftSoup.parse(response.result.value!)
@@ -56,25 +56,28 @@ class RequestManager: RequestManagering {
                     let lineElements = lineText.split(separator: " ")
                     guard lineElements.count > 0 else { throw RequestError.parseError(message: "Error - currency is missing") }
                     let balance = lineElements[0]
-                    let balanceStruct = Balance(balance: "\(balance) Kč")
 
-                    return SignalProducer { observer, _ in
-                        // TODO: delete after dev
-                        print("✅ parse success")
-                        observer.send(value: balanceStruct)
-                        observer.sendCompleted()
-                    }
+                    return SignalProducer(value: String(balance))
                 } catch {
                     return SignalProducer(error: RequestError.parseError(message: "Error - parsing balance site failed"))
                 }
             })
+            .map { balance in
+                let separatedBalance = balance.split(separator: ",")
+                let stringBalance = String(separatedBalance[0])
+                let intBalance = Int(stringBalance) ?? 0
+                let balanceStruct = Balance(balance: intBalance)
+
+                print("✅ parse success")
+                return balanceStruct
+            }
     }
 
     private func getBalanceSite() -> SignalProducer<DataResponse<String>, RequestError> {
         return RequestManager.agataRequest()
             .flatMap(.latest) { [weak self] response -> SignalProducer<DataResponse<String>, RequestError> in
                 guard let self = self else { return SignalProducer(error: RequestError.agataGetError(message: "Error - self is nil")) }
-                
+
                 let responseURL = response.response?.url
                 let hostUrl = responseURL?.host ?? ""
                 // if url contains agata.suz.cvut -> you are logged in

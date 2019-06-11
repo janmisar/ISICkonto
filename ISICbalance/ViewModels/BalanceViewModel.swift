@@ -13,33 +13,35 @@ import Alamofire
 import UIKit
 
 protocol BalanceViewModeling {
-    var balance: Property<String> { get }
-    
+    var balance: Property<Int> { get }
+    var localeBalance: Property<String> { get }
     var actions: BalanceViewModelingActions { get }
 }
 
 protocol BalanceViewModelingActions {
-    var getBalanceAction: Action<(),Balance,RequestError> { get }
+    var getBalance: Action<(),Balance,RequestError> { get }
 }
 
 extension BalanceViewModelingActions where Self: BalanceViewModeling {
     var actions: BalanceViewModelingActions { return self }
 }
 
-class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
+final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
     typealias Dependencies = HasRequestManager
-    private let dependencies: Dependencies // TODO: není potřeba
 
-    lazy var balance = Property<String>(initial: "0 Kč", then: getBalanceAction.values.map { $0.balance }) // TODO: kč lokalizovat a přilepovat až ve view a vůbec.. možná spíš vracet číslo než string
-    let getBalanceAction: Action<(),Balance,RequestError>
+    let balance: Property<Int>
+    let localeBalance: Property<String>
+    let getBalance: Action<(),Balance,RequestError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-        self.dependencies = dependencies
-
-        self.getBalanceAction = Action {
-            return dependencies.requestManager.getBalance() // TODO: není potřeba return
+        getBalance = Action {
+            dependencies.requestManager.getBalance()
         }
+
+        balance = Property<Int>(initial: 0, then: getBalance.values.map { $0.balance })
+
+        localeBalance = Property(initial: " ", then: balance.producer.map { $0.asLocalCurrency() })
 
         super.init()
     }

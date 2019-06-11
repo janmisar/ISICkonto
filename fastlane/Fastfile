@@ -1,0 +1,5 @@
+desc "Run tests, build app and upload to HockeyApp"
+lane :beta do |options|
+    cocoapods(repo_update: true)
+   # scan(scheme: "ISICbalance")
+end
