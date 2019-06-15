@@ -22,6 +22,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         let balanceStack = UIStackView()
         balanceStack.axis = .vertical
+        balanceStack.alignment = .center
         balanceStack.spacing = 5
         balanceStack.sizeToFit()
         view.addSubview(balanceStack)
@@ -37,6 +38,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         balanceStack.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(50)
+            make.top.greaterThanOrEqualToSuperview()
+            make.bottom.lessThanOrEqualToSuperview()
             make.centerY.equalToSuperview()
         }
 
@@ -47,8 +50,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         view.addSubview(isicImageView)
 
         isicImageView.snp.makeConstraints { make in
+            make.leading.greaterThanOrEqualTo(balanceStack.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(50)
-            make.centerY.equalToSuperview()
+            make.top.bottom.equalToSuperview()
         }
     }
 
