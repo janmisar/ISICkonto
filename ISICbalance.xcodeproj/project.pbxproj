@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -21,6 +21,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1407611122C2836000B5120B /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
+		1407611322C2836C00B5120B /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
+		1407611422C2837B00B5120B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
+		1407611522C2842E00B5120B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
+		1407611622C2844000B5120B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
+		1407611722C2848700B5120B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
+		1407611822C29CE900B5120B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
@@ -758,7 +765,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1407611122C2836000B5120B /* Balance.swift in Sources */,
+				1407611522C2842E00B5120B /* Errors.swift in Sources */,
+				1407611822C29CE900B5120B /* Strings.swift in Sources */,
+				1407611622C2844000B5120B /* User.swift in Sources */,
 				14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */,
+				1407611322C2836C00B5120B /* RequestManager.swift in Sources */,
+				1407611422C2837B00B5120B /* KeychainManager.swift in Sources */,
+				1407611722C2848700B5120B /* AppDependency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,7 +896,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -906,7 +920,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

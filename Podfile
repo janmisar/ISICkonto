@@ -23,7 +23,7 @@ target 'ISICbalance' do
   pod 'ReactiveSwift', '~> 4.0'
   pod 'ACKReactiveExtensions', '~> 4.0'
   # Keychain
-    pod 'SwiftKeychainWrapper', '~> 3.2'
+  pod 'SwiftKeychainWrapper', '~> 3.2'
   # Style and conventions checker
   pod 'SwiftLint', '~> 0.31'
   # Balance requests progress
@@ -44,4 +44,11 @@ end
 target 'ISICbalanceExtension' do
   # UI
   pod 'SnapKit', '~> 4.0'
+  # Reactive
+  pod 'ReactiveSwift', '~> 4.0'
+  pod 'ACKReactiveExtensions', '~> 4.0'
+  pod 'ACKategories', '~> 6.0'
+  pod 'Alamofire', '~> 4.0'
+  pod 'SwiftSoup', '~> 1.7'
+  pod 'SwiftKeychainWrapper', '~> 3.2'
 end

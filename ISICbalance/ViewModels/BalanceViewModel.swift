@@ -9,7 +9,6 @@
 import Foundation
 import Result
 import ReactiveSwift
-import Alamofire
 import UIKit
 
 protocol BalanceViewModeling {

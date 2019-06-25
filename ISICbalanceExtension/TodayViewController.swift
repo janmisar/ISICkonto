@@ -82,14 +82,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         })
     }
-
+    // "This method is called to give a widget an opportunity to update its content and redraw its view prior to an operation such as a snapshot"
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
         
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        
+        let requestManager = AppDependency.shared.requestManager
+        let result = requestManager.getBalance()
+
         completionHandler(NCUpdateResult.newData)
 
     }
