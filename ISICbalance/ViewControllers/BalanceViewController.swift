@@ -122,7 +122,7 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Bindings
     func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.localeBalance
+        balanceLabel.reactive.text <~ viewModel.localeBalance
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalance.errors
             .observe(on: UIScheduler())

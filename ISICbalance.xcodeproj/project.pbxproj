@@ -27,7 +27,9 @@
 		1407611522C2842E00B5120B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		1407611622C2844000B5120B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		1407611722C2848700B5120B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
-		1407611822C29CE900B5120B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
+		1407611A22C2A50D00B5120B /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1407611922C2A50D00B5120B /* TodayViewModel.swift */; };
+		1407611B22C2A55B00B5120B /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
+		1407611D22C2A76B00B5120B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
 		14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
@@ -105,6 +107,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1407611922C2A50D00B5120B /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		14089B50223FC41000095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -212,6 +215,7 @@
 				14332225227F56D300EEAD95 /* TodayViewController.swift */,
 				14332227227F56D300EEAD95 /* MainInterface.storyboard */,
 				1433222A227F56D300EEAD95 /* Info.plist */,
+				1407611922C2A50D00B5120B /* TodayViewModel.swift */,
 			);
 			path = ISICbalanceExtension;
 			sourceTree = "<group>";
@@ -475,12 +479,18 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 						};
 					};
 					14C19010223596DB0033616E = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 						};
@@ -767,12 +777,14 @@
 			files = (
 				1407611122C2836000B5120B /* Balance.swift in Sources */,
 				1407611522C2842E00B5120B /* Errors.swift in Sources */,
-				1407611822C29CE900B5120B /* Strings.swift in Sources */,
+				1407611D22C2A76B00B5120B /* Base.swift in Sources */,
+				1407611B22C2A55B00B5120B /* BalanceViewModel.swift in Sources */,
 				1407611622C2844000B5120B /* User.swift in Sources */,
 				14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */,
 				1407611322C2836C00B5120B /* RequestManager.swift in Sources */,
 				1407611422C2837B00B5120B /* KeychainManager.swift in Sources */,
 				1407611722C2848700B5120B /* AppDependency.swift in Sources */,
+				1407611A22C2A50D00B5120B /* TodayViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

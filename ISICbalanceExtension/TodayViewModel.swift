@@ -1,31 +1,33 @@
 //
-//  BalanceViewModel.swift
-//  ISICbalance
+//  TodayViewModel.swift
+//  ISICbalanceExtension
 //
-//  Created by Rostislav Babáček on 15/03/2019.
+//  Created by Rostislav Babáček on 25/06/2019.
 //  Copyright © 2019 Rostislav Babáček. All rights reserved.
 //
+
+import Foundation
 
 import Foundation
 import Result
 import ReactiveSwift
 import UIKit
 
-protocol BalanceViewModeling {
+protocol TodayViewModeling {
     var balance: Property<Int> { get }
     var localeBalance: Property<String> { get }
-    var actions: BalanceViewModelingActions { get }
+    var actions: TodayViewModelingActions { get }
 }
 
-protocol BalanceViewModelingActions {
+protocol TodayViewModelingActions {
     var getBalance: Action<(),Balance,RequestError> { get }
 }
 
-extension BalanceViewModelingActions where Self: BalanceViewModeling {
-    var actions: BalanceViewModelingActions { return self }
+extension TodayViewModelingActions where Self: TodayViewModeling {
+    var actions: TodayViewModelingActions { return self }
 }
 
-final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewModelingActions {
+final class TodayViewModel: BaseViewModel, TodayViewModeling, TodayViewModelingActions {
     typealias Dependencies = HasRequestManager
 
     let balance: Property<Int>
@@ -44,14 +46,6 @@ final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewMod
 
         super.init()
 
-        setupBindings()
     }
 
-    func setupBindings() {
-        balance.producer.startWithValues { value in
-            if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
-                userDefaults.set(value, forKey: "balance")
-            }
-        }
-    }
 }

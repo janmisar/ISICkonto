@@ -23,8 +23,9 @@ protocol KeychainManagering {
 final class KeychainManager: KeychainManagering {
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError> {
         return SignalProducer { observer, _ in
-            let saveUsername: Bool = KeychainWrapper.standard.set(username, forKey: "username")
-            let savePassword: Bool = KeychainWrapper.standard.set(password, forKey: "password")
+            let wrapper = KeychainWrapper(serviceName: "eu.cz.babacros", accessGroup: "eu.cz.babacros.ISICbalance.keychaingroup")
+            let saveUsername: Bool = wrapper.set(username, forKey: "username")
+            let savePassword: Bool = wrapper.set(password, forKey: "password")
 
             if saveUsername && savePassword {
                 observer.sendCompleted()
@@ -36,8 +37,9 @@ final class KeychainManager: KeychainManagering {
 
     func getCredentialsFromKeychain() -> SignalProducer<User, NoError> {
         return SignalProducer<User, NoError> { observer, _ in
-            let username = KeychainWrapper.standard.string(forKey: "username") ?? ""
-            let password = KeychainWrapper.standard.string(forKey: "password") ?? ""
+            let wrapper = KeychainWrapper(serviceName: "eu.cz.babacros", accessGroup: "eu.cz.babacros.ISICbalance.keychaingroup")
+            let username = wrapper.string(forKey: "username") ?? ""
+            let password = wrapper.string(forKey: "password") ?? ""
             let user = User(username: username, password: password)
 
             observer.send(value: user)

@@ -10,13 +10,30 @@ import Foundation
 import UIKit
 import NotificationCenter
 import SnapKit
+import ReactiveSwift
+import ACKReactiveExtensions
+import Result
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 
     weak var isicImageView: UIButton?
     weak var balanceTitle: UILabel?
     weak var balanceLabel: UILabel?
+    private let viewModel: TodayViewModeling!
 
+        // MARK: - Initialization
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        viewModel = TodayViewModel(dependencies: AppDependency.shared)
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+        // MARK: - Controller lifecycle
     override func loadView() {
         super.loadView()
 
@@ -28,6 +45,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         view.addSubview(balanceStack)
 
         let balanceTitle = UILabel()
+//        balanceTitle.text = L10n.Balance.title
         self.balanceTitle = balanceTitle
         balanceStack.addArrangedSubview(balanceTitle)
 
@@ -60,7 +78,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         isicImageView?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
-        setupData()
+//        setupData()
+        setupBindingsA()
+    }
+
+    func setupBindingsA() {
+        print("bindings")
+        balanceLabel?.reactive.text <~ viewModel.localeBalance
+
+        viewModel.actions.getBalance.errors.observeValues { error in
+            print(error.localizedDescription)
+        }
+
+        viewModel.actions.getBalance.apply().start()
     }
 
     func setupData() {
@@ -69,12 +99,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let balance = userDefaults.string(forKey: "balance") ?? "0"
             let title = userDefaults.string(forKey: "balanceTitle") ?? "Na účtu máte"
 
-            balanceLabel?.text = Int(balance)?.asLocalCurrency(currency: currency)
+            balanceLabel?.text = Int(balance)?.asLocalCurrency()
             balanceTitle?.text = title
         }
     }
 
     @objc func isicImageTapped() {
+        moveToApp()
+    }
+
+    func moveToApp() {
         let myAppUrl = URL(string: "ISICbalance://")!
         extensionContext?.open(myAppUrl, completionHandler: { (success) in
             if !success {
@@ -89,22 +123,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        let requestManager = AppDependency.shared.requestManager
-        let result = requestManager.getBalance()
+        viewModel.actions.getBalance.apply().start()
 
         completionHandler(NCUpdateResult.newData)
-
     }
-    
 }
 
 extension Int {
-    func asLocalCurrency(currency: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.currencyCode = currency
-        numberFormatter.numberStyle = .currency
-        numberFormatter.locale = Locale.current
-        numberFormatter.maximumFractionDigits = 0
-        return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
+    func asLocalCurrency() -> String {
+        if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
+            let currency = userDefaults.string(forKey: "currency") ?? "Kč"
+            let numberFormatter = NumberFormatter()
+            numberFormatter.currencyCode = currency
+            numberFormatter.numberStyle = .currency
+            numberFormatter.locale = Locale.current
+            numberFormatter.maximumFractionDigits = 0
+            return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
+        }
+
+        return ""
     }
 }
