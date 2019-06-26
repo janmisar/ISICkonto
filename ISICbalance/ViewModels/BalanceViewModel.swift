@@ -43,15 +43,5 @@ final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewMod
         localeBalance = Property<String>(initial: " ", then: balance.producer.map { $0.asLocalCurrency() })
 
         super.init()
-
-        setupBindings()
-    }
-
-    func setupBindings() {
-        balance.producer.startWithValues { value in
-            if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
-                userDefaults.set(value, forKey: "balance")
-            }
-        }
     }
 }

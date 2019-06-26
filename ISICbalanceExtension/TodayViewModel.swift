@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import Result
 import ReactiveSwift
 import UIKit
@@ -45,7 +43,5 @@ final class TodayViewModel: BaseViewModel, TodayViewModeling, TodayViewModelingA
         localeBalance = Property<String>(initial: " ", then: balance.producer.map { $0.asLocalCurrency() })
 
         super.init()
-
     }
-
 }

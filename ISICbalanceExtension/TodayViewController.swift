@@ -15,13 +15,12 @@ import ACKReactiveExtensions
 import Result
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-
-    weak var isicImageView: UIButton?
-    weak var balanceTitle: UILabel?
-    weak var balanceLabel: UILabel?
+    private weak var isicImageView: UIButton?
+    private weak var balanceTitle: UILabel?
+    private weak var balanceLabel: UILabel?
     private let viewModel: TodayViewModeling!
 
-        // MARK: - Initialization
+    // MARK: - Initialization
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         viewModel = TodayViewModel(dependencies: AppDependency.shared)
@@ -33,7 +32,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         fatalError("init(coder:) has not been implemented")
     }
 
-        // MARK: - Controller lifecycle
+    // MARK: - Controller lifecycle
+
     override func loadView() {
         super.loadView()
 
@@ -45,7 +45,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         view.addSubview(balanceStack)
 
         let balanceTitle = UILabel()
-//        balanceTitle.text = L10n.Balance.title
+        // we are not able to use swiftgen, because of retain cycle
+        balanceTitle.text = NSLocalizedString("balance.title", comment: "ISIC account balance")
         self.balanceTitle = balanceTitle
         balanceStack.addArrangedSubview(balanceTitle)
 
@@ -78,31 +79,33 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         isicImageView?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
-//        setupData()
-        setupBindingsA()
+        setupBindings()
     }
 
-    func setupBindingsA() {
-        print("bindings")
+    // "This method is called to give a widget an opportunity to update its content and redraw its view prior to an operation such as a snapshot"
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+        // Perform any setup necessary in order to update the view.
+
+        // If an error is encountered, use NCUpdateResult.Failed
+        // If there's no update required, use NCUpdateResult.NoData
+        // If there's an update, use NCUpdateResult.NewData
+        viewModel.actions.getBalance.apply().start()
+
+        completionHandler(NCUpdateResult.newData)
+    }
+
+    // MARK: - Bindings
+
+    func setupBindings() {
         balanceLabel?.reactive.text <~ viewModel.localeBalance
-
-        viewModel.actions.getBalance.errors.observeValues { error in
-            print(error.localizedDescription)
+        // open app is request get wrong
+        viewModel.actions.getBalance.errors.observeValues { [weak self] _ in
+            self?.moveToApp()
         }
-
         viewModel.actions.getBalance.apply().start()
     }
 
-    func setupData() {
-        if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
-            let currency = userDefaults.string(forKey: "currency") ?? "Kč"
-            let balance = userDefaults.string(forKey: "balance") ?? "0"
-            let title = userDefaults.string(forKey: "balanceTitle") ?? "Na účtu máte"
-
-            balanceLabel?.text = Int(balance)?.asLocalCurrency()
-            balanceTitle?.text = title
-        }
-    }
+    // MARK: - Actions
 
     @objc func isicImageTapped() {
         moveToApp()
@@ -116,31 +119,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         })
     }
-    // "This method is called to give a widget an opportunity to update its content and redraw its view prior to an operation such as a snapshot"
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        viewModel.actions.getBalance.apply().start()
-
-        completionHandler(NCUpdateResult.newData)
-    }
 }
 
 extension Int {
     func asLocalCurrency() -> String {
-        if let userDefaults = UserDefaults(suiteName: "group.eu.cz.babacros.ISICbalance") {
-            let currency = userDefaults.string(forKey: "currency") ?? "Kč"
-            let numberFormatter = NumberFormatter()
-            numberFormatter.currencyCode = currency
-            numberFormatter.numberStyle = .currency
-            numberFormatter.locale = Locale.current
-            numberFormatter.maximumFractionDigits = 0
-            return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
-        }
-
-        return ""
+        let currency = NSLocalizedString("balance.currency", comment: "localized balance currency")
+        let numberFormatter = NumberFormatter()
+        numberFormatter.currencyCode = currency
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        numberFormatter.maximumFractionDigits = 0
+        return numberFormatter.string(from: NSNumber(value: self)) ?? "0"
     }
 }

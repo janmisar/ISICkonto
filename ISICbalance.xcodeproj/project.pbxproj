@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1401104422C3E8800035CB0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		1407611122C2836000B5120B /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
 		1407611322C2836C00B5120B /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		1407611422C2837B00B5120B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
@@ -537,6 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */,
+				1401104422C3E8800035CB0E /* Localizable.strings in Resources */,
 				14D8A39422859A4C00CDCEDA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
