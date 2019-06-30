@@ -96,7 +96,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     // MARK: - Bindings
 
-    func setupBindings() {
+    private func setupBindings() {
         balanceLabel?.reactive.text <~ viewModel.localeBalance
         // open app is request get wrong
         viewModel.actions.getBalance.errors.observeValues { [weak self] _ in
@@ -107,11 +107,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     // MARK: - Actions
 
-    @objc func isicImageTapped() {
+    @objc
+    private func isicImageTapped() {
         moveToApp()
     }
 
-    func moveToApp() {
+    private func moveToApp() {
         let myAppUrl = URL(string: "ISICbalance://")!
         extensionContext?.open(myAppUrl, completionHandler: { (success) in
             if !success {

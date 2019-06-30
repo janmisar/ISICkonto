@@ -87,7 +87,7 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - UI setup
-    fileprivate func setupBalanceField() {
+    private func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
         balanceTitle.textColor = UIColor.theme.labelBlue
@@ -105,7 +105,7 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(balanceLabel)
     }
     
-    fileprivate func setupButtonsStack() {
+    private func setupButtonsStack() {
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
@@ -121,7 +121,7 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - Bindings
-    func setupBindings() {
+    private func setupBindings() {
         balanceLabel.reactive.text <~ viewModel.localeBalance
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalance.errors
@@ -141,14 +141,16 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - Actions
-    @objc func reloadBalance() {
+    @objc
+    private func reloadBalance() {
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
     }
     
-    @objc func accountBtnHandle() {
+    @objc
+    private func accountBtnHandle() {
         flowDelegate?.accountButtonTapped(in: self)
     }
 }
