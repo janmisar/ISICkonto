@@ -18,7 +18,7 @@ protocol TodayViewModeling {
 }
 
 protocol TodayViewModelingActions {
-    var getBalance: Action<(),Balance,RequestError> { get }
+    var getBalance: Action<Void,Balance,RequestError> { get }
 }
 
 extension TodayViewModelingActions where Self: TodayViewModeling {
@@ -30,7 +30,7 @@ final class TodayViewModel: BaseViewModel, TodayViewModeling, TodayViewModelingA
 
     let balance: Property<Int>
     let localeBalance: Property<String>
-    let getBalance: Action<(),Balance,RequestError>
+    let getBalance: Action<Void,Balance,RequestError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {

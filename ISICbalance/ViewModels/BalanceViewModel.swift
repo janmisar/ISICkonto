@@ -18,7 +18,7 @@ protocol BalanceViewModeling {
 }
 
 protocol BalanceViewModelingActions {
-    var getBalance: Action<(),Balance,RequestError> { get }
+    var getBalance: Action<Void,Balance,RequestError> { get }
 }
 
 extension BalanceViewModelingActions where Self: BalanceViewModeling {
@@ -30,7 +30,7 @@ final class BalanceViewModel: BaseViewModel, BalanceViewModeling, BalanceViewMod
 
     let balance: Property<Int>
     let localeBalance: Property<String>
-    let getBalance: Action<(),Balance,RequestError>
+    let getBalance: Action<Void,Balance,RequestError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
