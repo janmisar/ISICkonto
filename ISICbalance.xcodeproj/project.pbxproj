@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -21,11 +21,25 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1401104422C3E8800035CB0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
+		1407611122C2836000B5120B /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
+		1407611322C2836C00B5120B /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
+		1407611422C2837B00B5120B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
+		1407611522C2842E00B5120B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
+		1407611622C2844000B5120B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
+		1407611722C2848700B5120B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EBF3B52246588D0092D282 /* AppDependency.swift */; };
+		1407611A22C2A50D00B5120B /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1407611922C2A50D00B5120B /* TodayViewModel.swift */; };
+		1407611B22C2A55B00B5120B /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC275223BB5B4006430D1 /* BalanceViewModel.swift */; };
+		1407611D22C2A76B00B5120B /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC278223BB623006430D1 /* Base.swift */; };
 		14089B51223FC41000095BC2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B50223FC41000095BC2 /* KeychainManager.swift */; };
 		14089B53223FC4AF00095BC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14089B52223FC4AF00095BC2 /* User.swift */; };
 		1408C622223A6B0400A46BCA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1408C621223A6B0400A46BCA /* Errors.swift */; };
 		141BB5F7227EE02F00233C3E /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */; };
 		1433221B227F541200EEAD95 /* CurrencyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433221A227F541200EEAD95 /* CurrencyExt.swift */; };
+		14332223227F56D300EEAD95 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14332222227F56D300EEAD95 /* NotificationCenter.framework */; };
+		14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14332225227F56D300EEAD95 /* TodayViewController.swift */; };
+		14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14332227227F56D300EEAD95 /* MainInterface.storyboard */; };
+		1433222D227F56D300EEAD95 /* ISICbalanceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		143CB3C9223E51D800413568 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3C8223E51D800413568 /* RequestManager.swift */; };
 		143CB3CC223E51F400413568 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CA223E51F400413568 /* AccountViewController.swift */; };
 		143CB3CD223E51F400413568 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143CB3CB223E51F400413568 /* BalanceViewController.swift */; };
@@ -39,6 +53,7 @@
 		14C190462235A2710033616E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C190482235A2710033616E /* Localizable.strings */; };
 		14C1905C22365EDD0033616E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905B22365EDC0033616E /* Strings.swift */; };
 		14C1905E22365EE30033616E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1905D22365EE30033616E /* Assets.swift */; };
+		14D8A39422859A4C00CDCEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C1901B223596DC0033616E /* Assets.xcassets */; };
 		14E2E89B224C239000D90285 /* ThemeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89A224C239000D90285 /* ThemeProvider.swift */; };
 		14E2E89D224C23F900D90285 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89C224C23F900D90285 /* UIColor+Theme.swift */; };
 		14E2E8A0224C252700D90285 /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E2E89F224C252700D90285 /* UITextField+Theme.swift */; };
@@ -49,11 +64,19 @@
 		14ECC27D223BB67D006430D1 /* TextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC27C223BB67D006430D1 /* TextFieldExt.swift */; };
 		14ECC283223BEB8A006430D1 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ECC282223BEB8A006430D1 /* Balance.swift */; };
 		1F133E73A35C79E8A49431F1 /* Pods_ISICbalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */; };
+		7511ADF7CD728A1E492C148F /* Pods_ISICbalanceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */; };
 		8D198343AA872091CE09B8E4 /* Pods_ISICbalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */; };
 		F7513314E4C62A9C2C2F873B /* Pods_ISICbalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1433222B227F56D300EEAD95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C19009223596DB0033616E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14332220227F56D300EEAD95;
+			remoteInfo = ISICbalanceExtension;
+		};
 		14C19026223596DC0033616E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14C19009223596DB0033616E /* Project object */;
@@ -70,12 +93,34 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		14332231227F56D300EEAD95 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1433222D227F56D300EEAD95 /* ISICbalanceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1407611922C2A50D00B5120B /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		14089B50223FC41000095BC2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		14089B52223FC4AF00095BC2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1408C621223A6B0400A46BCA /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		141BB5F6227EE02F00233C3E /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		1433221A227F541200EEAD95 /* CurrencyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExt.swift; sourceTree = "<group>"; };
+		1433221C227F560E00EEAD95 /* ISICbalance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ISICbalance.entitlements; sourceTree = "<group>"; };
+		14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ISICbalanceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		14332222227F56D300EEAD95 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		14332225227F56D300EEAD95 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		14332228227F56D300EEAD95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		1433222A227F56D300EEAD95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14332232227F56E000EEAD95 /* ISICbalanceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ISICbalanceExtension.entitlements; sourceTree = "<group>"; };
 		143CB3C8223E51D800413568 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		143CB3CA223E51F400413568 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		143CB3CB223E51F400413568 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
@@ -106,10 +151,13 @@
 		14ECC27C223BB67D006430D1 /* TextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExt.swift; sourceTree = "<group>"; };
 		14ECC282223BEB8A006430D1 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceExtension.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceExtension/Pods-ISICbalanceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.release.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.release.xcconfig"; sourceTree = "<group>"; };
+		76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		777FB23EEB0700F21DAC4BFD /* Pods-ISICbalanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceTests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceTests/Pods-ISICbalanceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalanceUITests/Pods-ISICbalanceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalanceExtension.release.xcconfig"; path = "Target Support Files/Pods-ISICbalanceExtension/Pods-ISICbalanceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISICbalance.debug.xcconfig"; path = "Target Support Files/Pods-ISICbalance/Pods-ISICbalance.debug.xcconfig"; sourceTree = "<group>"; };
 		D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISICbalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +165,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1433221E227F56D300EEAD95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14332223227F56D300EEAD95 /* NotificationCenter.framework in Frameworks */,
+				7511ADF7CD728A1E492C148F /* Pods_ISICbalanceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900E223596DB0033616E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,12 +209,25 @@
 			path = FlowCoordinators;
 			sourceTree = "<group>";
 		};
+		14332224227F56D300EEAD95 /* ISICbalanceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				14332232227F56E000EEAD95 /* ISICbalanceExtension.entitlements */,
+				14332225227F56D300EEAD95 /* TodayViewController.swift */,
+				14332227227F56D300EEAD95 /* MainInterface.storyboard */,
+				1433222A227F56D300EEAD95 /* Info.plist */,
+				1407611922C2A50D00B5120B /* TodayViewModel.swift */,
+			);
+			path = ISICbalanceExtension;
+			sourceTree = "<group>";
+		};
 		14C19008223596DB0033616E = {
 			isa = PBXGroup;
 			children = (
 				14C19013223596DB0033616E /* ISICbalance */,
 				14C19028223596DC0033616E /* ISICbalanceTests */,
 				14C19033223596DC0033616E /* ISICbalanceUITests */,
+				14332224227F56D300EEAD95 /* ISICbalanceExtension */,
 				14C19012223596DB0033616E /* Products */,
 				2B72B8C664D21E0754CB91FE /* Pods */,
 				AD462197CDB172B06184ADBD /* Frameworks */,
@@ -170,6 +240,7 @@
 				14C19011223596DB0033616E /* ISICbalance.app */,
 				14C19025223596DC0033616E /* ISICbalanceTests.xctest */,
 				14C19030223596DC0033616E /* ISICbalanceUITests.xctest */,
+				14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +248,7 @@
 		14C19013223596DB0033616E /* ISICbalance */ = {
 			isa = PBXGroup;
 			children = (
+				1433221C227F560E00EEAD95 /* ISICbalance.entitlements */,
 				14E2E899224C232700D90285 /* Theme */,
 				14ECC281223BEB6B006430D1 /* Models */,
 				14ECC27E223BB85D006430D1 /* Services */,
@@ -290,6 +362,8 @@
 				5A0EB4EB1D11AA9D0D4745C2 /* Pods-ISICbalanceTests.release.xcconfig */,
 				793F80F41DAF4DBA58281D3B /* Pods-ISICbalanceUITests.debug.xcconfig */,
 				29197844DA02E62F1CA90ECA /* Pods-ISICbalanceUITests.release.xcconfig */,
+				2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */,
+				7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -300,6 +374,8 @@
 				D57334989AA940BFE89FD5F0 /* Pods_ISICbalance.framework */,
 				A7FB51DD061D9D54ABBC90BC /* Pods_ISICbalanceTests.framework */,
 				E56364188DEDFD08CFA79962 /* Pods_ISICbalanceUITests.framework */,
+				14332222227F56D300EEAD95 /* NotificationCenter.framework */,
+				76DC54F56C4D098360325186 /* Pods_ISICbalanceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -307,6 +383,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		14332220227F56D300EEAD95 /* ISICbalanceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1433222E227F56D300EEAD95 /* Build configuration list for PBXNativeTarget "ISICbalanceExtension" */;
+			buildPhases = (
+				16577DFA27B5F89FFC69B307 /* [CP] Check Pods Manifest.lock */,
+				1433221D227F56D300EEAD95 /* Sources */,
+				1433221E227F56D300EEAD95 /* Frameworks */,
+				1433221F227F56D300EEAD95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ISICbalanceExtension;
+			productName = ISICbalanceExtension;
+			productReference = 14332221227F56D300EEAD95 /* ISICbalanceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		14C19010223596DB0033616E /* ISICbalance */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14C19039223596DC0033616E /* Build configuration list for PBXNativeTarget "ISICbalance" */;
@@ -320,10 +414,12 @@
 				14C1900E223596DB0033616E /* Frameworks */,
 				14C1900F223596DB0033616E /* Resources */,
 				6F99804768FC419580689CB6 /* [CP] Embed Pods Frameworks */,
+				14332231227F56D300EEAD95 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1433222C227F56D300EEAD95 /* PBXTargetDependency */,
 			);
 			name = ISICbalance;
 			productName = ISICbalance;
@@ -374,12 +470,31 @@
 		14C19009223596DB0033616E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rostislav Babáček";
 				TargetAttributes = {
+					14332220227F56D300EEAD95 = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
 					14C19010223596DB0033616E = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					14C19024223596DC0033616E = {
 						CreatedOnToolsVersion = 10.1;
@@ -412,11 +527,22 @@
 				14C19024223596DC0033616E /* ISICbalanceTests */,
 				14C1902F223596DC0033616E /* ISICbalanceUITests */,
 				14C1904B2235A46F0033616E /* Localization */,
+				14332220227F56D300EEAD95 /* ISICbalanceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1433221F227F56D300EEAD95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14332229227F56D300EEAD95 /* MainInterface.storyboard in Resources */,
+				1401104422C3E8800035CB0E /* Localizable.strings in Resources */,
+				14D8A39422859A4C00CDCEDA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900F223596DB0033616E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,6 +665,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
+		16577DFA27B5F89FFC69B307 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ISICbalanceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5E70729B2234393388FD6A39 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,6 +773,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1433221D227F56D300EEAD95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1407611122C2836000B5120B /* Balance.swift in Sources */,
+				1407611522C2842E00B5120B /* Errors.swift in Sources */,
+				1407611D22C2A76B00B5120B /* Base.swift in Sources */,
+				1407611B22C2A55B00B5120B /* BalanceViewModel.swift in Sources */,
+				1407611622C2844000B5120B /* User.swift in Sources */,
+				14332226227F56D300EEAD95 /* TodayViewController.swift in Sources */,
+				1407611322C2836C00B5120B /* RequestManager.swift in Sources */,
+				1407611422C2837B00B5120B /* KeychainManager.swift in Sources */,
+				1407611722C2848700B5120B /* AppDependency.swift in Sources */,
+				1407611A22C2A50D00B5120B /* TodayViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14C1900D223596DB0033616E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -672,6 +837,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1433222C227F56D300EEAD95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14332220227F56D300EEAD95 /* ISICbalanceExtension */;
+			targetProxy = 1433222B227F56D300EEAD95 /* PBXContainerItemProxy */;
+		};
 		14C19027223596DC0033616E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14C19010223596DB0033616E /* ISICbalance */;
@@ -685,6 +855,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		14332227227F56D300EEAD95 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14332228227F56D300EEAD95 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		14C19018223596DB0033616E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -713,6 +891,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1433222F227F56D300EEAD95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F2CEAE2C6C57A81236EDA2E /* Pods-ISICbalanceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GRHTXFGCU;
+				INFOPLIST_FILE = ISICbalanceExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14332230227F56D300EEAD95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D22FB3CC36B3891E11C39D9 /* Pods-ISICbalanceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ISICbalanceExtension/ISICbalanceExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3GRHTXFGCU;
+				INFOPLIST_FILE = ISICbalanceExtension/Info.plist;
+				INFOPLIST_PREFIX_HEADER = info_preprocess_header.h;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.cz.babacros.ISICbalance.ISICbalanceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		14C19037223596DC0033616E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -837,8 +1063,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C12E42D178DE26A99EA63740 /* Pods-ISICbalance.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ISICbalance/ISICbalance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GRHTXFGCU;
@@ -861,8 +1089,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7695F100D2C06E2BFAABBB76 /* Pods-ISICbalance.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ISICbalance/ISICbalance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GRHTXFGCU;
@@ -982,6 +1212,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1433222E227F56D300EEAD95 /* Build configuration list for PBXNativeTarget "ISICbalanceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1433222F227F56D300EEAD95 /* Debug */,
+				14332230227F56D300EEAD95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14C1900C223596DB0033616E /* Build configuration list for PBXProject "ISICbalance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

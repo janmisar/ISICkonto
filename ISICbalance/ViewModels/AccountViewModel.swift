@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveSwift
-import Result
 import SwiftKeychainWrapper
 
 protocol AccountViewModeling {
@@ -19,7 +18,7 @@ protocol AccountViewModeling {
 }
 
 protocol AccountViewModelingActions {
-    var login: Action<(),(),LoginError> { get }
+    var login: Action<Void,Void,LoginError> { get }
 }
 
 extension AccountViewModelingActions where Self: AccountViewModeling {
@@ -32,11 +31,10 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
     let username: MutableProperty<String>
     let password: MutableProperty<String>
 
-    let login: Action<(),(),LoginError>
+    let login: Action<Void,Void,LoginError>
 
     // MARK: - Initialization
     init(dependencies: Dependencies) {
-
         username = MutableProperty("")
         password = MutableProperty("")
 
@@ -57,7 +55,7 @@ final class AccountViewModel: BaseViewModel, AccountViewModeling, AccountViewMod
             if validationErrors.isEmpty {
                 return dependencies.keychainManager.saveCredentials(username: username, password: password)
             } else {
-                return SignalProducer<(), LoginError>(error: LoginError.validation(message: L10n.Validate.errorMessage))
+                return SignalProducer<Void, LoginError>(error: LoginError.validation(message: L10n.Validate.errorMessage))
             }
         }
 

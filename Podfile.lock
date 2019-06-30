@@ -1,40 +1,41 @@
 PODS:
-  - ACKategories (6.0.2)
-  - ACKLocalization (0.3.2)
-  - ACKReactiveExtensions (4.0.2):
-    - ACKReactiveExtensions/Core (= 4.0.2)
-    - ACKReactiveExtensions/UIKit (= 4.0.2)
-    - ReactiveCocoa (~> 8.0)
-  - ACKReactiveExtensions/Core (4.0.2):
-    - ReactiveCocoa (~> 8.0)
-  - ACKReactiveExtensions/UIKit (4.0.2):
+  - ACKategories (6.1.2)
+  - ACKLocalization (0.3.3)
+  - ACKReactiveExtensions (5.0.1):
+    - ACKReactiveExtensions/Core (= 5.0.1)
+    - ACKReactiveExtensions/UIKit (= 5.0.1)
+    - ReactiveCocoa (~> 10.0)
+    - ReactiveSwift (~> 6.0)
+  - ACKReactiveExtensions/Core (5.0.1):
+    - ReactiveCocoa (~> 10.0)
+    - ReactiveSwift (~> 6.0)
+  - ACKReactiveExtensions/UIKit (5.0.1):
     - ACKReactiveExtensions/Core
-    - ReactiveCocoa (~> 8.0)
-  - Alamofire (4.0.1)
-  - ReactiveCocoa (8.0.2):
-    - ReactiveSwift (~> 4.0)
-  - ReactiveSwift (4.0.0):
-    - Result (~> 4.0)
-  - Result (4.1.0)
-  - SnapKit (4.0.1)
+    - ReactiveCocoa (~> 10.0)
+    - ReactiveSwift (~> 6.0)
+  - Alamofire (4.8.2)
+  - ReactiveCocoa (10.0.0):
+    - ReactiveSwift (~> 6.0)
+  - ReactiveSwift (6.0.0)
+  - SnapKit (5.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftGen (6.1.0)
-  - SwiftKeychainWrapper (3.2.0)
-  - SwiftLint (0.31.0)
-  - SwiftSoup (1.7.4)
+  - SwiftKeychainWrapper (3.4.0)
+  - SwiftLint (0.33.0)
+  - SwiftSoup (2.2.0)
 
 DEPENDENCIES:
-  - ACKategories (~> 6.0.2)
-  - ACKLocalization (~> 0.1)
-  - ACKReactiveExtensions (~> 4.0.2)
-  - Alamofire (~> 4.0.0)
-  - ReactiveSwift (~> 4.0.0)
-  - SnapKit (~> 4.0.0)
-  - SVProgressHUD (~> 2.2.5)
-  - SwiftGen (~> 6.0)
-  - SwiftKeychainWrapper (~> 3.2.0)
-  - SwiftLint (~> 0.31.0)
-  - SwiftSoup (~> 1.7.4)
+  - ACKategories (~> 6.1)
+  - ACKLocalization (~> 0.3)
+  - ACKReactiveExtensions (~> 5.0)
+  - Alamofire (~> 4.8)
+  - ReactiveSwift (~> 6.0)
+  - SnapKit (~> 5.0)
+  - SVProgressHUD (~> 2.2)
+  - SwiftGen (~> 6.1)
+  - SwiftKeychainWrapper (~> 3.4)
+  - SwiftLint (~> 0.33)
+  - SwiftSoup (~> 2.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -44,7 +45,6 @@ SPEC REPOS:
     - Alamofire
     - ReactiveCocoa
     - ReactiveSwift
-    - Result
     - SnapKit
     - SVProgressHUD
     - SwiftGen
@@ -53,20 +53,19 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
-  ACKategories: 0ca3caac8d42d9b8bbb563472609328c180936f0
-  ACKLocalization: a9a8c719b2972e2ccdf79177be7965f6a009bded
-  ACKReactiveExtensions: 21f2aad823494e5787091c193213b96a16305563
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  ReactiveCocoa: fbd26e9ba60e98417ee47433e59465a98ed9da0f
-  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  ACKategories: d426ade430bc6b2bec8d46b2cca6caf92b067662
+  ACKLocalization: d24a1ba1a31ec153ba9ab2dca5a38d653863214e
+  ACKReactiveExtensions: 689369efbaa7e13967379b4628b48d85c141a7a3
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  ReactiveCocoa: 6d4c37ba236f5d9a7a55b2172cd09f19ba85f574
+  ReactiveSwift: 24b7ed245617bbfd30ee0c87779b6c64ac1b4518
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
-  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
-  SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
+  SwiftSoup: 230991361c5ba249d140161860a3864a28b63860
 
-PODFILE CHECKSUM: cab1eaf6010bbd2bcccbce071e41555f9c529f8c
+PODFILE CHECKSUM: 8661fbe4dedf673bc9756d526f067787d55fa90e
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.2

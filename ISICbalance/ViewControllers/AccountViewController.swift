@@ -105,7 +105,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     }
 
     // MARK: - Bindings
-    func setupBindings() {
+    private func setupBindings() {
         usernameTextField <~> viewModel.username
         passwordTextField <~> viewModel.password
         loginButton.reactive.isEnabled <~ viewModel.actions.login.isExecuting.negate()
@@ -124,7 +124,8 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
     }
 
     // MARK: - Actions
-    @objc func saveCredentials() {
+    @objc
+    private func saveCredentials(_ sender: UIButton) {
         viewModel.actions.login.apply().start()
     }
 }

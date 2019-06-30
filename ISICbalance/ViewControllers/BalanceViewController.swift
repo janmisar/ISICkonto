@@ -67,7 +67,7 @@ class BalanceViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBtnHandle), for: .touchUpInside)
         setupBindings()
     }
 
@@ -87,7 +87,7 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - UI setup
-    fileprivate func setupBalanceField() {
+    private func setupBalanceField() {
         let balanceTitle = UILabel()
         balanceTitle.text = L10n.Balance.title
         balanceTitle.textColor = UIColor.theme.labelBlue
@@ -105,7 +105,7 @@ class BalanceViewController: BaseViewController {
         screenStackView.addArrangedSubview(balanceLabel)
     }
     
-    fileprivate func setupButtonsStack() {
+    private func setupButtonsStack() {
         let reloadButton = UIButton()
         reloadButton.setImage(Asset.reloadIcon.image, for: .normal)
         self.reloadButton = reloadButton
@@ -121,8 +121,8 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - Bindings
-    func setupBindings() {
-        self.balanceLabel.reactive.text <~ viewModel.localeBalance
+    private func setupBindings() {
+        balanceLabel.reactive.text <~ viewModel.localeBalance
         // push accountViewController if there is some error duting balanceAction
         viewModel.actions.getBalance.errors
             .observe(on: UIScheduler())
@@ -136,19 +136,25 @@ class BalanceViewController: BaseViewController {
         viewModel.actions.getBalance.completed
             .observe(on: UIScheduler())
             .observeValues {
-                SVProgressHUD.dismiss()
+                SVProgressHUD.dismiss(withDelay: 1)
             }
     }
 
     // MARK: - Actions
-    @objc func reloadBalance() {
+    private func reloadBalance() {
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
     }
+
+    @objc
+    private func reloadBtnHandle(_ sender: UIButton) {
+        reloadBalance()
+    }
     
-    @objc func accountBtnHandle() {
+    @objc
+    private func accountBtnHandle(_ sender: UIButton) {
         flowDelegate?.accountButtonTapped(in: self)
     }
 }

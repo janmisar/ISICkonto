@@ -2,31 +2,36 @@
 # platform :ios, '9.0'
 
 inhibit_all_warnings!
+  use_frameworks!
+
+def shared_pods
+  # UI
+  pod 'SnapKit', '~> 5.0'
+  # Reactive
+  pod 'ReactiveSwift', '~> 6.0'
+  pod 'ACKReactiveExtensions', '~> 5.0'
+  # Bunch of tools
+  pod 'ACKategories', '~> 6.1'
+  # Networking
+  pod 'Alamofire', '~> 4.8'
+  pod 'SwiftSoup', '~> 2.2'
+  # Keychain
+  pod 'SwiftKeychainWrapper', '~> 3.4'
+end
+
 
 target 'ISICbalance' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
 
   # Pods for ISICbalance
-  # UI
-  pod 'SnapKit', '~> 4.0.0'
-  # Bunch of tools
-  pod 'ACKategories', '~> 6.0.2'
-  # Networking
-  pod 'Alamofire', '~> 4.0.0'
-  pod 'SwiftSoup', '~> 1.7.4'
+  shared_pods
   # Localization
-  pod 'ACKLocalization', '~> 0.1'
-  pod 'SwiftGen', '~> 6.0'
-  # Reactive
-  pod 'ReactiveSwift', '~> 4.0.0'
-  pod 'ACKReactiveExtensions', '~> 4.0.2'
-  # Keychain
-    pod 'SwiftKeychainWrapper', '~> 3.2.0'
+  pod 'ACKLocalization', '~> 0.3'
+  pod 'SwiftGen', '~> 6.1'
   # Style and conventions checker
-  pod 'SwiftLint', '~> 0.31.0'
+  pod 'SwiftLint', '~> 0.33'
   # Balance requests progress
-  pod 'SVProgressHUD', '~> 2.2.5'
+  pod 'SVProgressHUD', '~> 2.2'
   
   target 'ISICbalanceTests' do
     inherit! :search_paths
@@ -39,3 +44,8 @@ target 'ISICbalance' do
   end
 
 end
+
+target 'ISICbalanceExtension' do
+  shared_pods
+end
+
