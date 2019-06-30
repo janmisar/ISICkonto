@@ -15,9 +15,9 @@ import ACKReactiveExtensions
 import Result
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-    private weak var isicImageView: UIButton?
-    private weak var balanceTitle: UILabel?
-    private weak var balanceLabel: UILabel?
+    private weak var appButton: UIButton!
+    private weak var balanceTitle: UILabel!
+    private weak var balanceLabel: UILabel!
     private let viewModel: TodayViewModeling!
 
     // MARK: - Initialization
@@ -63,10 +63,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
 
         let isicImage = UIImage(named: "todayExtension")
-        let isicImageView = UIButton(type: .custom)
-        isicImageView.setImage(isicImage, for: .normal)
-        self.isicImageView = isicImageView
-        view.addSubview(isicImageView)
+        let appButton = UIButton(type: .custom)
+        appButton.setImage(isicImage, for: .normal)
+        self.appButton = appButton
+        view.addSubview(appButton)
 
         isicImageView.snp.makeConstraints { make in
             make.leading.greaterThanOrEqualTo(balanceStack.snp.trailing).offset(20)
@@ -78,7 +78,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        isicImageView?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
+        appButton?.addTarget(self, action: #selector(isicImageTapped), for: .touchUpInside)
         setupBindings()
     }
 
