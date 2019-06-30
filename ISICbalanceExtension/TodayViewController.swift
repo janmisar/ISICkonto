@@ -12,7 +12,6 @@ import NotificationCenter
 import SnapKit
 import ReactiveSwift
 import ACKReactiveExtensions
-import Result
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     private weak var appButton: UIButton!
@@ -108,7 +107,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: - Actions
 
     @objc
-    private func isicImageTapped(_ sender: UIButton)) {
+    private func isicImageTapped(_ sender: UIButton) {
         moveToApp()
     }
 

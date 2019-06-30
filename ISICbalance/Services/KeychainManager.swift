@@ -9,7 +9,6 @@
 import Foundation
 import ReactiveSwift
 import SwiftKeychainWrapper
-import Result
 
 protocol HasKeychainManager {
     var keychainManager: KeychainManagering { get }
@@ -17,7 +16,7 @@ protocol HasKeychainManager {
 
 protocol KeychainManagering {
     func saveCredentials(username: String, password: String) -> SignalProducer<(),LoginError>
-    func getCredentialsFromKeychain() -> SignalProducer<User, NoError>
+    func getCredentialsFromKeychain() -> SignalProducer<User, Never>
 }
 
 final class KeychainManager: KeychainManagering {
@@ -35,8 +34,8 @@ final class KeychainManager: KeychainManagering {
         }
     }
 
-    func getCredentialsFromKeychain() -> SignalProducer<User, NoError> {
-        return SignalProducer<User, NoError> { observer, _ in
+    func getCredentialsFromKeychain() -> SignalProducer<User, Never> {
+        return SignalProducer<User, Never> { observer, _ in
             let wrapper = KeychainWrapper(serviceName: "eu.cz.babacros", accessGroup: "eu.cz.babacros.ISICbalance.keychaingroup")
             let username = wrapper.string(forKey: "username") ?? ""
             let password = wrapper.string(forKey: "password") ?? ""

@@ -67,7 +67,7 @@ class BalanceViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         accountButton.addTarget(self, action: #selector(accountBtnHandle), for: .touchUpInside)
-        reloadButton.addTarget(self, action: #selector(reloadBalance), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadBtnHandle), for: .touchUpInside)
         setupBindings()
     }
 
@@ -141,12 +141,16 @@ class BalanceViewController: BaseViewController {
     }
 
     // MARK: - Actions
-    @objc
-    private func reloadBalance(_ sender: UIButton) {
+    private func reloadBalance() {
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
         viewModel.actions.getBalance.apply().start()
+    }
+
+    @objc
+    private func reloadBtnHandle(_ sender: UIButton) {
+        reloadBalance()
     }
     
     @objc

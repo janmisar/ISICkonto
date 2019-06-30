@@ -11,7 +11,6 @@ import Alamofire
 import SwiftSoup
 import SwiftKeychainWrapper
 import ReactiveSwift
-import Result
 
 protocol HasRequestManager {
     var requestManager: RequestManagering { get }

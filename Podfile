@@ -4,28 +4,32 @@
 inhibit_all_warnings!
   use_frameworks!
 
+def shared_pods
+  # UI
+  pod 'SnapKit', '~> 5.0'
+  # Reactive
+  pod 'ReactiveSwift', '~> 6.0'
+  pod 'ACKReactiveExtensions', '~> 5.0'
+  # Bunch of tools
+  pod 'ACKategories', '~> 6.1'
+  # Networking
+  pod 'Alamofire', '~> 4.8'
+  pod 'SwiftSoup', '~> 2.2'
+  # Keychain
+  pod 'SwiftKeychainWrapper', '~> 3.4'
+end
+
+
 target 'ISICbalance' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
 
-
   # Pods for ISICbalance
-  # UI
-  pod 'SnapKit', '~> 4.0'
-  # Bunch of tools
-  pod 'ACKategories', '~> 6.0'
-  # Networking
-  pod 'Alamofire', '~> 4.0'
-  pod 'SwiftSoup', '~> 1.7'
+  shared_pods
   # Localization
-  pod 'ACKLocalization', '~> 0.1'
-  pod 'SwiftGen', '~> 6.0'
-  # Reactive
-  pod 'ReactiveSwift', '~> 4.0'
-  pod 'ACKReactiveExtensions', '~> 4.0'
-  # Keychain
-  pod 'SwiftKeychainWrapper', '~> 3.2'
+  pod 'ACKLocalization', '~> 0.3'
+  pod 'SwiftGen', '~> 6.1'
   # Style and conventions checker
-  pod 'SwiftLint', '~> 0.31'
+  pod 'SwiftLint', '~> 0.33'
   # Balance requests progress
   pod 'SVProgressHUD', '~> 2.2'
   
@@ -42,13 +46,6 @@ target 'ISICbalance' do
 end
 
 target 'ISICbalanceExtension' do
-  # UI
-  pod 'SnapKit', '~> 4.0'
-  # Reactive
-  pod 'ReactiveSwift', '~> 4.0'
-  pod 'ACKReactiveExtensions', '~> 4.0'
-  pod 'ACKategories', '~> 6.0'
-  pod 'Alamofire', '~> 4.0'
-  pod 'SwiftSoup', '~> 1.7'
-  pod 'SwiftKeychainWrapper', '~> 3.2'
+  shared_pods
 end
+

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Result
 import ReactiveSwift
 import UIKit
 
