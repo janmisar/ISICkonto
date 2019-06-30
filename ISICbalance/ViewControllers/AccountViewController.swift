@@ -125,7 +125,7 @@ class AccountViewController: BaseViewController, ValidateErrorPresentable {
 
     // MARK: - Actions
     @objc
-    private func saveCredentials() {
+    private func saveCredentials(_ sender: UIButton) {
         viewModel.actions.login.apply().start()
     }
 }

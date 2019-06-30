@@ -142,7 +142,7 @@ class BalanceViewController: BaseViewController {
 
     // MARK: - Actions
     @objc
-    private func reloadBalance() {
+    private func reloadBalance(_ sender: UIButton) {
         DispatchQueue.main.async {
             SVProgressHUD.show(withStatus: L10n.Balance.loading)
         }
@@ -150,7 +150,7 @@ class BalanceViewController: BaseViewController {
     }
     
     @objc
-    private func accountBtnHandle() {
+    private func accountBtnHandle(_ sender: UIButton) {
         flowDelegate?.accountButtonTapped(in: self)
     }
 }

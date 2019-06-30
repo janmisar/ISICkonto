@@ -68,7 +68,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.appButton = appButton
         view.addSubview(appButton)
 
-        isicImageView.snp.makeConstraints { make in
+        appButton.snp.makeConstraints { make in
             make.leading.greaterThanOrEqualTo(balanceStack.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(50)
             make.top.bottom.equalToSuperview()
@@ -108,7 +108,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: - Actions
 
     @objc
-    private func isicImageTapped() {
+    private func isicImageTapped(_ sender: UIButton)) {
         moveToApp()
     }
 
