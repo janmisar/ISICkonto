@@ -26,7 +26,6 @@ class AppViewController<VM: AppViewModel, V: UIView>: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("binding")
         bindToViewModel(vm: vm)
     }
     

@@ -38,15 +38,15 @@ class LogInViewController: AppViewController<LoginViewModel, LoginView> {
         (v.loginButton       >>> vm.loginAction).disposed(by: disposeBag)
         
         v.loginButton.rx.tap.bind { [unowned self] in
-            print("what")
             self.v.showLoading(with: "Loading balance...".localized)
             }.disposed(by: disposeBag)
     }
     
     override func setupInputBindings(from vm: LoginViewModel) {
         (vm.isLoginSuccess --> { [unowned self] success in
-            if !success { self.v.showError(with: "Wrong credentials".localized) }
-            else {
+            if !success {
+                self.v.showError(with: "Wrong credentials".localized)
+            } else {
                 self.v.showSuccess(with: "Success!".localized)
                 self.onLoginSuccess()
             }
