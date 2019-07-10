@@ -17,7 +17,7 @@ class BalanceViewModel: AppViewModel {
     
     var disposeBag = DisposeBag()
     
-    var balance : Observable<String> {
+    var balance: Observable<String> {
         return resultRequestBalancePage.map { [weak self] in
             guard let strongSelf = self, let balancePage = $0.element, $0.info == .loggedIn else { return "..." }
             return strongSelf.scrapeBalance(from: balancePage)
