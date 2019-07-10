@@ -12,6 +12,7 @@ import RxSwift
 
 class AppViewController<VM: AppViewModel, V: UIView>: UIViewController {
     var vm: VM!
+    var v: V { return view as! V }
     var disposeBag = DisposeBag()
     
     init(vm: VM) {
