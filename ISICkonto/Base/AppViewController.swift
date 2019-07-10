@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 
-class AppViewController<VM: AppViewModel, V: UIView>: UIViewController {
+class AppViewController<VM: AppViewModel, V: AppView>: UIViewController {
     var vm: VM!
     var v: V { return view as! V }
     var disposeBag = DisposeBag()
