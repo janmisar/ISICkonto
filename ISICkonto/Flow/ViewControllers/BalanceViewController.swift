@@ -11,7 +11,7 @@ import UIKit
 import SVProgressHUD
 import RxSwift
 
-class BalanceViewController: AppViewController {
+class BalanceViewController: AppViewController<BalanceViewModel, BalanceView> {
     
     var onPopBalanceViewController: () -> () = { }
    
@@ -19,33 +19,26 @@ class BalanceViewController: AppViewController {
         view = BalanceView()
     }
     
-    override func setViewModel() {
-        viewModel = BalanceViewModel()
-    }
-    
-    override func bindViewToViewModel(v: UIView, vm: AppViewModel) {
-        let balanceView = v as! BalanceView
-        let vm = vm as! BalanceViewModel
+    override func setupOutputBindings(to vm: BalanceViewModel) {
+        (v.refreshButton >>> vm.refreshAction).disposed(by: disposeBag)
         
-        // Output bindings
-        (balanceView.refreshButton >>> vm.refreshAction).disposed(by: disposeBag)
-        
-        balanceView.refreshButton.rx.tap.bind { [unowned balanceView] in
-            balanceView.showLoading(with: "Loading balance...".localized)
-        }.disposed(by: disposeBag)
-        
-        balanceView.logOutButton.rx.tap.bind { [unowned self] in
-            self.onPopBalanceViewController()
+        v.refreshButton.rx.tap.bind { [unowned self] in
+            self.v.showLoading(with: "Loading balance...".localized)
             }.disposed(by: disposeBag)
         
-        // Input bindings
-        (vm.balance --> { [unowned balanceView] in
+        v.logOutButton.rx.tap.bind { [unowned self] in
+            self.onPopBalanceViewController()
+            }.disposed(by: disposeBag)
+    }
+    
+    override func setupInputBindings(from vm: BalanceViewModel) {
+        (vm.balance --> { [unowned self] in
             if $0 != "..." {
                 SVProgressHUD.dismiss(withDelay: 1.0)
             } else {
-                balanceView.showError(with: "Failed".localized)
+                self.v.showError(with: "Failed".localized)
             }
-            balanceView.balanceLabel.text = $0 + " Kč"
+            self.v.balanceLabel.text = $0 + " Kč"
             }).disposed(by: disposeBag)
     }
 }

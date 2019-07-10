@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import SVProgressHUD
 
-class LogInViewController: AppViewController {
+class LogInViewController: AppViewController<LoginViewModel, LoginView> {
  
     var onLoginSuccess: () -> () = { }
     
@@ -20,52 +20,42 @@ class LogInViewController: AppViewController {
         view = LoginView()
     }
     
-    override func setViewModel() {
-        viewModel = LoginViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        let loginView = view as! LoginView
-        loginView.constraintSmallLogo()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        v.constraintSmallLogo()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let loginView = view as! LoginView
-        loginView.animateLogo()
-        
-
+        v.animateLogo()
     }
     
-    override func bindViewToViewModel(v: UIView, vm: AppViewModel) {
-        let loginView = v as! LoginView
-        let vm = vm as! LoginViewModel
+    override func setupOutputBindings(to vm: LoginViewModel) {
+        (v.usernameTextField >>> vm.username).disposed(by: disposeBag)
+        (v.passwordTextField >>> vm.password).disposed(by: disposeBag)
+        (v.loginButton       >>> vm.loginAction).disposed(by: disposeBag)
         
-        // Output bindings
-        (loginView.usernameTextField >>> vm.username).disposed(by: disposeBag)
-        (loginView.passwordTextField >>> vm.password).disposed(by: disposeBag)
-        (loginView.loginButton >>> vm.loginAction).disposed(by: disposeBag)
-        
-        loginView.loginButton.rx.tap.bind {
-            loginView.showLoading(with: "Loading balance...".localized)
-        }.disposed(by: disposeBag)
-        
-        // Input bindings
-        (vm.isLoginSuccess --> { [unowned self, unowned loginView] success in
-                if !success { loginView.showError(with: "Wrong credentials".localized) }
-                else {
-                    loginView.showSuccess(with: "Success!".localized)
-                    self.onLoginSuccess()
-                }
-                loginView.usernameTextField.deactivate()
-                loginView.passwordTextField.deactivate()
+        v.loginButton.rx.tap.bind { [unowned self] in
+            print("what")
+            self.v.showLoading(with: "Loading balance...".localized)
+            }.disposed(by: disposeBag)
+    }
+    
+    override func setupInputBindings(from vm: LoginViewModel) {
+        (vm.isLoginSuccess --> { [unowned self] success in
+            if !success { self.v.showError(with: "Wrong credentials".localized) }
+            else {
+                self.v.showSuccess(with: "Success!".localized)
+                self.onLoginSuccess()
+            }
+            self.v.usernameTextField.deactivate()
+            self.v.passwordTextField.deactivate()
             }).disposed(by: disposeBag)
         
-        (vm.isLoginEnabled --> {
-                loginView.loginButton.set(alpha: $0 ? 1.0 : 0.2)
+        (vm.isLoginEnabled --> { [unowned self] in
+            self.v.loginButton.set(alpha: $0 ? 1.0 : 0.2)
             }).disposed(by: disposeBag)
     }
 }
