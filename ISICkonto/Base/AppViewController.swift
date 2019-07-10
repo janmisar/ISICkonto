@@ -10,19 +10,27 @@ import Foundation
 import UIKit
 import RxSwift
 
-class AppViewController: UIViewController {
-    
-    var viewModel: AppViewModel!
-    
+class AppViewController<VM: AppViewModel, V: UIView>: UIViewController {
+    var vm: VM!
     var disposeBag = DisposeBag()
+    
+    init(vm: VM) {
+        self.vm = vm
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewModel()
-        bindViewToViewModel(v: view, vm: viewModel)
+        print("binding")
+        bindToViewModel(vm: vm)
     }
     
     override func loadView() {
+        super.loadView()
         setView()
     }
     
@@ -31,12 +39,16 @@ class AppViewController: UIViewController {
         
     }
     
-    func setViewModel() {
+    private func bindToViewModel(vm: VM) {
+        setupOutputBindings(to: vm)
+        setupInputBindings(from: vm)
+    }
+    
+    func setupInputBindings(from vm: VM) {
         
     }
     
-    func bindViewToViewModel(v: UIView, vm: AppViewModel) {
+    func setupOutputBindings(to vm: VM) {
         
     }
-
 }
