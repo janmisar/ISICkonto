@@ -32,7 +32,8 @@ class AppFlowController : AppFlowControllerProtocol {
     }
     
     func showLoginViewController() {
-        let loginViewController = LogInViewController()
+        let loginViewModel = LoginViewModel()
+        let loginViewController = LogInViewController(vm: loginViewModel)
         navigationController.show(loginViewController, sender: self)
         
         loginViewController.onLoginSuccess = { [unowned self] in
@@ -41,7 +42,8 @@ class AppFlowController : AppFlowControllerProtocol {
     }
     
     func pushBalanceViewController() {
-        let balanceViewController = BalanceViewController()
+        let balanceViewModel = BalanceViewModel()
+        let balanceViewController = BalanceViewController(vm: balanceViewModel)
         navigationController.pushViewController(balanceViewController, animated: true)
         
         balanceViewController.onPopBalanceViewController = { [unowned self] in
