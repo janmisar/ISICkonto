@@ -13,3 +13,5 @@
 "Your balance is" = "Your balance is";
 "Success!" = "Success!";
 "Wrong credentials" = "Wrong credentials";
+"Loading balance..." = "Loading balance...";
+"Failed to refresh" = "Failed to refresh";

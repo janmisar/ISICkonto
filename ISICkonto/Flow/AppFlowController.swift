@@ -25,17 +25,29 @@ class AppFlowController : AppFlowControllerProtocol {
     
     func launch() {
         if true {
-            navigationController.show(LogInViewController(), sender: self)
+            showLoginViewController()
         } else {
-            navigationController.show(BalanceViewController(), sender: self)
+            
         }
     }
     
-    public func showLoginViewController() {
+    func showLoginViewController() {
+        let loginViewModel = LoginViewModel()
+        let loginViewController = LogInViewController(vm: loginViewModel)
+        navigationController.show(loginViewController, sender: self)
         
+        loginViewController.onLoginSuccess = { [unowned self] in
+            self.pushBalanceViewController()
+        }
     }
     
-    public func pushBalanceViewController(with page: String) {
-
+    func pushBalanceViewController() {
+        let balanceViewModel = BalanceViewModel()
+        let balanceViewController = BalanceViewController(vm: balanceViewModel)
+        navigationController.pushViewController(balanceViewController, animated: true)
+        
+        balanceViewController.onPopBalanceViewController = { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        }
     }
 }
